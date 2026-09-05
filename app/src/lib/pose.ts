@@ -2,9 +2,14 @@ export type Vec = { x: number; y: number }
 export type HandShape =
   | 'flat' | 'five' | 'fist' | 'point' | 'v' | 'three'
   | 'o' | 'c' | 'pinch' | 'cup' | 'bent' | 'thumb'
-  | 'hook' | 'flatO' | 'l' | 'y' | 'w' | 'relax'
+  | 'hook' | 'flatO' | 'l' | 'y' | 'w' | 'four' | 'six' | 'relax'
+
+  | 'aFist' | 'bFlat' | 'dPoint' | 'eClaw' | 'fCircle' | 'gPoint' | 'hTwo'
+  | 'kV' | 'mThree' | 'nTwo' | 'rCross' | 'tThumb' | 'uTwo'
+  | 'iLittle' | 'xHook' | 'sFist'
 
 export type Palm = 'in' | 'out' | 'down' | 'up' | 'side'
+export type FingerPoint = 'across' | 'down'
 export type Loc =
   | 'rest' | 'neutral' | 'chest' | 'chestHigh' | 'shoulder' | 'neck'
   | 'chin' | 'mouth' | 'nose' | 'eye' | 'brow' | 'forehead'
@@ -12,6 +17,7 @@ export type Loc =
   | 'side' | 'sideHigh' | 'across' | 'far' | 'centre'
 
 export type HandPose = {
+  point?: FingerPoint
   loc: Loc
 
   dx?: number
@@ -20,6 +26,8 @@ export type HandPose = {
   palm?: Palm
 
   rot?: number
+
+  bones?: Record<string, [number, number, number]>
 }
 
 export type Keyframe = {
@@ -151,6 +159,27 @@ const SHAPES: Record<HandShape, ShapeSpec> = {
   l:     { fingers: [{ spread: -8, curl: .03 }, { spread: -1, curl: .95 }, { spread: 4, curl: .95 }, { spread: 9, curl: .95 }], thumb: { out: 78, curl: .04 } },
   relax: { fingers: [{ spread: -4, curl: .74 }, { spread: -1, curl: .78 }, { spread: 2, curl: .8 }, { spread: 5, curl: .82 }], thumb: { out: 20, curl: .62 } },
   y:     { fingers: [{ spread: -6, curl: .95 }, { spread: -1, curl: .95 }, { spread: 4, curl: .95 }, { spread: 26, curl: .04 }], thumb: { out: 74, curl: .05 } },
+
+  four:  { fingers: [{ spread: -16, curl: .04 }, { spread: -5, curl: .03 }, { spread: 6, curl: .04 }, { spread: 17, curl: .06 }], thumb: { out: 6, curl: .88 } },
+  six:   { fingers: [{ spread: -15, curl: .04 }, { spread: -4, curl: .04 }, { spread: 7, curl: .05 }, { spread: 20, curl: .8 }], thumb: { out: 46, curl: .62 }, pinch: .55 },
+
+  aFist:   { fingers: [{ spread: -5, curl: .97 }, { spread: -1, curl: .97 }, { spread: 4, curl: .97 }, { spread: 9, curl: .97 }], thumb: { out: 14, curl: .12 } },
+  bFlat:   { fingers: [{ spread: -3, curl: .03 }, { spread: -1, curl: .03 }, { spread: 1, curl: .03 }, { spread: 4, curl: .03 }], thumb: { out: 4, curl: .88 } },
+  dPoint:  { fingers: [{ spread: -5, curl: .03 }, { spread: -1, curl: .8 }, { spread: 4, curl: .82 }, { spread: 9, curl: .84 }], thumb: { out: 34, curl: .5 }, pinch: .8 },
+  eClaw:   { fingers: [{ spread: -4, curl: .78 }, { spread: -1, curl: .78 }, { spread: 3, curl: .8 }, { spread: 7, curl: .8 }], thumb: { out: 10, curl: .82 } },
+  fCircle: { fingers: [{ spread: -10, curl: .56 }, { spread: -2, curl: .03 }, { spread: 6, curl: .03 }, { spread: 16, curl: .04 }], thumb: { out: 38, curl: .5 }, pinch: .9 },
+  gPoint:  { fingers: [{ spread: -5, curl: .04 }, { spread: -1, curl: .95 }, { spread: 4, curl: .95 }, { spread: 9, curl: .95 }], thumb: { out: 18, curl: .16 } },
+  hTwo:    { fingers: [{ spread: -4, curl: .03 }, { spread: 1, curl: .03 }, { spread: 6, curl: .95 }, { spread: 11, curl: .95 }], thumb: { out: 12, curl: .8 } },
+  kV:      { fingers: [{ spread: -16, curl: .03 }, { spread: 4, curl: .03 }, { spread: 8, curl: .95 }, { spread: 13, curl: .95 }], thumb: { out: 44, curl: .22 } },
+  mThree:  { fingers: [{ spread: -5, curl: .8 }, { spread: -1, curl: .8 }, { spread: 4, curl: .8 }, { spread: 9, curl: .9 }], thumb: { out: 6, curl: .9 } },
+  nTwo:    { fingers: [{ spread: -5, curl: .8 }, { spread: -1, curl: .8 }, { spread: 4, curl: .92 }, { spread: 9, curl: .92 }], thumb: { out: 6, curl: .9 } },
+  rCross:  { fingers: [{ spread: 4, curl: .05 }, { spread: -4, curl: .05 }, { spread: 6, curl: .95 }, { spread: 11, curl: .95 }], thumb: { out: 14, curl: .8 } },
+  tThumb:  { fingers: [{ spread: -5, curl: .88 }, { spread: -1, curl: .92 }, { spread: 4, curl: .92 }, { spread: 9, curl: .92 }], thumb: { out: 16, curl: .55 } },
+  uTwo:    { fingers: [{ spread: -3, curl: .03 }, { spread: 1, curl: .03 }, { spread: 6, curl: .95 }, { spread: 11, curl: .95 }], thumb: { out: 12, curl: .8 } },
+
+  iLittle: { fingers: [{ spread: -5, curl: .96 }, { spread: -1, curl: .96 }, { spread: 4, curl: .96 }, { spread: 12, curl: .03 }], thumb: { out: 8, curl: .88 } },
+  xHook:   { fingers: [{ spread: -5, curl: .58 }, { spread: -1, curl: .96 }, { spread: 4, curl: .96 }, { spread: 9, curl: .96 }], thumb: { out: 12, curl: .82 } },
+  sFist:   { fingers: [{ spread: -5, curl: .97 }, { spread: -1, curl: .97 }, { spread: 4, curl: .97 }, { spread: 9, curl: .97 }], thumb: { out: 4, curl: .8 } },
 }
 
 const F_LEN = [
@@ -256,7 +285,11 @@ export const REST_FRAME: Required<Pick<Keyframe, 't'>> & Keyframe = {
   t: 0, R: REST_R, L: REST_L, brow: 0, mouth: 0, head: 0, nod: 0, torso: 0,
 }
 
-export type ResolvedHand = { pos: Vec; shape: HandShape; shapeB: HandShape; blend: number; palm: Palm; rot: number }
+export type ResolvedHand = {
+  pos: Vec; shape: HandShape; shapeB: HandShape; blend: number; palm: Palm; rot: number
+  point?: FingerPoint
+  bones?: Record<string, [number, number, number]>
+}
 export type ResolvedFrame = {
   R: ResolvedHand; L: ResolvedHand
   brow: number; mouth: number; head: number; nod: number; torso: number
@@ -272,8 +305,27 @@ function lerpHand(a: HandPose, b: HandPose, k: number, side: 'R' | 'L'): Resolve
     shapeB: b.shape,
     blend: a.shape === b.shape ? 0 : k,
     palm: k < 0.5 ? (a.palm ?? 'in') : (b.palm ?? 'in'),
+    point: k < 0.5 ? a.point : b.point,
     rot: (a.rot ?? 0) + ((b.rot ?? 0) - (a.rot ?? 0)) * k,
+    bones: lerpBones(a.bones, b.bones, k),
   }
+}
+
+function lerpBones(
+  a: Record<string, [number, number, number]> | undefined,
+  b: Record<string, [number, number, number]> | undefined,
+  k: number,
+) {
+  if (!a && !b) return undefined
+  if (!a) return b
+  if (!b) return a
+  const out: Record<string, [number, number, number]> = {}
+  for (const key of Object.keys(a)) {
+    const p = a[key]
+    const q = b[key] ?? p
+    out[key] = [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k, p[2] + (q[2] - p[2]) * k]
+  }
+  return out
 }
 
 export function sampleTrack(frames: Keyframe[], u: number): ResolvedFrame {

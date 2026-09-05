@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { useLocal } from './hooks'
+import type { SpeechLang } from './speech'
 export type CaptionLang = 'en' | 'hi' | 'both'
 export type Retention = 'session' | 'shift' | 'off'
 export type Settings = {
@@ -16,6 +17,11 @@ export type Settings = {
   cameraPreview: boolean
   faceChannel: boolean
 
+  /* Off by default, and it has to stay that way: the browser's speech
+     recogniser is the only part of this product that needs a network. */
+  voiceInput: boolean
+  speechLang: SpeechLang
+
   retention: Retention
 }
 
@@ -30,6 +36,8 @@ export const DEFAULTS: Settings = {
   threshold: 0.78,
   cameraPreview: true,
   faceChannel: true,
+  voiceInput: false,
+  speechLang: 'en-IN',
   retention: 'shift',
 }
 

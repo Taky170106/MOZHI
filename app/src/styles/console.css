@@ -392,3 +392,115 @@
   .con-kpi, .con-scrim, .con-sheet { animation: none; }
   .con-kpi:hover, .con-row:hover, .con-card:hover { transform: none; }
 }
+
+.con-acc-none em {
+  color: rgb(255 255 255 / 0.34);
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.con-alpha {
+  margin: 0 0 1.15rem;
+  padding: 1rem 1.15rem 1.15rem;
+  border: 1px solid rgb(255 255 255 / 0.09);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.02);
+}
+
+.con-alpha-head h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgb(255 255 255 / 0.92);
+}
+
+.con-alpha-head p {
+  margin: 0.3rem 0 0.9rem;
+  max-width: 62ch;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.5);
+}
+
+.con-alpha-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.con-alpha-grid button {
+  min-width: 2.1rem;
+  padding: 0.42rem 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 7px;
+  background: rgb(255 255 255 / 0.03);
+  color: rgb(255 255 255 / 0.74);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.con-alpha-grid button:hover {
+  color: #fff;
+  border-color: rgb(255 255 255 / 0.3);
+}
+
+.con-alpha-grid button.is-on {
+  background: var(--warm);
+  border-color: var(--warm);
+  color: #fff;
+}
+
+.con-alpha-grid button.is-weak {
+  border-style: dashed;
+  color: rgb(255 255 255 / 0.44);
+}
+
+.rev-count { margin-left: auto; font-family: var(--mono); font-size: 0.72rem; color: rgb(255 255 255 / 0.5); }
+.rev { display: flex; flex-direction: column; gap: 0.9rem; }
+.rev-stage { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+@media (min-width: 52rem) { .rev-stage { grid-template-columns: 1fr 1fr; } }
+.rev-pane {
+  position: relative; min-height: 22rem; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgb(255 255 255 / 0.1); border-radius: 12px; background: rgb(255 255 255 / 0.02);
+  overflow: hidden;
+}
+.rev-pane-tag {
+  position: absolute; top: 0.6rem; left: 0.75rem; z-index: 2;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgb(255 255 255 / 0.4);
+}
+.rev-ref { width: 100%; height: 100%; object-fit: contain; }
+.rev-none { max-width: 30ch; padding: 1.5rem; text-align: center; font-size: 0.85rem; color: rgb(255 255 255 / 0.45); }
+.rev-bar { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+.rev-id strong { font-family: var(--display); font-size: 1.5rem; margin-right: 0.6rem; }
+.rev-id span { font-family: var(--mono); font-size: 0.7rem; color: rgb(255 255 255 / 0.45); }
+.rev-actions { margin-left: auto; display: flex; gap: 0.45rem; }
+.rev-actions button {
+  padding: 0.5rem 0.9rem; border-radius: 8px; cursor: pointer; font: inherit; font-size: 0.8rem;
+  border: 1px solid rgb(255 255 255 / 0.16); background: rgb(255 255 255 / 0.04); color: rgb(255 255 255 / 0.8);
+}
+.rev-actions button:disabled { opacity: 0.35; cursor: default; }
+.rev-pass { background: var(--cool) !important; border-color: var(--cool) !important; color: #fff !important; }
+.rev-fail { background: #7d1f2e !important; border-color: #7d1f2e !important; color: #fff !important; }
+.rev-strip { display: flex; flex-wrap: wrap; gap: 0.3rem; list-style: none; margin: 0; padding: 0; }
+.rev-strip button {
+  min-width: 2rem; padding: 0.3rem 0.4rem; border-radius: 6px; cursor: pointer;
+  font-family: var(--mono); font-size: 0.68rem;
+  border: 1px solid rgb(255 255 255 / 0.1); background: transparent; color: rgb(255 255 255 / 0.5);
+}
+.rev-strip button.is-on { border-color: #fff; color: #fff; }
+.rev-strip button.is-pass { background: rgb(110 96 220 / 0.35); color: #fff; }
+.rev-strip button.is-fail { background: rgb(125 31 46 / 0.5); color: #fff; }
+.rev-out { margin-top: 0.5rem; font-size: 0.75rem; color: rgb(255 255 255 / 0.45); }
+.rev-out pre { max-height: 12rem; overflow: auto; font-size: 0.7rem; }

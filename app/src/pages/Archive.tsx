@@ -3,7 +3,6 @@ import RandomLetterSwapNav from '@/components/ui/m-random-letter-swap-1'
 import { SquircleFilter } from '@/components/ui/squircle-filter'
 import SigningAvatar from '@/components/SigningAvatar'
 import { useSignPlayer } from '@/lib/hooks'
-import { useSettings } from '@/lib/settings'
 import { SEED_TURNS, type Turn } from '@/lib/turns'
 import '@/styles/counter.css'
 import '@/styles/settings.css'
@@ -122,7 +121,6 @@ function Replay({ turn, onClose }: { turn: Turn; onClose: () => void }) {
 }
 
 export default function Archive() {
-  const { settings } = useSettings()
   const [q, setQ] = useState('')
   const [dir, setDir] = useState<Dir>('all')
   const [open, setOpen] = useState<Turn | null>(null)
@@ -196,11 +194,6 @@ export default function Archive() {
         <header className="set-head">
           <p className="set-eyebrow">Counter log</p>
           <h1 className="set-title">Every turn this counter handled.</h1>
-          <p className="set-sub">
-            The pilot measures four things: how many interactions completed without a person
-            stepping in, recognition accuracy, response time, and how often the visitor was asked
-            to repeat. All four are here — including the turns that went badly.
-          </p>
         </header>
 
         <div className="con-kpis">
@@ -287,15 +280,6 @@ export default function Archive() {
           <div className="set-row">
             <div>
               <span className="set-label">What is kept</span>
-              <p className="set-hint">
-                {settings.retention === 'off'
-                  ? 'Nothing is kept. Turns are discarded the moment they leave the screen.'
-                  : settings.retention === 'session'
-                    ? 'Turns are held until this session ends, then discarded.'
-                    : 'Turns are held for the current shift, then discarded.'}
-                {' '}No video ever existed to keep — only landmark coordinates, and those are not
-                stored either.
-              </p>
             </div>
             <div className="set-ctl">
               <a className="set-btn" href="#/settings">Change in settings →</a>

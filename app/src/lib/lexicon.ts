@@ -1,5 +1,5 @@
 import type { HandPose, HandShape, Keyframe, Loc, Palm } from './pose'
-
+import { COMMON } from './common'
 export type Domain = 'core' | 'question' | 'time' | 'health' | 'counter' | 'travel' | 'action'
 export type Sign = {
   id: string
@@ -12,7 +12,9 @@ export type Sign = {
   movement: string
   nmm?: string
 
-  acc: number
+  acc?: number
+
+  verified?: boolean
 
   near?: string[]
   durMs: number
@@ -704,7 +706,8 @@ export const SIGNS: Sign[] = [
   },
 ]
 
-export const SIGN_BY_ID: Record<string, Sign> = Object.fromEntries(SIGNS.map(s => [s.id, s]))
+export const ALL_SIGNS: Sign[] = [...SIGNS, ...COMMON]
+export const SIGN_BY_ID: Record<string, Sign> = Object.fromEntries(ALL_SIGNS.map(s => [s.id, s]))
 export const CLIPS_PER_SIGN = 80
 export const SIGNERS = 4
 export const REPS = 20

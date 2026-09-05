@@ -1,0 +1,2 @@
+numpy>=2
+ai-edge-litert>=2.2.0

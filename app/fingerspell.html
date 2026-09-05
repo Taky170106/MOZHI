@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fingerspelling extractor</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0;
+    padding: 2rem 1.5rem 3rem;
+    background: #0c0a16;
+    color: #f1efea;
+    font: 14px/1.55 ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; }
+  h1 { font-size: 1.1rem; margin: 0 0 .35rem; letter-spacing: -0.01em; }
+  p  { margin: 0 0 1.2rem; color: #a9a5bd; max-width: 62ch; }
+  button {
+    padding: .6rem 1.1rem;
+    border: 1px solid #6e60dc;
+    border-radius: 6px;
+    background: #6e60dc;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  button:disabled { opacity: .45; cursor: default; }
+  #status { margin-left: .85rem; color: #a79bff; }
+  #log {
+    margin-top: 1.2rem;
+    padding: .9rem 1rem;
+    height: 26rem;
+    overflow: auto;
+    white-space: pre;
+    border: 1px solid #2a2547;
+    border-radius: 8px;
+    background: #100e20;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Fingerspelling extractor</h1>
+  <p>
+    Runs MediaPipe Holistic over the ISL corpus and records, per letter, the
+    joint angles of both hands and where the right hand sits relative to the
+    left. Nothing is written to the repository except the resulting JSON.
+  </p>
+  <button id="go">Start</button><span id="status">idle</span>
+  <div id="log"></div>
+</div>
+<script type="module" src="/src/dev/fingerspell.ts"></script>
+</body>
+</html>

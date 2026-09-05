@@ -1,6 +1,6 @@
-import { SIGNS, SIGN_BY_ID } from './lexicon'
-
-export type TokenKind = 'sign' | 'dropped' | 'oov'
+import { ALL_SIGNS, SIGNS, SIGN_BY_ID } from './lexicon'
+import { LETTER_BY_ID, fingerspell, isLetterId, spellable } from './alphabet'
+export type TokenKind = 'sign' | 'dropped' | 'oov' | 'fingerspell'
 export type GlossToken = {
   gloss: string | null
   source: string
@@ -9,6 +9,8 @@ export type GlossToken = {
   clause: number
 
   reason?: string
+
+  letters?: string[]
 }
 
 export type GlossResult = {
@@ -41,7 +43,7 @@ const DROP: Record<string, string> = {
 
 const LEX: Record<string, string> = {}
 const add = (gloss: string, ...words: string[]) => words.forEach(w => { LEX[w] = gloss })
-SIGNS.forEach(s => { LEX[s.en.toLowerCase()] = s.id; LEX[s.id.toLowerCase()] = s.id })
+ALL_SIGNS.forEach(s => { LEX[s.en.toLowerCase()] = s.id; LEX[s.id.toLowerCase()] = s.id })
 
 add('HELLO', 'hi', 'hey', 'greetings', 'namaste', 'welcome')
 add('THANK-YOU', 'thanks', 'thankyou', 'grateful')
@@ -97,12 +99,59 @@ add('TICKET', 'tickets', 'reservation', 'pnr', 'booking-slip')
 add('NEED', 'needs', 'needed', 'want', 'wants', 'require', 'required', 'must', 'requires')
 add('SEE', 'seeing', 'saw', 'meet', 'meeting-with', 'consult', 'look', 'examine', 'check')
 add('COME', 'coming', 'came', 'arrive', 'arrived', 'bring', 'return')
-add('GO', 'going', 'went', 'leave', 'proceed', 'move', 'head')
+
+add('GO', 'going', 'went', 'leave', 'proceed', 'move')
 add('GOOD', 'well', 'fine', 'nice', 'better', 'successful', 'successfully')
 add('BAD', 'worse', 'poor', 'wrong', 'problem', 'issue')
 add('FINISH', 'finished', 'done', 'complete', 'completed', 'over', 'end', 'ended', 'ready', 'prepared')
 add('MORE', 'another', 'additional', 'extra', 'again?')
 add('AGAIN', 'repeat', 'once-more', 'resend')
+
+add('WATER', 'water', 'drink', 'thirsty')
+add('SIT', 'sit', 'seat', 'sitting', 'sits')
+add('STAND', 'stand', 'standing', 'stands')
+add('BRING', 'brings', 'bringing', 'fetch', 'carry')
+add('GIVE', 'gives', 'giving', 'hand', 'submit', 'deposit')
+add('TAKE', 'takes', 'taking', 'collect', 'receive')
+add('SHOW', 'shows', 'showing', 'display', 'present')
+add('WRITE', 'writes', 'writing', 'fill', 'note')
+add('EVENING', 'evenings')
+add('NIGHT', 'nights', 'tonight')
+add('DAY', 'days', 'daily')
+add('WEEK', 'weeks', 'weekly')
+add('MONTH', 'months', 'monthly')
+add('YEAR', 'years', 'yearly', 'annual')
+add('LATER', 'afterwards', 'afterward', 'soon')
+add('BEFORE', 'earlier', 'prior', 'previously')
+add('NURSE', 'nurse', 'nurses')
+add('WARD', 'ward', 'wards')
+add('BED', 'bed', 'beds')
+add('TABLET', 'tablet', 'tablets', 'capsule')
+add('XRAY', 'x-ray', 'xray', 'scan', 'radiograph')
+add('QUEUE', 'queue', 'queues', 'lineup')
+add('TOKEN', 'token', 'tokens', 'slip', 'coupon')
+add('WINDOW', 'window', 'windows')
+add('PHONE', 'phone', 'phones', 'mobile')
+add('ADDRESS', 'addresses')
+add('AGE', 'ages', 'old age')
+add('BIG', 'large', 'huge', 'bigger')
+add('SMALL', 'little', 'tiny', 'smaller')
+add('NEW', 'newer', 'fresh')
+add('OLD', 'older', 'previous')
+add('ALL', 'everything', 'every', 'whole')
+add('MANY', 'much', 'lots', 'several', 'plenty')
+add('I', 'myself')
+add('WE', 'our', 'ours', 'us')
+add('HE-SHE', 'he', 'she', 'him', 'her', 'they', 'them')
+add('OK', 'fine', 'alright')
+add('KNOW', 'knows', 'knew', 'aware')
+add('NOT-KNOW', 'unknown', 'unsure')
+add('WANT', 'wants', 'wanted', 'wish', 'require')
+add('CAN', 'able', 'possible', 'may')
+add('CANNOT', 'unable', 'impossible')
+add('HAVE', 'has', 'had', 'having', 'got')
+add('HERE', 'this side')
+add('THERE', 'that side')
 
 const PHRASES: [string[], string][] = [
   [['thank', 'you'], 'THANK-YOU'],
@@ -158,7 +207,20 @@ function glossClause(words: string[], clause: number): GlossToken[] {
     for (const cand of lemma(w)) { if (LEX[cand]) { hit = LEX[cand]; break } }
     if (hit) tokens.push({ gloss: hit, source: w, kind: 'sign', clause })
     else if (DROP[w]) tokens.push({ gloss: null, source: w, kind: 'dropped', clause, reason: DROP[w] })
-    else if (/^\d+$/.test(w)) tokens.push({ gloss: 'NUMBER', source: w, kind: 'sign', clause })
+    else if (/^\d+$/.test(w)) {
+      const letters = fingerspell(w)
+      tokens.push(letters.length
+        ? { gloss: null, source: w, kind: 'fingerspell', clause, letters }
+        : { gloss: 'NUMBER', source: w, kind: 'sign', clause })
+    }
+    else if (spellable(w)) {
+      const letters = fingerspell(w)
+      tokens.push(
+        letters.length
+          ? { gloss: null, source: w, kind: 'fingerspell', clause, letters }
+          : { gloss: null, source: w, kind: 'oov', clause },
+      )
+    }
     else tokens.push({ gloss: null, source: w, kind: 'oov', clause })
     i++
   }
@@ -202,8 +264,18 @@ export function englishToGloss(text: string): GlossResult {
       seq.push(t)
     }
     tokens.push(...seq)
-    const ordered = orderClause(seq.filter(t => t.kind === 'sign').map(t => t.gloss!))
-    if (ordered.length) clauses.push(ordered)
+    const spelled = seq.filter(t => t.kind === 'fingerspell')
+    const ordered = orderClause(
+      seq
+        .filter(t => t.kind === 'sign' || t.kind === 'fingerspell')
+        .map(t => (t.kind === 'sign' ? t.gloss! : `FS:${t.source}`)),
+    )
+    const expanded = ordered.flatMap(g =>
+      g.startsWith('FS:')
+        ? spelled.find(t => t.source === g.slice(3))?.letters ?? []
+        : [g],
+    )
+    if (expanded.length) clauses.push(expanded)
   })
 
   const glosses = clauses.flat()
@@ -213,6 +285,13 @@ export function englishToGloss(text: string): GlossResult {
   if (allSigns.some(g => TIME_GLOSSES.has(g))) notes.push('Time set at the front of its clause.')
   if (allSigns.some(g => WH_GLOSSES.has(g))) notes.push('Wh-sign held to the end; the question is marked on the brows.')
   if (allSigns.some(g => NEG_GLOSSES.has(g))) notes.push('Negation follows the predicate and is carried by a headshake.')
+  const spelledWords = tokens.filter(t => t.kind === 'fingerspell')
+  if (spelledWords.length) {
+    const list = spelledWords.map(t => t.source).join(', ')
+    notes.push(
+      `${spelledWords.length} word${spelledWords.length > 1 ? 's' : ''} fingerspelled rather than substituted: ${list}.`,
+    )
+  }
   const dropped = tokens.filter(t => t.kind === 'dropped')
   if (dropped.length) notes.push(`${dropped.length} function word${dropped.length > 1 ? 's' : ''} not signed in ISL.`)
 
@@ -302,7 +381,6 @@ export function glossToEnglish(glosses: string[]): { text: string; templated: bo
   const verbs = body.filter(x => ['NEED', 'SEE', 'COME', 'GO', 'WAIT', 'PAY', 'HELP', 'UNDERSTAND', 'NOT-UNDERSTAND', 'FINISH', 'OPEN', 'CLOSED', 'DELAY', 'SIGNATURE'].includes(x))
   const nouns = body.filter(x => !verbs.includes(x))
   const np = nouns.map(n => NOUN_PHRASE[n] ?? (SIGN_BY_ID[n]?.en ?? n.toLowerCase())).join(' and ')
-
   let clause: string
   if (verbs.includes('NEED')) clause = `I need ${np || 'help'}`
   else if (verbs.includes('SEE')) clause = `I would like to see ${np || 'someone'}`
@@ -340,3 +418,35 @@ export function glossToEnglish(glosses: string[]): { text: string; templated: bo
 }
 
 export const isKnownGloss = (g: string) => !!SIGN_BY_ID[g]
+export const glossLabel = (id: string) =>
+  isLetterId(id) ? (LETTER_BY_ID[id]?.letter ?? id.slice(3)) : id
+
+export function readGlosses(ids: string[]): string[] {
+  const out: string[] = []
+  let run: string[] = []
+  const flush = () => { if (run.length) { out.push(run.join('-')); run = [] } }
+  for (const id of ids) {
+    if (isLetterId(id)) run.push(glossLabel(id))
+    else { flush(); out.push(SIGN_BY_ID[id]?.en ?? id.toLowerCase()) }
+  }
+  flush()
+  return out
+}
+
+export type GlossRun = { label: string; ids: string[]; spelled: boolean; from: number }
+export function groupGlosses(ids: string[]): GlossRun[] {
+  const out: GlossRun[] = []
+  let run: string[] = []
+  let from = 0
+  const flush = () => {
+    if (!run.length) return
+    out.push({ label: run.map(glossLabel).join('-'), ids: [...run], spelled: true, from })
+    run = []
+  }
+  ids.forEach((id, i) => {
+    if (isLetterId(id)) { if (!run.length) from = i; run.push(id) }
+    else { flush(); out.push({ label: id, ids: [id], spelled: false, from: i }) }
+  })
+  flush()
+  return out
+}

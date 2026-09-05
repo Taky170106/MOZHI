@@ -756,3 +756,107 @@
 @media (prefers-reduced-motion: reduce) {
   .rise { animation: none; }
 }
+
+.chip-spelled {
+  border-style: dashed;
+  letter-spacing: 0.08em;
+}
+
+.sentence-hi {
+  margin-top: 6px;
+  color: rgb(255 255 255 / 0.68);
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.28;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+.bubble-hi {
+  display: block;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid currentColor;
+  border-top-color: rgb(128 128 128 / 0.22);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  opacity: 0.72;
+}
+
+.vcaption-hi {
+  margin-top: 10px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.mic-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.mic {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 5px 12px 4px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.04);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.62);
+  white-space: nowrap;
+  transition:
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mic:hover { color: #fff; border-color: rgb(255 255 255 / 0.4); }
+
+.mic-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.35);
+}
+
+.mic-live {
+  color: #fff;
+  border-color: rgb(255 138 61 / 0.65);
+  background: rgb(255 138 61 / 0.16);
+}
+.mic-live .mic-dot {
+  background: #FF8A3D;
+  box-shadow: 0 0 10px #FF8A3D;
+  animation: mic-pulse 1.4s ease-in-out infinite;
+}
+@keyframes mic-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+.mic-note {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.42);
+}
+
+.mic-interim {
+  flex-basis: 100%;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: rgb(255 255 255 / 0.5);
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mic-live .mic-dot { animation: none; }
+}

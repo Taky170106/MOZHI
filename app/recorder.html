@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sanket — training recorder</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { background:#0a0a0a; color:#e8e8e8; font:13px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; margin:0; padding:24px 28px 60px; }
+    h1 { font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:#8a8a8a; font-weight:600; margin:0 0 4px; }
+    p.sub { color:#6f6f6f; margin:0 0 20px; max-width:74ch; }
+    .panes { display:flex; gap:22px; flex-wrap:wrap; align-items:flex-start; }
+    .pane h2 { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#7a7a7a; font-weight:600; margin:0 0 8px; }
+    video { width:340px; border-radius:8px; background:#111; display:block; transform:scaleX(-1); }
+    canvas { width:264px; height:264px; border-radius:8px; background:#111; display:block; image-rendering:pixelated; }
+    .good { color:#4ade80; } .bad { color:#f87171; }
+    .strip { margin:18px 0 6px; display:flex; gap:16px; align-items:baseline; flex-wrap:wrap; }
+    .controls { margin:14px 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    input { background:#111; color:#eee; border:1px solid #2b2b2b; border-radius:6px; padding:8px 11px; font:inherit; width:180px; }
+    button { background:#161616; color:#ddd; border:1px solid #2b2b2b; border-radius:6px; padding:8px 14px; font:inherit; cursor:pointer; }
+    button:hover:not(:disabled) { background:#1e1e1e; border-color:#3a3a3a; }
+    button:disabled { opacity:.4; cursor:default; }
+    #record { padding:10px 22px; font-weight:700; }
+    #record.on { background:#7f1d1d; border-color:#b91c1c; color:#fff; }
+    #classes { margin:14px 0; display:flex; flex-direction:column; gap:6px; max-width:460px; }
+    .cls { display:grid; grid-template-columns:1fr 56px 52px 32px; gap:8px; align-items:center; background:#131313; border:1px solid #232323; border-radius:6px; padding:5px 6px 5px 10px; }
+    .cls.active { border-color:#29A9F5; background:#0f1b25; }
+    .cls .pick { background:none; border:none; text-align:left; padding:4px 0; color:#e8e8e8; }
+    .cls .count { color:#8a8a8a; text-align:right; }
+    .cls .dl, .cls .rm { padding:4px 8px; font-size:12px; }
+    .hint { margin-top:26px; color:#7a7a7a; max-width:78ch; }
+    .hint b { color:#c0c0c0; font-weight:600; }
+    .hint ol { padding-left:20px; }
+    .hint li { margin-bottom:7px; }
+  </style>
+</head>
+<body>
+  <h1>Training recorder · framed and background-masked</h1>
+  <p class="sub">
+    Records what the Counter will actually see: cropped to your body, room removed.
+    Same code path as inference, so what you train on is what gets classified.
+  </p>
+
+  <div class="panes">
+    <div class="pane">
+      <h2>camera</h2>
+      <div id="feed"></div>
+    </div>
+    <div class="pane">
+      <h2>what gets saved &amp; classified</h2>
+      <canvas id="preview" width="224" height="224"></canvas>
+    </div>
+  </div>
+
+  <div class="strip">
+    <span id="framed">—</span>
+    <span id="total">0 images</span>
+    <span id="balance"></span>
+    <span id="status">starting…</span>
+  </div>
+
+  <div class="controls">
+    <input id="name" placeholder="class name, e.g. Doctor" />
+    <button id="add">add class</button>
+    <button id="mask">background</button>
+  </div>
+
+  <div id="classes"></div>
+
+  <div class="controls">
+    <button id="record">hold to RECORD · or hold SPACE</button>
+  </div>
+
+  <div class="hint">
+    <b>How to record a set that actually works</b>
+    <ol>
+      <li><b>Interleave the classes.</b> A round of ~40 for every class, then go
+          round again, four or five times. Recording 200 of one class and then 200
+          of the next lets the light, your position and your posture drift with the
+          label — and the model learns the drift instead of the sign. This matters
+          more than everything else here.</li>
+      <li><b>Add a "Background" class.</b> Hands down, standing still, walking in and
+          out, hands moving between positions. 300+ images. Without it a five-class
+          softmax has to call an empty counter <i>something</i>.</li>
+      <li><b>Move between bursts.</b> Step closer, further, left, right, turn a little.
+          The crop normalises position and scale, so this costs you nothing and buys
+          robustness.</li>
+      <li><b>200–300 images per sign.</b> A few dozen is not enough to separate five
+          signs that share a body, a face and a room.</li>
+      <li><b>Watch the right-hand square.</b> If your hands leave it, the sample is
+          worthless — it says "no person found" when there is nothing to record.</li>
+    </ol>
+    <b>Then:</b> download a zip per class, unzip, and in Teachable Machine use
+    <b>Upload</b> (not the webcam) to add each folder as its class. Train, export
+    <b>TensorFlow.js</b>, drop the three files into <code>app/public/models/tm/</code>,
+    and open the Counter with <code>?framing=1</code>.
+  </div>
+
+  <script type="module" src="/src/dev/recorder.ts"></script>
+</body>
+</html>

@@ -4,8 +4,9 @@ import { SquircleFilter } from '@/components/ui/squircle-filter'
 import SigningAvatar from '@/components/SigningAvatar'
 import AvatarThumb from '@/components/AvatarThumb'
 import { useSignLoop, useSignPlayer } from '@/lib/hooks'
+import { LETTERS } from '@/lib/alphabet'
 import {
-  CLIPS_PER_SIGN, DOMAINS, PLANNED_PACKS, REPS, SIGNERS, SIGNS, TOTAL_CLIPS,
+  ALL_SIGNS, CLIPS_PER_SIGN, DOMAINS, PLANNED_PACKS, REPS, SIGNERS, SIGNS,
   type Domain, type Sign,
 } from '@/lib/lexicon'
 import '@/styles/counter.css'
@@ -60,12 +61,18 @@ function Card({ sign, onOpen }: { sign: Sign; onOpen: (el: HTMLButtonElement | n
         <span className="con-card-word">{sign.en}</span>
         <span className="con-card-hi">{sign.hi}</span>
         <span className="con-card-hands">{sign.hands === 2 ? 'Two-handed' : 'One-handed'}</span>
-        <span className="con-acc" title={`${Math.round(sign.acc * 100)}% on held-out signers`}>
-          <span className="con-accbar">
-            <i style={{ transform: `scaleX(${Math.max(0.06, (sign.acc - 0.86) / 0.14).toFixed(3)})` }} />
+        {sign.acc == null ? (
+          <span className="con-acc con-acc-none" title="No recorded clips yet, so no measured accuracy">
+            <em>not measured</em>
           </span>
-          <em>{Math.round(sign.acc * 100)}%</em>
-        </span>
+        ) : (
+          <span className="con-acc" title={`${Math.round(sign.acc * 100)}% on held-out signers`}>
+            <span className="con-accbar">
+              <i style={{ transform: `scaleX(${Math.max(0.06, (sign.acc - 0.86) / 0.14).toFixed(3)})` }} />
+            </span>
+            <em>{Math.round(sign.acc * 100)}%</em>
+          </span>
+        )}
       </button>
     </li>
   )
@@ -112,8 +119,12 @@ function Detail({ sign, onClose }: { sign: Sign; onClose: () => void }) {
           <div><dt>Movement</dt><dd>{sign.movement}</dd></div>
           {sign.nmm && <div><dt>Non-manual</dt><dd>{sign.nmm}</dd></div>}
           <div><dt>Hands</dt><dd>{sign.hands === 2 ? 'Two-handed' : 'One-handed'}</dd></div>
-          <div><dt>Accuracy</dt><dd>{Math.round(sign.acc * 100)}% on held-out signers</dd></div>
-          <div><dt>Corpus</dt><dd>{CLIPS_PER_SIGN} clips · {SIGNERS} signers × {REPS} repetitions</dd></div>
+          <div><dt>Accuracy</dt><dd>{sign.acc == null
+            ? 'Not measured — no clips recorded for this sign yet'
+            : `${Math.round(sign.acc * 100)}% on held-out signers`}</dd></div>
+          <div><dt>Corpus</dt><dd>{sign.acc == null
+            ? 'Not recorded'
+            : `${CLIPS_PER_SIGN} clips · ${SIGNERS} signers × ${REPS} repetitions`}</dd></div>
           {sign.near?.length ? (
             <div>
               <dt>Confused with</dt>
@@ -152,9 +163,13 @@ export default function Vocabulary() {
     return () => { window.removeEventListener('pointermove', onMove); if (raf) cancelAnimationFrame(raf) }
   }, [])
 
+  const [spell, setSpell] = useState<string[]>([])
+  const alpha = useSignPlayer(spell, { autoplay: true, speed: 1, idle: false, onEnd: () => setSpell([]) })
+  const playing = alpha.playing ? spell[0] : null
+  const playIds = (ids: string[]) => setSpell(ids)
   const list = useMemo(() => {
     const needle = q.trim().toLowerCase()
-    const out = SIGNS.filter(s => {
+    const out = ALL_SIGNS.filter(s => {
       if (dom !== 'all' && s.domain !== dom) return false
       if (!needle) return true
       return s.id.toLowerCase().includes(needle)
@@ -162,14 +177,14 @@ export default function Vocabulary() {
         || s.hi.includes(needle)
     })
     return out.sort((a, b) =>
-      sort === 'acc' ? b.acc - a.acc
+      sort === 'acc' ? (b.acc ?? -1) - (a.acc ?? -1)
         : sort === 'az' ? a.id.localeCompare(b.id)
         : a.domain.localeCompare(b.domain) || a.id.localeCompare(b.id))
   }, [q, dom, sort])
 
   const counts = useMemo(() => {
     const m: Partial<Record<Domain, number>> = {}
-    for (const s of SIGNS) m[s.domain] = (m[s.domain] ?? 0) + 1
+    for (const s of ALL_SIGNS) m[s.domain] = (m[s.domain] ?? 0) + 1
     return m
   }, [])
 
@@ -184,12 +199,7 @@ export default function Vocabulary() {
       <main id="main" className="set-shell">
         <header className="set-head">
           <p className="set-eyebrow">Deployed vocabulary</p>
-          <h1 className="set-title">{SIGNS.length} signs this counter knows.</h1>
-          <p className="set-sub">
-            Recorded, validated and available today — {TOTAL_CLIPS.toLocaleString('en-IN')} clips
-            from {SIGNERS} signers. What is not here is listed at the bottom, because the boundary
-            of what the machine knows is part of knowing it.
-          </p>
+          <h1 className="set-title">{ALL_SIGNS.length} signs and {LETTERS.length} letters this counter knows.</h1>
         </header>
 
         <div className="con-bar">
@@ -213,10 +223,30 @@ export default function Vocabulary() {
           </div>
         </div>
 
+        <section className="con-alpha" aria-labelledby="alpha-head">
+          <div className="con-alpha-head">
+            <h2 id="alpha-head">Fingerspelling alphabet and digits</h2>
+          </div>
+          <ul className="con-alpha-grid">
+            {LETTERS.map(l => (
+              <li key={l.id}>
+                <button
+                  className={`${playing === l.id ? 'is-on' : ''} ${l.confidence !== 'measured' ? 'is-weak' : ''}`}
+                  onClick={() => playIds([l.id])}
+                  title={`${l.script} · ${l.hands === 2 ? 'two-handed' : 'one-handed'} · authored`}
+                  aria-label={`Play the letter ${l.letter}`}
+                >
+                  {l.letter}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <div className="con-bar">
           <div className="seg" role="group" aria-label="Filter by domain">
             <button className={dom === 'all' ? 'is-on' : ''} aria-pressed={dom === 'all'} onClick={() => setDom('all')}>
-              All {SIGNS.length}
+              All {ALL_SIGNS.length}
             </button>
             {DOMAINS.map(d => (
               <button key={d.id} className={dom === d.id ? 'is-on' : ''} aria-pressed={dom === d.id} onClick={() => setDom(d.id)} title={d.note}>
@@ -247,10 +277,6 @@ export default function Vocabulary() {
         <section className="set-group mt-8">
           <div className="set-skin" />
           <h2 className="set-group-h">Not recorded yet</h2>
-          <p className="set-hint mb-5 max-w-[56ch]">
-            The vocabulary is a hospital reception domain. These packs are planned, not deployed —
-            a word from one of them reaches the counter as text, never as a guess.
-          </p>
           <div className="con-packs">
             {PLANNED_PACKS.map(p => (
               <div key={p.id} className="con-pack">

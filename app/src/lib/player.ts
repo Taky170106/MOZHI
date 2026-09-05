@@ -1,12 +1,15 @@
 import { SIGN_BY_ID, type Sign } from './lexicon'
+import { LETTER_BY_ID, LETTER_COART_MS, isLetterId } from './alphabet'
 import { blendFrames, restFrame, sampleTrack, type ResolvedFrame } from './pose'
-export const COART_MS = 170
+type Playable = Pick<Sign, 'durMs' | 'frames'>
 
+const playable = (id: string): Playable | undefined =>
+  SIGN_BY_ID[id] ?? LETTER_BY_ID[id]
+export const COART_MS = 170
 export const HOLD_MIN_MS = 120
 export const HOLD_MAX_MS = 250
 const LEAD_MS = 400
-
-export function holdMsFor(sign: Sign | undefined): number {
+export function holdMsFor(sign: Playable | undefined): number {
   const d = sign?.durMs ?? 700
   return Math.max(HOLD_MIN_MS, Math.min(HOLD_MAX_MS, Math.round(d * 0.22)))
 }
@@ -28,19 +31,20 @@ export function buildTimeline(ids: string[], speed = 1): Timeline {
   const s = Math.max(0.1, speed)
   let t = LEAD_MS / s
   ids.forEach((id, index) => {
-    const sign = SIGN_BY_ID[id]
+    const sign = playable(id)
     const dur = (sign?.durMs ?? 700) / s
     const hold = holdMsFor(sign) / s
     segments.push({ id, index, start: t, stroke: t + dur, end: t + dur + hold })
-    t += dur + hold + COART_MS / s
+    const runOn = isLetterId(id) && isLetterId(ids[index + 1] ?? '')
+    t += dur + hold + (runOn ? LETTER_COART_MS : COART_MS) / s
   })
 
   const total = ids.length ? segments[segments.length - 1].end + LEAD_MS / s : 0
   return { segments, total, speed: s }
 }
 
-const headOf = (id: string) => sampleTrack(SIGN_BY_ID[id]?.frames ?? [], 0)
-const tailOf = (id: string) => sampleTrack(SIGN_BY_ID[id]?.frames ?? [], 1)
+const headOf = (id: string) => sampleTrack(playable(id)?.frames ?? [], 0)
+const tailOf = (id: string) => sampleTrack(playable(id)?.frames ?? [], 1)
 export type PlayHead = {
   frame: ResolvedFrame
 
@@ -67,7 +71,7 @@ export function frameAtTime(tl: Timeline, tMs: number): PlayHead {
     if (t <= s.stroke) {
       const local = (t - s.start) / Math.max(1, s.stroke - s.start)
       return {
-        frame: sampleTrack(SIGN_BY_ID[s.id]?.frames ?? [], local),
+        frame: sampleTrack(playable(s.id)?.frames ?? [], local),
         active: i, local, holding: false,
       }
     }

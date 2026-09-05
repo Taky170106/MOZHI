@@ -8,6 +8,10 @@ __pycache__/
 dist/
 *.tsbuildinfo
 
+# extracted landmark data and downloaded models — derived, and large
+tools/out/
+tools/models/
+
 # local database and its write-ahead log
 *.db
 *.db-shm
@@ -30,7 +34,16 @@ docs/
 reference/
 _scrapped/
 
+# reference material and work in progress kept out of the product
+alphabet signs/
+Sanket Female Avatar2.vrm
+
 # environment
 .env
 .env.*
 !.env.example
+
+# reference material and duplicated model copies, not part of the product
+alphabet signs/
+tools/models/
+Sanket Female Avatar2.vrm
