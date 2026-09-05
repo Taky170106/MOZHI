@@ -23,7 +23,6 @@ const DOT_SIZE = 2.4
 const MAX_LINES = 3
 const LINE_HEIGHT = 1.1
 const WORD_SPACING = '0.14em'
-
 function applyTypography(ctx: CanvasRenderingContext2D) {
   ;(ctx as CanvasRenderingContext2D & { wordSpacing?: string }).wordSpacing = WORD_SPACING
 }
@@ -35,7 +34,6 @@ const ARRIVAL_RADIUS = 55
 const BLEND_MIN = 0.012
 const BLEND_SPREAD = 0.05
 const HOLD_MS = 2200
-
 const SETTLE_TIMEOUT_MS = 9000
 function resolveColor(color: string): string {
   if (!color.startsWith('--')) return color
@@ -233,7 +231,6 @@ function layoutText(
   const spaceW = ctx.measureText(' ').width
   const widths = words.map((w) => ctx.measureText(w).width)
   let best: Layout = { fontSize: 0, lines: [text] }
-
   for (let k = 1; k <= Math.min(MAX_LINES, words.length); k++) {
     const packed = balance(words, widths, spaceW, k)
     if (!packed) continue
@@ -272,7 +269,7 @@ export function ParticleTextEffect({ words, className }: ParticleTextEffectProps
     let wordStartedAt = 0
     let running = true
     const fontOf = (size: number) =>
-      `600 ${size}px "Clash Display", "Switzer", system-ui, sans-serif`
+      `600 ${size}px "Clash Display", "Anek Devanagari", "Switzer", system-ui, sans-serif`
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 1.5)
@@ -446,10 +443,17 @@ export function ParticleTextEffect({ words, className }: ParticleTextEffectProps
       raf = requestAnimationFrame(frame)
     }
 
-    document.fonts.ready.then(() => {
-      fontsReady = true
-      tryStart()
-    })
+    Promise.all([
+      document.fonts.load('600 100px "Clash Display"', 'SANKET'),
+      document.fonts.load('600 100px "Anek Devanagari"', 'केत'),
+    ])
+      .catch(() => undefined)
+      .then(() => document.fonts.ready)
+      .then(() => {
+        if (cancelled) return
+        fontsReady = true
+        tryStart()
+      })
 
     const onResize = () => {
       resize()

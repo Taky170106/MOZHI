@@ -11,7 +11,7 @@ const TAGLINE: Word[] = [
   { text: 'WORD BECOMES SIGN', color: '--warm-mid' },
   { text: 'BARRIER DISAPPEARS', color: ['--cool-lit', '--warm-mid'] },
   { text: 'CONVERSATION BEGINS', color: '--warm-lit' },
-  { text: 'SANKET.', color: '#ffffff' },
+  { text: 'Sanकेत.', color: '#ffffff' },
 ]
 
 export default function Landing() {
