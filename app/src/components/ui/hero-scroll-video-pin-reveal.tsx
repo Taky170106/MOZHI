@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export interface TagItem {
@@ -65,23 +64,15 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const paraRef = useRef<HTMLParagraphElement>(null);
   const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   useEffect(() => {
-    // Ensure video plays smoothly
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
       videoRef.current.play().catch(() => {});
     }
 
-    // Optional Lenis smooth scroll
-    // Upstream imports '@studio-freight/lenis'; this project has the same
-    // library under its current name, 'lenis'. Same class, same options.
     let lenis: any = null;
     let lenisTicker: ((time: number) => void) | null = null;
-    // The import can resolve after unmount — under StrictMode it always does on
-    // the first pass — and the cleanup below would then have nothing to destroy,
-    // leaving a second Lenis fighting the live one for the scroll position.
     let disposed = false;
 
     import('lenis')
@@ -95,10 +86,8 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       })
       .catch(() => {});
 
-    // Word split kinetic reveal animation
     let split: any = null;
     let words: Element[] = [];
-
     try {
       split = new SplitText(paraRef.current, {
         type: 'words',
@@ -115,7 +104,6 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       gsap.set(words, { opacity: 0, rotate: 8, yPercent: 30 });
     }
 
-    // Reveal timeline for headline & tag badges
     const revealTl = gsap.timeline({
       scrollTrigger: {
         trigger: benefitRef.current,
@@ -127,12 +115,6 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
 
     if (words && words.length > 0) {
       revealTl.to(words, {
-        /* `amount` spreads the whole stagger across a FIXED span, where a bare
-           `stagger: 0.2` is per-word and so grows with the copy. That matters
-           because the badges are appended after this tween on a scrub tied to a
-           ~640px range: every extra word pushed them later, and the last badge
-           ran out of scroll before it finished. 1.4 + the 0.5 duration keeps the
-           original 8-word timing, and now the headline can be any length. */
         stagger: { amount: 1.4 },
         opacity: 1,
         rotate: 0,
@@ -156,10 +138,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       }
     });
 
-    // ── Responsive MatchMedia for Small, Mid, and Large screens ─────────────
     const mm = gsap.matchMedia();
-
-    // 1. Small Screens (Mobile < 640px)
     mm.add('(max-width: 639.9px)', () => {
       gsap.set(videoBoxRef.current, { clipPath: 'circle(18% at 50% 50%)' });
 
@@ -190,7 +169,6 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       );
     });
 
-    // 2. Mid Screens (Tablets / Phablets 640px - 1023.9px)
     mm.add('(min-width: 640px) and (max-width: 1023.9px)', () => {
       gsap.set(videoBoxRef.current, { clipPath: 'circle(12% at 50% 50%)' });
 
@@ -221,7 +199,6 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       );
     });
 
-    // 3. Large Screens (Desktop >= 1024px)
     mm.add('(min-width: 1024px)', () => {
       gsap.set(videoBoxRef.current, { clipPath: 'circle(8% at 50% 50%)' });
 
@@ -252,14 +229,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       );
     });
 
-    /* Killing every ScrollTrigger in the cleanup also stops ScrollTrigger
-       listening, so on a remount (StrictMode's second pass, or any route
-       return) the new triggers are created but never get their initial
-       refresh: start/end stay null and the pin claims no space. One explicit
-       refresh once layout has settled restores it — a rAF fires too early
-       here, before the pinned section has its height. */
     const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 100);
-
     return () => {
       clearTimeout(refreshId);
       disposed = true;
@@ -279,11 +249,9 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       className={`w-full min-h-screen bg-transparent text-[#f3f4f6] font-sans overflow-x-hidden ${className}`}
       style={{ backgroundColor: 'transparent', color: '#f3f4f6' }}
     >
-      {/* No injected html/body override here: the page's own --ground (black)
-          is the single background for every section, and the dot field behind
-          this component has to show through. */}
+      {}
 
-      {/* ── Section 1: Intro Text ────────────────────────────────────────── */}
+      {}
       <section
         className="w-full min-h-screen flex justify-center items-center text-center px-4 sm:px-8 py-8 text-[clamp(1.8rem,4.5vw,4.5rem)] font-bold tracking-tight leading-tight text-white relative z-10 bg-transparent"
         style={{ backgroundColor: 'transparent' }}
@@ -291,7 +259,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
         {topText}
       </section>
 
-      {/* ── Section 2: Benefit & Headline Section ─────────────────────────── */}
+      {}
       <section
         ref={benefitRef}
         className="relative w-full min-h-[140vh] md:min-h-[160vh] pb-16 md:pb-20 bg-transparent"
@@ -301,7 +269,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
           className="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-24 flex flex-col items-center text-center relative z-10 bg-transparent"
           style={{ backgroundColor: 'transparent' }}
         >
-          {/* Animated Kinetic Headline */}
+          {}
           <div className="w-full mb-8 sm:mb-12 md:mb-14">
             <p
               ref={paraRef}
@@ -311,7 +279,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
             </p>
           </div>
 
-          {/* Staggered Clip-Path Tag Badges */}
+          {}
           <div className="flex flex-wrap justify-center gap-2.5 sm:gap-4 max-w-4xl mx-auto my-4 sm:my-6 mb-8 sm:mb-14">
             {tags.map((tag, idx) => (
               <div
@@ -338,16 +306,14 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
           )}
         </div>
 
-        {/* ── Video Pin Section ───────────────────────────────────────────── */}
+        {}
         <div className="relative w-full bg-transparent" style={{ backgroundColor: 'transparent' }}>
           <div
             ref={videoWrapperRef}
             className="w-full h-screen flex justify-center items-center relative overflow-hidden bg-transparent"
             style={{ backgroundColor: 'transparent' }}
           >
-            {/* Kept as a transparent spacer: with one page-wide black ground and
-                the dot field behind it, an opaque underlay here would punch a
-                dotless rectangle out of the section. */}
+            {}
             <div
               className="absolute inset-0 w-full h-full pointer-events-none bg-transparent"
               style={{
@@ -366,7 +332,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
               className="relative w-full h-full overflow-hidden flex justify-center items-center bg-transparent will-change-[clip-path]"
               style={{ backgroundColor: 'transparent', zIndex: 2 }}
             >
-              {/* Rotating Circular Text Badge */}
+              {}
               {badgeImgSrc && (
                 <img
                   src={badgeImgSrc}
@@ -375,7 +341,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
                 />
               )}
 
-              {/* Drone Video */}
+              {}
               <video
                 ref={videoRef}
                 autoPlay
@@ -390,7 +356,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
                 <source src={videoSrc} type="video/mp4" />
               </video>
 
-              {/* Centered Glassmorphic Play Icon */}
+              {}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex justify-center items-center shadow-xl">
                   <img
@@ -405,7 +371,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
         </div>
       </section>
 
-      {/* ── Section 3: Bottom Outro Text ─────────────────────────────────── */}
+      {}
       <section
         className="w-full min-h-screen flex justify-center items-center text-center px-4 sm:px-8 py-8 text-[clamp(1.8rem,4.5vw,4.5rem)] font-bold tracking-tight leading-tight text-white relative z-10 bg-transparent"
         style={{ backgroundColor: 'transparent' }}

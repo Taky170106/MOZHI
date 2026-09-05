@@ -3,25 +3,12 @@
 import { useMemo, useState } from "react";
 import { motion, type Transition } from "motion/react";
 import { cn } from "@/lib/utils";
-
-/**
- * RandomLetterSwap
- *
- * Two stacked copies of the label. On hover the front copy rides out and the
- * back copy rides into its place, one letter at a time — but the order the
- * letters fire in is shuffled rather than left-to-right, which is what makes
- * it read as a scramble instead of a wave.
- *
- * This is the dependency the nav imports. It was not included with the
- * snippet, so it is implemented here against the same prop shape:
- * `label`, `staggerDuration`, `transition`, `className`.
- */
 interface RandomLetterSwapProps {
   label: string;
-  /** ride upward (default) or downward */
+
   reverse?: boolean;
   transition?: Transition;
-  /** seconds between each letter firing */
+
   staggerDuration?: number;
   className?: string;
   onClick?: () => void;
@@ -36,11 +23,8 @@ export function RandomLetterSwap({
   onClick,
 }: RandomLetterSwapProps) {
   const [hovered, setHovered] = useState(false);
-
   const chars = useMemo(() => label.split(""), [label]);
 
-  /* Shuffle once per mount, not per hover — a scramble that reorders itself
-     every time reads as jitter rather than as a considered effect. */
   const delays = useMemo(() => {
     const order = chars.map((_, i) => i);
     for (let i = order.length - 1; i > 0; i--) {
@@ -55,7 +39,6 @@ export function RandomLetterSwap({
   }, [chars, staggerDuration]);
 
   const away = reverse ? "-100%" : "100%";
-
   return (
     <span
       className={cn("relative inline-block whitespace-nowrap", className)}
@@ -65,7 +48,7 @@ export function RandomLetterSwap({
       onBlur={() => setHovered(false)}
       onClick={onClick}
     >
-      {/* the split copy is decorative; screen readers get the word intact */}
+      {}
       <span className="sr-only">{label}</span>
 
       <span aria-hidden="true" className="inline-flex">

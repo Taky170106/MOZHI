@@ -1,22 +1,9 @@
-/* ============================================================
-   base.css — reset and the type system.
-   Colour lives in tokens.css. Nothing here invents a value.
-   ============================================================ */
-
-/* Everything below sits in @layer base.
-
-   Tailwind v4 emits its utilities into @layer utilities, and UNLAYERED css
-   outranks any layer no matter the specificity. Left unlayered, a reset as
-   innocent as `button { color: inherit }` silently beats `text-primary` on
-   every pasted component. Declaring the layer restores the intended order:
-   theme -> base -> components -> utilities. */
-
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-behavior: auto; /* Lenis owns scrolling */
+    scroll-behavior: auto;
   }
 
   body {
@@ -34,13 +21,9 @@
   }
 
   img, canvas { display: block; max-width: 100%; }
-  /* SVG gets display:block but NOT max-width — a deliberately oversized
-     overlay (the boot's ink sheet is 120% wide at -10%) would otherwise be
-     clamped back to 100% and leave a hard-edged strip uncovered. */
+
   svg { display: block; }
   button, input, select, textarea { font: inherit; color: inherit; }
-
-  /* ---- headings: Clash, tight, never tracked to death ---------- */
 
   h1, h2, h3, h4 {
     font-family: var(--display);
@@ -57,15 +40,12 @@
 
   p { margin: 0; }
 
-  /* ---- the machine layer is always monospaced ------------------ */
-
   .mono, code, kbd, samp {
     font-family: var(--mono);
     font-variant-numeric: tabular-nums;
     font-size: 0.92em;
   }
 
-  /* uppercase machine labels — the one place tracking opens up */
   .label {
     font-family: var(--mono);
     font-size: var(--t-xs);
@@ -77,12 +57,8 @@
 
   .deva { font-family: var(--deva); }
 
-  /* ---- layout ------------------------------------------------- */
-
   .wrap { width: 100%; max-width: var(--shell); margin-inline: auto; padding-inline: var(--gut); }
   .stack { display: flex; flex-direction: column; }
-
-  /* ---- focus: visible, always. This is an access product. ------ */
 
   :focus-visible {
     outline: 2px solid var(--cool-lit);
@@ -99,24 +75,17 @@
   }
   .skip-link:focus { top: var(--s4); }
 
-  /* screen-reader-only, but still focusable */
   .sr {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
     overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
   }
 
-  /* ---- selection --------------------------------------------- */
-
   ::selection { background: var(--cool-mid); color: #fff; }
-
-  /* ---- scrollbar: quiet, matches the ground ------------------- */
 
   * { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
   *::-webkit-scrollbar { width: 10px; height: 10px; }
   *::-webkit-scrollbar-thumb { background: var(--line-strong); border: 3px solid var(--ground); border-radius: 6px; }
   *::-webkit-scrollbar-track { background: transparent; }
-
-  /* ---- site header -------------------------------------------- */
 
   .site-head {
     position: sticky; top: 0; z-index: var(--z-chrome);

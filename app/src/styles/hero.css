@@ -1,22 +1,6 @@
 @import "tailwindcss";
 
-/* Tailwind v4 ties `dark:` to prefers-color-scheme by default. Pasted shadcn
-   components assume the class-based form, so bind it to a `.dark` ancestor —
-   the document carries that class, since the whole site is dark. Without this,
-   a card's `dark:bg-zinc-900` silently falls back to its light `bg-gray-100`. */
 @custom-variant dark (&:where(.dark, .dark *));
-
-/* ============================================================
-   shadcn-compatible theme tokens.
-
-   Pasted shadcn components expect `bg-primary`, `text-foreground`,
-   `border-input`, `ring-ring` and the rest of that vocabulary.
-   Declaring the full set here in Tailwind v4's @theme means each
-   new component drops in without rewriting its classes.
-
-   Tuned dark, because the hero is black. `primary` is near-white
-   so a glass button's `text-primary` reads on that ground.
-   ============================================================ */
 
 @theme {
   --color-background: #000000;

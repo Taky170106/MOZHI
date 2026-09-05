@@ -1,20 +1,3 @@
-/* Mouse trail — springy polylines chasing the cursor, drawn additively so
-   they bloom where they overlap. The simulation is the original, untouched.
-
-   Four changes, all of them defects rather than taste:
-
-   1. The move handler called `e.preventDefault()` on every mousemove AND
-      touchmove. On touch that cancels the scroll gesture outright — the page
-      becomes unscrollable on a phone. Removed.
-   2. `window.addEventListener("blur", () => ctx.running = true)` set running
-      to TRUE on blur, so the loop never paused. The matching focus handler
-      only restarts when `!running`, which shows the intent. Now `false`.
-   3. The canvas was sized `innerWidth - 20` with no devicePixelRatio, leaving
-      a 20px dead strip and rendering at half resolution on a retina display.
-   4. Nothing was ever removed, so a second mount stacked another set of
-      listeners and a second rAF loop. `renderCanvas` now returns a teardown.
-*/
-
 // @ts-ignore
 function n(e) {
   // @ts-ignore
@@ -149,7 +132,6 @@ function onMousemove(e) {
         ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
       : // @ts-ignore
         ((pos.x = e.clientX), (pos.y = e.clientY));
-    /* no preventDefault: cancelling touchmove kills page scrolling */
   }
   // @ts-ignore
   function l(e) {
@@ -166,7 +148,6 @@ function onMousemove(e) {
     o(),
     render();
 
-  // kept so teardown can unbind the handlers this closure created
   // @ts-ignore
   moveHandler = c;
   // @ts-ignore
@@ -204,17 +185,9 @@ function render() {
 function resizeCanvas() {
   // @ts-ignore
   const c = ctx.canvas;
-  /* 1.5, not 2. Forty-four ribbons are stroked over the full viewport every
-     frame under `lighter` compositing, which is fill-rate bound — and the
-     strokes are soft enough that the last half-step of resolution does not
-     show. Full 2× here costs about a third more pixels than the whole
-     effect is worth. */
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   const w = window.innerWidth;
   const h = window.innerHeight;
-  /* Back the canvas with real device pixels, and let CSS hold the layout
-     size. Without this the trails render at half resolution on a retina
-     screen and read as soft smudges. */
   c.width = Math.round(w * dpr);
   c.height = Math.round(h * dpr);
   c.style.width = w + "px";
@@ -224,38 +197,25 @@ function resizeCanvas() {
 }
 
 export type TrailOptions = {
-  /** how many ribbons chase the cursor */
   trails?: number;
-  /** nodes per ribbon — longer tail */
+
   size?: number;
-  /** stroke thickness in css px */
+
   lineWidth?: number;
-  /** per-stroke alpha. Compositing is additive, so this multiplies up fast */
+
   alpha?: number;
   saturation?: number;
   lightness?: number;
 };
 
-/* Defaults are the restrained version.
-   The source ships trails 80 / size 50 / lineWidth 10 / alpha 0.025, which
-   with `lighter` compositing accumulates past full white — measured peak
-   alpha was a clipped 255. Roughly a fifth of that ink keeps the colour and
-   the motion while leaving it a trace rather than a smear. */
 const DEFAULTS: Required<TrailOptions> = {
-  trails: 44,        // 34 +30%
-  size: 55,          // 42 +30%
-  lineWidth: 7.8,    // 6 +30%
-  alpha: 0.0234,     // 0.018 +30%
-  saturation: 100,   // 90 +30% clamps at 100
-  lightness: 55,     // held: see below
+  trails: 44,
+  size: 55,
+  lineWidth: 7.8,
+  alpha: 0.0234,
+  saturation: 100,
+  lightness: 55,
 };
-
-/* Lightness is deliberately NOT scaled. It is the one value here that does
-   not mean "more" — pushing it up moves the stroke toward white, and with
-   additive compositing that is exactly what made the first version blow out
-   to a clipped 255 and lose its colour. The other four multiply together, so
-   +30% each is roughly 2.2x the ink on screen, landing near 40% of the
-   original — brighter, still coloured. */
 
 var ctx: any,
   f: any,
@@ -281,7 +241,6 @@ function Node(this: any) {
   this.vx = 0;
 }
 
-/** Starts the trail. Returns a teardown — call it on unmount. */
 export const renderCanvas = function (options?: TrailOptions): () => void {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement | null;
   if (!canvas) return () => {};
@@ -290,8 +249,6 @@ export const renderCanvas = function (options?: TrailOptions): () => void {
   E.trails = cfg.trails;
   E.size = cfg.size;
 
-  /* Ambient motion, so it stops when asked. The canvas stays mounted and
-     simply never paints. */
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return () => {};
   }
@@ -315,7 +272,7 @@ export const renderCanvas = function (options?: TrailOptions): () => void {
       render();
     }
   };
-  // the original set this to `true`, so the loop never actually paused
+
   const onBlur = () => {
     // @ts-ignore
     ctx.running = false;

@@ -1,15 +1,6 @@
 "use client";
 import React, { useRef } from "react";
 import { useScroll, useTransform, useReducedMotion, motion, MotionValue } from "motion/react";
-
-/**
- * Imported from `motion/react` rather than `framer-motion`.
- *
- * `motion` depends on `framer-motion` at the identical version and re-exports
- * it, so both specifiers resolve to the same files — but the rest of this
- * codebase already imports `motion/react`, and mixing specifiers is how you end
- * up with two module instances and hooks reading a null context.
- */
 export const ContainerScroll = ({
   titleComponent,
   children,
@@ -22,9 +13,6 @@ export const ContainerScroll = ({
     target: containerRef,
   });
   const [isMobile, setIsMobile] = React.useState(false);
-
-  /* Scroll-linked motion is ambient, so it stops when asked. The card still
-     renders — flat and at rest — rather than disappearing. */
   const reduced = useReducedMotion();
 
   React.useEffect(() => {
@@ -45,7 +33,6 @@ export const ContainerScroll = ({
   const rotate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [20, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : scaleDimensions());
   const translate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -100]);
-
   return (
     <div
       className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20"

@@ -1,14 +1,5 @@
 import RandomLetterSwapNav from '@/components/ui/m-random-letter-swap-1'
 
-/**
- * The stand-in for a surface the nav lists but that is not built yet.
- *
- * It keeps the nav, so the product's shape stays visible and a visitor who
- * lands here can leave in one click. It says what the screen will be rather
- * than only that it is missing — a bare "coming soon" reads as an oversight,
- * a named surface reads as a plan.
- */
-
 const COPY: Record<string, { title: string; line: string }> = {
   vocabulary: {
     title: 'Vocabulary',
@@ -26,7 +17,6 @@ const COPY: Record<string, { title: string; line: string }> = {
 
 export default function InDevelopment({ surface }: { surface: string }) {
   const copy = COPY[surface] ?? { title: 'This screen', line: '' }
-
   return (
     <>
       <RandomLetterSwapNav />

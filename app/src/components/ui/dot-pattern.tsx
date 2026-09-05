@@ -1,7 +1,6 @@
 import { useId } from 'react'
 
 import { cn } from '@/lib/utils'
-
 interface DotPatternProps {
   width?: any
   height?: any
@@ -26,7 +25,6 @@ export function DotPattern({
   ...props
 }: DotPatternProps) {
   const id = useId()
-
   return (
     <svg
       aria-hidden="true"

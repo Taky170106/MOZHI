@@ -1,25 +1,6 @@
-/* ============================================================
-   SANKET — design tokens
-
-   Palette and type follow aardvarkbookclub.com, at Aman's
-   direction. Values are sampled from that site's own CSS
-   variables, not approximated.
-
-   The directional mapping the product depends on survives the
-   swap, because it was expressed in semantic names rather than in
-   hues. It just points at new colours now:
-
-       COOL  =  inbound   ·  visitor → staff   (violet)
-       WARM  =  outbound  ·  staff  → visitor  (magenta)
-
-   Sections are flat saturated slabs with a large corner radius.
-   No gradients on surfaces.
-   ============================================================ */
-
 :root {
   color-scheme: light;
 
-  /* -- the reference palette, verbatim ------------------------- */
   --ref-yellow:     #FFD24A;
   --ref-soft-pink:  #FFDBFD;
   --ref-magenta:    #FD48F2;
@@ -29,11 +10,6 @@
   --ref-black:      #000000;
   --ref-white:      #FFFFFF;
 
-  /* -- grounds -------------------------------------------------
-     The site is black now: the Aardvark light palette below is legacy
-     from a scrapped direction and only these two still drive anything
-     (base.css paints body from them). Left white, every gap between
-     sections flashes white behind a black page. */
   --void:        #000000;
   --ground:      #000000;
   --surface:     #FFFFFF;
@@ -41,18 +17,15 @@
   --surface-3:   #EDEAE3;
   --sunk:        #F6F4EF;
 
-  /* -- ink ----------------------------------------------------- */
   --ink:         #FFFFFF;
   --ink-2:       #3B3B3B;
   --ink-3:       #6E6E6E;
   --ink-4:       #9B9B9B;
 
-  /* -- hairlines ----------------------------------------------- */
   --line:        #E3E1DC;
   --line-soft:   #F0EEE9;
   --line-strong: #C9C6BF;
 
-  /* -- COOL · inbound · visitor → staff · violet --------------- */
   --cool-deep:   #241C6B;
   --cool:        #3B308F;
   --cool-mid:    #5A4DC2;
@@ -61,7 +34,6 @@
   --cool-wash:   #EDEBFA;
   --cool-edge:   #C3BDE9;
 
-  /* -- WARM · outbound · staff → visitor · magenta ------------- */
   --warm-deep:   #680036;
   --warm:        #B00A7A;
   --warm-mid:    #FD48F2;
@@ -70,16 +42,13 @@
   --warm-wash:   #FFF0FE;
   --warm-edge:   #F3C4EE;
 
-  /* -- accent · used as a slab ground, not as chrome ----------- */
   --accent:      #FFD24A;
   --accent-2:    #1CE8ED;
 
-  /* -- slab grounds -------------------------------------------- */
   --band-cool:   #3B308F;
   --band-warm:   #FD48F2;
   --band-accent: #FFD24A;
 
-  /* -- semantic states ----------------------------------------- */
   --warn:        #B07A00;
   --warn-wash:   #FFF3D4;
   --warn-edge:   #E8CE8A;
@@ -88,10 +57,6 @@
   --stop-edge:   #F0AEC6;
   --ok:          #1B7A5A;
 
-  /* -- type ----------------------------------------------------
-     The reference runs Champ (display) + Degular (UI), both
-     commercial. Clash Display and Switzer stand in until those
-     are licensed — the stacks are named so a swap is one line. */
   --display: "Champ", "Clash Display", system-ui, sans-serif;
   --ui:      "Degular", "Switzer", "Anek Devanagari", system-ui, sans-serif;
   --deva:    "Anek Devanagari", "Switzer", system-ui, sans-serif;
@@ -106,9 +71,6 @@
   --t-2xl: clamp(2rem, 1.4rem + 3vw, 4rem);
   --t-3xl: clamp(2.4rem, 1.4rem + 4.6vw, 5.5rem);
 
-  /* The reference sets its h1 at 8.33vw with 0.8 leading, and uses the
-     same 8.33vw as its section corner radius — one viewport unit driving
-     both the display type and the slab geometry. */
   --t-4xl: clamp(2.9rem, 8.33vw, 8rem);
   --lh-display: 0.82;
 
@@ -116,18 +78,15 @@
   --tr-tight:   -0.01em;
   --tr-label:    0.12em;
 
-  /* -- spacing · 4px base -------------------------------------- */
   --s1: 0.25rem; --s2: 0.5rem;  --s3: 0.75rem; --s4: 1rem;
   --s5: 1.5rem;  --s6: 2rem;    --s7: 3rem;    --s8: 4rem;
   --s9: 6rem;    --s10: 8rem;
   --gut: clamp(1.25rem, 4vw, 3.5rem);
   --shell: 82rem;
 
-  /* the slab system: full-bleed colour blocks, large radius */
   --slab-r: clamp(1.75rem, 8.33vw, 7rem);
   --slab-inset: clamp(0.5rem, 1.2vw, 1rem);
 
-  /* -- motion --------------------------------------------------- */
   --e-out:  cubic-bezier(0.2, 0.7, 0.3, 1);
   --e-in:   cubic-bezier(0.6, 0, 0.85, 0.3);
   --d-tap:  120ms;
@@ -136,21 +95,12 @@
   --d-reveal: 640ms;
   --lenis-lerp: 0.065;
 
-  /* the signer's timing law — §7.3, and these are legibility,
-     not taste. A sign that flows through its peak is unreadable. */
   --sign-hold-min: 120ms;
   --sign-hold-max: 250ms;
   --sign-coart:    170ms;
 
   --z-field: 0; --z-content: 10; --z-chrome: 100; --z-modal: 1000; --z-boot: 2000;
 }
-
-/* ============================================================
-   Night. A counter runs before dawn and after dark, and §6.6
-   makes the second theme a product requirement rather than a
-   preference. Designed, not inverted: the slabs keep their hues
-   and the grounds go to ink.
-   ============================================================ */
 
 :root[data-theme="dark"] {
   color-scheme: dark;
