@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# build output
+dist/
+*.tsbuildinfo
+
+# local database and its write-ahead log
+*.db
+*.db-shm
+*.db-wal
+
+# editor and OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# editor and tool caches
+.cache/
+.vite/
+
+# working notes and source material, not part of the product
+SANKET-BRIEF.md
+*.pdf
+docs/
+reference/
+_scrapped/
+
+# environment
+.env
+.env.*
+!.env.example
