@@ -6,6 +6,7 @@ import {
   type HolisticLandmarkerResult,
   type NormalizedLandmark,
 } from '@mediapipe/tasks-vision'
+import { createSanketVision, type SanketVision, type SignFrame } from '@/lib/sanket-vision'
 
 /* ============================================================
    CameraField — the real inbound pipeline, stages 01 and 02.
@@ -33,13 +34,28 @@ export type CameraStatus = 'off' | 'starting' | 'loading' | 'live' | 'denied' | 
 
 type Props = {
   active: boolean
+  /* Which tracker to run.
+
+     'sanket' is the pair the recogniser's checkpoint was trained on — the
+     standalone Hand and Pose Landmarkers. 'holistic' is the 543-point model
+     the PopSign bench needs, because that one reads the face too. They are
+     different networks with different landmark semantics, so the choice
+     belongs to whichever recogniser is about to read the numbers. */
+  vision?: 'sanket' | 'holistic'
   face?: boolean
   onStatus?: (status: CameraStatus, detail?: string) => void
   /* Every frame that was actually run through Holistic, handed on with the
      video element it came from. The landmarks are what the segmenter reads;
      the video is what the classifier crops. Nothing is retained here — the
      callback is synchronous and the frame is gone when it returns. */
-  onFrame?: (result: HolisticLandmarkerResult | null, video: HTMLVideoElement, t: number) => void
+  onFrame?: (
+    result: HolisticLandmarkerResult | null,
+    video: HTMLVideoElement,
+    t: number,
+    /* Present only in 'sanket' mode: the 144 floats the model wants, built
+       by the same rules its training data was. */
+    sign?: SignFrame,
+  ) => void
   className?: string
 }
 
@@ -50,7 +66,9 @@ const asset = (p: string) => `${import.meta.env.BASE_URL}mediapipe/${p}`.replace
 const INK_LIT = '#29A9F5'
 const INK_FACE = 'rgba(41, 169, 245, 0.55)'
 
-export default function CameraField({ active, face = true, onStatus, onFrame, className }: Props) {
+export default function CameraField({
+  active, vision = 'sanket', face = true, onStatus, onFrame, className,
+}: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -81,6 +99,7 @@ export default function CameraField({ active, face = true, onStatus, onFrame, cl
 
     let stream: MediaStream | null = null
     let landmarker: HolisticLandmarker | null = null
+    let sanket: SanketVision | null = null
     let raf = 0
     let disposed = false
     let lastVideoTime = -1
@@ -204,15 +223,21 @@ export default function CameraField({ active, face = true, onStatus, onFrame, cl
     const tick = () => {
       if (disposed) return
       raf = requestAnimationFrame(tick)
-      if (!landmarker || vid.readyState < 2) return
+      if ((!landmarker && !sanket) || vid.readyState < 2) return
 
       /* detectForVideo rejects a repeated timestamp, and the camera delivers
          frames more slowly than the display refreshes. */
       if (vid.currentTime !== lastVideoTime) {
         lastVideoTime = vid.currentTime
         const t = performance.now()
+        let sign: SignFrame | undefined
         try {
-          result = landmarker.detectForVideo(vid, t)
+          if (sanket) {
+            sign = sanket.detect(vid, t)
+            result = sanket.last as HolisticLandmarkerResult
+          } else {
+            result = landmarker!.detectForVideo(vid, t)
+          }
         } catch {
           /* A dropped frame is not worth tearing the panel down for. */
         }
@@ -220,7 +245,7 @@ export default function CameraField({ active, face = true, onStatus, onFrame, cl
            on every display refresh — classifying the same frame twice would
            double its weight in the hold average for no new information. */
         try {
-          frameRef.current?.(result, vid, t)
+          frameRef.current?.(result, vid, t, sign)
         } catch (err) {
           /* A fault downstream must not stop the tracking. */
           console.error('[CameraField] frame consumer threw', err)
@@ -235,6 +260,7 @@ export default function CameraField({ active, face = true, onStatus, onFrame, cl
          the other would add the whole download to the time before anything
          appears. The permission prompt goes up immediately either way. */
       const modelReady = (async () => {
+        if (vision === 'sanket') return createSanketVision()
         const fileset = await FilesetResolver.forVisionTasks(asset('wasm'))
         return HolisticLandmarker.createFromOptions(fileset, {
           baseOptions: { modelAssetPath: asset('models/holistic_landmarker.task'), delegate: 'GPU' },
@@ -265,12 +291,14 @@ export default function CameraField({ active, face = true, onStatus, onFrame, cl
 
       say('loading')
       try {
-        landmarker = await modelReady
+        const ready = await modelReady
+        if (vision === 'sanket') sanket = ready as SanketVision
+        else landmarker = ready as HolisticLandmarker
       } catch (err) {
         say('error', String((err as Error)?.message ?? err))
         return
       }
-      if (disposed) { landmarker.close(); return }
+      if (disposed) { landmarker?.close(); sanket?.close(); return }
 
       resize()
       window.addEventListener('resize', resize)
@@ -288,9 +316,10 @@ export default function CameraField({ active, face = true, onStatus, onFrame, cl
       stream?.getTracks().forEach(t => t.stop())
       vid.srcObject = null
       landmarker?.close()
+      sanket?.close()
       say('off')
     }
-  }, [active])
+  }, [active, vision])
 
   return (
     <div className={className}>

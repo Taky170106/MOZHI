@@ -8,16 +8,22 @@ type Props = {
   frame: ResolvedFrame
 
   face?: boolean
+  /* Degrees of turn away from square-on. A signer never faces a camera dead
+     flat — a few degrees of yaw is what stops the avatar reading as a photo
+     of a mannequin. */
+  yaw?: number
   className?: string
   label?: string
 }
 
-export default function SigningAvatar({ frame, face = true, className, label }: Props) {
+export default function SigningAvatar({ frame, face = true, yaw = 0, className, label }: Props) {
   const host = useRef<HTMLDivElement>(null)
   const frameRef = useRef(frame)
   frameRef.current = frame
   const faceRef = useRef(face)
   faceRef.current = face
+  const yawRef = useRef(yaw)
+  yawRef.current = yaw
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   useEffect(() => {
     const el = host.current
@@ -56,6 +62,7 @@ export default function SigningAvatar({ frame, face = true, className, label }: 
       v.scene.traverse(o => { o.frustumCulled = false })
 
       VRMUtils.rotateVRM0(v)
+      v.scene.rotation.y = THREE.MathUtils.degToRad(yawRef.current)
       scene.add(v.scene)
       vrm = v
 
@@ -71,6 +78,7 @@ export default function SigningAvatar({ frame, face = true, className, label }: 
       raf = requestAnimationFrame(tick)
       const dt = clock.getDelta()
       if (vrm && rig) {
+        vrm.scene.rotation.y = THREE.MathUtils.degToRad(yawRef.current)
         applyFrameToVRM(
           vrm, rig, frameRef.current, faceRef.current,
           clock.getElapsedTime(), reduced ? 0 : 1,

@@ -305,6 +305,7 @@ export default function Counter() {
      current recogniser after the language setting changes. */
   const micRef = useRef<(() => void) | null>(null)
   micRef.current = micOn ? voice.toggle : null
+  const sendRef = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -313,11 +314,22 @@ export default function Counter() {
       if (typing) return
       if (e.key === 'v' || e.key === 'V') { setVisitorDisplay(v => !v); return }
       if ((e.key === 'm' || e.key === 'M') && micRef.current) { micRef.current(); return }
+      /* Enter, with the composer unfocused, belongs to the visitor's lane:
+         it sends the words that have accumulated there. Nothing the camera
+         reads reaches the transcript until this happens, which is what lets
+         several signs become one sentence. */
+      if (e.key === 'Enter') { e.preventDefault(); sendRef.current?.(); return }
       if (e.key === '/') { e.preventDefault(); composerRef.current?.focus() }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
+
+  /* Whichever lane is running, Enter sends its pending words. */
+  sendRef.current = rec.pending ? rec.send : null
+
+  /* How much of the sentence a retry would keep. */
+  const kept = Math.max(0, rec.pending - (liveMode ? 0 : 1))
 
   const reading = rec.state === 'reading'
   const stalled = rec.state === 'lowconf'
@@ -336,7 +348,7 @@ export default function Counter() {
   /* `utterance`, not `commits`: the sentence is written from the whole
      sequence, and a chip list that has been trimmed by a retry would give
      the two languages different content. */
-  const inCap = caption(rec.sentence, rec.utterance, lang)
+  const inCap = caption(rec.sentence, rec.utterance, lang, rec.clauses)
   const outCap = caption(
     lastOut?.text ?? 'Go to room number 2.',
     lastOut?.glosses ?? signed,
@@ -374,6 +386,12 @@ export default function Counter() {
                  reading. */
               <CameraField
                 active
+                /* The tracker follows the recogniser: our own model was
+                   trained on the Hand and Pose Landmarkers, the ASL bench
+                   needs Holistic's 543 points because it reads the face.
+                   Running the wrong one hands the model numbers from a
+                   network it has never seen. */
+                vision={live.backend === 'islr' ? 'holistic' : 'sanket'}
                 face={faceChannel}
                 onStatus={onCamStatus}
                 onFrame={MODEL_ENABLED ? live.onFrame : undefined}
@@ -406,7 +424,9 @@ export default function Counter() {
                     ? liveMode
                       ? live.backend === 'islr'
                         ? 'Camera · ASL bench'
-                        : 'Camera · reading'
+                        : live.backend === 'sanket'
+                          ? 'Camera · Sanket model'
+                          : 'Camera · reading'
                       : live.status === 'loading'
                         ? 'Camera · loading classifier'
                         : 'Camera · tracking only'
@@ -426,7 +446,13 @@ export default function Counter() {
                 {camStatus === 'denied'
                   ? 'Camera blocked by the browser.'
                   : liveMode
-                    ? live.backend === 'islr'
+                    ? live.backend === 'sanket'
+                      /* Said plainly, because the recogniser is a second
+                         process: the frames stay in this tab, the 144
+                         coordinates go to a service on this same machine,
+                         and nothing leaves it. */
+                      ? 'Live camera. Landmarks read on this machine. No frame is kept.'
+                      : live.backend === 'islr'
                       /* Said plainly on screen, because a bench that reads a
                          different language must never be mistaken for the
                          product. Landmarks leave the page for the local
@@ -507,7 +533,15 @@ export default function Counter() {
                 <p className="sentence sentence-stall sentence-live">Not sure about that sign.</p>
                 <p className="mt-1.5 max-w-[46ch] text-[0.76rem] leading-snug text-white/60">
                   {lowSign && <><span className="m text-[0.66rem]">{lowSign.gloss}</span> read at {pct(lowSign.conf)}, under the {pct(threshold)} threshold. </>}
-                  The terminal stops rather than guessing.
+                  {/* The scripted lane shows the unsure word as its last
+                      chip, so it is inside the count; the live lane holds it
+                      outside. Either way this says how much of the sentence
+                      survives a retry. */}
+                  {kept === 0
+                    ? 'The terminal stops rather than guessing.'
+                    : kept === 1
+                      ? 'Only this word is waiting — the one in front of it stands.'
+                      : `Only this word is waiting — the ${kept} in front of it stand.`}
                 </p>
               </div>
             ) : (
@@ -530,6 +564,26 @@ export default function Counter() {
                     {inCap.secondary}
                   </p>
                 )}
+
+                {/* Nothing above has been written down yet. Several signs
+                    become one sentence here, and it is sent on purpose. */}
+                {rec.pending > 0 && (
+                  <div className="pending-bar">
+                    <span className="pending-count">
+                      {rec.pending} {rec.pending === 1 ? 'word' : 'words'} waiting
+                    </span>
+                    <button
+                      className="go go-undo"
+                      onClick={() => rec.undo()}
+                      title="Take back the last word — the sentence in front of it stands"
+                    >
+                      ⌫ Last word
+                    </button>
+                    <button className="go go-send" onClick={() => rec.send()}>
+                      ↵ Add to transcript
+                    </button>
+                  </div>
+                )}
               </>
             )}
           </div>
@@ -539,7 +593,7 @@ export default function Counter() {
             <div className="slot-skin" />
             <div className="rail items-center">
               {stalled ? (
-                <button className="go go-stall" onClick={rec.retry}>↻ Ask them to repeat</button>
+                <button className="go go-stall" onClick={rec.retry}>↻ Repeat that word</button>
               ) : liveMode ? (
                 /* Nothing to pick from: the visitor is the input. What the
                    rail shows instead is the segmenter, because the one thing
@@ -865,7 +919,7 @@ export default function Counter() {
           {logLive === null ? 'Log · connecting' : logLive ? 'Log · on disk' : 'Log · memory only'}
         </span>
         <span className="ml-auto hidden items-center gap-4 lg:flex">
-          {[['V', 'display'], ['/', 'reply'], ...(micOn ? [['M', 'speak']] : []), ['Esc', 'exit']].map(([k, what]) => (
+          {[['V', 'display'], ['↵', 'send read'], ['/', 'reply'], ...(micOn ? [['M', 'speak']] : []), ['Esc', 'exit']].map(([k, what]) => (
             <span key={k} className="flex items-center gap-1.5">
               <kbd className="key">{k}</kbd>
               <span className="m text-[0.54rem] text-white/30">{what}</span>

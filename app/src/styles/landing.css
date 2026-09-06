@@ -1,0 +1,221 @@
+/* ============================================================
+   landing.css — the tablet screen: Vani in the disc, her six features
+   around her, and the way in from the hero.
+   ============================================================ */
+
+.vani-panel {
+  --p: 0;
+  /* The ring is laid out inside this inset rather than against the bezel, so
+     the bubbles and their captions always have a margin to breathe into. */
+  --inset-x: 6%;
+  --inset-y: 7%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* The disc belongs to the avatar and to nothing else. Nothing is clipped to
+   it — she stands in front, which is what lets her grow past its edge on
+   hover instead of being sliced by it. */
+.vani-disc {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: clamp(112px, 18.5%, 226px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+}
+
+.vani-disc-skin {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #5d5d5d;
+  transition:
+    background-color 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vani-disc.is-live .vani-disc-skin {
+  background: #6a6a6a;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12), 0 26px 60px rgb(0 0 0 / 0.55);
+}
+
+/* Wider and taller than the disc so the head clears the top edge and the
+   raised arm has somewhere to go. */
+.vani-rig {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 132%;
+  height: 142%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: 50% 66%;
+  transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.vani-disc.is-live .vani-rig {
+  /* Grows upward out of the disc rather than down over her own name. */
+  transform: translate(-50%, -57%) scale(1.15);
+}
+
+.vani-caption {
+  position: absolute;
+  left: 50%;
+  top: 68%;
+  translate: -50% 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.vani-caption h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: #fff;
+}
+
+.vani-caption p {
+  margin-top: 0.35rem;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: clamp(0.62rem, 1vw, 0.82rem);
+  letter-spacing: 0.01em;
+  color: rgb(255 255 255 / 0.45);
+}
+
+.vani-off {
+  font-family: var(--ui);
+  font-size: 0.8rem;
+  color: rgb(255 255 255 / 0.3);
+}
+
+/* ---- the six features, around her ------------------------------------- */
+
+/* Each opens on its own slice of the scroll, in reading order, travelling
+   out from the disc to its place in the ring. */
+.vani-node {
+  --start: calc(0.18 + var(--i) * 0.1);
+  --t: clamp(0, (var(--p) - var(--start)) / 0.2, 1);
+
+  position: absolute;
+  /* The travel is mapped into the inset box: 0% of the stage becomes
+     --inset-x, 100% becomes 100% - --inset-x, and the same vertically. */
+  left: calc(50% + (var(--x) - 50) * var(--t) * (1% - var(--inset-x) / 50));
+  top: calc(46% + (var(--y) - 46) * var(--t) * (1% - var(--inset-y) / 50));
+  width: clamp(66px, 12.6%, 165px);
+  translate: -50% -50%;
+  transform: scale(calc(0.18 + var(--t) * 0.82));
+  opacity: var(--t);
+  margin: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.vani-node img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 14px 30px rgb(0 0 0 / 0.6));
+}
+
+.vani-node figcaption {
+  margin-top: 0.45rem;
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: clamp(0.5rem, 0.82vw, 0.72rem);
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.vani-wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.vani-wires line {
+  --start: calc(0.16 + var(--i) * 0.1);
+  --t: clamp(0, (var(--p) - var(--start)) / 0.15, 1);
+  stroke: rgb(255 255 255 / 0.16);
+  stroke-width: 1;
+  transform: scale(var(--t));
+  transform-origin: 50% 46%;
+  opacity: var(--t);
+}
+
+@media (max-width: 860px) {
+  .vani-node { width: clamp(58px, 19%, 120px); }
+  .vani-node figcaption { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vani-rig,
+  .vani-disc-skin { transition: none; }
+}
+
+/* ---- the way in --------------------------------------------------------
+   Sits under the tagline rather than over it, because the tagline is still
+   being written when the eye arrives. */
+.start-cta {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(13vh, 18vh, 22vh);
+  z-index: 40;
+  translate: -50% 0;
+}
+
+/* The section title above the tablet. */
+.get-gist {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+/* ---- the sixty thousand ------------------------------------------------ */
+
+.rarity-note {
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: clamp(0.62rem, 1vw, 0.78rem);
+  letter-spacing: 0.01em;
+  color: rgb(255 255 255 / 0.42);
+}
+
+.rarity-line {
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: clamp(0.98rem, 1.7vw, 1.4rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: rgb(255 255 255 / 0.72);
+}
+
+.rarity-line b {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ---- the ground --------------------------------------------------------
+   The same field the product screens use: a wide pitch, a faint dot, and a
+   radial mask so it fades out at the edges instead of tiling to the corners.
+   On the landing it starts a shade quieter still and comes up to strength as
+   the hero leaves. */
+.landing-dots {
+  mask-image: radial-gradient(120% 90% at 50% 42%, #000 25%, transparent 82%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 42%, #000 25%, transparent 82%);
+}

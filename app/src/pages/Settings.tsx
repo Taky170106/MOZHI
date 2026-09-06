@@ -298,7 +298,7 @@ export default function Settings() {
         {}
         <Group title="About this build">
           <dl className="set-about">
-            <div><dt>Recogniser</dt><dd>BiGRU over {FIELD_CENSUS.total}-point landmark sequences</dd></div>
+            <div><dt>Recogniser</dt><dd>BiGRU with temporal attention · 30 frames × 144 coordinates · 29 signs</dd></div>
             <div>
               <dt>Runtime</dt>
               <dd>

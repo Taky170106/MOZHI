@@ -257,7 +257,10 @@ export function ParticleTextEffect({ words, className }: ParticleTextEffectProps
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext('2d', { alpha: false })
+    /* An opaque context paints its own black ground and ignores every attempt to
+       erase it, which is what kept the page's dot field from showing through the
+       hero. The particles need a transparent canvas. */
+    const ctx = canvas.getContext('2d')
     if (!ctx) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -356,8 +359,17 @@ export function ParticleTextEffect({ words, className }: ParticleTextEffectProps
       const dt = lastT ? Math.min(Math.max((now - lastT) / 16.6667, 0.25), 2.5) : 1
       lastT = now
 
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.14)'
+      /* Fade the previous frame by ERASING it rather than painting black
+         over it. Painting black made this canvas opaque, which hid the dot
+         field the rest of the page is built on. */
+      ctx.save()
+      ctx.globalCompositeOperation = 'destination-out'
+      /* Erasing needs a heavier hand than painting did: black paint hid the
+         tail of every particle, an erase only thins it, so 0.14 left streaks
+         hanging across the hero. */
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.34)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.restore()
 
       const dot = Math.max(1, Math.round(DOT_SIZE * dpr))
       let lastCss = ''
@@ -402,8 +414,7 @@ export function ParticleTextEffect({ words, className }: ParticleTextEffectProps
       const w = canvas.width
       const h = canvas.height
       const word = wordsRef.current[wordIndex]
-      ctx.fillStyle = '#000'
-      ctx.fillRect(0, 0, w, h)
+      ctx.clearRect(0, 0, w, h)
 
       const { fontSize, lines } = layoutText(ctx, word.text, fontOf, w * 0.86, h * 0.62)
       ctx.fillStyle = cssRgb(resolveRgb(word.color))

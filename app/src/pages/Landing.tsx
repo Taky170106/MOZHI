@@ -1,11 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import RandomLetterSwapNav from '@/components/ui/m-random-letter-swap-1'
 import { ParticleTextEffect, type Word } from '@/components/ui/particle-text-effect'
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
-import { renderCanvas } from '@/components/ui/canvas'
 import { DotPattern } from '@/components/ui/dot-pattern'
 import HeroScrollVideoReveal from '@/components/ui/hero-scroll-video-pin-reveal'
 import { CinematicFooter } from '@/components/ui/motion-footer'
+import { RarityField } from '@/components/ui/rarity-field'
+import { VaniPanel } from '@/components/ui/vani-stage'
+import { FlowButton } from '@/components/ui/flow-button'
 const TAGLINE: Word[] = [
   { text: 'SIGN BECOMES WORD', color: '--cool-lit' },
   { text: 'WORD BECOMES SIGN', color: '--warm-mid' },
@@ -15,28 +17,46 @@ const TAGLINE: Word[] = [
 ]
 
 export default function Landing() {
-  useEffect(() => renderCanvas(), [])
+  /* The dot field runs the whole page, but it starts held back: under the
+     hero it is a texture behind the tagline, and by the time the first
+     section arrives it has come up to full strength. One field, two jobs,
+     no seam between them. */
+  const dots = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = dots.current
+    if (!el) return
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.style.opacity = '1'
+      return
+    }
+    let raf = 0
+    const tick = () => {
+      raf = requestAnimationFrame(tick)
+      const p = Math.min(1, Math.max(0, scrollY / (innerHeight * 0.85)))
+      el.style.opacity = String(0.72 + p * 0.28)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [])
 
   return (
     <>
       <RandomLetterSwapNav />
 
       {}
-      <DotPattern
-        cr={1}
-        cy={1}
-        className="fixed inset-0 z-0 h-screen fill-white/20 md:fill-white/25"
-      />
-
-      {}
-      <canvas
-        id="canvas"
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[5] h-full w-full"
-      />
+      <div ref={dots} className="landing-dots fixed inset-0 z-0" style={{ opacity: 0.72 }}>
+        <DotPattern
+          width={38}
+          height={38}
+          cx={1}
+          cy={1}
+          cr={1}
+          className="h-screen fill-white/12 md:fill-white/[0.14]"
+        />
+      </div>
 
       <main id="main">
-        <section className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
+        <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
           {}
           <h1 className="sr-only">
             Sign becomes word. Word becomes sign. Barrier disappears.
@@ -48,40 +68,31 @@ export default function Landing() {
             words={TAGLINE}
             className="absolute inset-0 z-30 h-full w-full"
           />
+
+          {}
+          <div className="start-cta">
+            <FlowButton
+              text="Start"
+              onClick={() => { window.location.hash = '#/counter' }}
+              style={{ '--flow-ink': '#ffffff', '--flow-on': '#000000' } as React.CSSProperties}
+            />
+          </div>
         </section>
 
         {}
         <section className="relative z-10 flex flex-col overflow-hidden">
           <ContainerScroll
             titleComponent={
-              <>
-                <h2 className="text-4xl font-semibold text-white">
-                  A deaf visitor and a clerk, one screen <br />
-                  <span className="mt-1 text-4xl font-bold leading-none md:text-[6rem]">
-                    The Counter
-                  </span>
-                </h2>
-              </>
+              <h2 className="get-gist">get the gist</h2>
             }
           >
-            {}
-            <div className="mx-auto flex h-full w-full items-center justify-center rounded-2xl border border-dashed border-white/15 bg-zinc-900 text-center">
-              <p className="mono text-xs tracking-[0.14em] text-white/40 uppercase">
-                Counter screenshot goes here
-              </p>
-            </div>
+            <VaniPanel />
           </ContainerScroll>
         </section>
 
         {}
         <HeroScrollVideoReveal
-          topText={
-            <>
-              One certified interpreter
-              <br />
-              for every 60,000 deaf people.
-            </>
-          }
+          topText={<RarityField className="mx-auto max-w-6xl" />}
           headingText={
             <>
               Being understood is half a conversation. <br />

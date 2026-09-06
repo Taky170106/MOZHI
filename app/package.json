@@ -10,7 +10,8 @@
     "check": "tsc --noEmit",
     "check:model": "node checks/model.mjs",
     "log": "node --no-warnings ../server/index.mjs",
-    "islr": "../server/.venv/bin/python ../server/islr.py"
+    "islr": "../server/.venv/bin/python ../server/islr.py",
+    "sign": "../server/.venv/bin/python ../server/sign.py"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^1.0.1",

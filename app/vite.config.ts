@@ -39,6 +39,9 @@ export default defineConfig({
          same reason as the log: one origin, so the page makes a same-origin
          POST and no CORS grant has to exist. */
       '/islr': { target: 'http://127.0.0.1:5302', changeOrigin: false },
+      /* Sanket's own recogniser (server/sign.py). Same reason as the two
+         above: one origin, so the page makes a same-origin POST. */
+      '/sign': { target: 'http://127.0.0.1:5303', changeOrigin: false },
     },
   },
   build: { target: 'es2020', assetsInlineLimit: 0 },

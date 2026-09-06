@@ -4,6 +4,7 @@ import App from './App'
 import './styles/hero.css'
 import './styles/tokens.css'
 import './styles/base.css'
+import './styles/landing.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

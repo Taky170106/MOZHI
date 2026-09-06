@@ -47,3 +47,20 @@ Sanket Female Avatar2.vrm
 alphabet signs/
 tools/models/
 Sanket Female Avatar2.vrm
+
+.claude/
+.clinerules/
+.github/
+.cursor/
+.opencode/
+.windsurf/
+
+server/.venv
+AGENTS.md
+SANKET-BRIEF.md
+
+server/sanket/README.md
+Sanketv0.1/__pycache
+
+app/dist
+app/node_modules

@@ -24,7 +24,10 @@ export function DotPattern({
   className,
   ...props
 }: DotPatternProps) {
-  const id = useId()
+  /* React's useId returns ':r5:', and a colon is not legal inside an SVG
+     fragment reference — `fill="url(#:r5:)"` silently resolves to nothing, so
+     the pattern never painted and the field read as a plain black page. */
+  const id = `dots-${useId().replace(/:/g, '')}`
   return (
     <svg
       aria-hidden="true"

@@ -1,0 +1,159 @@
+import type { HolisticLandmarkerResult, NormalizedLandmark } from '@mediapipe/tasks-vision'
+import { SIGN_BY_ID } from './lexicon'
+
+/* ============================================================
+   sanket.ts — the browser half of Sanket's own recogniser.
+
+   A BiGRU with temporal attention over 30 frames of landmarks, trained on
+   our own recorded corpus: 29 ISL signs, 175k parameters. It reads the
+   MOVEMENT, not a still — which is why the window opens when the stroke
+   starts rather than when the hand settles.
+
+   It runs in server/sign.py because it is a PyTorch checkpoint and there is
+   no browser runtime for it. What crosses the wire is landmarks, never
+   pixels: the camera and MediaPipe stay here, and the service only ever
+   receives numbers.
+
+   The packing order below is the one the model was trained on. It is the
+   one thing here that fails silently when wrong — a mis-ordered frame
+   produces a confident answer rather than an error.
+   ============================================================ */
+
+export const HAND = 21
+/** shoulders, elbows, wrists — MediaPipe pose indices, in training order. */
+export const POSE_INDICES = [11, 12, 13, 14, 15, 16] as const
+
+const HAND_COORDS = HAND * 3            // 63
+const POSE_COORDS = POSE_INDICES.length * 3  // 18
+export const FEATURE_DIM = HAND_COORDS * 2 + POSE_COORDS  // 144
+
+const OFF_LEFT = 0
+const OFF_RIGHT = HAND_COORDS
+const OFF_POSE = HAND_COORDS * 2
+
+/** One sign is never this long; the cap bounds one request. */
+export const MAX_FRAMES = 240
+/** Below this the service refuses: resampling to 30 would be interpolation. */
+export const MIN_FRAMES = 4
+
+/* An absent hand is ZEROS, not NaN — the opposite of the PopSign bench next
+   door. The training data zero-fills a hand it could not see, and the
+   normaliser skips all-zero triplets so they stay absent rather than being
+   pulled onto the shoulder midpoint. Writing NaN here would poison the
+   whole frame instead. */
+function writeHand(out: Float32Array, base: number, points: NormalizedLandmark[] | undefined) {
+  for (let i = 0; i < HAND; i++) {
+    const p = points?.[i]
+    const o = base + i * 3
+    out[o] = p ? p.x : 0
+    out[o + 1] = p ? p.y : 0
+    out[o + 2] = p ? (p.z ?? 0) : 0
+  }
+}
+
+/** One Holistic result → 144 floats, written in place. */
+export function packFrame(res: HolisticLandmarkerResult | null, out: Float32Array, frame: number) {
+  const base = frame * FEATURE_DIM
+
+  /* The swap is deliberate and it is how the model was trained: the
+     extractor put MediaPipe's "Left" hand into the RIGHT slot and its
+     "Right" into the LEFT. Holistic's leftHandLandmarks is that same
+     "Left", so the slots cross here too. Straightening this out would
+     mirror every sign the model has ever seen. */
+  writeHand(out, base + OFF_RIGHT, res?.leftHandLandmarks?.[0])
+  writeHand(out, base + OFF_LEFT, res?.rightHandLandmarks?.[0])
+
+  const pose = res?.poseLandmarks?.[0]
+  for (let i = 0; i < POSE_INDICES.length; i++) {
+    const p = pose?.[POSE_INDICES[i]]
+    const o = base + OFF_POSE + i * 3
+    out[o] = p ? p.x : 0
+    out[o + 1] = p ? p.y : 0
+    out[o + 2] = p ? (p.z ?? 0) : 0
+  }
+}
+
+/** Accumulates the frames of one sign, from the start of the stroke. */
+export class SignBuffer {
+  private buf = new Float32Array(MAX_FRAMES * FEATURE_DIM)
+  private n = 0
+
+  reset() { this.n = 0 }
+  get frames() { return this.n }
+
+  push(res: HolisticLandmarkerResult | null) {
+    /* Past the cap the oldest frames go rather than the newest: a sign's
+       meaning is in its end, and someone who dwells before moving should
+       not push their own stroke out of the window. */
+    if (this.n >= MAX_FRAMES) {
+      this.buf.copyWithin(0, FEATURE_DIM)
+      this.n = MAX_FRAMES - 1
+    }
+    packFrame(res, this.buf, this.n)
+    this.n++
+  }
+
+  /** A copy, because the buffer keeps filling while the request is in flight. */
+  take(): Float32Array {
+    return this.buf.slice(0, this.n * FEATURE_DIM)
+  }
+}
+
+/* The model's 29 classes are English words. Most land on a lexicon id by
+   uppercasing and hyphenating; the rest are spelled out, because a silent
+   miss costs a whole sign.
+
+   Four have no sign in the lexicon yet — food, stop, goodbye and welcome's
+   own entry — so they are read, shown, and reported as outside the
+   vocabulary rather than mapped onto something that merely looks close. */
+const ALIAS: Record<string, string> = {
+  'how much': 'HOW-MANY',
+  'i dont understand': 'NOT-UNDERSTAND',
+  "i don't understand": 'NOT-UNDERSTAND',
+  welcome: 'HELLO',
+}
+
+export function sanketGloss(label: string): string | null {
+  const key = label.trim().toLowerCase()
+  const id = ALIAS[key] ?? key.toUpperCase().replace(/[\s_]+/g, '-')
+  return SIGN_BY_ID[id] ? id : null
+}
+
+export type SignPrediction = { label: string; conf: number }
+export type SignResult = { top: SignPrediction[]; ms: number; frames: number }
+export type SignHealth = { ok: boolean; classes: number; dim: number; frames: number }
+
+export async function signHealth(): Promise<SignHealth | null> {
+  try {
+    const res = await fetch('/sign/health', { cache: 'no-store' })
+    if (!res.ok) return null
+    const body = await res.json().catch(() => null)
+    if (!body?.ok) return null
+    /* A service answering with a different feature width is a different
+       model, and packing 144 floats for it would be silent nonsense. */
+    if (body.dim !== FEATURE_DIM) return null
+    return body as SignHealth
+  } catch {
+    return null
+  }
+}
+
+export async function signPredict(frames: Float32Array): Promise<SignResult | null> {
+  if (frames.length < MIN_FRAMES * FEATURE_DIM) return null
+  try {
+    const res = await fetch('/sign/predict', {
+      method: 'POST',
+      headers: { 'content-type': 'application/octet-stream' },
+      /* The view's own bytes, not the whole pool it may be a slice of. */
+      body: frames.buffer.slice(
+        frames.byteOffset,
+        frames.byteOffset + frames.byteLength,
+      ) as ArrayBuffer,
+    })
+    if (!res.ok) return null
+    return (await res.json()) as SignResult
+  } catch {
+    /* The counter must not stop because a recogniser did. */
+    return null
+  }
+}

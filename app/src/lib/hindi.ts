@@ -372,8 +372,26 @@ export type Caption = {
  * when there is no sign sequence there is no Hindi line, and the caption
  * falls back to English rather than showing an empty box or a guess.
  */
-export function caption(text: string, glosses: string[], lang: CaptionLang): Caption {
+export function caption(
+  text: string,
+  glosses: string[],
+  lang: CaptionLang,
+  /* When the words were signed as more than one sentence, the boundaries
+     come in here. Composing across them produces one clause holding
+     everything — "how many my and my head and pain and medicine" — in
+     Hindi exactly as it does in English. */
+  clauses?: string[][],
+): Caption {
   if (lang === 'en') return { primary: text, secondary: null, composed: false }
+
+  if (clauses && clauses.length > 1) {
+    const parts = clauses.map(g => glossToHindi(g)).filter(Boolean)
+    if (!parts.length) return { primary: text, secondary: null, composed: false }
+    const joined = parts.map(p => p!.text).join(' ')
+    const composed = parts.some(p => !p!.templated)
+    if (lang === 'hi') return { primary: joined, secondary: null, composed }
+    return { primary: text, secondary: joined, composed }
+  }
 
   /* Recover the word boundaries the gloss stream dropped, but only when the
      sentence actually contains a spelled run. */

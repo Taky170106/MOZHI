@@ -1,0 +1,1306 @@
+word,sample_id,signer
+hello,hello_84c98fc7,hritankar
+hello,hello_673f394d,hritankar
+hello,hello_8b78f2ad,hritankar
+hello,hello_9ce80b4b,hritankar
+hello,hello_b1962076,hritankar
+hello,hello_2bc44dc1,hritankar
+hello,hello_7dc6aa8c,hritankar
+hello,hello_c87e3273,hritankar
+hello,hello_56f1831c,hritankar
+hello,hello_e778c63b,hritankar
+hello,hello_b0ee51c2,hritankar
+hello,hello_fd87128d,hritankar
+hello,hello_ef58f684,hritankar
+hello,hello_b16944e5,hritankar
+hello,hello_09afe078,hritankar
+thank you,thank you_03f6587c,hritankar
+thank you,thank you_8433a7a6,hritankar
+thank you,thank you_cae49878,hritankar
+thank you,thank you_25758e02,hritankar
+thank you,thank you_24839182,hritankar
+thank you,thank you_f4587e13,hritankar
+thank you,thank you_c7f3756f,hritankar
+thank you,thank you_c0b19267,hritankar
+thank you,thank you_d1f7d83c,hritankar
+thank you,thank you_2617ad6f,hritankar
+thank you,thank you_5c48a0b7,hritankar
+thank you,thank you_03fa6bd2,hritankar
+thank you,thank you_3fe1a6dc,hritankar
+thank you,thank you_228c4d4d,hritankar
+thank you,thank you_a4a5f0d9,hritankar
+please,please_aba2fb4f,hritankar
+please,please_f1f1b1a9,hritankar
+please,please_c241ae12,hritankar
+please,please_4e6c2371,hritankar
+please,please_5ced73a2,hritankar
+please,please_62d86514,hritankar
+please,please_2d07d65a,hritankar
+please,please_02aa219c,hritankar
+please,please_29a91f8b,hritankar
+please,please_ece071c2,hritankar
+please,please_36b8b6e2,hritankar
+please,please_c49b23f0,hritankar
+please,please_bb55d3ad,hritankar
+please,please_2e7528d6,hritankar
+please,please_bdb089eb,hritankar
+sorry,sorry_bc43c4f5,hritankar
+sorry,sorry_bbeba19c,hritankar
+sorry,sorry_f91668b5,hritankar
+sorry,sorry_f34e6cf6,hritankar
+sorry,sorry_cee217a5,hritankar
+sorry,sorry_38355108,hritankar
+sorry,sorry_12debf95,hritankar
+sorry,sorry_b973d28e,hritankar
+sorry,sorry_b5249cfc,hritankar
+sorry,sorry_74767cfd,hritankar
+sorry,sorry_09efb3b0,hritankar
+sorry,sorry_3c7355d9,hritankar
+sorry,sorry_b474c447,hritankar
+sorry,sorry_69688e08,hritankar
+sorry,sorry_a483d6f1,hritankar
+sorry,sorry_4a0b5152,hritankar
+yes,yes_03cb801e,hritankar
+yes,yes_1d3fefc3,hritankar
+yes,yes_5bbfd224,hritankar
+yes,yes_b38b76ec,hritankar
+yes,yes_1ea6437b,hritankar
+yes,yes_5c78850a,hritankar
+yes,yes_e138df78,hritankar
+yes,yes_b65c2915,hritankar
+yes,yes_7487bc26,hritankar
+yes,yes_10e30278,hritankar
+yes,yes_8e5fee58,hritankar
+yes,yes_0395b90f,hritankar
+yes,yes_5694ec17,hritankar
+yes,yes_52c0e075,hritankar
+yes,yes_15ba4c0a,hritankar
+no,no_448bbca9,hritankar
+no,no_ddeb829d,hritankar
+no,no_ab82b8d3,hritankar
+no,no_2e0e760a,hritankar
+no,no_68312196,hritankar
+no,no_4ecb4e2f,hritankar
+no,no_12e4e8e2,hritankar
+no,no_8828bad3,hritankar
+no,no_65bec605,hritankar
+no,no_f3e57d71,hritankar
+no,no_138d4ed9,hritankar
+no,no_d75ba791,hritankar
+no,no_dfe0f2bf,hritankar
+no,no_edaaf1e9,hritankar
+no,no_690a20ee,hritankar
+help,help_7b138b52,hritankar
+help,help_a71f19d0,hritankar
+help,help_8b94e00d,hritankar
+help,help_aa146618,hritankar
+help,help_bebfa118,hritankar
+help,help_9c5d7f4f,hritankar
+help,help_9f94b3d0,hritankar
+help,help_c650bc47,hritankar
+help,help_769baeae,hritankar
+help,help_54dfed72,hritankar
+help,help_a151220c,hritankar
+help,help_57f2f41a,hritankar
+help,help_3e550850,hritankar
+help,help_e0ca8f0e,hritankar
+help,help_00043578,hritankar
+help,help_6afeb6ec,hritankar
+help,help_4cfb6fa6,hritankar
+water,water_7089602d,hritankar
+water,water_c747bc4a,hritankar
+water,water_716ff141,hritankar
+water,water_a31f765d,hritankar
+water,water_3825268c,hritankar
+water,water_04f88cf7,hritankar
+water,water_0048c38c,hritankar
+water,water_d769559f,hritankar
+water,water_81483403,hritankar
+water,water_d1bb28ba,hritankar
+water,water_6ce26057,hritankar
+water,water_7a4bf102,hritankar
+water,water_baab61f9,hritankar
+water,water_cca26639,hritankar
+water,water_74cca758,hritankar
+water,water_724d3960,hritankar
+water,water_4263d08a,hritankar
+water,water_3268f3c3,hritankar
+water,water_8e5c9b10,hritankar
+water,water_3fd61f06,hritankar
+food,food_9e1a187e,hritankar
+food,food_00b80224,hritankar
+food,food_0e179bf5,hritankar
+food,food_b213931e,hritankar
+food,food_db18386e,hritankar
+food,food_46cc9353,hritankar
+food,food_63dd25b0,hritankar
+food,food_f7a9b3ba,hritankar
+food,food_3877f6e5,hritankar
+food,food_a948d88d,hritankar
+food,food_c33faba9,hritankar
+food,food_52c617c8,hritankar
+food,food_3796f50d,hritankar
+food,food_759a4380,hritankar
+food,food_a2a5f6e9,hritankar
+food,food_bcf80f2c,hritankar
+food,food_bfbf116d,hritankar
+food,food_36d5c58c,hritankar
+food,food_749ee868,hritankar
+medicine,medicine_fb918648,hritankar
+medicine,medicine_aa8f7feb,hritankar
+medicine,medicine_f1a28e41,hritankar
+medicine,medicine_632e6a1f,hritankar
+medicine,medicine_432ed8c8,hritankar
+medicine,medicine_98476954,hritankar
+medicine,medicine_4a4112bc,hritankar
+medicine,medicine_b00a6c3c,hritankar
+medicine,medicine_7a8d824b,hritankar
+medicine,medicine_40c2c798,hritankar
+medicine,medicine_7407b5b1,hritankar
+medicine,medicine_78ab4385,hritankar
+medicine,medicine_89c893f9,hritankar
+medicine,medicine_4b61e530,hritankar
+medicine,medicine_25982d27,hritankar
+medicine,medicine_05910e22,hritankar
+hospital,hospital_a6641dd2,hritankar
+hospital,hospital_fa5d3b48,hritankar
+hospital,hospital_5163ec8e,hritankar
+hospital,hospital_3a4180a4,hritankar
+hospital,hospital_4ff370f5,hritankar
+hospital,hospital_a935abbc,hritankar
+hospital,hospital_98aeac13,hritankar
+hospital,hospital_9bd97d1d,hritankar
+hospital,hospital_2366ad1d,hritankar
+hospital,hospital_ee554dd1,hritankar
+hospital,hospital_90e52034,hritankar
+hospital,hospital_c9d296ad,hritankar
+hospital,hospital_b9d5faef,hritankar
+hospital,hospital_3b21be55,hritankar
+hospital,hospital_1db461d7,hritankar
+hospital,hospital_4f231644,hritankar
+hospital,hospital_7d87a16a,hritankar
+emergency,emergency_f74a5cba,hritankar
+emergency,emergency_ef786588,hritankar
+emergency,emergency_50fa9668,hritankar
+emergency,emergency_265fd188,hritankar
+emergency,emergency_6834ce6c,hritankar
+emergency,emergency_72d5fe1c,hritankar
+emergency,emergency_d0eb7249,hritankar
+emergency,emergency_2e940fd4,hritankar
+emergency,emergency_d9f9f0d4,hritankar
+emergency,emergency_d071985d,hritankar
+emergency,emergency_229bac0b,hritankar
+emergency,emergency_cd09b548,hritankar
+emergency,emergency_a4be9f34,hritankar
+emergency,emergency_91877eea,hritankar
+emergency,emergency_f4589f89,hritankar
+name,name_9c3cb1d3,hritankar
+name,name_8413bfd7,hritankar
+name,name_d943ec32,hritankar
+name,name_7b41a936,hritankar
+name,name_1a37f681,hritankar
+name,name_0718ed73,hritankar
+name,name_64f7c80f,hritankar
+name,name_c6d0ab14,hritankar
+name,name_ed96f05c,hritankar
+name,name_f9cd8d97,hritankar
+name,name_ee373237,hritankar
+name,name_6fe33816,hritankar
+name,name_a27d297b,hritankar
+name,name_ff1cecf1,hritankar
+name,name_612d8024,hritankar
+where,where_8e8fb45a,hritankar
+where,where_b20f3d91,hritankar
+where,where_9e912566,hritankar
+where,where_3d3d59eb,hritankar
+where,where_d45305c9,hritankar
+where,where_a0c598fe,hritankar
+where,where_ecab162e,hritankar
+where,where_cccaaa36,hritankar
+where,where_4af76b54,hritankar
+where,where_05eb5086,hritankar
+where,where_f9cf9c81,hritankar
+where,where_0218a4bb,hritankar
+where,where_1da946f3,hritankar
+where,where_f181085c,hritankar
+where,where_2818335c,hritankar
+when,when_0c0c19cf,hritankar
+when,when_6948a0a7,hritankar
+when,when_0d5511bd,hritankar
+when,when_63d88ece,hritankar
+when,when_3c89025c,hritankar
+when,when_1961befd,hritankar
+when,when_274f0cc9,hritankar
+when,when_fd7c0c9f,hritankar
+when,when_8558fe5a,hritankar
+when,when_be132a52,hritankar
+when,when_75a70979,hritankar
+when,when_4eedef2c,hritankar
+when,when_b27d1ffa,hritankar
+when,when_332ea0d7,hritankar
+when,when_46c8bf49,hritankar
+how much,how much_808f9b88,hritankar
+how much,how much_ee97c6ce,hritankar
+how much,how much_426e155f,hritankar
+how much,how much_f8258184,hritankar
+how much,how much_aa91cb78,hritankar
+how much,how much_b416a108,hritankar
+how much,how much_926e488c,hritankar
+how much,how much_8d56c074,hritankar
+how much,how much_03054488,hritankar
+how much,how much_3398e77a,hritankar
+how much,how much_aa0183f9,hritankar
+how much,how much_3c81a570,hritankar
+how much,how much_f5d5f6a6,hritankar
+how much,how much_8eb768e7,hritankar
+how much,how much_3de63f4c,hritankar
+come,come_ee09fd49,hritankar
+come,come_55b64225,hritankar
+come,come_bcd08707,hritankar
+come,come_f566ffda,hritankar
+come,come_7a060f32,hritankar
+come,come_874ed139,hritankar
+come,come_d3d93570,hritankar
+come,come_a302758b,hritankar
+come,come_7349954a,hritankar
+come,come_17c8cd52,hritankar
+come,come_e1b23fd3,hritankar
+come,come_8aa36da3,hritankar
+come,come_e238c18d,hritankar
+come,come_7bc22642,hritankar
+come,come_a62a1148,hritankar
+go,go_b3136566,hritankar
+go,go_a37a5f9a,hritankar
+go,go_3957b789,hritankar
+go,go_f343b7d2,hritankar
+go,go_b5be0b96,hritankar
+go,go_1ecf0479,hritankar
+go,go_3ee2d670,hritankar
+go,go_7d9cdf41,hritankar
+go,go_ed6dfc44,hritankar
+go,go_94ae4d76,hritankar
+go,go_5b25a49e,hritankar
+go,go_0aeb6721,hritankar
+go,go_72ec2db2,hritankar
+go,go_d0955073,hritankar
+go,go_030515fc,hritankar
+sit,sit_3a10629e,hritankar
+sit,sit_46820886,hritankar
+sit,sit_82e8eb81,hritankar
+sit,sit_65c629df,hritankar
+sit,sit_05096957,hritankar
+sit,sit_0d699b8c,hritankar
+sit,sit_6205dc88,hritankar
+sit,sit_d0e64fd3,hritankar
+sit,sit_334381c3,hritankar
+sit,sit_c1fdaee7,hritankar
+sit,sit_065d1b01,hritankar
+sit,sit_0d454c17,hritankar
+sit,sit_1e2e7dc1,hritankar
+sit,sit_19b12750,hritankar
+sit,sit_e02322fe,hritankar
+sit,sit_fa279d28,hritankar
+stand,stand_073ed7c8,hritankar
+stand,stand_d6ef0f41,hritankar
+stand,stand_bc4f3027,hritankar
+stand,stand_62afaf5b,hritankar
+stand,stand_72ebcf98,hritankar
+stand,stand_529eb681,hritankar
+stand,stand_27a6583a,hritankar
+stand,stand_43aa6425,hritankar
+stand,stand_6b31ce87,hritankar
+stand,stand_eddb0f9e,hritankar
+stand,stand_45b06a28,hritankar
+stand,stand_f6e06ae1,hritankar
+stand,stand_ee4a3090,hritankar
+stand,stand_ef44e7a3,hritankar
+stand,stand_98903796,hritankar
+wait,wait_f04c4999,hritankar
+wait,wait_7bb696d8,hritankar
+wait,wait_8828576b,hritankar
+wait,wait_513ea034,hritankar
+wait,wait_a10d1a5d,hritankar
+wait,wait_0c940c90,hritankar
+wait,wait_b1d8b4d8,hritankar
+wait,wait_ad8c85f4,hritankar
+wait,wait_7aa43d36,hritankar
+wait,wait_cfcd8fbd,hritankar
+wait,wait_4ace32d6,hritankar
+wait,wait_8a9ec42f,hritankar
+wait,wait_f4a7fa97,hritankar
+wait,wait_35e51c68,hritankar
+wait,wait_de332277,hritankar
+stop,stop_1c5eec18,hritankar
+stop,stop_0e785eca,hritankar
+stop,stop_0cea18d7,hritankar
+stop,stop_a0800100,hritankar
+stop,stop_18f5779c,hritankar
+stop,stop_9cd716f6,hritankar
+stop,stop_480c579b,hritankar
+stop,stop_2b86e8e6,hritankar
+stop,stop_952c23f5,hritankar
+stop,stop_1a876251,hritankar
+stop,stop_f638f691,hritankar
+stop,stop_df7b5ea1,hritankar
+stop,stop_af556009,hritankar
+stop,stop_b52992d3,hritankar
+stop,stop_2ba283a4,hritankar
+stop,stop_701fb9f7,hritankar
+good,good_9385cc06,hritankar
+good,good_f6d0cd86,hritankar
+good,good_dc9d2204,hritankar
+good,good_373ada8b,hritankar
+good,good_a758ce23,hritankar
+good,good_966acec7,hritankar
+good,good_a93935eb,hritankar
+good,good_a7bf1c73,hritankar
+good,good_e5a484b7,hritankar
+good,good_6020d37e,hritankar
+good,good_2d22354b,hritankar
+good,good_a21a29a5,hritankar
+good,good_1369bb05,hritankar
+good,good_f846811f,hritankar
+good,good_686e0902,hritankar
+bad,bad_3a865910,hritankar
+bad,bad_f4e5d894,hritankar
+bad,bad_4b0f8020,hritankar
+bad,bad_5838051a,hritankar
+bad,bad_040e574f,hritankar
+bad,bad_fd10d4f7,hritankar
+bad,bad_561b17f2,hritankar
+bad,bad_86ef261b,hritankar
+bad,bad_fdd0a30e,hritankar
+bad,bad_08b427bd,hritankar
+bad,bad_bf532264,hritankar
+bad,bad_a4a553f8,hritankar
+bad,bad_ed684b9f,hritankar
+bad,bad_f8b78f58,hritankar
+bad,bad_90dea37d,hritankar
+welcome,welcome_d557fda1,hritankar
+welcome,welcome_e888d448,hritankar
+welcome,welcome_14e71aae,hritankar
+welcome,welcome_c240b2b5,hritankar
+welcome,welcome_c9e9973a,hritankar
+welcome,welcome_15a4420b,hritankar
+welcome,welcome_08fbab2b,hritankar
+welcome,welcome_198a8b04,hritankar
+welcome,welcome_3b7f17ed,hritankar
+welcome,welcome_56359e07,hritankar
+welcome,welcome_e0760572,hritankar
+welcome,welcome_757e61e6,hritankar
+welcome,welcome_47483cbe,hritankar
+welcome,welcome_30d4ebda,hritankar
+welcome,welcome_5ad2a3cf,hritankar
+goodbye,goodbye_c15bb209,hritankar
+goodbye,goodbye_53a9149c,hritankar
+goodbye,goodbye_81fbcf43,hritankar
+goodbye,goodbye_5754ca77,hritankar
+goodbye,goodbye_7e0261fb,hritankar
+goodbye,goodbye_bb42282f,hritankar
+goodbye,goodbye_97594ea5,hritankar
+goodbye,goodbye_e74ae738,hritankar
+goodbye,goodbye_bf36015a,hritankar
+goodbye,goodbye_44552d15,hritankar
+goodbye,goodbye_d9df50e3,hritankar
+goodbye,goodbye_53b4ffb0,hritankar
+goodbye,goodbye_e3077075,hritankar
+goodbye,goodbye_dbef02c5,hritankar
+goodbye,goodbye_1a691e11,hritankar
+hello,hello_0ca9f452,ayush
+hello,hello_65e89785,ayush
+hello,hello_c5f7e49d,ayush
+hello,hello_e732459d,ayush
+hello,hello_abcea336,ayush
+hello,hello_a5004005,ayush
+hello,hello_7f83b9bd,ayush
+hello,hello_fea601bc,ayush
+hello,hello_5283b8ce,ayush
+hello,hello_b0b97e16,ayush
+hello,hello_63048844,ayush
+hello,hello_98aada66,ayush
+hello,hello_d1dc11fb,ayush
+hello,hello_d62fa521,ayush
+hello,hello_007c286a,ayush
+thank you,thank you_d9840143,ayush
+thank you,thank you_543bfe08,ayush
+thank you,thank you_365c37fd,ayush
+thank you,thank you_914589ce,ayush
+thank you,thank you_79ac00a4,ayush
+thank you,thank you_08a444f4,ayush
+thank you,thank you_7d58757f,ayush
+thank you,thank you_c3c92f8e,ayush
+thank you,thank you_0f65ca26,ayush
+thank you,thank you_f8fc08d8,ayush
+thank you,thank you_15a09c8d,ayush
+thank you,thank you_e3d7622c,ayush
+thank you,thank you_1558ca02,ayush
+thank you,thank you_5e67d030,ayush
+thank you,thank you_6aebb6f4,ayush
+please,please_8ccb32bc,ayush
+please,please_60ea4982,ayush
+please,please_babc08d5,ayush
+please,please_860b43d8,ayush
+please,please_0a740279,ayush
+please,please_c5286aaf,ayush
+please,please_c1751573,ayush
+please,please_e05e9259,ayush
+please,please_923a8538,ayush
+please,please_08216d20,ayush
+please,please_209f6459,ayush
+please,please_2d85f851,ayush
+please,please_eb90e19d,ayush
+please,please_fc97aa79,ayush
+please,please_38bfa5f7,ayush
+sorry,sorry_5f6160f0,ayush
+sorry,sorry_ce389b9a,ayush
+sorry,sorry_374c960b,ayush
+sorry,sorry_a979177c,ayush
+sorry,sorry_5c32715c,ayush
+sorry,sorry_c0efcde8,ayush
+sorry,sorry_ecc12350,ayush
+sorry,sorry_2f6c5672,ayush
+sorry,sorry_699c7574,ayush
+sorry,sorry_f3ecd81d,ayush
+sorry,sorry_16ac25ef,ayush
+sorry,sorry_86757a80,ayush
+sorry,sorry_92956bf6,ayush
+sorry,sorry_97bff6be,ayush
+yes,yes_1ea5b7cb,ayush
+yes,yes_20df06ce,ayush
+yes,yes_fea9410c,ayush
+yes,yes_21929d97,ayush
+yes,yes_166571a9,ayush
+yes,yes_dcfec575,ayush
+yes,yes_fd201253,ayush
+yes,yes_112d2be1,ayush
+yes,yes_04d047bc,ayush
+yes,yes_fe970fe8,ayush
+yes,yes_eb477c65,ayush
+yes,yes_432dcd88,ayush
+yes,yes_185427e0,ayush
+yes,yes_9cf8fc00,ayush
+yes,yes_f8dabc30,ayush
+no,no_ef2a9ffd,ayush
+no,no_b8d275af,ayush
+no,no_44f40501,ayush
+no,no_93af8af9,ayush
+no,no_d169165b,ayush
+no,no_b3d0d633,ayush
+no,no_5c374c91,ayush
+no,no_e6fd8675,ayush
+no,no_f60ebf8a,ayush
+no,no_0cbe2065,ayush
+no,no_044c6b0d,ayush
+no,no_b1a89d7f,ayush
+no,no_155a3a6f,ayush
+no,no_28339c81,ayush
+no,no_3165a8e7,ayush
+help,help_436e9e09,ayush
+help,help_27332d2a,ayush
+help,help_a34d8c65,ayush
+help,help_2d95f32e,ayush
+help,help_623000e1,ayush
+help,help_e62185b7,ayush
+help,help_e73daf11,ayush
+help,help_ec3bd9f2,ayush
+help,help_713a5e4c,ayush
+help,help_fb3b243d,ayush
+help,help_d1f79e73,ayush
+help,help_1d88065e,ayush
+help,help_17e57f3d,ayush
+water,water_581cb930,ayush
+water,water_b6eb0355,ayush
+water,water_f2f155fb,ayush
+water,water_90afdbd1,ayush
+water,water_d87a5b8c,ayush
+water,water_dc1b0882,ayush
+water,water_686e2d5e,ayush
+water,water_79b6dc4f,ayush
+water,water_99ade91f,ayush
+water,water_42ad4f62,ayush
+food,food_de2e0a55,ayush
+food,food_6d61cc4b,ayush
+food,food_6c72deff,ayush
+food,food_71f2b3b7,ayush
+food,food_feae68b7,ayush
+food,food_f70ab923,ayush
+food,food_8d520ee9,ayush
+food,food_d53edbb7,ayush
+food,food_c5324ebd,ayush
+food,food_9acfd935,ayush
+food,food_172010c7,ayush
+medicine,medicine_22aba45e,ayush
+medicine,medicine_214cb0d8,ayush
+medicine,medicine_ce165e78,ayush
+medicine,medicine_a9b9a9fb,ayush
+medicine,medicine_49a3bab3,ayush
+medicine,medicine_8aad3972,ayush
+medicine,medicine_3ea207ea,ayush
+medicine,medicine_f4fcebab,ayush
+medicine,medicine_c973cf30,ayush
+medicine,medicine_719e7b3a,ayush
+medicine,medicine_96672111,ayush
+medicine,medicine_6ca83350,ayush
+medicine,medicine_d1e3fdce,ayush
+medicine,medicine_49b0d50f,ayush
+hospital,hospital_037e5068,ayush
+hospital,hospital_29692b41,ayush
+hospital,hospital_b8ba4208,ayush
+hospital,hospital_aa5228b0,ayush
+hospital,hospital_31fddb25,ayush
+hospital,hospital_5b423a2f,ayush
+hospital,hospital_3d1b66c4,ayush
+hospital,hospital_1d477036,ayush
+hospital,hospital_699b0836,ayush
+hospital,hospital_17889dfe,ayush
+hospital,hospital_cff6fcce,ayush
+hospital,hospital_354b0439,ayush
+hospital,hospital_32339118,ayush
+emergency,emergency_b9cd0b25,ayush
+emergency,emergency_73c02acd,ayush
+emergency,emergency_fbfc5eed,ayush
+emergency,emergency_f758d195,ayush
+emergency,emergency_abeabf8c,ayush
+emergency,emergency_6984c973,ayush
+emergency,emergency_f130a878,ayush
+emergency,emergency_b219c001,ayush
+emergency,emergency_eb11f878,ayush
+emergency,emergency_6b908d65,ayush
+emergency,emergency_b4524275,ayush
+emergency,emergency_f5993764,ayush
+emergency,emergency_211eaee4,ayush
+emergency,emergency_03fd51cd,ayush
+emergency,emergency_1382bb9f,ayush
+name,name_ef207c7e,ayush
+name,name_60459f5f,ayush
+name,name_529d1ce6,ayush
+name,name_af24f975,ayush
+name,name_d403aac5,ayush
+name,name_7a256af4,ayush
+name,name_e446fb75,ayush
+name,name_396e2333,ayush
+name,name_a8c52458,ayush
+name,name_ca786704,ayush
+name,name_11af56f1,ayush
+name,name_b71902fc,ayush
+name,name_75f6d9ad,ayush
+name,name_c7dd51a3,ayush
+name,name_462fd189,ayush
+where,where_1e67fd2e,ayush
+where,where_afd83ad6,ayush
+where,where_9f6cff6a,ayush
+where,where_21cd452d,ayush
+where,where_6300489f,ayush
+where,where_6d75863f,ayush
+where,where_88c329a6,ayush
+where,where_bc0cb6eb,ayush
+where,where_85e55fc3,ayush
+where,where_06c831bd,ayush
+where,where_cbdd2823,ayush
+where,where_55cf46ba,ayush
+where,where_58a21a88,ayush
+where,where_2942189d,ayush
+where,where_d25fe303,ayush
+when,when_fddde6f2,ayush
+when,when_56e7d21b,ayush
+when,when_55fa22d8,ayush
+when,when_74d5c4d2,ayush
+when,when_bd10ee87,ayush
+when,when_8638b7bc,ayush
+when,when_fa9c6bed,ayush
+when,when_2eb50f9d,ayush
+when,when_64ac3c3b,ayush
+when,when_589eaaac,ayush
+when,when_22c4983f,ayush
+when,when_e3930759,ayush
+when,when_596ec5f9,ayush
+when,when_0e1e05b1,ayush
+when,when_2a1bfc91,ayush
+how much,how much_a40abba8,ayush
+how much,how much_9cc8a2fa,ayush
+how much,how much_248efeda,ayush
+how much,how much_0cc2957b,ayush
+how much,how much_c1f2372b,ayush
+how much,how much_6d07ea3c,ayush
+how much,how much_95241109,ayush
+how much,how much_7df4e0f0,ayush
+how much,how much_49cf37c5,ayush
+how much,how much_cc996fbf,ayush
+how much,how much_b7b89be8,ayush
+how much,how much_ce5d496d,ayush
+how much,how much_fce701a4,ayush
+how much,how much_57a0cf41,ayush
+how much,how much_c6af15db,ayush
+come,come_af867cb7,ayush
+come,come_224ca3ce,ayush
+come,come_0cde9d31,ayush
+come,come_59ca012a,ayush
+come,come_ec878579,ayush
+come,come_aaf56dbf,ayush
+come,come_513dd979,ayush
+come,come_8f53554f,ayush
+come,come_186e45cb,ayush
+come,come_624dafaa,ayush
+come,come_890bf7a2,ayush
+come,come_6165b621,ayush
+come,come_bf43a710,ayush
+come,come_e7c068eb,ayush
+come,come_b6551df7,ayush
+go,go_39e58b07,ayush
+go,go_43507407,ayush
+go,go_8e76c4e9,ayush
+go,go_6e9a5d4d,ayush
+go,go_309dde55,ayush
+go,go_81c55375,ayush
+go,go_952b7753,ayush
+go,go_093b1dd2,ayush
+go,go_45cdd6a3,ayush
+go,go_09e6ff86,ayush
+go,go_a34b1320,ayush
+go,go_0d80d8db,ayush
+go,go_4aa0bb03,ayush
+go,go_56376fc7,ayush
+go,go_e7a1c23e,ayush
+sit,sit_31e1f027,ayush
+sit,sit_426ca988,ayush
+sit,sit_6fb4e51f,ayush
+sit,sit_5d1d0f06,ayush
+sit,sit_e9436258,ayush
+sit,sit_b2c6a851,ayush
+sit,sit_418e696f,ayush
+sit,sit_03eb3637,ayush
+sit,sit_6f92c8e5,ayush
+sit,sit_1c988b2f,ayush
+sit,sit_76df124c,ayush
+sit,sit_947f2270,ayush
+sit,sit_722ae7cd,ayush
+sit,sit_1ae2cefc,ayush
+stand,stand_fb779147,ayush
+stand,stand_f59449c3,ayush
+stand,stand_2a9dae46,ayush
+stand,stand_d86f37b7,ayush
+stand,stand_901dcb9f,ayush
+stand,stand_fe8f2472,ayush
+stand,stand_c5eb91e8,ayush
+stand,stand_accab3d1,ayush
+stand,stand_919e65c4,ayush
+stand,stand_ec8b8b06,ayush
+stand,stand_025a40e5,ayush
+stand,stand_760e36d1,ayush
+stand,stand_2909c30c,ayush
+stand,stand_27261482,ayush
+stand,stand_362ce7ae,ayush
+wait,wait_a8041e01,ayush
+wait,wait_2e5596f4,ayush
+wait,wait_16a54c12,ayush
+wait,wait_326b1b25,ayush
+wait,wait_888a92a2,ayush
+wait,wait_344a9305,ayush
+wait,wait_24272a2c,ayush
+wait,wait_d9b119e3,ayush
+wait,wait_1b4e8012,ayush
+wait,wait_a1beaf6b,ayush
+wait,wait_8e89c98f,ayush
+wait,wait_8f5f6f43,ayush
+wait,wait_074af427,ayush
+wait,wait_e29998f2,ayush
+wait,wait_929afbf3,ayush
+stop,stop_7bfe185c,ayush
+stop,stop_3290a0fc,ayush
+stop,stop_a3f416a4,ayush
+stop,stop_d6401c03,ayush
+stop,stop_85ec329c,ayush
+stop,stop_ec8a7d74,ayush
+stop,stop_c3c69978,ayush
+stop,stop_0da28e3b,ayush
+stop,stop_0f86660c,ayush
+stop,stop_f908d3b7,ayush
+stop,stop_01dd9e6b,ayush
+stop,stop_e97f3a6f,ayush
+stop,stop_43906570,ayush
+stop,stop_9a7a7487,ayush
+good,good_d7ce4dc3,ayush
+good,good_7e9e1faf,ayush
+good,good_f902fd72,ayush
+good,good_12cc399b,ayush
+good,good_7b3b5852,ayush
+good,good_b458f7bc,ayush
+good,good_d732789f,ayush
+good,good_1841358a,ayush
+good,good_fd56175c,ayush
+good,good_265e617b,ayush
+good,good_cc55000b,ayush
+good,good_bfc692bd,ayush
+good,good_e4b1df5c,ayush
+good,good_95631b74,ayush
+good,good_5f2b91fa,ayush
+bad,bad_9dcd991a,ayush
+bad,bad_367c3922,ayush
+bad,bad_e815e115,ayush
+bad,bad_b08a7425,ayush
+bad,bad_6843a55b,ayush
+bad,bad_76143f6f,ayush
+bad,bad_57084290,ayush
+bad,bad_4bf83373,ayush
+bad,bad_905ed64b,ayush
+bad,bad_7627669a,ayush
+bad,bad_16de2679,ayush
+bad,bad_9844a6eb,ayush
+bad,bad_b17bba64,ayush
+bad,bad_787c7dff,ayush
+bad,bad_1d3b7b7d,ayush
+welcome,welcome_000d6805,ayush
+welcome,welcome_b7f830c9,ayush
+welcome,welcome_80b1df35,ayush
+welcome,welcome_6522c117,ayush
+welcome,welcome_da29cd9a,ayush
+welcome,welcome_8d721ed8,ayush
+welcome,welcome_1bcb7c73,ayush
+welcome,welcome_c4e23dce,ayush
+welcome,welcome_49185b08,ayush
+welcome,welcome_2354b1f9,ayush
+welcome,welcome_cad0b89f,ayush
+welcome,welcome_56242234,ayush
+welcome,welcome_6ee9c550,ayush
+welcome,welcome_d1407409,ayush
+welcome,welcome_20e3d635,ayush
+goodbye,goodbye_fac0a9d6,ayush
+goodbye,goodbye_a0ecb736,ayush
+goodbye,goodbye_f1be683c,ayush
+goodbye,goodbye_5e81d621,ayush
+goodbye,goodbye_38c16123,ayush
+goodbye,goodbye_06365f60,ayush
+goodbye,goodbye_e1b1bf46,ayush
+goodbye,goodbye_94f30aed,ayush
+goodbye,goodbye_9ff22d78,ayush
+goodbye,goodbye_81102d20,ayush
+goodbye,goodbye_ad20ef13,ayush
+goodbye,goodbye_23304fe3,ayush
+goodbye,goodbye_bd5d25e8,ayush
+goodbye,goodbye_dc0df9d5,ayush
+goodbye,goodbye_3b4a627f,ayush
+hello,hello_1b47f242,pratham
+hello,hello_a41c10f9,pratham
+hello,hello_3b6c765a,pratham
+hello,hello_66c9f779,pratham
+hello,hello_41485902,pratham
+hello,hello_1f103966,pratham
+hello,hello_d68ebad3,pratham
+hello,hello_d1b0264d,pratham
+hello,hello_52a77e28,pratham
+hello,hello_e3613885,pratham
+hello,hello_8e0a6404,pratham
+hello,hello_6f16fc91,pratham
+hello,hello_4aa48568,pratham
+hello,hello_50913726,pratham
+hello,hello_f452dd0a,pratham
+thank you,thank you_08ccab25,pratham
+thank you,thank you_b15ed268,pratham
+thank you,thank you_7d7e10d8,pratham
+thank you,thank you_af35447e,pratham
+thank you,thank you_cf15b398,pratham
+thank you,thank you_8698d791,pratham
+thank you,thank you_3427b688,pratham
+thank you,thank you_8a5c9d94,pratham
+thank you,thank you_a9421b86,pratham
+thank you,thank you_9a3fd04b,pratham
+thank you,thank you_8a2bd17c,pratham
+thank you,thank you_f6752d91,pratham
+thank you,thank you_13ed901a,pratham
+thank you,thank you_29d83073,pratham
+thank you,thank you_d02a19e7,pratham
+please,please_7d90027b,pratham
+please,please_85694708,pratham
+please,please_43685dbe,pratham
+please,please_6766c9d9,pratham
+please,please_06e20a04,pratham
+please,please_509af648,pratham
+please,please_6804c8cd,pratham
+please,please_e8b84382,pratham
+please,please_76e6ff76,pratham
+please,please_930ca36f,pratham
+please,please_faa83c9a,pratham
+please,please_4746331c,pratham
+please,please_c6f722c7,pratham
+please,please_7116c806,pratham
+please,please_4f1b4856,pratham
+sorry,sorry_4aa42b0c,pratham
+sorry,sorry_befb72fb,pratham
+sorry,sorry_b4e3412c,pratham
+sorry,sorry_2125f2cb,pratham
+sorry,sorry_d9415c2e,pratham
+sorry,sorry_99ed9e9e,pratham
+sorry,sorry_ce146c13,pratham
+sorry,sorry_b2a5c61f,pratham
+sorry,sorry_edb50260,pratham
+sorry,sorry_22b6adaf,pratham
+sorry,sorry_e055fe41,pratham
+sorry,sorry_d425e6e0,pratham
+sorry,sorry_e3cac8a9,pratham
+sorry,sorry_3959b428,pratham
+sorry,sorry_391e1757,pratham
+yes,yes_6b7280af,pratham
+yes,yes_2df80c3a,pratham
+yes,yes_b698515c,pratham
+yes,yes_ca610e90,pratham
+yes,yes_e95beb29,pratham
+yes,yes_2436d921,pratham
+yes,yes_408a20a3,pratham
+yes,yes_79fde5a7,pratham
+yes,yes_0d2f39d5,pratham
+yes,yes_8f20881d,pratham
+yes,yes_0aaa9d33,pratham
+yes,yes_0d74931f,pratham
+yes,yes_3c408801,pratham
+yes,yes_d0aecc3a,pratham
+yes,yes_7bf58418,pratham
+no,no_937f846b,pratham
+no,no_518d3e4e,pratham
+no,no_54ca54c4,pratham
+no,no_76ec7e59,pratham
+no,no_6b17d943,pratham
+no,no_cb710a78,pratham
+no,no_7316a909,pratham
+no,no_1c60c11a,pratham
+no,no_c8cfb3ab,pratham
+no,no_3706788e,pratham
+no,no_2f53ed7b,pratham
+no,no_8a8271db,pratham
+no,no_9c87f24a,pratham
+no,no_d27fa87f,pratham
+no,no_d012a41f,pratham
+help,help_1ea3089c,pratham
+help,help_c39f3981,pratham
+help,help_dda885b2,pratham
+help,help_9253fe56,pratham
+help,help_59f4014a,pratham
+help,help_d7236e03,pratham
+help,help_a829dc55,pratham
+help,help_098c143e,pratham
+help,help_dd524ae5,pratham
+help,help_09f18bcf,pratham
+help,help_9b262333,pratham
+help,help_6c1d0b83,pratham
+help,help_f76d6329,pratham
+help,help_3d1683f1,pratham
+help,help_d755d041,pratham
+water,water_a3afc6db,pratham
+water,water_4f4d4cb5,pratham
+water,water_6cd4ce96,pratham
+water,water_5efb6855,pratham
+water,water_dfe009cb,pratham
+water,water_beba8142,pratham
+water,water_3a7befd0,pratham
+water,water_4266c841,pratham
+water,water_40be3c5d,pratham
+water,water_f8bdaf9f,pratham
+water,water_85e69586,pratham
+water,water_14fda739,pratham
+water,water_5a5c5954,pratham
+water,water_4ce9cc2b,pratham
+water,water_0cc43d8c,pratham
+food,food_3c272075,pratham
+food,food_97fc20e6,pratham
+food,food_22ecc43d,pratham
+food,food_6b184a4a,pratham
+food,food_aa1979a3,pratham
+food,food_e01cb168,pratham
+food,food_7498b69c,pratham
+food,food_efbbc83c,pratham
+food,food_966fdd9f,pratham
+food,food_9998946d,pratham
+food,food_ce21d43c,pratham
+food,food_967854b4,pratham
+food,food_f80aa1b7,pratham
+food,food_5defd472,pratham
+food,food_bb539bad,pratham
+medicine,medicine_b4af1120,pratham
+medicine,medicine_1c54c614,pratham
+medicine,medicine_9015bac7,pratham
+medicine,medicine_a2c1f8c2,pratham
+medicine,medicine_9015b91d,pratham
+medicine,medicine_80cb197b,pratham
+medicine,medicine_1e465f22,pratham
+medicine,medicine_b62c5ce3,pratham
+medicine,medicine_8483667d,pratham
+medicine,medicine_28408c37,pratham
+medicine,medicine_c995af8c,pratham
+medicine,medicine_207338f4,pratham
+medicine,medicine_94a71aa4,pratham
+medicine,medicine_5f953a60,pratham
+medicine,medicine_9204fbad,pratham
+hospital,hospital_d9d0f2b6,pratham
+hospital,hospital_e188491c,pratham
+hospital,hospital_ae7c189e,pratham
+hospital,hospital_a2bc4e99,pratham
+hospital,hospital_3d0ea78f,pratham
+hospital,hospital_b20983c6,pratham
+hospital,hospital_9f7f3e7a,pratham
+hospital,hospital_c58ed7da,pratham
+hospital,hospital_4d1c4a78,pratham
+hospital,hospital_ecc3c2aa,pratham
+hospital,hospital_e7e5872d,pratham
+hospital,hospital_042c8e98,pratham
+hospital,hospital_d0dfa294,pratham
+hospital,hospital_7d3e5ce4,pratham
+hospital,hospital_26c73ecc,pratham
+emergency,emergency_67664d8d,pratham
+emergency,emergency_8a403429,pratham
+emergency,emergency_96878640,pratham
+emergency,emergency_3caa45dc,pratham
+emergency,emergency_07e952ba,pratham
+emergency,emergency_0800d362,pratham
+emergency,emergency_c3366b63,pratham
+emergency,emergency_ff29263c,pratham
+emergency,emergency_952e7c5f,pratham
+emergency,emergency_d9cacbcb,pratham
+emergency,emergency_79031290,pratham
+emergency,emergency_1e3cb395,pratham
+emergency,emergency_0b4c2314,pratham
+emergency,emergency_bae6bf00,pratham
+emergency,emergency_9744741d,pratham
+name,name_ed12ab0c,pratham
+name,name_d120b999,pratham
+name,name_c7b0c15a,pratham
+name,name_7397801e,pratham
+name,name_28f87057,pratham
+name,name_4abda087,pratham
+name,name_f2d7f412,pratham
+name,name_b0be3c7c,pratham
+name,name_13a00e7a,pratham
+name,name_98935386,pratham
+name,name_b7dadb92,pratham
+name,name_cea959e5,pratham
+name,name_9b08ac63,pratham
+name,name_65110647,pratham
+name,name_482fda00,pratham
+where,where_b05bc70b,pratham
+where,where_55f78f6a,pratham
+where,where_e5883577,pratham
+where,where_075596d5,pratham
+where,where_a2f07da3,pratham
+where,where_ef1d2361,pratham
+where,where_55201596,pratham
+where,where_2dc0675a,pratham
+where,where_c4115ed2,pratham
+where,where_c10f733a,pratham
+where,where_b99d30fd,pratham
+where,where_5db42c11,pratham
+where,where_fccb4e6b,pratham
+where,where_c37310ea,pratham
+where,where_7c597cc0,pratham
+when,when_37fb02df,pratham
+when,when_62ef5f10,pratham
+when,when_52261f1c,pratham
+when,when_37c15723,pratham
+when,when_d40d6f9e,pratham
+when,when_f2e99e47,pratham
+when,when_f9f02206,pratham
+when,when_baf4457d,pratham
+when,when_c1b31386,pratham
+when,when_d6bc1ecc,pratham
+when,when_8b7aea71,pratham
+when,when_e4f09483,pratham
+when,when_88003d61,pratham
+when,when_68844e2e,pratham
+when,when_eabaa239,pratham
+how much,how much_16978302,pratham
+how much,how much_a1f89e63,pratham
+how much,how much_52ed1e9c,pratham
+how much,how much_ca03b11e,pratham
+how much,how much_70dd4505,pratham
+how much,how much_8b50e240,pratham
+how much,how much_ac97f05b,pratham
+how much,how much_c802fadb,pratham
+how much,how much_da198701,pratham
+how much,how much_5d5c67f3,pratham
+how much,how much_9a1332e1,pratham
+how much,how much_5bc6415e,pratham
+how much,how much_efad9bfa,pratham
+how much,how much_2fad0250,pratham
+how much,how much_0386ef1d,pratham
+come,come_4feba9fc,pratham
+come,come_6c0fe4a6,pratham
+come,come_bf3df95a,pratham
+come,come_227f92df,pratham
+come,come_090e4356,pratham
+come,come_2851f10e,pratham
+come,come_436980b6,pratham
+come,come_64a71d61,pratham
+come,come_649c9c14,pratham
+come,come_c82d06de,pratham
+come,come_bec13615,pratham
+come,come_6fcd19a6,pratham
+come,come_6294ae9e,pratham
+come,come_a1f200ef,pratham
+come,come_d491c198,pratham
+go,go_953c273f,pratham
+go,go_858d5c1d,pratham
+go,go_6810ea82,pratham
+go,go_80d82630,pratham
+go,go_316df565,pratham
+go,go_d97d2ca0,pratham
+go,go_bd13c5b2,pratham
+go,go_c08a6346,pratham
+go,go_1ea87f5c,pratham
+go,go_5d29f988,pratham
+go,go_ce4f7092,pratham
+go,go_ae0b454b,pratham
+go,go_9f11d6f9,pratham
+go,go_15ed5ff1,pratham
+go,go_c86216f8,pratham
+sit,sit_eca2665b,pratham
+sit,sit_3f5ac03b,pratham
+sit,sit_1d8a0477,pratham
+sit,sit_169e7ac9,pratham
+sit,sit_5f56f6ae,pratham
+sit,sit_20c07e33,pratham
+sit,sit_8b38b714,pratham
+sit,sit_79d15b64,pratham
+sit,sit_cbf054c6,pratham
+sit,sit_3057f00f,pratham
+sit,sit_94353fe1,pratham
+sit,sit_5172b7a3,pratham
+sit,sit_199bb979,pratham
+sit,sit_8f5a5e1f,pratham
+sit,sit_7865ca57,pratham
+stand,stand_70188281,pratham
+stand,stand_55193dea,pratham
+stand,stand_e05ceb7e,pratham
+stand,stand_0a050b30,pratham
+stand,stand_7e6308d2,pratham
+stand,stand_85170740,pratham
+stand,stand_23d37a00,pratham
+stand,stand_d771c5b6,pratham
+stand,stand_2a6f2c45,pratham
+stand,stand_c757fdc9,pratham
+stand,stand_dadc4d3d,pratham
+stand,stand_73d29148,pratham
+stand,stand_d9813cae,pratham
+stand,stand_35d15c30,pratham
+stand,stand_ba8dbdeb,pratham
+wait,wait_f38f72fe,pratham
+wait,wait_32924bfd,pratham
+wait,wait_1e0167cd,pratham
+wait,wait_62eb7638,pratham
+wait,wait_bf76a28d,pratham
+wait,wait_9d52c4d5,pratham
+wait,wait_0fbd5f64,pratham
+wait,wait_c7f09567,pratham
+wait,wait_adb92a2a,pratham
+wait,wait_a4d44d3d,pratham
+wait,wait_5a6e8acc,pratham
+wait,wait_db324c55,pratham
+wait,wait_f7881f50,pratham
+wait,wait_46779bc7,pratham
+wait,wait_4dab6371,pratham
+stop,stop_bcbc859e,pratham
+stop,stop_c72c16eb,pratham
+stop,stop_5fe04dfe,pratham
+stop,stop_a2f7f957,pratham
+stop,stop_a534a4da,pratham
+stop,stop_ff60fc0f,pratham
+stop,stop_8f33abc0,pratham
+stop,stop_d92dcd4e,pratham
+stop,stop_e1cfb567,pratham
+stop,stop_7b62d244,pratham
+stop,stop_ab86e3cc,pratham
+stop,stop_ab78c86f,pratham
+stop,stop_9859e5a5,pratham
+stop,stop_b3b8efed,pratham
+stop,stop_081cf249,pratham
+good,good_fd3df20d,pratham
+good,good_53ab1b57,pratham
+good,good_a46766a6,pratham
+good,good_3d9cabe0,pratham
+good,good_854f6e9a,pratham
+good,good_0094513f,pratham
+good,good_75dfa402,pratham
+good,good_522359c6,pratham
+good,good_db552132,pratham
+good,good_e2e4eda3,pratham
+good,good_08e7160e,pratham
+good,good_a6c0698e,pratham
+good,good_b9564623,pratham
+good,good_3fe00e79,pratham
+good,good_14999c0d,pratham
+bad,bad_62163710,pratham
+bad,bad_bcf23369,pratham
+bad,bad_244a7010,pratham
+bad,bad_13507643,pratham
+bad,bad_7b1072b3,pratham
+bad,bad_8cc18437,pratham
+bad,bad_5c312a3e,pratham
+bad,bad_66415575,pratham
+bad,bad_e1cbe5a1,pratham
+bad,bad_c8ea3111,pratham
+bad,bad_0ec0fe8d,pratham
+bad,bad_0d129389,pratham
+bad,bad_406ce5d2,pratham
+bad,bad_f9833c6c,pratham
+bad,bad_48193953,pratham
+welcome,welcome_fd159c62,pratham
+welcome,welcome_53c0f451,pratham
+welcome,welcome_14ba0f95,pratham
+welcome,welcome_354f83e2,pratham
+welcome,welcome_3dbb57d5,pratham
+welcome,welcome_122a021d,pratham
+welcome,welcome_cd876926,pratham
+welcome,welcome_90cb5431,pratham
+welcome,welcome_f8b0e19c,pratham
+welcome,welcome_76a61d8a,pratham
+welcome,welcome_a5ef2eba,pratham
+welcome,welcome_5d01b607,pratham
+welcome,welcome_71197c58,pratham
+welcome,welcome_83f3d28f,pratham
+welcome,welcome_ad464371,pratham
+goodbye,goodbye_55257f1f,pratham
+goodbye,goodbye_e1663147,pratham
+goodbye,goodbye_d94e170f,pratham
+goodbye,goodbye_0b2711da,pratham
+goodbye,goodbye_04425cbf,pratham
+goodbye,goodbye_7d67f972,pratham
+goodbye,goodbye_1c62a105,pratham
+goodbye,goodbye_ec4a197c,pratham
+goodbye,goodbye_5ad77bd7,pratham
+goodbye,goodbye_a77a1378,pratham
+goodbye,goodbye_d70e4ad1,pratham
+goodbye,goodbye_fb1d3b38,pratham
+goodbye,goodbye_86449881,pratham
+goodbye,goodbye_f89aa351,pratham
+goodbye,goodbye_a0c6d5e1,pratham
+fever,fever_9eaed965,hritankar
+fever,fever_c633d0ad,hritankar
+fever,fever_cb37783b,hritankar
+fever,fever_1f90c20c,hritankar
+fever,fever_0967eb1f,hritankar
+fever,fever_20b0dd22,hritankar
+fever,fever_54c7c01c,hritankar
+fever,fever_adf97280,hritankar
+fever,fever_675b6801,hritankar
+fever,fever_b7d7176c,hritankar
+fever,fever_31d149b8,hritankar
+fever,fever_bcae9b6d,hritankar
+fever,fever_8989b090,hritankar
+fever,fever_566cfcdf,hritankar
+fever,fever_10493aee,hritankar
+pain,pain_79f75b39,hritankar
+pain,pain_e8e884ed,hritankar
+pain,pain_ff5e2688,hritankar
+pain,pain_85417d1b,hritankar
+pain,pain_46935b05,hritankar
+pain,pain_b0f64842,hritankar
+pain,pain_03b9c30b,hritankar
+pain,pain_0384b1d8,hritankar
+pain,pain_84991416,hritankar
+pain,pain_ec2fcb6c,hritankar
+pain,pain_d6ea8a20,hritankar
+pain,pain_f11f7b94,hritankar
+pain,pain_4f0c3534,hritankar
+pain,pain_9c9dd750,hritankar
+pain,pain_0d285f51,hritankar
+i dont understand,i dont understand_631c2a15,hritankar
+i dont understand,i dont understand_8caf5f69,hritankar
+i dont understand,i dont understand_4f93f66d,hritankar
+i dont understand,i dont understand_f83321d9,hritankar
+i dont understand,i dont understand_d51e73eb,hritankar
+i dont understand,i dont understand_bdeed893,hritankar
+i dont understand,i dont understand_f761599c,hritankar
+i dont understand,i dont understand_1cf65740,hritankar
+i dont understand,i dont understand_4da4d6c0,hritankar
+i dont understand,i dont understand_9a0a5664,hritankar
+i dont understand,i dont understand_8ac6ad17,hritankar
+i dont understand,i dont understand_807f4bfc,hritankar
+i dont understand,i dont understand_24c9743a,hritankar
+i dont understand,i dont understand_83a61d8b,hritankar
+i dont understand,i dont understand_97f0e71d,hritankar
+fever,fever_e008fede,pratham
+fever,fever_4755e3bd,pratham
+fever,fever_9a7de2cd,pratham
+fever,fever_308518a2,pratham
+fever,fever_02960eed,pratham
+fever,fever_13f18a89,pratham
+fever,fever_3de60d4c,pratham
+fever,fever_1309816a,pratham
+fever,fever_cf790c0f,pratham
+fever,fever_bb61fe70,pratham
+fever,fever_b59295dd,pratham
+fever,fever_f3f4a957,pratham
+fever,fever_aa1abe12,pratham
+fever,fever_7428ceb8,pratham
+fever,fever_0760171d,pratham
+pain,pain_c7de1c55,pratham
+pain,pain_0546366d,pratham
+pain,pain_3487daa5,pratham
+pain,pain_fb1a8513,pratham
+pain,pain_8bf3a5a3,pratham
+pain,pain_30bb176f,pratham
+pain,pain_65756c59,pratham
+pain,pain_ffc72d99,pratham
+pain,pain_12145c0c,pratham
+pain,pain_96d8a0b1,pratham
+pain,pain_c5933de9,pratham
+pain,pain_fd547ebb,pratham
+pain,pain_0a528c41,pratham
+pain,pain_2f767959,pratham
+pain,pain_654c308b,pratham
+i dont understand,i dont understand_b3b70217,pratham
+i dont understand,i dont understand_7043c5a9,pratham
+i dont understand,i dont understand_90733027,pratham
+i dont understand,i dont understand_67182590,pratham
+i dont understand,i dont understand_ee31f02c,pratham
+i dont understand,i dont understand_66ca2780,pratham
+i dont understand,i dont understand_39e5553e,pratham
+i dont understand,i dont understand_52d5cd49,pratham
+i dont understand,i dont understand_c634e0db,pratham
+i dont understand,i dont understand_a006585e,pratham
+i dont understand,i dont understand_f4305aa4,pratham
+i dont understand,i dont understand_ff7668d4,pratham
+i dont understand,i dont understand_01628186,pratham
+i dont understand,i dont understand_2aa9e087,pratham
+i dont understand,i dont understand_1aa97481,pratham
+i dont understand,i dont understand_efae333d,pratham
+fever,fever_83ecce6e,ayush
+fever,fever_ad3d8c65,ayush
+fever,fever_91ccdd24,ayush
+fever,fever_3f03a3d0,ayush
+fever,fever_aefc9b97,ayush
+fever,fever_40a387c7,ayush
+fever,fever_74ea6548,ayush
+fever,fever_d36f54bb,ayush
+fever,fever_4b78aa87,ayush
+fever,fever_c5e2438d,ayush
+fever,fever_25e2b52c,ayush
+fever,fever_d8c46101,ayush
+fever,fever_17222927,ayush
+fever,fever_b0dd3950,ayush
+fever,fever_5dea5f8a,ayush
+pain,pain_29c7bead,ayush
+pain,pain_a9338634,ayush
+pain,pain_18f11b6a,ayush
+pain,pain_2286bbed,ayush
+pain,pain_7adbbe17,ayush
+pain,pain_570cf6a1,ayush
+pain,pain_dbde31ed,ayush
+pain,pain_ed8eff32,ayush
+pain,pain_e55de3a7,ayush
+pain,pain_c354598a,ayush
+pain,pain_29e08cd2,ayush
+pain,pain_c9a31dfc,ayush
+pain,pain_9834314a,ayush
+pain,pain_d6649793,ayush
+pain,pain_dcabc662,ayush
+i dont understand,i dont understand_f8ce87af,ayush
+i dont understand,i dont understand_9c49cc8a,ayush
+i dont understand,i dont understand_d8a4461d,ayush
+i dont understand,i dont understand_843fdc9c,ayush
+i dont understand,i dont understand_c89ec542,ayush
+i dont understand,i dont understand_703b62b2,ayush
+i dont understand,i dont understand_dd7fee13,ayush
+i dont understand,i dont understand_773e6d2a,ayush
+i dont understand,i dont understand_4f739850,ayush
+i dont understand,i dont understand_ee57a507,ayush
+i dont understand,i dont understand_8c3443d2,ayush
+i dont understand,i dont understand_4e9f09da,ayush
+i dont understand,i dont understand_db092e21,ayush
+i dont understand,i dont understand_4fc7952f,ayush
