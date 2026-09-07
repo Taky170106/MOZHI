@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b --noCheck && vite build",
+    "dev": "node scripts/copy-ort.mjs && vite",
+    "build": "node scripts/copy-ort.mjs && tsc -b --noCheck && vite build",
     "preview": "vite preview",
     "check": "tsc --noEmit",
     "check:model": "node checks/model.mjs",
@@ -25,6 +25,7 @@
     "lenis": "^1.3.11",
     "lucide-react": "^1.38.0",
     "motion": "^12.23.12",
+    "onnxruntime-web": "^1.20.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^3.6.0",
@@ -36,6 +37,7 @@
     "@types/react-dom": "^18.3.5",
     "@types/three": "^0.169.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "sharp": "^0.35.4",
     "typescript": "^5.7.3",
     "vite": "^6.0.7"
   }

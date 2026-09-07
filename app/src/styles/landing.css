@@ -186,29 +186,6 @@
   color: #fff;
 }
 
-/* ---- the sixty thousand ------------------------------------------------ */
-
-.rarity-note {
-  font-family: var(--ui);
-  font-weight: 500;
-  font-size: clamp(0.62rem, 1vw, 0.78rem);
-  letter-spacing: 0.01em;
-  color: rgb(255 255 255 / 0.42);
-}
-
-.rarity-line {
-  font-family: var(--ui);
-  font-weight: 500;
-  font-size: clamp(0.98rem, 1.7vw, 1.4rem);
-  line-height: 1.45;
-  letter-spacing: -0.01em;
-  color: rgb(255 255 255 / 0.72);
-}
-
-.rarity-line b {
-  font-weight: 700;
-  color: #fff;
-}
 
 /* ---- the ground --------------------------------------------------------
    The same field the product screens use: a wide pitch, a faint dot, and a
@@ -218,4 +195,154 @@
 .landing-dots {
   mask-image: radial-gradient(120% 90% at 50% 42%, #000 25%, transparent 82%);
   -webkit-mask-image: radial-gradient(120% 90% at 50% 42%, #000 25%, transparent 82%);
+}
+
+/* ---- the sixty thousand ------------------------------------------------
+   The crowd, the one, and the sentence that names them. The canvas is
+   masked rather than cropped so the field dissolves into the page's own dot
+   grid instead of ending in a rectangle. */
+/* The track. Its only job is to be tall: the extra height above one screen
+   is exactly the scroll the held stage gets to play in. */
+.rarity {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 240vh;
+}
+
+/* The held frame. Sticky, not pinned — no spacer, no frozen width, and the
+   page after it keeps its own place. */
+.rarity-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rarity-frame {
+  position: relative;
+  width: 100%;
+}
+
+/* Nothing to hold for: the finished frame, one screen, no scroll spent. */
+@media (prefers-reduced-motion: reduce) {
+  .rarity { height: 100vh; }
+}
+
+.rarity-canvas {
+  display: block;
+  width: 100%;
+  mask-image:
+    radial-gradient(118% 100% at 50% 34%, #000 42%, transparent 88%),
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 82%, transparent 99%);
+  -webkit-mask-image:
+    radial-gradient(118% 100% at 50% 34%, #000 42%, transparent 88%),
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 82%, transparent 99%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+
+/* Sits over the lower half of the field, where the canvas has dimmed the
+   crowd for it. --said is written by the draw loop. */
+/* Positioned against .rarity-frame, which is the canvas's own box — so the
+   type sits in the field's lower half whatever height the field takes. */
+.rarity-copy {
+  --said: 0;
+  --told: 0;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.5rem, 4%, 3rem);
+  translate: -50% 0;
+  width: min(100%, 62rem);
+  padding: 0 1.5rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.rarity-eyebrow {
+  font-family: var(--mono);
+  font-size: clamp(0.6rem, 1.05vw, 0.78rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgb(199 192 255 / 0.75);
+  margin-bottom: clamp(0.5rem, 1.4vh, 1rem);
+  text-shadow: 0 0 22px rgb(139 124 255 / 0.35);
+}
+
+.rarity-eyebrow span {
+  color: #fff;
+  font-weight: 500;
+  /* The tally changes every frame; a fixed advance stops it juddering. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* The statistic, at the size the picture deserves. */
+.rarity-stat {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.6vw, 1.4rem);
+  line-height: 0.86;
+  opacity: calc(0.15 + var(--said) * 0.85);
+  /* Lands rather than fades: it rises the last few pixels and settles out of
+     a slight over-scale as the crowd finishes filling. */
+  transform:
+    translateY(calc((1 - var(--said)) * 22px))
+    scale(calc(1.06 - var(--said) * 0.06));
+  transform-origin: 50% 100%;
+}
+
+.rarity-one {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(3.6rem, 11vw, 10rem);
+  letter-spacing: -0.05em;
+  background: linear-gradient(180deg, #fff 30%, rgb(199 192 255 / 0.55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rarity-per {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 2.6vw, 2.2rem);
+  letter-spacing: -0.02em;
+  color: rgb(255 255 255 / 0.62);
+  padding-bottom: 0.15em;
+}
+
+.rarity-line {
+  margin-top: clamp(0.6rem, 1.8vh, 1.3rem);
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 2vw, 1.7rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: rgb(255 255 255 / 0.82);
+  opacity: var(--said);
+  transform: translateY(calc((1 - var(--said)) * 12px));
+}
+
+.rarity-line b {
+  font-weight: 700;
+  color: #fff;
+}
+
+.rarity-line span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: clamp(0.9rem, 1.35vw, 1.15rem);
+  font-weight: 500;
+  color: rgb(199 192 255 / 0.72);
+  /* Arrives after the statistic has been read, in the room the hold buys. */
+  opacity: var(--told);
+  transform: translateY(calc((1 - var(--told)) * 10px));
+}
+
+@media (max-width: 720px) {
+  .rarity-copy { bottom: 1rem; }
+  .rarity-line span { display: none; }
 }

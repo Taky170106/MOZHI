@@ -1,0 +1,12 @@
+# Only the built site ships. Everything below is source material, tooling or
+# local state that the deployed page never fetches.
+checks/
+dist/
+node_modules/
+*.tsbuildinfo
+
+# Standalone debug pages, not part of the product
+fingerspell.html
+model-debug.html
+recorder.html
+rig-check.html

@@ -375,7 +375,7 @@ export default function Counter() {
           <h2 className="card-title">Visitor</h2>
           <div className="card-body">
 
-          {/* the camera feed: 543 coordinates, and no frame kept */}
+          {/* the camera feed: landmarks only, and no frame kept */}
           <div className="slot slot-stage">
             <div className="slot-skin" />
             {camera ? (
@@ -912,11 +912,11 @@ export default function Counter() {
           style={{ color: logLive === false ? '#FF8A3D' : 'rgb(255 255 255 / 0.25)' }}
           title={
             logLive === false
-              ? 'The transcript service is not answering. Turns are held in memory for this session only.'
-              : 'Turns are written to the local transcript database as they happen.'
+              ? 'This browser is not allowing storage. Turns are held in memory for this session only.'
+              : 'Turns are written to this browser as they happen. Nothing is sent anywhere.'
           }
         >
-          {logLive === null ? 'Log · connecting' : logLive ? 'Log · on disk' : 'Log · memory only'}
+          {logLive === null ? 'Log · opening' : logLive ? 'Log · on device' : 'Log · memory only'}
         </span>
         <span className="ml-auto hidden items-center gap-4 lg:flex">
           {[['V', 'display'], ['↵', 'send read'], ['/', 'reply'], ...(micOn ? [['M', 'speak']] : []), ['Esc', 'exit']].map(([k, what]) => (

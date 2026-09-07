@@ -1,5 +1,6 @@
 import type { HolisticLandmarkerResult, NormalizedLandmark } from '@mediapipe/tasks-vision'
 import { SIGN_BY_ID } from './lexicon'
+import { normalise, sanketSession, softmax } from './sanket-onnx'
 
 /* ============================================================
    sanket.ts — the browser half of Sanket's own recogniser.
@@ -9,10 +10,11 @@ import { SIGN_BY_ID } from './lexicon'
    MOVEMENT, not a still — which is why the window opens when the stroke
    starts rather than when the hand settles.
 
-   It runs in server/sign.py because it is a PyTorch checkpoint and there is
-   no browser runtime for it. What crosses the wire is landmarks, never
-   pixels: the camera and MediaPipe stay here, and the service only ever
-   receives numbers.
+   It runs IN THE PAGE, as ONNX under onnxruntime-web — see sanket-onnx.ts
+   for why, and for the parity check against the PyTorch checkpoint. So no
+   landmarks cross the wire either: the camera, MediaPipe and the model are
+   all on the signer's own machine, and the counter works with the network
+   unplugged.
 
    The packing order below is the one the model was trained on. It is the
    one thing here that fails silently when wrong — a mis-ordered frame
@@ -31,6 +33,8 @@ const OFF_LEFT = 0
 const OFF_RIGHT = HAND_COORDS
 const OFF_POSE = HAND_COORDS * 2
 
+/** The window the model reads, fixed at training time. */
+export const SEQUENCE_LENGTH = 30
 /** One sign is never this long; the cap bounds one request. */
 export const MAX_FRAMES = 240
 /** Below this the service refuses: resampling to 30 would be interpolation. */
@@ -123,35 +127,42 @@ export type SignPrediction = { label: string; conf: number }
 export type SignResult = { top: SignPrediction[]; ms: number; frames: number }
 export type SignHealth = { ok: boolean; classes: number; dim: number; frames: number }
 
+/** Loads the model. Answers the same shape the service used to answer. */
 export async function signHealth(): Promise<SignHealth | null> {
-  try {
-    const res = await fetch('/sign/health', { cache: 'no-store' })
-    if (!res.ok) return null
-    const body = await res.json().catch(() => null)
-    if (!body?.ok) return null
-    /* A service answering with a different feature width is a different
-       model, and packing 144 floats for it would be silent nonsense. */
-    if (body.dim !== FEATURE_DIM) return null
-    return body as SignHealth
-  } catch {
-    return null
+  const session = await sanketSession()
+  if (!session) return null
+  return {
+    ok: true,
+    classes: session.classes.length,
+    dim: FEATURE_DIM,
+    frames: SEQUENCE_LENGTH,
   }
 }
 
 export async function signPredict(frames: Float32Array): Promise<SignResult | null> {
   if (frames.length < MIN_FRAMES * FEATURE_DIM) return null
+  const session = await sanketSession()
+  if (!session) return null
+
+  const count = frames.length / FEATURE_DIM
+  /* The engine hands over exactly one window. Anything else would have to
+     be resampled, and the resampler lives in Python — see sanket-onnx.ts. */
+  if (count !== SEQUENCE_LENGTH) return null
+
+  const started = performance.now()
   try {
-    const res = await fetch('/sign/predict', {
-      method: 'POST',
-      headers: { 'content-type': 'application/octet-stream' },
-      /* The view's own bytes, not the whole pool it may be a slice of. */
-      body: frames.buffer.slice(
-        frames.byteOffset,
-        frames.byteOffset + frames.byteLength,
-      ) as ArrayBuffer,
-    })
-    if (!res.ok) return null
-    return (await res.json()) as SignResult
+    /* A copy: normalise writes in place, and the caller's buffer is the
+       engine's rolling window, which it is still filling. */
+    const window = frames.slice()
+    normalise(window, count)
+
+    const probs = softmax(await session.run(window))
+
+    const top = Array.from(probs, (conf, i) => ({ label: session.classes[i], conf }))
+      .sort((a, b) => b.conf - a.conf)
+      .slice(0, 3)
+
+    return { top, ms: Math.round(performance.now() - started), frames: count }
   } catch {
     /* The counter must not stop because a recogniser did. */
     return null

@@ -64,3 +64,6 @@ Sanketv0.1/__pycache
 
 app/dist
 app/node_modules
+
+# copied from node_modules by app/scripts/copy-ort.mjs on every build
+app/public/ort/

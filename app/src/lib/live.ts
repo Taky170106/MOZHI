@@ -238,7 +238,7 @@ export function useLiveRecognizer(opts: {
       if (!cancelled) {
         setBackend('none')
         setStatus('absent')
-        setDetail('No recogniser: server/sign.py is not running, public/models/tm/ is empty, and neither is server/islr.py')
+        setDetail('No recogniser: the ISL model did not load, public/models/tm/ is empty, and server/islr.py is not running')
       }
     })()
 
@@ -270,12 +270,19 @@ export function useLiveRecognizer(opts: {
 
   /* One place turns a recognised sign into a commit, so the two backends
      cannot drift apart on thresholds, repeats or sentence breaks. */
-  const commit = useCallback((gloss: string, conf: number) => {
+  /* `gated` is false when the caller has already applied its own acceptance
+     rules. Our own model does: sanket-engine.ts runs the confidence floor,
+     the two-in-a-row stability check and the one-second debounce the
+     checkpoint was tuned with. Re-judging that against the Counter's slider
+     put two gates in series — a word confirmed twice at 0.65 is stronger
+     evidence than one shot at 0.78, and the second gate was throwing those
+     away. That is the "it detects but never recognises" failure. */
+  const commit = useCallback((gloss: string, conf: number, gated = true) => {
     const entry: Commit = { gloss, conf, at: Date.now(), clause: clause.current }
     /* The preview reads back the whole pending sentence, not just the word
        that arrived, so the visitor can see it building. */
 
-    if (conf < thresholdRef.current) {
+    if (gated && conf < thresholdRef.current) {
       /* The terminal stops rather than guessing. */
       repeated.current = true
       setLowconf(entry)
@@ -374,7 +381,7 @@ export function useLiveRecognizer(opts: {
             setDetail(`"${e.word}" ${(e.conf * 100).toFixed(0)}% — read, but no sign for it yet`)
             return
           }
-          commit(gloss, e.conf)
+          commit(gloss, e.conf, false)
         })
         setHoldProgress(engine.current.fill)
         return

@@ -1,4 +1,4 @@
-import { FEATURE_DIM, signPredict, type SignPrediction } from './sanket'
+import { FEATURE_DIM, SEQUENCE_LENGTH, signPredict, type SignPrediction } from './sanket'
 import type { SignFrame } from './sanket-vision'
 
 /* ============================================================
@@ -20,7 +20,8 @@ import type { SignFrame } from './sanket-vision'
    Every constant below is from config.py.
    ============================================================ */
 
-export const SEQUENCE_LENGTH = 30
+/* One source of truth: the window length is the model's, not the loop's. */
+export { SEQUENCE_LENGTH }
 const INFERENCE_EVERY_N_FRAMES = 3
 const CONFIDENCE_THRESHOLD = 0.6
 const STABILITY_COUNT = 2

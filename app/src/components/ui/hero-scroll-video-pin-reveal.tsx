@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
@@ -47,7 +47,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
   ),
   tags = DEFAULT_TAGS,
   subText = 'And the journey continues beyond the summit...',
-  videoSrc = 'https://res.cloudinary.com/dsuwzuaxp/video/upload/856381-hd_1920_1080_30fps_gsq11b.mp4',
+  videoSrc = '/media/sanket-film.mp4',
   bottomText = (
     <>
       Where every scroll feels
@@ -55,7 +55,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
       intentional
     </>
   ),
-  badgeImgSrc = 'https://i.ibb.co/kgFKP37B/rotate-text.png',
+  badgeImgSrc,
   className = '',
 }) => {
   const benefitRef = useRef<HTMLDivElement>(null);
@@ -64,11 +64,76 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const paraRef = useRef<HTMLParagraphElement>(null);
   const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  /* The film runs silent on its own so the section is never a dead
+     rectangle, and the badge is the only thing that turns sound on. One
+     click starts it from the top with audio; when it finishes it drops
+     back to the silent loop it came from. */
+  const [withSound, setWithSound] = useState(false);
+  const soundRef = useRef(false);
+  soundRef.current = withSound;
+
+  /* The silent loop only runs while the section is on screen, and leaving
+     it takes the sound with it — nobody should hear the film play from a
+     part of the page they have already scrolled past. */
+  useEffect(() => {
+    const v = videoRef.current;
+    const box = videoBoxRef.current;
+    if (!v || !box) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+          if (soundRef.current) {
+            v.muted = true;
+            v.loop = true;
+            setWithSound(false);
+          }
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(box);
+    return () => io.disconnect();
+  }, []);
+
+  const toggleSound = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (withSound) {
+      v.muted = true;
+      v.loop = true;
+      setWithSound(false);
+      v.play().catch(() => {});
+    } else {
+      v.muted = false;
+      v.loop = false;
+      v.currentTime = 0;
+      setWithSound(true);
+      v.play().catch(() => {
+        v.muted = true;
+        v.loop = true;
+        setWithSound(false);
+      });
+    }
+  }, [withSound]);
+
+  const onEnded = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.loop = true;
+    setWithSound(false);
+    v.play().catch(() => {});
+  }, []);
+
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
     }
 
     let lenis: any = null;
@@ -246,7 +311,11 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
 
   return (
     <div
-      className={`w-full min-h-screen bg-transparent text-[#f3f4f6] font-sans overflow-x-hidden ${className}`}
+      /* clip, not hidden: `overflow-x: hidden` makes this div a scroll
+         container, and a sticky descendant then sticks to THIS box instead
+         of the viewport — which silently disables the rarity field's hold.
+         `clip` trims the same overflow without becoming a scrollport. */
+      className={`w-full min-h-screen bg-transparent text-[#f3f4f6] font-sans overflow-x-clip ${className}`}
       style={{ backgroundColor: 'transparent', color: '#f3f4f6' }}
     >
       {}
@@ -333,23 +402,52 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
               style={{ backgroundColor: 'transparent', zIndex: 2 }}
             >
               {}
-              {badgeImgSrc && (
-                <img
-                  src={badgeImgSrc}
-                  alt="rotating badge"
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 z-20 pointer-events-none animate-[spin_18s_linear_infinite] opacity-90 select-none"
-                />
-              )}
+              {}
+              <div
+                aria-hidden="true"
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 z-20 pointer-events-none animate-[spin_18s_linear_infinite] select-none transition-opacity duration-500 ${withSound ? 'opacity-0' : 'opacity-90'}`}
+              >
+                {badgeImgSrc ? (
+                  <img src={badgeImgSrc} alt="" className="w-full h-full" />
+                ) : (
+                  <svg viewBox="0 0 200 200" className="w-full h-full">
+                    <defs>
+                      <path
+                        id="sanket-play-ring"
+                        d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"
+                        fill="none"
+                      />
+                    </defs>
+                    <text
+                      fill="currentColor"
+                      className="text-white"
+                      style={{
+                        fontFamily: 'var(--font-mono, ui-monospace, monospace)',
+                        fontSize: '15px',
+                        letterSpacing: '0.34em',
+                      }}
+                    >
+                      <textPath href="#sanket-play-ring" startOffset="0">
+                        PLAY VIDEO · PLAY VIDEO · PLAY VIDEO ·
+                      </textPath>
+                    </text>
+                  </svg>
+                )}
+              </div>
 
               {}
+              {/* No autoPlay and no eager preload: the file is 32 MB, and
+                  both of those start pulling it the moment the landing page
+                  opens, three sections before anyone can see it. The
+                  IntersectionObserver above already calls play() when the
+                  section arrives, which is the right moment to spend it. */}
               <video
                 ref={videoRef}
-                autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
-                crossOrigin="anonymous"
+                preload="metadata"
+                onEnded={onEnded}
                 className="w-full h-full object-cover bg-transparent"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', backgroundColor: 'transparent' }}
               >
@@ -357,15 +455,27 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
               </video>
 
               {}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex justify-center items-center shadow-xl">
-                  <img
-                    src="https://i.ibb.co/Q3RY2jTB/play-icon.png"
-                    alt="play"
-                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 object-contain"
-                  />
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={toggleSound}
+                aria-label={withSound ? 'Pause the film' : 'Play the film with sound'}
+                className="group absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer rounded-full outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                <span
+                  className={`flex w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/40 shadow-xl transition-all duration-300 group-hover:bg-white/30 group-hover:scale-105 ${withSound ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}
+                >
+                  {withSound ? (
+                    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-white">
+                      <rect x="6" y="4.5" width="4" height="15" rx="1.2" />
+                      <rect x="14" y="4.5" width="4" height="15" rx="1.2" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 translate-x-[1px] fill-white">
+                      <path d="M8 5.2v13.6a1 1 0 0 0 1.53.85l10.2-6.8a1 1 0 0 0 0-1.7L9.53 4.35A1 1 0 0 0 8 5.2Z" />
+                    </svg>
+                  )}
+                </span>
+              </button>
             </div>
           </div>
         </div>

@@ -33,7 +33,10 @@ export const DEFAULTS: Settings = {
   captionScale: 1,
   captionLang: 'en',
   speed: 1,
-  threshold: 0.78,
+  /* The recogniser's own floor, from the checkpoint's config.py. Above this
+     it also has to read the same sign twice in a row before a word is
+     accepted, which is what makes 0.6 a stricter test than it looks. */
+  threshold: 0.6,
   cameraPreview: true,
   faceChannel: true,
   voiceInput: false,

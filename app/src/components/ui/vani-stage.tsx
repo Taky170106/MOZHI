@@ -36,12 +36,12 @@ type Feature = { src: string; label: string; x: number; y: number }
 /* Bubble centres as a percentage of the tablet screen. Three a side, and the
    bottom pair pulled inboard so they clear her name. */
 const FEATURES: Feature[] = [
-  { src: 'features/both-directions.png', label: 'Both directions, one desk', x: 23, y: 17 },
-  { src: 'features/on-device.png', label: 'Runs on the counter’s own machine', x: 77, y: 17 },
-  { src: 'features/vocabulary.png', label: '105 signs and full fingerspelling', x: 14, y: 52 },
-  { src: 'features/isl-grammar.png', label: 'ISL grammar, not English order', x: 86, y: 52 },
-  { src: 'features/bilingual.png', label: 'English and Hindi, side by side', x: 29, y: 84 },
-  { src: 'features/stops-guessing.png', label: 'Stops instead of guessing', x: 71, y: 84 },
+  { src: 'features/both-directions.webp', label: 'Both directions, one desk', x: 23, y: 17 },
+  { src: 'features/on-device.webp', label: 'Runs on the counter’s own machine', x: 77, y: 17 },
+  { src: 'features/vocabulary.webp', label: '105 signs and full fingerspelling', x: 14, y: 52 },
+  { src: 'features/isl-grammar.webp', label: 'ISL grammar, not English order', x: 86, y: 52 },
+  { src: 'features/bilingual.webp', label: 'English and Hindi, side by side', x: 29, y: 84 },
+  { src: 'features/stops-guessing.webp', label: 'Stops instead of guessing', x: 71, y: 84 },
 ]
 
 export function VaniPanel() {

@@ -8,7 +8,6 @@ import { SPEECH_LANGS, type SpeechLang } from '@/lib/speech'
 import { glossToHindi } from '@/lib/hindi'
 import { SEED_TURNS } from '@/lib/turns'
 import { SIGNS, TOTAL_CLIPS } from '@/lib/lexicon'
-import { FIELD_CENSUS } from '@/components/LandmarkField'
 import '@/styles/counter.css'
 import '@/styles/settings.css'
 
@@ -251,11 +250,12 @@ export default function Settings() {
         {}
         <Group title="Privacy">
           <div className="set-note">
-            <p><b>{FIELD_CENSUS.total} coordinates per frame. No image, ever.</b></p>
+            <p><b>Landmarks only. No image, ever.</b></p>
             <p>
-              The camera frame is read and discarded inside the same tick. There is no video buffer, no
-              upload, and no cloud account attached to this terminal. What you can delete below is the
-              text transcript — the only thing that was ever written down.
+              The camera frame is read and discarded inside the same tick. What the recogniser sees is
+              75 landmarks — two hands and an upper body — of which it keeps 48 as 144 numbers a frame. There is no video buffer, no upload, and no cloud account attached to this
+              terminal. What you can delete below is the text transcript — the only thing that was
+              ever written down.
             </p>
           </div>
           <Row label="Keep transcripts" htmlFor="ret">
