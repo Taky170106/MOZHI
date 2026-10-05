@@ -1,8 +1,8 @@
 """
-sign.py — Sanket's own recogniser, as a local service.
+sign.py — Mozhi's own recogniser, as a local service.
 
 The BiGRU with temporal attention trained on our own recorded corpus:
-29 ISL signs, 175,389 parameters, 30 frames of 144 landmark coordinates
+32 ISL signs, 175,776 parameters, 30 frames of 144 landmark coordinates
 per sign. This is the model the product is actually for — the PopSign
 service next door reads a different language and exists only as a bench.
 
@@ -44,7 +44,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-BUNDLE = os.path.join(HERE, "sanket")
+BUNDLE = os.path.join(HERE, "mozhi")
 sys.path.insert(0, BUNDLE)
 
 import torch                                     # noqa: E402  after sys.path

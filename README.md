@@ -1,4 +1,4 @@
-# Sanket · संकेत
+# Mozhi · மொழி
 
 **A two-way Indian Sign Language communication terminal for public service counters.**
 
@@ -7,7 +7,7 @@ staff type a reply, and a 3D avatar signs that reply back in Indian Sign
 Language. Recognition runs on the counter's own machine.
 
 > Every comparable system translates sign to text only — letting a deaf person
-> be heard, but never hear the reply. Sanket closes the loop.
+> be heard, but never hear the reply. Mozhi closes the loop.
 
 ---
 

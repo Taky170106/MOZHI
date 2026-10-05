@@ -42,7 +42,7 @@ function load() {
   boot()
   const loader = new GLTFLoader()
   loader.register(p => new VRMLoaderPlugin(p))
-  loading = loader.loadAsync('./avatar/sanket-avatar.vrm').then(gltf => {
+  loading = loader.loadAsync('./avatar/mozhi-avatar.vrm').then(gltf => {
     const v = gltf.userData.vrm as VRM
     VRMUtils.removeUnnecessaryVertices(gltf.scene)
     VRMUtils.combineSkeletons(gltf.scene)

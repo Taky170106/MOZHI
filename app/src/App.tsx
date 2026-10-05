@@ -12,6 +12,7 @@ const Counter = lazy(() => import('@/pages/Counter'))
 const Settings = lazy(() => import('@/pages/Settings'))
 const Archive = lazy(() => import('@/pages/Archive'))
 const Vocabulary = lazy(() => import('@/pages/Vocabulary'))
+const Engine = lazy(() => import('@/pages/Engine'))
 
 /* The review bench. Not in the nav: it is a tool for checking the sign data
    against its reference, not a surface a visitor should ever reach. */
@@ -40,6 +41,13 @@ export default function App() {
     return (
       <Suspense fallback={<div className="min-h-screen bg-black" />}>
         <Review />
+      </Suspense>
+    )
+  }
+  if (route === 'engine') {
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-black" />}>
+        <Engine />
       </Suspense>
     )
   }

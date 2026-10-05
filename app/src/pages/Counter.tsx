@@ -129,12 +129,22 @@ export default function Counter() {
   const [reply, setReply] = useState('')
   const [picked, setPicked] = useState<number | null>(null)
 
-  /* The camera is off until someone turns it on, and its state is reported
-     back by the component rather than assumed — a panel that says the camera
-     is live while the browser is still showing a permission prompt, or after
-     the user denied it, is worse than saying nothing. */
-  const [camera, setCamera] = useState(false)
-  const [camStatus, setCamStatus] = useState<CameraStatus>('off')
+  /* §5.2 — the Counter reads Settings rather than holding its own copies,
+     which is what makes those controls real rather than decorative. Declared
+     above the camera state because the camera's default comes out of it. */
+  const { settings, set } = useSettings()
+
+  /* Starts from Settings rather than a hardcoded false. `cameraPreview`
+     defaults to true and was never read here, so the real camera was off out
+     of the box while the Operator camera control claimed otherwise.
+
+     Status is still reported back by the component rather than assumed — a
+     panel that says the camera is live while the browser is still showing a
+     permission prompt, or after the user denied it, is worse than nothing. */
+  const [camera, setCamera] = useState(() => settings.cameraPreview)
+  const [camStatus, setCamStatus] = useState<CameraStatus>(
+    settings.cameraPreview ? 'starting' : 'off',
+  )
   const onCamStatus = useCallback((s: CameraStatus) => {
     setCamStatus(s)
     if (s === 'denied' || s === 'error') setCamera(false)
@@ -145,9 +155,6 @@ export default function Counter() {
   const composerRef = useRef<HTMLTextAreaElement>(null)
   const logRef = useRef<HTMLDivElement>(null)
 
-  /* §5.2 — the Counter reads Settings rather than holding its own copies,
-     which is what makes those controls real rather than decorative. */
-  const { settings, set } = useSettings()
   const threshold = settings.threshold
   /* §5.2 — the caption language is one setting read in four places: the
      visitor's resolved sentence, every line of the transcript, the visitor
@@ -393,6 +400,7 @@ export default function Counter() {
                    network it has never seen. */
                 vision={live.backend === 'islr' ? 'holistic' : 'sanket'}
                 face={faceChannel}
+                boost={settings.videoBoost}
                 onStatus={onCamStatus}
                 onFrame={MODEL_ENABLED ? live.onFrame : undefined}
                 className="absolute inset-0"
@@ -481,16 +489,20 @@ export default function Counter() {
           </div>
 
           {/* the output box: what the machine heard */}
-          {/* The visitor's output discloses on hover the same way the staff's
-              composer does, so the two lanes behave alike.
+          {/* Always open, and it has to stay that way.
 
-              With one addition the staff side does not need: it also opens
-              itself whenever the lane is live. The segment meter and the
-              per-sign confidences are the operator's read on whether the
-              machine is following — hiding those behind a hover while someone
-              is mid-sentence would be hiding the instrument exactly when it
-              is being used. At rest there is nothing to watch, so it closes. */}
-          <div className={`slot disclose px-5 py-4${reading || stalled || rec.commits.length > 0 || rec.sentence ? ' is-open' : ''}`}>
+              It used to fold itself open the moment the first word committed
+              (`reading || stalled || commits.length > 0 || sentence`), which
+              grew this panel by ~40–64px inside a flex column — so the camera
+              stage above it shrank at the same instant. The canvas only
+              re-measured on window resize, so it was left holding a stale
+              backing store while CSS stretched the frame against it, and the
+              preview read as a shake for as long as the fold animated.
+
+              Pinning it open removes the trigger: the lane no longer changes
+              height when words arrive, so the camera never moves. Hover still
+              discloses it the same way the staff composer does. */}
+          <div className="slot disclose px-5 py-4 is-open">
             <div className="slot-skin" />
             <div className="disclose-fold fold-ohead">
               <div className="disclose-inner mb-3 flex items-center gap-3">

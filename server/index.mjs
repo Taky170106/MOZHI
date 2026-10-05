@@ -2,10 +2,10 @@ import { createServer } from 'node:http'
 import { DatabaseSync } from 'node:sqlite'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
-const HOST = process.env.SANKET_HOST ?? '127.0.0.1'
-const PORT = Number(process.env.SANKET_PORT ?? 5301)
+const HOST = process.env.MOZHI_HOST ?? '127.0.0.1'
+const PORT = Number(process.env.MOZHI_PORT ?? 5301)
 const here = dirname(fileURLToPath(import.meta.url))
-const db = new DatabaseSync(join(here, 'sanket.db'))
+const db = new DatabaseSync(join(here, 'mozhi.db'))
 
 db.exec(`
   PRAGMA journal_mode = WAL;
@@ -56,7 +56,7 @@ if (db.prepare('SELECT COUNT(*) AS n FROM turns').get().n === 0) {
   const step = 4 * 60 * 1000
   const base = Date.now() - SEED.length * step
   SEED.forEach((t, i) => addTurn(t, new Date(base + i * step).toISOString()))
-  console.log(`[sanket-log] seeded ${SEED.length} turns`)
+  console.log(`[mozhi-log] seeded ${SEED.length} turns`)
 }
 
 const rowToTurn = (r) => ({
@@ -146,5 +146,5 @@ createServer(async (req, res) => {
 
   send(res, 404, { error: 'not found' })
 }).listen(PORT, HOST, () => {
-  console.log(`[sanket-log] http://${HOST}:${PORT}  ·  ${join(here, 'sanket.db')}`)
+  console.log(`[mozhi-log] http://${HOST}:${PORT}  ·  ${join(here, 'mozhi.db')}`)
 })

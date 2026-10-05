@@ -455,8 +455,7 @@ export function ParticleTextEffect({ words, className }: ParticleTextEffectProps
     }
 
     Promise.all([
-      document.fonts.load('600 100px "Clash Display"', 'SANKET'),
-      document.fonts.load('600 100px "Anek Devanagari"', 'केत'),
+      document.fonts.load('600 100px "Clash Display"', 'MOZHI'),
     ])
       .catch(() => undefined)
       .then(() => document.fonts.ready)

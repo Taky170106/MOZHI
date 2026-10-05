@@ -59,11 +59,11 @@ let loading: Promise<SanketSession | null> | null = null
 async function open(): Promise<SanketSession | null> {
   try {
     const [session, classes] = await Promise.all([
-      ort.InferenceSession.create(asset('models/sanket/sanket-isl.onnx'), {
+      ort.InferenceSession.create(asset('models/mozhi/mozhi-isl.onnx'), {
         executionProviders: ['wasm'],
         graphOptimizationLevel: 'all',
       }),
-      fetch(asset('models/sanket/classes.json')).then(r => r.json() as Promise<string[]>),
+      fetch(asset('models/mozhi/classes.json')).then(r => r.json() as Promise<string[]>),
     ])
 
     const input = session.inputNames[0]

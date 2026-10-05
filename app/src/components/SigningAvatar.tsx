@@ -54,7 +54,7 @@ export default function SigningAvatar({ frame, face = true, yaw = 0, className, 
     const loader = new GLTFLoader()
     loader.register(p => new VRMLoaderPlugin(p))
 
-    loader.loadAsync('./avatar/sanket-avatar.vrm').then(gltf => {
+    loader.loadAsync('./avatar/mozhi-avatar.vrm').then(gltf => {
       if (disposed) return
       const v = gltf.userData.vrm as VRM
       VRMUtils.removeUnnecessaryVertices(gltf.scene)

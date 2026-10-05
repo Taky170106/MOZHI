@@ -209,7 +209,7 @@ export default function Vocabulary() {
               type="search"
               value={q}
               onChange={e => setQ(e.target.value)}
-              placeholder="Search gloss, English or हिन्दी…"
+              placeholder="Search gloss, English or தமிழ்…"
               aria-label="Search the vocabulary"
             />
             {q && <button onClick={() => setQ('')} aria-label="Clear search" className="text-white/40 hover:text-white"><IconClose /></button>}

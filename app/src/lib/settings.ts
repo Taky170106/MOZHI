@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
 import { useLocal } from './hooks'
 import type { SpeechLang } from './speech'
+/* 'hi' is the second-language slot; on this terminal it renders Tamil. The
+   id is kept as 'hi' so the caption pipeline and stored settings do not have
+   to migrate. */
 export type CaptionLang = 'en' | 'hi' | 'both'
 export type Retention = 'session' | 'shift' | 'off'
 export type Settings = {
@@ -9,6 +12,11 @@ export type Settings = {
   staff: string
 
   theme: 'dark' | 'light'
+  /* Camera lift: 0 raw, 1 normalised, 2 bright. This is applied to the frames
+     the landmarker READS, not only to the preview: a dim counter drops the
+     hand under MediaPipe's 0.5 detection floor, and a hand it never saw is a
+     word the model never gets a chance to guess. */
+  videoBoost: 0 | 1 | 2
   captionScale: number
   captionLang: CaptionLang
   speed: number
@@ -26,12 +34,16 @@ export type Settings = {
 }
 
 export const DEFAULTS: Settings = {
-  site: 'District Hospital',
-  counter: 'Counter 2',
-  staff: 'R. Sharma',
+  site: 'City Police Station',
+  counter: 'Front Desk 2',
+  staff: 'K. Murugan',
   theme: 'dark',
+  videoBoost: 1,
   captionScale: 1,
-  captionLang: 'en',
+  /* Both scripts by default: this counter serves a Tamil-speaking public, so
+     the English line for the clerk and the Tamil line for the visitor are
+     shown together out of the box. */
+  captionLang: 'both',
   speed: 1,
   /* The recogniser's own floor, from the checkpoint's config.py. Above this
      it also has to read the same sign twice in a row before a word is
@@ -40,11 +52,14 @@ export const DEFAULTS: Settings = {
   cameraPreview: true,
   faceChannel: true,
   voiceInput: false,
-  speechLang: 'en-IN',
+  speechLang: 'ta-IN',
   retention: 'shift',
 }
 
-const KEY = 'sanket.settings.v1'
+/* Bumped to v2 when the terminal was reconfigured for a Tamil police-station
+   counter: a v1 blob persisted under the old hospital/English defaults would
+   otherwise shadow the new defaults on a machine that had already run it. */
+const KEY = 'sanket.settings.v2'
 export function useSettings() {
   const [raw, setRaw] = useLocal<Settings>(KEY, DEFAULTS)
   const settings: Settings = { ...DEFAULTS, ...raw }

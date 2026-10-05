@@ -22,13 +22,17 @@ import type { SignFrame } from './sanket-vision'
 
 /* One source of truth: the window length is the model's, not the loop's. */
 export { SEQUENCE_LENGTH }
-const INFERENCE_EVERY_N_FRAMES = 3
-const CONFIDENCE_THRESHOLD = 0.6
+const INFERENCE_EVERY_N_FRAMES = 1
+const CONFIDENCE_THRESHOLD = 0.5
 const STABILITY_COUNT = 2
 const DEBOUNCE_MS = 1000
 const NO_PERSON_FRAMES_TO_IDLE = 5
+/* A hand landmarker that misses for a frame is normal in poor light. Wiping
+   the whole window over it costs a full second of rebuilding, every time it
+   flickers — so a gap is survived and only a sustained absence clears. */
+const HAND_LOSS_FRAMES_TO_IDLE = 6
 const REST_MOTION_THRESHOLD = 0.015
-const REST_FRAMES_TO_IDLE = 45
+const REST_FRAMES_TO_IDLE = 90
 
 export type Scene = 'no-person' | 'at-rest' | 'listening' | 'signing'
 
@@ -46,6 +50,7 @@ export class SanketEngine {
   private buf: Float32Array[] = []
   private prev: Float32Array | null = null
   private noPerson = 0
+  private noHand = 0
   private lowMotion = 0
   private frames = 0
   private recent: string[] = []
@@ -61,6 +66,7 @@ export class SanketEngine {
     this.buf = []
     this.prev = null
     this.noPerson = 0
+    this.noHand = 0
     this.lowMotion = 0
     this.frames = 0
     this.recent = []
@@ -72,6 +78,7 @@ export class SanketEngine {
   private clearWindow(scene: Scene) {
     this.buf = []
     this.recent = []
+    this.noHand = 0
     this.scene = scene
   }
 
@@ -113,12 +120,21 @@ export class SanketEngine {
       return
     }
 
-    /* 3 — hands are what make it a sign. Without them the window is stale
-       and is thrown away rather than left to rot in the buffer. */
+    /* 3 — hands are what make it a sign. A single missed detection is a
+       flicker of the landmarker, not the signer vanishing: dropping the
+       whole window there costs a full second of rebuilding every time it
+       hiccups. Only a sustained gap clears it, so the frames already
+       gathered are kept through the blink. */
     if (!handsFound) {
-      this.clearWindow('listening')
+      this.noHand += 1
+      if (this.noHand >= HAND_LOSS_FRAMES_TO_IDLE) {
+        this.clearWindow('listening')
+        this.prev = null
+        this.lowMotion = 0
+      }
       return
     }
+    this.noHand = 0
 
     this.scene = 'signing'
     this.buf.push(vec.slice())

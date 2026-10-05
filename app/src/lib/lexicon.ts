@@ -1,6 +1,6 @@
 import type { HandPose, HandShape, Keyframe, Loc, Palm } from './pose'
 import { COMMON } from './common'
-export type Domain = 'core' | 'question' | 'time' | 'health' | 'counter' | 'travel' | 'action'
+export type Domain = 'core' | 'question' | 'time' | 'health' | 'counter' | 'travel' | 'action' | 'police'
 export type Sign = {
   id: string
   en: string
@@ -29,6 +29,7 @@ export const DOMAINS: { id: Domain; label: string; note: string }[] = [
   { id: 'core',     label: 'Core',      note: 'Greetings, pronouns, politeness, comprehension' },
   { id: 'question', label: 'Question',  note: 'Wh-signs — always sentence-final in ISL' },
   { id: 'time',     label: 'Time',      note: 'Temporal reference, set before the clause' },
+  { id: 'police',   label: 'Police',    note: 'Police station front-desk vocabulary' },
   { id: 'health',   label: 'Health',    note: 'District hospital reception vocabulary' },
   { id: 'counter',  label: 'Counter',   note: 'Forms, payment, and desk transactions' },
   { id: 'travel',   label: 'Travel',    note: 'Railway enquiry and PRS counters' },
@@ -37,7 +38,7 @@ export const DOMAINS: { id: Domain; label: string; note: string }[] = [
 
 export const SIGNS: Sign[] = [
   {
-    id: 'HELLO', en: 'hello', hi: 'नमस्ते', domain: 'core', hands: 1,
+    id: 'HELLO', en: 'hello', hi: 'வணக்கம்', domain: 'core', hands: 1,
     handshape: 'Flat B, palm out', location: 'Forehead → neutral space',
     movement: 'Salute outward from the brow, arcing away', nmm: 'Brows raised, slight nod',
     acc: 0.99, durMs: 880,
@@ -48,7 +49,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'THANK-YOU', en: 'thank you', hi: 'धन्यवाद', domain: 'core', hands: 2,
+    id: 'THANK-YOU', en: 'thank you', hi: 'நன்றி', domain: 'core', hands: 2,
     handshape: 'Both flat B, palms together', location: 'Chest',
     movement: 'Palms join at the chest, then a small bow', nmm: 'Head lowers, mouth closed',
     acc: 0.98, durMs: 1000,
@@ -59,7 +60,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'PLEASE', en: 'please', hi: 'कृपया', domain: 'core', hands: 1,
+    id: 'PLEASE', en: 'please', hi: 'தயவுசெய்து', domain: 'core', hands: 1,
     handshape: 'Flat B, palm in', location: 'Chest',
     movement: 'Flat palm circles once on the chest', nmm: 'Brows slightly raised, lips pressed',
     acc: 0.96, near: ['SORRY'], durMs: 960,
@@ -71,7 +72,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'SORRY', en: 'sorry', hi: 'माफ़ करें', domain: 'core', hands: 1,
+    id: 'SORRY', en: 'sorry', hi: 'மன்னிக்கவும்', domain: 'core', hands: 1,
     handshape: 'Fist A, thumb in', location: 'Chest',
     movement: 'Closed fist rubs a circle over the heart', nmm: 'Brows drawn in, head tilted',
     acc: 0.95, near: ['PLEASE'], durMs: 1020,
@@ -83,7 +84,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'YES', en: 'yes', hi: 'हाँ', domain: 'core', hands: 1,
+    id: 'YES', en: 'yes', hi: 'ஆம்', domain: 'core', hands: 1,
     handshape: 'Fist A', location: 'Neutral space',
     movement: 'Fist nods at the wrist, twice', nmm: 'Head nods with the hand — the nod is obligatory',
     acc: 0.99, durMs: 720,
@@ -95,7 +96,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'NO', en: 'no', hi: 'नहीं', domain: 'core', hands: 1,
+    id: 'NO', en: 'no', hi: 'இல்லை', domain: 'core', hands: 1,
     handshape: 'Index + middle close to thumb', location: 'Neutral space, shoulder height',
     movement: 'Fingers snap shut against the thumb once', nmm: 'Headshake — obligatory negation marker',
     acc: 0.98, durMs: 760,
@@ -106,7 +107,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'NAME', en: 'name', hi: 'नाम', domain: 'core', hands: 2,
+    id: 'NAME', en: 'name', hi: 'பெயர்', domain: 'core', hands: 2,
     handshape: 'Both index + middle (V), stacked', location: 'Neutral space',
     movement: 'Dominant fingers tap twice across the base hand',
     acc: 0.94, durMs: 820,
@@ -118,7 +119,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'YOU', en: 'you', hi: 'आप', domain: 'core', hands: 1,
+    id: 'YOU', en: 'you', hi: 'நீங்கள்', domain: 'core', hands: 1,
     handshape: 'Index point', location: 'Toward the addressee',
     movement: 'Single directed point forward', nmm: 'Eye gaze locks to the addressee',
     acc: 0.99, near: ['MY'], durMs: 560,
@@ -128,7 +129,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'MY', en: 'my', hi: 'मेरा', domain: 'core', hands: 1,
+    id: 'MY', en: 'my', hi: 'என்', domain: 'core', hands: 1,
     handshape: 'Flat B, palm in', location: 'Chest',
     movement: 'Flat palm presses to the signer’s own chest',
     acc: 0.97, near: ['YOU'], durMs: 620,
@@ -138,7 +139,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'HELP', en: 'help', hi: 'मदद', domain: 'core', hands: 2,
+    id: 'HELP', en: 'help', hi: 'உதவி', domain: 'core', hands: 2,
     handshape: 'Fist A resting on flat B palm', location: 'Neutral space',
     movement: 'Base palm lifts the dominant fist upward', nmm: 'Brows raised — request marker',
     acc: 0.96, durMs: 900,
@@ -148,7 +149,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'UNDERSTAND', en: 'understand', hi: 'समझ गया', domain: 'core', hands: 1,
+    id: 'UNDERSTAND', en: 'understand', hi: 'புரிந்தது', domain: 'core', hands: 1,
     handshape: 'Hook X opening to index point', location: 'Temple',
     movement: 'Hooked index flicks open at the temple', nmm: 'Single sharp nod',
     acc: 0.93, near: ['NOT-UNDERSTAND'], durMs: 720,
@@ -158,7 +159,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'NOT-UNDERSTAND', en: 'I don’t understand', hi: 'समझ नहीं आया', domain: 'core', hands: 1,
+    id: 'NOT-UNDERSTAND', en: 'I don’t understand', hi: 'புரியவில்லை', domain: 'core', hands: 1,
     handshape: 'Index point at the temple', location: 'Temple',
     movement: 'Point at the temple, then twist away with a headshake',
     nmm: 'Brows furrowed and headshake — negation is carried on the face',
@@ -171,7 +172,7 @@ export const SIGNS: Sign[] = [
   },
 
   {
-    id: 'WHAT', en: 'what', hi: 'क्या', domain: 'question', hands: 2,
+    id: 'WHAT', en: 'what', hi: 'என்ன', domain: 'question', hands: 2,
     handshape: 'Both open 5, palms up', location: 'Neutral space',
     movement: 'Both palms turn up and shake slightly outward',
     nmm: 'Brows furrowed, head forward — wh-question marker',
@@ -183,7 +184,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'WHERE', en: 'where', hi: 'कहाँ', domain: 'question', hands: 1,
+    id: 'WHERE', en: 'where', hi: 'எங்கே', domain: 'question', hands: 1,
     handshape: 'Index point', location: 'Neutral space, shoulder height',
     movement: 'Upright index oscillates side to side',
     nmm: 'Brows furrowed, slight head tilt', acc: 0.96, near: ['WHAT'], durMs: 860,
@@ -195,7 +196,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'WHEN', en: 'when', hi: 'कब', domain: 'question', hands: 2,
+    id: 'WHEN', en: 'when', hi: 'எப்போது', domain: 'question', hands: 2,
     handshape: 'Both index points', location: 'Neutral space',
     movement: 'Dominant index circles once around the base index',
     nmm: 'Brows furrowed', acc: 0.93, durMs: 940,
@@ -207,7 +208,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'HOW-MANY', en: 'how many', hi: 'कितने', domain: 'question', hands: 2,
+    id: 'HOW-MANY', en: 'how many', hi: 'எத்தனை', domain: 'question', hands: 2,
     handshape: 'Both closed → open 5', location: 'Neutral space',
     movement: 'Both fists spring open, fingers spreading',
     nmm: 'Brows furrowed, chin forward', acc: 0.92, durMs: 800,
@@ -217,7 +218,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'WHY', en: 'why', hi: 'क्यों', domain: 'question', hands: 1,
+    id: 'WHY', en: 'why', hi: 'ஏன்', domain: 'question', hands: 1,
     handshape: 'Flat B → Y', location: 'Forehead',
     movement: 'Touch the forehead, then drop to a Y handshape',
     nmm: 'Brows furrowed throughout', acc: 0.91, durMs: 900,
@@ -229,7 +230,7 @@ export const SIGNS: Sign[] = [
   },
 
   {
-    id: 'TODAY', en: 'today', hi: 'आज', domain: 'time', hands: 2,
+    id: 'TODAY', en: 'today', hi: 'இன்று', domain: 'time', hands: 2,
     handshape: 'Both flat B, palms down', location: 'Neutral space',
     movement: 'Both palms press down once in front of the body',
     acc: 0.95, near: ['NOW'], durMs: 720,
@@ -239,7 +240,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'NOW', en: 'now', hi: 'अभी', domain: 'time', hands: 2,
+    id: 'NOW', en: 'now', hi: 'இப்போது', domain: 'time', hands: 2,
     handshape: 'Both bent B, palms up', location: 'Neutral space, low',
     movement: 'Both hands drop sharply once',
     acc: 0.93, near: ['TODAY'], durMs: 620,
@@ -249,7 +250,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'TOMORROW', en: 'tomorrow', hi: 'कल', domain: 'time', hands: 1,
+    id: 'TOMORROW', en: 'tomorrow', hi: 'நாளை', domain: 'time', hands: 1,
     handshape: 'Thumb A', location: 'Cheek → forward',
     movement: 'Thumb arcs forward from the cheek — the future is ahead',
     acc: 0.94, near: ['YESTERDAY'], durMs: 780,
@@ -259,7 +260,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'YESTERDAY', en: 'yesterday', hi: 'कल (बीता)', domain: 'time', hands: 1,
+    id: 'YESTERDAY', en: 'yesterday', hi: 'நேற்று', domain: 'time', hands: 1,
     handshape: 'Thumb A', location: 'Cheek → back over the shoulder',
     movement: 'Thumb flicks back past the ear — the past is behind',
     acc: 0.93, near: ['TOMORROW'], durMs: 780,
@@ -269,7 +270,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'MORNING', en: 'morning', hi: 'सुबह', domain: 'time', hands: 2,
+    id: 'MORNING', en: 'morning', hi: 'காலை', domain: 'time', hands: 2,
     handshape: 'Flat B rising over a flat forearm', location: 'Neutral space',
     movement: 'Dominant hand rises like the sun over the base arm',
     acc: 0.96, durMs: 940,
@@ -279,7 +280,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'TIME', en: 'time', hi: 'समय', domain: 'time', hands: 2,
+    id: 'TIME', en: 'time', hi: 'நேரம்', domain: 'time', hands: 2,
     handshape: 'Index point onto flat wrist', location: 'Base wrist',
     movement: 'Dominant index taps the base wrist twice',
     acc: 0.97, durMs: 760,
@@ -291,7 +292,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'WAIT', en: 'wait', hi: 'रुकिए', domain: 'time', hands: 2,
+    id: 'WAIT', en: 'wait', hi: 'காத்திருங்கள்', domain: 'time', hands: 2,
     handshape: 'Both open 5, palms up', location: 'Neutral space',
     movement: 'Fingers flutter while the hands hold still',
     nmm: 'Brows raised, lips rounded — softens the instruction',
@@ -305,7 +306,7 @@ export const SIGNS: Sign[] = [
   },
 
   {
-    id: 'DOCTOR', en: 'doctor', hi: 'डॉक्टर', domain: 'health', hands: 2,
+    id: 'DOCTOR', en: 'doctor', hi: 'மருத்துவர்', domain: 'health', hands: 2,
     handshape: 'Index + middle (V) onto the base wrist', location: 'Base wrist — taking a pulse',
     movement: 'Dominant fingertips press the base wrist twice',
     acc: 0.98, near: ['TIME'], durMs: 860,
@@ -317,7 +318,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'HOSPITAL', en: 'hospital', hi: 'अस्पताल', domain: 'health', hands: 1,
+    id: 'HOSPITAL', en: 'hospital', hi: 'மருத்துவமனை', domain: 'health', hands: 1,
     handshape: 'Index + middle (V)', location: 'Upper arm',
     movement: 'Fingertips trace a cross on the opposite upper arm',
     acc: 0.96, durMs: 940,
@@ -329,7 +330,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'MEDICINE', en: 'medicine', hi: 'दवा', domain: 'health', hands: 2,
+    id: 'MEDICINE', en: 'medicine', hi: 'மருந்து', domain: 'health', hands: 2,
     handshape: 'Middle finger onto an open palm', location: 'Base palm',
     movement: 'Dominant fingertip grinds a small circle on the base palm',
     acc: 0.94, durMs: 980,
@@ -341,7 +342,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'PAIN', en: 'pain', hi: 'दर्द', domain: 'health', hands: 2,
+    id: 'PAIN', en: 'pain', hi: 'வலி', domain: 'health', hands: 2,
     handshape: 'Both index points, facing each other', location: 'At the painful site',
     movement: 'Index tips jab toward each other twice',
     nmm: 'Brows furrowed, teeth clenched — intensity is on the face',
@@ -354,7 +355,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'FEVER', en: 'fever', hi: 'बुखार', domain: 'health', hands: 1,
+    id: 'FEVER', en: 'fever', hi: 'காய்ச்சல்', domain: 'health', hands: 1,
     handshape: 'Back of flat B', location: 'Forehead',
     movement: 'Back of the hand rests on the forehead, then falls',
     nmm: 'Eyes narrowed, head heavy', acc: 0.93, durMs: 940,
@@ -365,7 +366,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'HEAD', en: 'head', hi: 'सिर', domain: 'health', hands: 1,
+    id: 'HEAD', en: 'head', hi: 'தலை', domain: 'health', hands: 1,
     handshape: 'Bent B', location: 'Side of the head',
     movement: 'Fingertips touch the temple, then the jaw',
     acc: 0.97, durMs: 780,
@@ -375,7 +376,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'STOMACH', en: 'stomach', hi: 'पेट', domain: 'health', hands: 1,
+    id: 'STOMACH', en: 'stomach', hi: 'வயிறு', domain: 'health', hands: 1,
     handshape: 'Bent B, palm in', location: 'Abdomen',
     movement: 'Flat hand circles the abdomen',
     acc: 0.96, durMs: 900,
@@ -387,7 +388,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'BLOOD', en: 'blood', hi: 'ख़ून', domain: 'health', hands: 2,
+    id: 'BLOOD', en: 'blood', hi: 'இரத்தம்', domain: 'health', hands: 2,
     handshape: 'Open 5 trickling from a closed hand', location: 'Mouth → down',
     movement: 'Fingers wiggle downward from the lips',
     acc: 0.92, durMs: 980,
@@ -398,7 +399,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'TEST', en: 'test', hi: 'जाँच', domain: 'health', hands: 2,
+    id: 'TEST', en: 'test', hi: 'பரிசோதனை', domain: 'health', hands: 2,
     handshape: 'Both index points drawing question marks', location: 'Neutral space',
     movement: 'Both index fingers hook downward together',
     acc: 0.9, near: ['REPORT'], durMs: 900,
@@ -409,7 +410,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'REPORT', en: 'report', hi: 'रिपोर्ट', domain: 'health', hands: 2,
+    id: 'REPORT', en: 'report', hi: 'அறிக்கை', domain: 'health', hands: 2,
     handshape: 'Flat B sliding off a flat B palm', location: 'Neutral space',
     movement: 'Dominant palm slides forward off the base palm and lifts',
     acc: 0.91, near: ['TEST', 'FORM'], durMs: 900,
@@ -420,7 +421,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'APPOINTMENT', en: 'appointment', hi: 'अपॉइंटमेंट', domain: 'health', hands: 2,
+    id: 'APPOINTMENT', en: 'appointment', hi: 'முன்பதிவு', domain: 'health', hands: 2,
     handshape: 'Fist A circling above a fist A', location: 'Neutral space',
     movement: 'Dominant fist circles once, then lands on the base fist',
     acc: 0.9, durMs: 1020,
@@ -432,7 +433,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'EMERGENCY', en: 'emergency', hi: 'आपातकाल', domain: 'health', hands: 1,
+    id: 'EMERGENCY', en: 'emergency', hi: 'அவசரம்', domain: 'health', hands: 1,
     handshape: 'Fist A, thumb up', location: 'Shoulder height',
     movement: 'Raised fist shakes rapidly',
     nmm: 'Eyes wide, mouth open — urgency is marked on the face',
@@ -445,7 +446,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'INJECTION', en: 'injection', hi: 'इंजेक्शन', domain: 'health', hands: 1,
+    id: 'INJECTION', en: 'injection', hi: 'ஊசி', domain: 'health', hands: 1,
     handshape: 'Index + middle (V), thumb pressing', location: 'Opposite upper arm',
     movement: 'Fingers press the arm, thumb depresses like a plunger',
     acc: 0.95, durMs: 860,
@@ -456,7 +457,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'SICK', en: 'sick', hi: 'बीमार', domain: 'health', hands: 2,
+    id: 'SICK', en: 'sick', hi: 'நோய்', domain: 'health', hands: 2,
     handshape: 'Middle fingers to forehead and stomach', location: 'Forehead + abdomen',
     movement: 'Both middle fingertips touch, then twist slightly',
     nmm: 'Brows drawn, mouth downturned', acc: 0.93, durMs: 900,
@@ -467,7 +468,7 @@ export const SIGNS: Sign[] = [
   },
 
   {
-    id: 'FORM', en: 'form', hi: 'फ़ॉर्म', domain: 'counter', hands: 2,
+    id: 'FORM', en: 'form', hi: 'படிவம்', domain: 'counter', hands: 2,
     handshape: 'Both flat B outlining a rectangle', location: 'Neutral space',
     movement: 'Hands trace the edges of a sheet of paper',
     acc: 0.94, near: ['REPORT'], durMs: 940,
@@ -478,7 +479,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'SIGNATURE', en: 'signature', hi: 'हस्ताक्षर', domain: 'counter', hands: 2,
+    id: 'SIGNATURE', en: 'signature', hi: 'கையொப்பம்', domain: 'counter', hands: 2,
     handshape: 'Index + middle (V) writing on an open palm', location: 'Base palm',
     movement: 'Dominant fingers sweep across the base palm',
     acc: 0.95, durMs: 900,
@@ -489,7 +490,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'MONEY', en: 'money', hi: 'पैसा', domain: 'counter', hands: 1,
+    id: 'MONEY', en: 'money', hi: 'பணம்', domain: 'counter', hands: 1,
     handshape: 'Thumb rubbing fingertips', location: 'Neutral space',
     movement: 'Thumb rubs across the fingertips repeatedly',
     acc: 0.97, near: ['PAY'], durMs: 800,
@@ -501,7 +502,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'PAY', en: 'pay', hi: 'भुगतान', domain: 'counter', hands: 2,
+    id: 'PAY', en: 'pay', hi: 'செலுத்து', domain: 'counter', hands: 2,
     handshape: 'Flat O leaving an open palm', location: 'Base palm → forward',
     movement: 'Dominant hand flicks forward off the base palm',
     acc: 0.94, near: ['MONEY'], durMs: 800,
@@ -511,7 +512,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'CARD', en: 'card', hi: 'कार्ड', domain: 'counter', hands: 2,
+    id: 'CARD', en: 'card', hi: 'அட்டை', domain: 'counter', hands: 2,
     handshape: 'Both L, outlining a card', location: 'Neutral space',
     movement: 'Hands draw a small rectangle, then slide forward',
     acc: 0.92, durMs: 880,
@@ -522,7 +523,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'NUMBER', en: 'number', hi: 'नंबर', domain: 'counter', hands: 2,
+    id: 'NUMBER', en: 'number', hi: 'எண்', domain: 'counter', hands: 2,
     handshape: 'Both flat O, fingertips meeting', location: 'Neutral space',
     movement: 'Fingertips touch and twist past each other',
     acc: 0.93, durMs: 840,
@@ -533,7 +534,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'ROOM', en: 'room', hi: 'कमरा', domain: 'counter', hands: 2,
+    id: 'ROOM', en: 'room', hi: 'அறை', domain: 'counter', hands: 2,
     handshape: 'Both flat B, facing', location: 'Neutral space',
     movement: 'Palms face in, then rotate to enclose a space',
     acc: 0.94, durMs: 880,
@@ -543,7 +544,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'OPEN', en: 'open', hi: 'खुला', domain: 'counter', hands: 2,
+    id: 'OPEN', en: 'open', hi: 'திறந்துள்ளது', domain: 'counter', hands: 2,
     handshape: 'Both flat B, palms down → apart', location: 'Neutral space',
     movement: 'Joined palms swing apart and turn up',
     acc: 0.96, near: ['CLOSED'], durMs: 780,
@@ -553,7 +554,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'CLOSED', en: 'closed', hi: 'बंद', domain: 'counter', hands: 2,
+    id: 'CLOSED', en: 'closed', hi: 'மூடப்பட்டது', domain: 'counter', hands: 2,
     handshape: 'Both flat B, palms up → together', location: 'Neutral space',
     movement: 'Open palms swing together and turn down',
     nmm: 'Head shake, lips pressed', acc: 0.95, near: ['OPEN'], durMs: 780,
@@ -563,7 +564,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'MEETING', en: 'meeting', hi: 'बैठक', domain: 'counter', hands: 2,
+    id: 'MEETING', en: 'meeting', hi: 'கூட்டம்', domain: 'counter', hands: 2,
     handshape: 'Both open 5 closing to flat O', location: 'Neutral space',
     movement: 'Both hands come together and the fingers close',
     acc: 0.92, durMs: 860,
@@ -574,7 +575,7 @@ export const SIGNS: Sign[] = [
   },
 
   {
-    id: 'TRAIN', en: 'train', hi: 'ट्रेन', domain: 'travel', hands: 2,
+    id: 'TRAIN', en: 'train', hi: 'ரயில்', domain: 'travel', hands: 2,
     handshape: 'Both index + middle (V), palms down', location: 'Neutral space',
     movement: 'Dominant fingers slide back and forth along the base fingers',
     acc: 0.96, durMs: 900,
@@ -586,7 +587,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'DELAY', en: 'delay', hi: 'देरी', domain: 'travel', hands: 2,
+    id: 'DELAY', en: 'delay', hi: 'தாமதம்', domain: 'travel', hands: 2,
     handshape: 'Both flat B, palms up, pushing forward', location: 'Neutral space',
     movement: 'Both hands push forward slowly in small stages',
     nmm: 'Cheeks puffed, brows raised — duration is marked on the face',
@@ -598,7 +599,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'TICKET', en: 'ticket', hi: 'टिकट', domain: 'travel', hands: 2,
+    id: 'TICKET', en: 'ticket', hi: 'டிக்கெட்', domain: 'travel', hands: 2,
     handshape: 'Index + middle (V) clamping the base palm edge', location: 'Base palm',
     movement: 'Dominant fingers pinch the edge of the base hand twice',
     acc: 0.93, durMs: 840,
@@ -611,7 +612,7 @@ export const SIGNS: Sign[] = [
   },
 
   {
-    id: 'NEED', en: 'need', hi: 'ज़रूरत', domain: 'action', hands: 1,
+    id: 'NEED', en: 'need', hi: 'தேவை', domain: 'action', hands: 1,
     handshape: 'Hook X, palm down', location: 'Neutral space',
     movement: 'Hooked index pulls down sharply, twice',
     nmm: 'Brows drawn, single firm nod', acc: 0.95, durMs: 800,
@@ -623,7 +624,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'SEE', en: 'see', hi: 'देखना', domain: 'action', hands: 1,
+    id: 'SEE', en: 'see', hi: 'பார்', domain: 'action', hands: 1,
     handshape: 'Index + middle (V), fingertips forward', location: 'Below the eyes → outward',
     movement: 'V moves from the eyes toward the addressee',
     nmm: 'Eye gaze follows the hand', acc: 0.98, durMs: 700,
@@ -633,7 +634,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'COME', en: 'come', hi: 'आना', domain: 'action', hands: 1,
+    id: 'COME', en: 'come', hi: 'வா', domain: 'action', hands: 1,
     handshape: 'Index point, palm up', location: 'Forward → chest',
     movement: 'Index draws inward toward the signer',
     nmm: 'Brows raised — invitation', acc: 0.96, near: ['GO'], durMs: 720,
@@ -643,7 +644,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'GO', en: 'go', hi: 'जाना', domain: 'action', hands: 1,
+    id: 'GO', en: 'go', hi: 'செல்', domain: 'action', hands: 1,
     handshape: 'Index point, palm down', location: 'Chest → forward',
     movement: 'Index drives forward and away',
     acc: 0.96, near: ['COME'], durMs: 720,
@@ -653,7 +654,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'GOOD', en: 'good', hi: 'अच्छा', domain: 'action', hands: 1,
+    id: 'GOOD', en: 'good', hi: 'நல்லது', domain: 'action', hands: 1,
     handshape: 'Fist A, thumb up', location: 'Neutral space',
     movement: 'Thumb rises decisively',
     nmm: 'Nod, lips pressed in approval', acc: 0.99, near: ['BAD'], durMs: 640,
@@ -663,7 +664,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'BAD', en: 'bad', hi: 'ख़राब', domain: 'action', hands: 1,
+    id: 'BAD', en: 'bad', hi: 'மோசம்', domain: 'action', hands: 1,
     handshape: 'Fist A, thumb down', location: 'Neutral space',
     movement: 'Thumb turns and drops',
     nmm: 'Brows furrowed, headshake', acc: 0.98, near: ['GOOD'], durMs: 680,
@@ -673,7 +674,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'FINISH', en: 'finished', hi: 'हो गया', domain: 'action', hands: 2,
+    id: 'FINISH', en: 'finished', hi: 'முடிந்தது', domain: 'action', hands: 2,
     handshape: 'Both open 5, palms in → flicked out', location: 'Neutral space',
     movement: 'Both hands flip over and out — completion',
     nmm: 'Single sharp nod, mouth closes', acc: 0.97, durMs: 720,
@@ -683,7 +684,7 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'MORE', en: 'more', hi: 'और', domain: 'action', hands: 2,
+    id: 'MORE', en: 'more', hi: 'மேலும்', domain: 'action', hands: 2,
     handshape: 'Both flat O, fingertips meeting', location: 'Neutral space',
     movement: 'Fingertips tap together twice',
     acc: 0.95, near: ['NUMBER'], durMs: 760,
@@ -695,13 +696,81 @@ export const SIGNS: Sign[] = [
     ],
   },
   {
-    id: 'AGAIN', en: 'again', hi: 'फिर से', domain: 'action', hands: 2,
+    id: 'AGAIN', en: 'again', hi: 'மீண்டும்', domain: 'action', hands: 2,
     handshape: 'Bent B rotating onto an open palm', location: 'Base palm',
     movement: 'Dominant hand turns over and lands on the base palm',
     nmm: 'Brows raised — request to repeat', acc: 0.94, durMs: 820,
     frames: [
       { t: 0, R: h('chestHigh', 'bent', 'up', 40, .06, .0), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: .3 },
       { t: 1, R: h('neutral', 'bent', 'down', -60, -.01, -.02), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: .35, nod: .2 },
+    ],
+  },
+
+  /* Police front-desk pack. The recogniser in this build is simulated, so
+     these carry plausible pose tracks for the avatar rather than trained
+     motion — enough to demo a two-way exchange at a station counter. */
+  {
+    id: 'POLICE', en: 'police', hi: 'காவல்துறை', domain: 'police', hands: 1,
+    handshape: 'Index + middle (V) at the shoulder', location: 'Shoulder — the rank badge',
+    movement: 'Two fingers tap the badge line on the shoulder',
+    nmm: 'Chin lifted, steady gaze', acc: 0.94, durMs: 820,
+    frames: [
+      { t: 0, R: h('shoulder', 'v', 'in', -20, .0, .0), L: REST },
+      { t: .4, R: h('shoulder', 'v', 'in', -20, .01, .02), L: REST },
+      { t: .7, R: h('shoulder', 'v', 'in', -20, .0, .0), L: REST },
+      { t: 1, R: h('shoulder', 'v', 'in', -20, .01, .02), L: REST, nod: .15 },
+    ],
+  },
+  {
+    id: 'STATION', en: 'station', hi: 'நிலையம்', domain: 'police', hands: 2,
+    handshape: 'Both flat B, facing', location: 'Neutral space',
+    movement: 'Palms face in, then rotate to enclose a building',
+    acc: 0.92, near: ['ROOM'], durMs: 900,
+    frames: [
+      { t: 0, R: h('chestHigh', 'flat', 'in', -6, .04, -.02), L: h('chestHigh', 'flat', 'in', 6, -.04, -.02) },
+      { t: 1, R: h('neutral', 'flat', 'side', -70, .05, .0), L: h('neutral', 'flat', 'side', 70, -.05, .0) },
+    ],
+  },
+  {
+    id: 'OFFICER', en: 'officer', hi: 'அதிகாரி', domain: 'police', hands: 1,
+    handshape: 'Flat B stripe on the shoulder', location: 'Shoulder — the rank stripe',
+    movement: 'Flat hand draws a stripe down the shoulder',
+    nmm: 'Slight nod of deference', acc: 0.91, near: ['POLICE'], durMs: 860,
+    frames: [
+      { t: 0, R: h('shoulder', 'flat', 'in', -30, -.02, -.04), L: REST, brow: .1 },
+      { t: 1, R: h('shoulder', 'flat', 'in', -30, -.02, .03), L: REST, brow: .15, nod: .15 },
+    ],
+  },
+  {
+    id: 'COMPLAINT', en: 'complaint', hi: 'புகார்', domain: 'police', hands: 2,
+    handshape: 'Flat B sliding off a flat B palm', location: 'Neutral space',
+    movement: 'Dominant palm slides a written sheet forward off the base palm',
+    nmm: 'Brows drawn — a grievance', acc: 0.9, near: ['REPORT', 'FORM'], durMs: 940,
+    frames: [
+      { t: 0, R: h('neutral', 'flat', 'down', -76, -.05, -.02), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: -.2 },
+      { t: .55, R: h('neutral', 'flat', 'down', -76, .05, -.03), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: -.25 },
+      { t: 1, R: h('chestHigh', 'flat', 'out', -20, .06, -.02), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: -.2 },
+    ],
+  },
+  {
+    id: 'THEFT', en: 'theft', hi: 'திருட்டு', domain: 'police', hands: 1,
+    handshape: 'Open 5 closing to a fist', location: 'Neutral space → drawn back',
+    movement: 'The hand snatches inward and closes — something taken',
+    nmm: 'Brows furrowed, quick head turn', acc: 0.9, durMs: 780,
+    frames: [
+      { t: 0, R: h('far', 'five', 'up', -8, .08, .01), L: REST, brow: -.25 },
+      { t: 1, R: h('chest', 'fist', 'in', -8, .02, .01), L: REST, brow: -.35, head: .2, mouth: -.2 },
+    ],
+  },
+  {
+    id: 'LOST', en: 'lost', hi: 'தொலைந்தது', domain: 'police', hands: 1,
+    handshape: 'Index point dropping open', location: 'Neutral space, downward',
+    movement: 'Index points down and the hand falls open — gone',
+    nmm: 'Brows raised then drawn, slight headshake', acc: 0.9, durMs: 860,
+    frames: [
+      { t: 0, R: h('chestHigh', 'point', 'down', -14, .02, .03), L: REST, brow: .1 },
+      { t: .5, R: h('neutral', 'point', 'down', -14, .02, -.01), L: REST, brow: -.2 },
+      { t: 1, R: h('neutral', 'five', 'down', -10, .03, -.03), L: REST, brow: -.35, head: .2, mouth: -.3 },
     ],
   },
 ]

@@ -13,7 +13,7 @@ const TAGLINE: Word[] = [
   { text: 'WORD BECOMES SIGN', color: '--warm-mid' },
   { text: 'BARRIER DISAPPEARS', color: ['--cool-lit', '--warm-mid'] },
   { text: 'CONVERSATION BEGINS', color: '--warm-lit' },
-  { text: 'Sanकेत.', color: '#ffffff' },
+  { text: 'MOZHI.', color: '#ffffff' },
 ]
 
 export default function Landing() {
@@ -60,7 +60,7 @@ export default function Landing() {
           {}
           <h1 className="sr-only">
             Sign becomes word. Word becomes sign. Barrier disappears.
-            Conversation begins. Sanket.
+            Conversation begins. Mozhi.
           </h1>
 
           {}
@@ -96,7 +96,7 @@ export default function Landing() {
           headingText={
             <>
               Being understood is half a conversation. <br />
-              Sanket closes the loop.
+              Mozhi closes the loop.
             </>
           }
           tags={[

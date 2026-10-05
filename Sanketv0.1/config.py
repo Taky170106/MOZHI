@@ -66,9 +66,9 @@ FEATURE_DIM = (HAND_COORDS * 2) + POSE_COORDS  # 144
 # ──────────────────────────────────────────────────────────────────────
 # Inference thresholds
 # ──────────────────────────────────────────────────────────────────────
-CONFIDENCE_THRESHOLD = 0.60   # minimum softmax confidence to accept
-                              # (model has 99.1% val acc — 0.60 still
-                              #  filters noise but lets real signs through)
+CONFIDENCE_THRESHOLD = 0.50   # minimum softmax confidence to accept
+                              # (0.60 rejected real signs held at 45–54%;
+                              #  0.50 still filters noise)
 STABILITY_COUNT = 2           # consecutive identical predictions needed
                               # (was 3 — too strict for live demo)
 DEBOUNCE_WINDOW = 1.0         # seconds before re-emitting the same word
@@ -78,16 +78,23 @@ DEBOUNCE_WINDOW = 1.0         # seconds before re-emitting the same word
 # deltas stays below this threshold for REST_FRAMES_TO_IDLE
 # consecutive frames, the person is considered idle (not signing).
 REST_MOTION_THRESHOLD = 0.015   # min per-frame L2 delta to count as motion
-REST_FRAMES_TO_IDLE = 45        # consecutive low-motion frames → "at rest" (~1.5s)
+REST_FRAMES_TO_IDLE = 90        # consecutive low-motion frames → "at rest"
+                                # (was 45 — a held sign was wiped mid-stroke)
 
 # "No person" detection — if no upper-body pose is detected for this
 # many consecutive frames, the scene is considered empty.
 NO_PERSON_FRAMES_TO_IDLE = 5
 
+# A landmarker miss for a frame is a flicker, not the signer vanishing.
+# Only a sustained absence of hands clears the window; a single dropped
+# frame is survived so the buffer is not rebuilt from zero each time.
+HAND_LOSS_FRAMES_TO_IDLE = 6
+
 # ──────────────────────────────────────────────────────────────────────
 # Inference loop tuning
 # ──────────────────────────────────────────────────────────────────────
-INFERENCE_EVERY_N_FRAMES = 3  # classify every N-th frame (was 6 — now 2× faster)
+INFERENCE_EVERY_N_FRAMES = 1  # classify every frame (was 3 — cadence was
+                              # the main source of perceived slowness)
 
 # ──────────────────────────────────────────────────────────────────────
 # Model architecture hyper-parameters

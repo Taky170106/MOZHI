@@ -42,6 +42,7 @@ export default defineConfig({
       /* Sanket's own recogniser (server/sign.py). Same reason as the two
          above: one origin, so the page makes a same-origin POST. */
       '/sign': { target: 'http://127.0.0.1:5303', changeOrigin: false },
+      '/engine': { target: 'http://127.0.0.1:5304', changeOrigin: false },
     },
   },
   build: { target: 'es2020', assetsInlineLimit: 0 },

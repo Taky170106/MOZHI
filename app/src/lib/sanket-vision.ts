@@ -41,7 +41,10 @@ export type SignFrame = {
 }
 
 export type SanketVision = {
-  detect: (video: HTMLVideoElement, tMs: number) => SignFrame
+  /* A canvas as well as a video: CameraField hands us a lift-corrected copy
+     of the frame when the room is dim. Same dimensions as the video, so the
+     normalised landmarks land in the same place either way. */
+  detect: (video: HTMLVideoElement | HTMLCanvasElement, tMs: number) => SignFrame
   /** Shaped like a Holistic result so the segmenter and the drawn field,
       which both already speak that shape, keep working unchanged. */
   last: {
@@ -91,7 +94,10 @@ export async function createSanketVision(): Promise<SanketVision> {
     }
   }
 
-  const detect = (video: HTMLVideoElement, tMs: number): SignFrame => {
+  const detect = (
+    video: HTMLVideoElement | HTMLCanvasElement,
+    tMs: number,
+  ): SignFrame => {
     stamp = Math.max(stamp + 1, Math.round(tMs))
 
     let hr: HandLandmarkerResult | null = null

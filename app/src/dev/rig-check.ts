@@ -56,7 +56,7 @@ let view: View = 'hand'
 const loader = new GLTFLoader()
 loader.register(p => new VRMLoaderPlugin(p))
 
-const url = new URLSearchParams(location.search).get('vrm') ?? './avatar/sanket-avatar.vrm'
+const url = new URLSearchParams(location.search).get('vrm') ?? './avatar/mozhi-avatar.vrm'
 
 loader.loadAsync(url).then(gltf => {
   const v = gltf.userData.vrm as VRM

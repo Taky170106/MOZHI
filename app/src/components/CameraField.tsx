@@ -43,6 +43,9 @@ type Props = {
      belongs to whichever recogniser is about to read the numbers. */
   vision?: 'sanket' | 'holistic'
   face?: boolean
+  /* Camera lift, from Settings. 0 raw, 1 normalised, 2 bright. Fed to the
+     frames the landmarker reads, not just to the preview. */
+  boost?: 0 | 1 | 2
   onStatus?: (status: CameraStatus, detail?: string) => void
   /* Every frame that was actually run through Holistic, handed on with the
      video element it came from. The landmarks are what the segmenter reads;
@@ -66,8 +69,20 @@ const asset = (p: string) => `${import.meta.env.BASE_URL}mediapipe/${p}`.replace
 const INK_LIT = '#29A9F5'
 const INK_FACE = 'rgba(41, 169, 245, 0.55)'
 
+/* Three lift levels.
+
+   `lift`/`gain` shape the pixels MediaPipe reads; `alpha`/`gray` shape only
+   the preview. Deliberately separate: the preview is held down under a black
+   fill so the wireframe reads over it, and that dimming must never reach the
+   landmarker — but neither should a genuinely dark room. */
+const BOOST: Record<number, { lift: number; gain: number; alpha: number; gray: number }> = {
+  0: { lift: 1, gain: 1, alpha: 0.34, gray: 1 },
+  1: { lift: 1.25, gain: 1.08, alpha: 0.5, gray: 0.3 },
+  2: { lift: 1.5, gain: 1.14, alpha: 0.66, gray: 0.15 },
+}
+
 export default function CameraField({
-  active, vision = 'sanket', face = true, onStatus, onFrame, className,
+  active, vision = 'sanket', face = true, boost = 1, onStatus, onFrame, className,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -76,6 +91,10 @@ export default function CameraField({
      tear down the camera and re-acquire it. */
   const faceRef = useRef(face)
   faceRef.current = face
+  /* Read inside the loop, like the face flag, so changing brightness does not
+     tear down and re-acquire the camera. */
+  const boostRef = useRef(boost)
+  boostRef.current = boost
   const statusRef = useRef(onStatus)
   statusRef.current = onStatus
   const frameRef = useRef(onFrame)
@@ -101,6 +120,7 @@ export default function CameraField({
     let landmarker: HolisticLandmarker | null = null
     let sanket: SanketVision | null = null
     let raf = 0
+    let ro: ResizeObserver | null = null
     let disposed = false
     let lastVideoTime = -1
     let result: HolisticLandmarkerResult | null = null
@@ -139,6 +159,38 @@ export default function CameraField({
       const w = vw * scale
       const h = vh * scale
       return { x: (cw - w) / 2, y: (ch - h) / 2, w, h }
+    }
+
+    /* The source MediaPipe reads.
+
+       Normally the raw video. But a dark room hands the landmarker dark
+       pixels, and HandLandmarker's min detection confidence of 0.5 starts
+       failing there — a failed detection writes zeros into the 144-dim
+       vector, the segmenter sees no hand, and the word is dropped before the
+       model is ever asked to guess it.
+
+       Lifting a copy costs one drawImage and moves no geometry: the landmarks
+       are positions, and brightening pixels does not move a hand. The canvas
+       is the video's own size, so every normalised coordinate is unchanged. */
+    let lift: HTMLCanvasElement | null = null
+    let lctx: CanvasRenderingContext2D | null = null
+    const prepared = (): HTMLVideoElement | HTMLCanvasElement => {
+      const cfg = BOOST[boostRef.current] ?? BOOST[1]
+      if (cfg.lift === 1 && cfg.gain === 1) return vid      // raw, by request
+      const w = vid.videoWidth
+      const h = vid.videoHeight
+      if (!w || !h) return vid                              // no metadata yet
+      if (!lift) {
+        lift = document.createElement('canvas')
+        lift.width = w
+        lift.height = h
+        lctx = lift.getContext('2d')
+      }
+      if (!lctx) return vid
+      lctx.filter = `brightness(${cfg.lift}) contrast(${cfg.gain})`
+      lctx.drawImage(vid, 0, 0, w, h)
+      lctx.filter = 'none'
+      return lift
     }
 
     const dot = (p: NormalizedLandmark, b: ReturnType<typeof box>, r: number, fill: string) => {
@@ -187,9 +239,10 @@ export default function CameraField({
          see the camera really is on and pointed at them; the bright layer is
          the landmark set, because the landmarks are what the machine keeps. */
       if (vid.readyState >= 2) {
+        const cfg = BOOST[boostRef.current] ?? BOOST[1]
         ctx.save()
-        ctx.globalAlpha = 0.22
-        ctx.filter = 'grayscale(1) contrast(1.15)'
+        ctx.globalAlpha = cfg.alpha
+        ctx.filter = `grayscale(${cfg.gray}) brightness(${cfg.lift}) contrast(${cfg.gain})`
         ctx.translate(cw, 0)
         ctx.scale(-1, 1)                     // mirror, as above
         c2d.drawImage(vid, cw - b.x - b.w, b.y, b.w, b.h)
@@ -232,11 +285,14 @@ export default function CameraField({
         const t = performance.now()
         let sign: SignFrame | undefined
         try {
+          /* Lifted, not raw — see prepared(). Same dimensions, so the
+             landmarks land exactly where the raw frame would have put them. */
+          const src = prepared()
           if (sanket) {
-            sign = sanket.detect(vid, t)
+            sign = sanket.detect(src, t)
             result = sanket.last as HolisticLandmarkerResult
           } else {
-            result = landmarker!.detectForVideo(vid, t)
+            result = landmarker!.detectForVideo(src, t)
           }
         } catch {
           /* A dropped frame is not worth tearing the panel down for. */
@@ -275,7 +331,10 @@ export default function CameraField({
 
       try {
         stream = await navigator.mediaDevices.getUserMedia({
-          video: { width: { ideal: 960 }, height: { ideal: 720 }, facingMode: 'user' },
+          /* 640×480 keeps the 4:3 the framing code assumes while giving the
+             two landmarkers far less to chew on — the window fills sooner
+             and the drawn field is unaffected at this scale. */
+          video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' },
           audio: false,
         })
       } catch (err) {
@@ -302,6 +361,13 @@ export default function CameraField({
 
       resize()
       window.addEventListener('resize', resize)
+      /* The stage can change size WITHOUT the window changing: the output
+         panel beside it grows, the caption scale changes, a scrollbar comes
+         or goes. Re-measuring on window resize alone left the backing store
+         stale, so CSS stretched the frame against the wrong buffer and the
+         preview read as a jump. Observe the canvas itself. */
+      ro = new ResizeObserver(() => resize())
+      ro.observe(cvs)
       say('live')
       raf = requestAnimationFrame(tick)
     })()
@@ -310,6 +376,7 @@ export default function CameraField({
       disposed = true
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', resize)
+      ro?.disconnect()
       /* Every track stopped, so the browser's camera indicator goes out the
          moment this is switched off. Anything less would be the one thing a
          privacy claim cannot afford to get wrong. */

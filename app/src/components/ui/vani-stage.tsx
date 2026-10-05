@@ -7,7 +7,7 @@ import { AVATAR_ENABLED } from '@/lib/flags'
 /* ============================================================
    vani-stage — the avatar, and the six things she does, on one screen.
 
-   The disc belongs to Vani alone. The six features live in the space around
+   The disc belongs to Meenu alone. The six features live in the space around
    her and arrive out of that space as the page scrolls, so the tablet reads
    as one picture: her in the middle, everything she does orbiting her.
    ============================================================ */
@@ -40,7 +40,7 @@ const FEATURES: Feature[] = [
   { src: 'features/on-device.webp', label: 'Runs on the counter’s own machine', x: 77, y: 17 },
   { src: 'features/vocabulary.webp', label: '105 signs and full fingerspelling', x: 14, y: 52 },
   { src: 'features/isl-grammar.webp', label: 'ISL grammar, not English order', x: 86, y: 52 },
-  { src: 'features/bilingual.webp', label: 'English and Hindi, side by side', x: 29, y: 84 },
+  { src: 'features/bilingual.webp', label: 'English, Hindi and Tamil, side by side', x: 29, y: 84 },
   { src: 'features/stops-guessing.webp', label: 'Stops instead of guessing', x: 71, y: 84 },
 ]
 
@@ -126,7 +126,7 @@ export function VaniPanel() {
               frame={frame}
               yaw={10}
               className="absolute inset-0"
-              label="Vani, the signing avatar"
+              label="Meenu, the signing avatar"
             />
           ) : (
             <div className="grid h-full place-items-center">
@@ -137,7 +137,7 @@ export function VaniPanel() {
       </div>
 
       <div className="vani-caption">
-        <h3>meet Vani</h3>
+        <h3>meet Meenu</h3>
         <p>avatar built by us</p>
       </div>
 

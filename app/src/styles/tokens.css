@@ -58,8 +58,12 @@
   --ok:          #1B7A5A;
 
   --display: "Champ", "Clash Display", system-ui, sans-serif;
-  --ui:      "Degular", "Switzer", "Anek Devanagari", system-ui, sans-serif;
-  --deva:    "Anek Devanagari", "Switzer", system-ui, sans-serif;
+  --ui:      "Degular", "Switzer", "Anek Tamil", "Noto Sans Tamil", "Nirmala UI", "Latha", "Anek Devanagari", system-ui, sans-serif;
+  /* The counter's second script. Tamil is not in the bundled Anek Devanagari
+     face, so this leans on a Tamil webfont if present and otherwise the
+     platform's own Tamil UI font (Nirmala UI / Latha on Windows, Noto on
+     Linux) — enough to render a caption legibly on a counter machine. */
+  --deva:    "Anek Tamil", "Noto Sans Tamil", "Nirmala UI", "Latha", "Switzer", system-ui, sans-serif;
   --mono:    "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --t-xs:  0.72rem;

@@ -377,7 +377,7 @@ export function RarityField({ className = '' }: { className?: string }) {
 
             <p className="rarity-line">
               That is the ratio.
-              <span>Sanket is what the other 59,999 conversations get.</span>
+              <span>Mozhi is what the other 59,999 conversations get.</span>
             </p>
           </div>
         </div>

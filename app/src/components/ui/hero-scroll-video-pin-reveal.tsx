@@ -47,7 +47,7 @@ export const HeroScrollVideoReveal: React.FC<HeroScrollVideoRevealProps> = ({
   ),
   tags = DEFAULT_TAGS,
   subText = 'And the journey continues beyond the summit...',
-  videoSrc = '/media/sanket-film.mp4',
+  videoSrc = '/media/mozhi-film.mp4',
   bottomText = (
     <>
       Where every scroll feels

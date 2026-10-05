@@ -79,7 +79,7 @@ export default function Settings() {
   )
 
   const hindiSample = useMemo(
-    () => glossToHindi(['PLEASE', 'WAIT', 'DOCTOR', 'SEE', 'YOU'])?.text ?? '',
+    () => glossToHindi(['PLEASE', 'OFFICER', 'WAIT'])?.text ?? '',
     [],
   )
 
@@ -113,13 +113,20 @@ export default function Settings() {
 
         {}
         <Group title="Display">
-          <Row label="Brightness" htmlFor="theme">
+          <Row label="Camera brightness" htmlFor="boost">
             <Seg
-              id="theme"
-              value={settings.theme}
-              onChange={v => set('theme', v)}
-              options={[{ v: 'light' as const, label: 'Daytime' }, { v: 'dark' as const, label: 'Night' }]}
+              id="boost"
+              value={settings.videoBoost}
+              onChange={v => set('videoBoost', v)}
+              options={[
+                { v: 0 as const, label: 'Raw' },
+                { v: 1 as const, label: 'Normal' },
+                { v: 2 as const, label: 'Bright' },
+              ]}
             />
+            <p className="set-sample">
+              Lifts the frames the hand tracker reads. Raise it if the counter is dim.
+            </p>
           </Row>
 
           <Row label="Caption size" htmlFor="cap">
@@ -130,7 +137,7 @@ export default function Settings() {
               options={[{ v: 1, label: 'Standard' }, { v: 1.25, label: 'Large' }, { v: 1.5, label: 'Largest' }]}
             />
             <p className="set-sample" style={{ fontSize: `calc(1.05rem * ${settings.captionScale})` }}>
-              Please wait, the doctor will see you shortly.
+              Please wait for an officer.
             </p>
           </Row>
 
@@ -144,7 +151,7 @@ export default function Settings() {
               onChange={v => set('captionLang', v)}
               options={[
                 { v: 'en' as CaptionLang, label: 'English' },
-                { v: 'hi' as CaptionLang, label: 'हिन्दी' },
+                { v: 'hi' as CaptionLang, label: 'தமிழ்' },
                 { v: 'both' as CaptionLang, label: 'Both' },
               ]}
             />
@@ -152,7 +159,7 @@ export default function Settings() {
                 from a real gloss sequence — so what is shown here is what
                 will actually appear, not a hand-written specimen. */}
             <p className="set-sample">
-              {settings.captionLang !== 'hi' && 'Please wait, the doctor will see you shortly.'}
+              {settings.captionLang !== 'hi' && 'Please wait for an officer.'}
               {settings.captionLang === 'both' && <br />}
               {settings.captionLang !== 'en' && (
                 <span className="deva">{hindiSample}</span>

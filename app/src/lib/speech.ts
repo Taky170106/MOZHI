@@ -46,10 +46,11 @@ const ctor = (): SpeechCtor | null => {
 /** Whether this browser has the API at all. Firefox does not. */
 export const speechSupported = () => typeof window !== 'undefined' && ctor() !== null
 
-export type SpeechLang = 'en-IN' | 'hi-IN'
+export type SpeechLang = 'en-IN' | 'hi-IN' | 'ta-IN'
 
 export const SPEECH_LANGS: { v: SpeechLang; label: string }[] = [
   { v: 'en-IN', label: 'English (India)' },
+  { v: 'ta-IN', label: 'தமிழ்' },
   { v: 'hi-IN', label: 'हिन्दी' },
 ]
 

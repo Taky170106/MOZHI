@@ -115,6 +115,21 @@ const ALIAS: Record<string, string> = {
   'i dont understand': 'NOT-UNDERSTAND',
   "i don't understand": 'NOT-UNDERSTAND',
   welcome: 'HELLO',
+
+  /* Police pack — ready for when these classes are fine-tuned in (see
+     Sanketv0.1/TRAINING_POLICE.md). The bare word already maps by the
+     uppercasing rule, because POLICE / COMPLAINT / OFFICER / THEFT / STATION
+     / LOST now exist as signs in the lexicon. These entries cover the
+     synonyms and multi-word class names public ISL datasets tend to use, so
+     whatever the trained label reads, it lands on the right gloss. */
+  stolen: 'THEFT', steal: 'THEFT', robbery: 'THEFT', robbed: 'THEFT', snatched: 'THEFT',
+  missing: 'LOST', 'lost item': 'LOST', misplaced: 'LOST',
+  fir: 'COMPLAINT', complain: 'COMPLAINT', 'file complaint': 'COMPLAINT',
+  grievance: 'COMPLAINT', 'report crime': 'COMPLAINT',
+  inspector: 'OFFICER', 'police officer': 'OFFICER', sho: 'OFFICER', 'in charge': 'OFFICER',
+  'police station': 'STATION', thana: 'STATION', chowki: 'STATION',
+  constable: 'POLICE', cop: 'POLICE', havaldar: 'POLICE',
+  mobile: 'PHONE', 'id card': 'CARD', aadhaar: 'CARD', aadhar: 'CARD',
 }
 
 export function sanketGloss(label: string): string | null {

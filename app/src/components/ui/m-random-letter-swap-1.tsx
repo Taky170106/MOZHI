@@ -28,14 +28,16 @@ export default function RandomLetterSwapNav() {
         <a
           className="block shrink-0 transition-opacity hover:opacity-70"
           href="#main"
+          aria-label="Mozhi"
         >
-          <img
-            src="./brand/sanket-lockup.png"
-            alt="Sanket"
-            width={900}
-            height={323}
-            className="h-7 w-auto sm:h-10"
-          />
+          {/* Text wordmark — the old raster lockup spelled the previous
+              product name, so the brand is set in the display face instead. */}
+          <span
+            className="select-none text-2xl font-semibold leading-none tracking-tight text-foreground sm:text-3xl"
+            style={{ fontFamily: 'var(--display)' }}
+          >
+            Mozhi
+          </span>
         </a>
 
         {}

@@ -199,7 +199,7 @@ export function useLiveRecognizer(opts: {
       if (own) {
         setBackend('sanket')
         setStatus('ready')
-        setDetail(`Sanket BiGRU · ${own.classes} signs · ISL`)
+        setDetail(`Mozhi BiGRU · ${own.classes} signs · ISL`)
         return
       }
 
@@ -371,7 +371,7 @@ export function useLiveRecognizer(opts: {
             setDetail(
               e.stable
                 ? `"${e.word}" ${(e.conf * 100).toFixed(0)}% · ${e.stable}/2`
-                : `"${e.word}" ${(e.conf * 100).toFixed(0)}% — below 60%`,
+                : `"${e.word}" ${(e.conf * 100).toFixed(0)}% — below threshold`,
             )
             return
           }

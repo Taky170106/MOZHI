@@ -153,6 +153,15 @@ add('HAVE', 'has', 'had', 'having', 'got')
 add('HERE', 'this side')
 add('THERE', 'that side')
 
+/* Police front-desk pack. The base word for each is registered from the
+   sign's own `en`; these are the synonyms a visitor or clerk actually uses. */
+add('POLICE', 'constable', 'cop', 'havaldar')
+add('STATION', 'thana', 'chowki', 'outpost')
+add('OFFICER', 'inspector', 'sho', 'in-charge', 'incharge', 'sub-inspector')
+add('COMPLAINT', 'complain', 'complaints', 'grievance', 'fir', 'diary', 'ncr')
+add('THEFT', 'stolen', 'steal', 'stole', 'robbery', 'robbed', 'snatched', 'snatch', 'burglary')
+add('LOST', 'missing', 'misplaced', 'miss', 'gone')
+
 const PHRASES: [string[], string][] = [
   [['thank', 'you'], 'THANK-YOU'],
   [['thanks', 'a', 'lot'], 'THANK-YOU'],
@@ -342,6 +351,22 @@ const TEMPLATES: [string[], string][] = [
   [['TICKET', 'MONEY', 'HOW-MANY'], 'How much does the ticket cost?'],
   [['FORM', 'SIGNATURE', 'WHERE'], 'Where do I sign the form?'],
   [['EMERGENCY', 'DOCTOR', 'NEED'], 'This is an emergency — I need a doctor.'],
+
+  /* Police front desk. Keyed by the gloss order the composer actually
+     produces, so the same entry serves an inbound read and an outbound reply. */
+  [['COMPLAINT', 'NEED'], 'I need to file a complaint.'],
+  [['MY', 'PHONE', 'THEFT'], 'My phone was stolen.'],
+  [['HELP', 'NEED'], 'I need help.'],
+  [['OFFICER', 'SEE', 'NEED'], 'I need to see an officer.'],
+  [['TOKEN', 'NUMBER', 'WHAT'], 'What is the token number?'],
+  [['MY', 'CARD', 'LOST'], 'My ID card is lost.'],
+  [['NOT-UNDERSTAND'], 'I don’t understand.'],
+  [['PLEASE', 'OFFICER', 'WAIT'], 'Please wait for an officer.'],
+  [['PLEASE', 'COMPLAINT', 'SIGNATURE'], 'Please sign the complaint here.'],
+  [['PLEASE', 'WINDOW', 'GO'], 'Please go to the window.'],
+  [['YOU', 'HELP', 'NEED'], 'Do you need help?'],
+  [['TOMORROW', 'MORNING', 'COME'], 'Come tomorrow morning.'],
+  [['WINDOW', 'NUMBER', 'GO'], 'Go to the window.'],
 ]
 
 const NOUN_PHRASE: Record<string, string> = {
@@ -352,6 +377,9 @@ const NOUN_PHRASE: Record<string, string> = {
   MEETING: 'the meeting', NAME: 'your name', BLOOD: 'a blood test', TIME: 'the time',
   HEAD: 'my head', STOMACH: 'my stomach', PAIN: 'pain', FEVER: 'a fever',
   EMERGENCY: 'an emergency', HELP: 'help',
+  POLICE: 'the police', STATION: 'the station', OFFICER: 'an officer',
+  COMPLAINT: 'a complaint', THEFT: 'a theft', LOST: 'lost', PHONE: 'my phone',
+  TOKEN: 'the token', WINDOW: 'the window',
 }
 
 const WH_ENGLISH: Record<string, string> = {
