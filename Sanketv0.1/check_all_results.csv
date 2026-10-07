@@ -1,0 +1,1306 @@
+sample_id,word,signer,y_true,torch_pred,torch_conf,torch_pass,onnx_pred,onnx_conf,onnx_pass,verdict
+hello_84c98fc7,hello,hritankar,hello,goodbye,0.6298,1,goodbye,0.6298,1,WRONG
+hello_673f394d,hello,hritankar,hello,hello,0.9184,1,hello,0.9184,1,OK
+hello_8b78f2ad,hello,hritankar,hello,hello,0.9816,1,hello,0.9816,1,OK
+hello_9ce80b4b,hello,hritankar,hello,hello,0.9680,1,hello,0.9680,1,OK
+hello_b1962076,hello,hritankar,hello,hello,0.9603,1,hello,0.9603,1,OK
+hello_2bc44dc1,hello,hritankar,hello,hello,0.9391,1,hello,0.9391,1,OK
+hello_7dc6aa8c,hello,hritankar,hello,hello,0.9801,1,hello,0.9801,1,OK
+hello_c87e3273,hello,hritankar,hello,hello,0.9603,1,hello,0.9603,1,OK
+hello_56f1831c,hello,hritankar,hello,hello,0.9769,1,hello,0.9769,1,OK
+hello_e778c63b,hello,hritankar,hello,hello,0.9825,1,hello,0.9825,1,OK
+hello_b0ee51c2,hello,hritankar,hello,hello,0.9598,1,hello,0.9598,1,OK
+hello_fd87128d,hello,hritankar,hello,hello,0.9695,1,hello,0.9695,1,OK
+hello_ef58f684,hello,hritankar,hello,hello,0.9787,1,hello,0.9787,1,OK
+hello_b16944e5,hello,hritankar,hello,hello,0.8791,1,hello,0.8791,1,OK
+hello_09afe078,hello,hritankar,hello,hello,0.9788,1,hello,0.9788,1,OK
+thank you_03f6587c,thank you,hritankar,thank you,thank you,0.9775,1,thank you,0.9775,1,OK
+thank you_8433a7a6,thank you,hritankar,thank you,thank you,0.9799,1,thank you,0.9799,1,OK
+thank you_cae49878,thank you,hritankar,thank you,thank you,0.9734,1,thank you,0.9734,1,OK
+thank you_25758e02,thank you,hritankar,thank you,thank you,0.9801,1,thank you,0.9801,1,OK
+thank you_24839182,thank you,hritankar,thank you,thank you,0.9805,1,thank you,0.9805,1,OK
+thank you_f4587e13,thank you,hritankar,thank you,thank you,0.9477,1,thank you,0.9477,1,OK
+thank you_c7f3756f,thank you,hritankar,thank you,thank you,0.9631,1,thank you,0.9631,1,OK
+thank you_c0b19267,thank you,hritankar,thank you,thank you,0.9805,1,thank you,0.9805,1,OK
+thank you_d1f7d83c,thank you,hritankar,thank you,thank you,0.9500,1,thank you,0.9500,1,OK
+thank you_2617ad6f,thank you,hritankar,thank you,thank you,0.9809,1,thank you,0.9809,1,OK
+thank you_5c48a0b7,thank you,hritankar,thank you,thank you,0.9781,1,thank you,0.9781,1,OK
+thank you_03fa6bd2,thank you,hritankar,thank you,thank you,0.9724,1,thank you,0.9724,1,OK
+thank you_3fe1a6dc,thank you,hritankar,thank you,thank you,0.9730,1,thank you,0.9730,1,OK
+thank you_228c4d4d,thank you,hritankar,thank you,thank you,0.9719,1,thank you,0.9719,1,OK
+thank you_a4a5f0d9,thank you,hritankar,thank you,thank you,0.9737,1,thank you,0.9737,1,OK
+please_aba2fb4f,please,hritankar,please,please,0.6479,1,please,0.6479,1,OK
+please_f1f1b1a9,please,hritankar,please,food,0.5640,1,food,0.5640,1,WRONG
+please_c241ae12,please,hritankar,please,please,0.7891,1,please,0.7891,1,OK
+please_4e6c2371,please,hritankar,please,please,0.9410,1,please,0.9410,1,OK
+please_5ced73a2,please,hritankar,please,please,0.7980,1,please,0.7980,1,OK
+please_62d86514,please,hritankar,please,please,0.8428,1,please,0.8428,1,OK
+please_2d07d65a,please,hritankar,please,please,0.8349,1,please,0.8349,1,OK
+please_02aa219c,please,hritankar,please,please,0.9637,1,please,0.9637,1,OK
+please_29a91f8b,please,hritankar,please,please,0.9361,1,please,0.9361,1,OK
+please_ece071c2,please,hritankar,please,please,0.9123,1,please,0.9123,1,OK
+please_36b8b6e2,please,hritankar,please,please,0.9424,1,please,0.9424,1,OK
+please_c49b23f0,please,hritankar,please,please,0.9462,1,please,0.9462,1,OK
+please_bb55d3ad,please,hritankar,please,please,0.9222,1,please,0.9222,1,OK
+please_2e7528d6,please,hritankar,please,please,0.9332,1,please,0.9332,1,OK
+please_bdb089eb,please,hritankar,please,please,0.8881,1,please,0.8881,1,OK
+sorry_bc43c4f5,sorry,hritankar,sorry,sorry,0.9612,1,sorry,0.9612,1,OK
+sorry_bbeba19c,sorry,hritankar,sorry,sorry,0.9599,1,sorry,0.9599,1,OK
+sorry_f91668b5,sorry,hritankar,sorry,sorry,0.9410,1,sorry,0.9410,1,OK
+sorry_f34e6cf6,sorry,hritankar,sorry,sorry,0.9583,1,sorry,0.9583,1,OK
+sorry_cee217a5,sorry,hritankar,sorry,sorry,0.9573,1,sorry,0.9573,1,OK
+sorry_38355108,sorry,hritankar,sorry,sorry,0.9675,1,sorry,0.9675,1,OK
+sorry_12debf95,sorry,hritankar,sorry,sorry,0.9541,1,sorry,0.9541,1,OK
+sorry_b973d28e,sorry,hritankar,sorry,sorry,0.9506,1,sorry,0.9506,1,OK
+sorry_b5249cfc,sorry,hritankar,sorry,sorry,0.7984,1,sorry,0.7984,1,OK
+sorry_74767cfd,sorry,hritankar,sorry,sorry,0.9460,1,sorry,0.9460,1,OK
+sorry_09efb3b0,sorry,hritankar,sorry,sorry,0.7763,1,sorry,0.7763,1,OK
+sorry_3c7355d9,sorry,hritankar,sorry,sorry,0.9443,1,sorry,0.9443,1,OK
+sorry_b474c447,sorry,hritankar,sorry,sorry,0.8783,1,sorry,0.8783,1,OK
+sorry_69688e08,sorry,hritankar,sorry,food,0.5737,1,food,0.5737,1,WRONG
+sorry_a483d6f1,sorry,hritankar,sorry,sorry,0.9447,1,sorry,0.9447,1,OK
+sorry_4a0b5152,sorry,hritankar,sorry,sorry,0.9558,1,sorry,0.9558,1,OK
+yes_03cb801e,yes,hritankar,yes,yes,0.9079,1,yes,0.9079,1,OK
+yes_1d3fefc3,yes,hritankar,yes,yes,0.9641,1,yes,0.9641,1,OK
+yes_5bbfd224,yes,hritankar,yes,yes,0.9515,1,yes,0.9515,1,OK
+yes_b38b76ec,yes,hritankar,yes,yes,0.9551,1,yes,0.9551,1,OK
+yes_1ea6437b,yes,hritankar,yes,yes,0.9307,1,yes,0.9307,1,OK
+yes_5c78850a,yes,hritankar,yes,yes,0.9307,1,yes,0.9307,1,OK
+yes_e138df78,yes,hritankar,yes,yes,0.9672,1,yes,0.9672,1,OK
+yes_b65c2915,yes,hritankar,yes,yes,0.9598,1,yes,0.9598,1,OK
+yes_7487bc26,yes,hritankar,yes,yes,0.9675,1,yes,0.9675,1,OK
+yes_10e30278,yes,hritankar,yes,yes,0.9676,1,yes,0.9676,1,OK
+yes_8e5fee58,yes,hritankar,yes,yes,0.9613,1,yes,0.9613,1,OK
+yes_0395b90f,yes,hritankar,yes,yes,0.9448,1,yes,0.9448,1,OK
+yes_5694ec17,yes,hritankar,yes,yes,0.9575,1,yes,0.9575,1,OK
+yes_52c0e075,yes,hritankar,yes,yes,0.9707,1,yes,0.9707,1,OK
+yes_15ba4c0a,yes,hritankar,yes,yes,0.9702,1,yes,0.9702,1,OK
+no_448bbca9,no,hritankar,no,no,0.9758,1,no,0.9758,1,OK
+no_ddeb829d,no,hritankar,no,no,0.9734,1,no,0.9734,1,OK
+no_ab82b8d3,no,hritankar,no,no,0.9607,1,no,0.9607,1,OK
+no_2e0e760a,no,hritankar,no,no,0.9786,1,no,0.9786,1,OK
+no_68312196,no,hritankar,no,no,0.9818,1,no,0.9818,1,OK
+no_4ecb4e2f,no,hritankar,no,no,0.9794,1,no,0.9794,1,OK
+no_12e4e8e2,no,hritankar,no,no,0.9820,1,no,0.9820,1,OK
+no_8828bad3,no,hritankar,no,no,0.9774,1,no,0.9774,1,OK
+no_65bec605,no,hritankar,no,no,0.9824,1,no,0.9824,1,OK
+no_f3e57d71,no,hritankar,no,no,0.9776,1,no,0.9776,1,OK
+no_138d4ed9,no,hritankar,no,no,0.9855,1,no,0.9855,1,OK
+no_d75ba791,no,hritankar,no,no,0.9842,1,no,0.9842,1,OK
+no_dfe0f2bf,no,hritankar,no,no,0.9767,1,no,0.9767,1,OK
+no_edaaf1e9,no,hritankar,no,no,0.9785,1,no,0.9785,1,OK
+no_690a20ee,no,hritankar,no,no,0.9816,1,no,0.9816,1,OK
+help_7b138b52,help,hritankar,help,help,0.9390,1,help,0.9390,1,OK
+help_a71f19d0,help,hritankar,help,help,0.9718,1,help,0.9718,1,OK
+help_8b94e00d,help,hritankar,help,help,0.9822,1,help,0.9822,1,OK
+help_aa146618,help,hritankar,help,help,0.9691,1,help,0.9691,1,OK
+help_bebfa118,help,hritankar,help,help,0.9811,1,help,0.9811,1,OK
+help_9c5d7f4f,help,hritankar,help,help,0.9814,1,help,0.9814,1,OK
+help_9f94b3d0,help,hritankar,help,help,0.9848,1,help,0.9848,1,OK
+help_c650bc47,help,hritankar,help,help,0.9795,1,help,0.9795,1,OK
+help_769baeae,help,hritankar,help,help,0.9818,1,help,0.9818,1,OK
+help_54dfed72,help,hritankar,help,help,0.9750,1,help,0.9750,1,OK
+help_a151220c,help,hritankar,help,help,0.8367,1,help,0.8367,1,OK
+help_57f2f41a,help,hritankar,help,help,0.9676,1,help,0.9676,1,OK
+help_3e550850,help,hritankar,help,help,0.9806,1,help,0.9806,1,OK
+help_e0ca8f0e,help,hritankar,help,help,0.9769,1,help,0.9769,1,OK
+help_00043578,help,hritankar,help,help,0.9762,1,help,0.9762,1,OK
+help_6afeb6ec,help,hritankar,help,help,0.9690,1,help,0.9690,1,OK
+help_4cfb6fa6,help,hritankar,help,help,0.9824,1,help,0.9824,1,OK
+water_7089602d,water,hritankar,water,water,0.9771,1,water,0.9771,1,OK
+water_c747bc4a,water,hritankar,water,water,0.9824,1,water,0.9824,1,OK
+water_716ff141,water,hritankar,water,water,0.9779,1,water,0.9779,1,OK
+water_a31f765d,water,hritankar,water,water,0.9799,1,water,0.9799,1,OK
+water_3825268c,water,hritankar,water,water,0.9761,1,water,0.9761,1,OK
+water_04f88cf7,water,hritankar,water,water,0.9836,1,water,0.9836,1,OK
+water_0048c38c,water,hritankar,water,water,0.9589,1,water,0.9589,1,OK
+water_d769559f,water,hritankar,water,water,0.8885,1,water,0.8885,1,OK
+water_81483403,water,hritankar,water,water,0.9629,1,water,0.9629,1,OK
+water_d1bb28ba,water,hritankar,water,water,0.9855,1,water,0.9855,1,OK
+water_6ce26057,water,hritankar,water,water,0.9807,1,water,0.9807,1,OK
+water_7a4bf102,water,hritankar,water,water,0.9844,1,water,0.9844,1,OK
+water_baab61f9,water,hritankar,water,water,0.9729,1,water,0.9729,1,OK
+water_cca26639,water,hritankar,water,water,0.9713,1,water,0.9713,1,OK
+water_74cca758,water,hritankar,water,water,0.9801,1,water,0.9801,1,OK
+water_724d3960,water,hritankar,water,water,0.9846,1,water,0.9846,1,OK
+water_4263d08a,water,hritankar,water,water,0.9800,1,water,0.9800,1,OK
+water_3268f3c3,water,hritankar,water,water,0.9861,1,water,0.9861,1,OK
+water_8e5c9b10,water,hritankar,water,water,0.9828,1,water,0.9828,1,OK
+water_3fd61f06,water,hritankar,water,water,0.9744,1,water,0.9744,1,OK
+food_9e1a187e,food,hritankar,food,thank you,0.8531,1,thank you,0.8531,1,WRONG
+food_00b80224,food,hritankar,food,food,0.7785,1,food,0.7785,1,OK
+food_0e179bf5,food,hritankar,food,food,0.9555,1,food,0.9555,1,OK
+food_b213931e,food,hritankar,food,thank you,0.5470,1,thank you,0.5470,1,WRONG
+food_db18386e,food,hritankar,food,food,0.9643,1,food,0.9643,1,OK
+food_46cc9353,food,hritankar,food,food,0.9008,1,food,0.9008,1,OK
+food_63dd25b0,food,hritankar,food,food,0.9470,1,food,0.9470,1,OK
+food_f7a9b3ba,food,hritankar,food,food,0.9551,1,food,0.9551,1,OK
+food_3877f6e5,food,hritankar,food,food,0.9392,1,food,0.9392,1,OK
+food_a948d88d,food,hritankar,food,food,0.8264,1,food,0.8264,1,OK
+food_c33faba9,food,hritankar,food,food,0.9214,1,food,0.9214,1,OK
+food_52c617c8,food,hritankar,food,food,0.9563,1,food,0.9563,1,OK
+food_3796f50d,food,hritankar,food,food,0.9618,1,food,0.9618,1,OK
+food_759a4380,food,hritankar,food,food,0.9563,1,food,0.9563,1,OK
+food_a2a5f6e9,food,hritankar,food,food,0.9635,1,food,0.9635,1,OK
+food_bcf80f2c,food,hritankar,food,food,0.9557,1,food,0.9557,1,OK
+food_bfbf116d,food,hritankar,food,food,0.9551,1,food,0.9551,1,OK
+food_36d5c58c,food,hritankar,food,food,0.8155,1,food,0.8155,1,OK
+food_749ee868,food,hritankar,food,food,0.8727,1,food,0.8727,1,OK
+medicine_fb918648,medicine,hritankar,medicine,medicine,0.8932,1,medicine,0.8932,1,OK
+medicine_aa8f7feb,medicine,hritankar,medicine,medicine,0.9392,1,medicine,0.9392,1,OK
+medicine_f1a28e41,medicine,hritankar,medicine,medicine,0.9431,1,medicine,0.9431,1,OK
+medicine_632e6a1f,medicine,hritankar,medicine,medicine,0.9430,1,medicine,0.9430,1,OK
+medicine_432ed8c8,medicine,hritankar,medicine,medicine,0.9584,1,medicine,0.9584,1,OK
+medicine_98476954,medicine,hritankar,medicine,medicine,0.9206,1,medicine,0.9206,1,OK
+medicine_4a4112bc,medicine,hritankar,medicine,medicine,0.9644,1,medicine,0.9644,1,OK
+medicine_b00a6c3c,medicine,hritankar,medicine,medicine,0.9530,1,medicine,0.9530,1,OK
+medicine_7a8d824b,medicine,hritankar,medicine,medicine,0.9295,1,medicine,0.9295,1,OK
+medicine_40c2c798,medicine,hritankar,medicine,medicine,0.9609,1,medicine,0.9609,1,OK
+medicine_7407b5b1,medicine,hritankar,medicine,medicine,0.9603,1,medicine,0.9603,1,OK
+medicine_78ab4385,medicine,hritankar,medicine,medicine,0.9603,1,medicine,0.9603,1,OK
+medicine_89c893f9,medicine,hritankar,medicine,medicine,0.9688,1,medicine,0.9688,1,OK
+medicine_4b61e530,medicine,hritankar,medicine,medicine,0.9602,1,medicine,0.9602,1,OK
+medicine_25982d27,medicine,hritankar,medicine,medicine,0.9610,1,medicine,0.9610,1,OK
+medicine_05910e22,medicine,hritankar,medicine,medicine,0.9379,1,medicine,0.9379,1,OK
+hospital_a6641dd2,hospital,hritankar,hospital,hospital,0.9750,1,hospital,0.9750,1,OK
+hospital_fa5d3b48,hospital,hritankar,hospital,hospital,0.9670,1,hospital,0.9670,1,OK
+hospital_5163ec8e,hospital,hritankar,hospital,hospital,0.9684,1,hospital,0.9684,1,OK
+hospital_3a4180a4,hospital,hritankar,hospital,hospital,0.9804,1,hospital,0.9804,1,OK
+hospital_4ff370f5,hospital,hritankar,hospital,hospital,0.9638,1,hospital,0.9638,1,OK
+hospital_a935abbc,hospital,hritankar,hospital,hospital,0.9450,1,hospital,0.9450,1,OK
+hospital_98aeac13,hospital,hritankar,hospital,hospital,0.9768,1,hospital,0.9768,1,OK
+hospital_9bd97d1d,hospital,hritankar,hospital,hospital,0.9766,1,hospital,0.9766,1,OK
+hospital_2366ad1d,hospital,hritankar,hospital,hospital,0.9773,1,hospital,0.9773,1,OK
+hospital_ee554dd1,hospital,hritankar,hospital,hospital,0.9771,1,hospital,0.9771,1,OK
+hospital_90e52034,hospital,hritankar,hospital,hospital,0.9822,1,hospital,0.9822,1,OK
+hospital_c9d296ad,hospital,hritankar,hospital,hospital,0.9828,1,hospital,0.9828,1,OK
+hospital_b9d5faef,hospital,hritankar,hospital,hospital,0.9851,1,hospital,0.9851,1,OK
+hospital_3b21be55,hospital,hritankar,hospital,hospital,0.9812,1,hospital,0.9812,1,OK
+hospital_1db461d7,hospital,hritankar,hospital,hospital,0.9847,1,hospital,0.9847,1,OK
+hospital_4f231644,hospital,hritankar,hospital,hospital,0.9859,1,hospital,0.9859,1,OK
+hospital_7d87a16a,hospital,hritankar,hospital,hospital,0.9679,1,hospital,0.9679,1,OK
+emergency_f74a5cba,emergency,hritankar,emergency,emergency,0.9871,1,emergency,0.9871,1,OK
+emergency_ef786588,emergency,hritankar,emergency,emergency,0.9897,1,emergency,0.9897,1,OK
+emergency_50fa9668,emergency,hritankar,emergency,emergency,0.9894,1,emergency,0.9894,1,OK
+emergency_265fd188,emergency,hritankar,emergency,emergency,0.9901,1,emergency,0.9901,1,OK
+emergency_6834ce6c,emergency,hritankar,emergency,emergency,0.9880,1,emergency,0.9880,1,OK
+emergency_72d5fe1c,emergency,hritankar,emergency,emergency,0.9901,1,emergency,0.9901,1,OK
+emergency_d0eb7249,emergency,hritankar,emergency,emergency,0.9831,1,emergency,0.9831,1,OK
+emergency_2e940fd4,emergency,hritankar,emergency,emergency,0.9859,1,emergency,0.9859,1,OK
+emergency_d9f9f0d4,emergency,hritankar,emergency,emergency,0.9823,1,emergency,0.9823,1,OK
+emergency_d071985d,emergency,hritankar,emergency,emergency,0.9802,1,emergency,0.9802,1,OK
+emergency_229bac0b,emergency,hritankar,emergency,emergency,0.9874,1,emergency,0.9874,1,OK
+emergency_cd09b548,emergency,hritankar,emergency,emergency,0.9883,1,emergency,0.9883,1,OK
+emergency_a4be9f34,emergency,hritankar,emergency,emergency,0.9899,1,emergency,0.9899,1,OK
+emergency_91877eea,emergency,hritankar,emergency,emergency,0.9865,1,emergency,0.9865,1,OK
+emergency_f4589f89,emergency,hritankar,emergency,emergency,0.9890,1,emergency,0.9890,1,OK
+name_9c3cb1d3,name,hritankar,name,name,0.9906,1,name,0.9906,1,OK
+name_8413bfd7,name,hritankar,name,name,0.9814,1,name,0.9814,1,OK
+name_d943ec32,name,hritankar,name,name,0.9813,1,name,0.9813,1,OK
+name_7b41a936,name,hritankar,name,name,0.9849,1,name,0.9849,1,OK
+name_1a37f681,name,hritankar,name,name,0.9893,1,name,0.9893,1,OK
+name_0718ed73,name,hritankar,name,please,0.3745,0,please,0.3745,0,WRONG
+name_64f7c80f,name,hritankar,name,name,0.9901,1,name,0.9901,1,OK
+name_c6d0ab14,name,hritankar,name,name,0.9884,1,name,0.9884,1,OK
+name_ed96f05c,name,hritankar,name,name,0.9912,1,name,0.9912,1,OK
+name_f9cd8d97,name,hritankar,name,name,0.9881,1,name,0.9881,1,OK
+name_ee373237,name,hritankar,name,name,0.9899,1,name,0.9899,1,OK
+name_6fe33816,name,hritankar,name,name,0.9858,1,name,0.9858,1,OK
+name_a27d297b,name,hritankar,name,name,0.9802,1,name,0.9802,1,OK
+name_ff1cecf1,name,hritankar,name,name,0.9857,1,name,0.9857,1,OK
+name_612d8024,name,hritankar,name,name,0.9839,1,name,0.9839,1,OK
+where_8e8fb45a,where,hritankar,where,where,0.9827,1,where,0.9827,1,OK
+where_b20f3d91,where,hritankar,where,where,0.9946,1,where,0.9946,1,OK
+where_9e912566,where,hritankar,where,where,0.9892,1,where,0.9892,1,OK
+where_3d3d59eb,where,hritankar,where,where,0.9930,1,where,0.9930,1,OK
+where_d45305c9,where,hritankar,where,where,0.9898,1,where,0.9898,1,OK
+where_a0c598fe,where,hritankar,where,where,0.9797,1,where,0.9797,1,OK
+where_ecab162e,where,hritankar,where,where,0.9952,1,where,0.9952,1,OK
+where_cccaaa36,where,hritankar,where,where,0.9897,1,where,0.9897,1,OK
+where_4af76b54,where,hritankar,where,where,0.9922,1,where,0.9922,1,OK
+where_05eb5086,where,hritankar,where,where,0.9904,1,where,0.9904,1,OK
+where_f9cf9c81,where,hritankar,where,where,0.9938,1,where,0.9938,1,OK
+where_0218a4bb,where,hritankar,where,where,0.9938,1,where,0.9938,1,OK
+where_1da946f3,where,hritankar,where,where,0.9941,1,where,0.9941,1,OK
+where_f181085c,where,hritankar,where,where,0.9851,1,where,0.9851,1,OK
+where_2818335c,where,hritankar,where,where,0.9958,1,where,0.9958,1,OK
+when_0c0c19cf,when,hritankar,when,when,0.9657,1,when,0.9657,1,OK
+when_6948a0a7,when,hritankar,when,when,0.9595,1,when,0.9595,1,OK
+when_0d5511bd,when,hritankar,when,when,0.9495,1,when,0.9495,1,OK
+when_63d88ece,when,hritankar,when,when,0.9279,1,when,0.9279,1,OK
+when_3c89025c,when,hritankar,when,when,0.9490,1,when,0.9490,1,OK
+when_1961befd,when,hritankar,when,when,0.9669,1,when,0.9669,1,OK
+when_274f0cc9,when,hritankar,when,when,0.9067,1,when,0.9067,1,OK
+when_fd7c0c9f,when,hritankar,when,when,0.8881,1,when,0.8881,1,OK
+when_8558fe5a,when,hritankar,when,when,0.9627,1,when,0.9627,1,OK
+when_be132a52,when,hritankar,when,when,0.9355,1,when,0.9355,1,OK
+when_75a70979,when,hritankar,when,when,0.9596,1,when,0.9596,1,OK
+when_4eedef2c,when,hritankar,when,when,0.9233,1,when,0.9233,1,OK
+when_b27d1ffa,when,hritankar,when,when,0.9481,1,when,0.9481,1,OK
+when_332ea0d7,when,hritankar,when,when,0.9434,1,when,0.9434,1,OK
+when_46c8bf49,when,hritankar,when,when,0.9559,1,when,0.9559,1,OK
+how much_808f9b88,how much,hritankar,how much,how much,0.9929,1,how much,0.9929,1,OK
+how much_ee97c6ce,how much,hritankar,how much,how much,0.9934,1,how much,0.9934,1,OK
+how much_426e155f,how much,hritankar,how much,how much,0.9903,1,how much,0.9903,1,OK
+how much_f8258184,how much,hritankar,how much,how much,0.9913,1,how much,0.9913,1,OK
+how much_aa91cb78,how much,hritankar,how much,how much,0.9847,1,how much,0.9847,1,OK
+how much_b416a108,how much,hritankar,how much,how much,0.9870,1,how much,0.9870,1,OK
+how much_926e488c,how much,hritankar,how much,how much,0.9878,1,how much,0.9878,1,OK
+how much_8d56c074,how much,hritankar,how much,how much,0.9863,1,how much,0.9863,1,OK
+how much_03054488,how much,hritankar,how much,how much,0.9883,1,how much,0.9883,1,OK
+how much_3398e77a,how much,hritankar,how much,how much,0.9868,1,how much,0.9868,1,OK
+how much_aa0183f9,how much,hritankar,how much,how much,0.9915,1,how much,0.9915,1,OK
+how much_3c81a570,how much,hritankar,how much,how much,0.9897,1,how much,0.9897,1,OK
+how much_f5d5f6a6,how much,hritankar,how much,how much,0.9816,1,how much,0.9816,1,OK
+how much_8eb768e7,how much,hritankar,how much,how much,0.9873,1,how much,0.9873,1,OK
+how much_3de63f4c,how much,hritankar,how much,how much,0.9926,1,how much,0.9926,1,OK
+come_ee09fd49,come,hritankar,come,come,0.9949,1,come,0.9949,1,OK
+come_55b64225,come,hritankar,come,come,0.9954,1,come,0.9954,1,OK
+come_bcd08707,come,hritankar,come,come,0.9925,1,come,0.9925,1,OK
+come_f566ffda,come,hritankar,come,come,0.9903,1,come,0.9903,1,OK
+come_7a060f32,come,hritankar,come,come,0.9924,1,come,0.9924,1,OK
+come_874ed139,come,hritankar,come,come,0.9951,1,come,0.9951,1,OK
+come_d3d93570,come,hritankar,come,come,0.9913,1,come,0.9913,1,OK
+come_a302758b,come,hritankar,come,come,0.9854,1,come,0.9854,1,OK
+come_7349954a,come,hritankar,come,come,0.9897,1,come,0.9897,1,OK
+come_17c8cd52,come,hritankar,come,come,0.9923,1,come,0.9923,1,OK
+come_e1b23fd3,come,hritankar,come,come,0.9925,1,come,0.9925,1,OK
+come_8aa36da3,come,hritankar,come,come,0.9928,1,come,0.9928,1,OK
+come_e238c18d,come,hritankar,come,come,0.9947,1,come,0.9947,1,OK
+come_7bc22642,come,hritankar,come,come,0.9943,1,come,0.9943,1,OK
+come_a62a1148,come,hritankar,come,come,0.9908,1,come,0.9908,1,OK
+go_b3136566,go,hritankar,go,go,0.6674,1,go,0.6674,1,OK
+go_a37a5f9a,go,hritankar,go,go,0.3496,0,go,0.3496,0,DROP_BELOW_THRESHOLD
+go_3957b789,go,hritankar,go,go,0.7410,1,go,0.7410,1,OK
+go_f343b7d2,go,hritankar,go,go,0.9499,1,go,0.9499,1,OK
+go_b5be0b96,go,hritankar,go,go,0.8784,1,go,0.8784,1,OK
+go_1ecf0479,go,hritankar,go,go,0.9096,1,go,0.9096,1,OK
+go_3ee2d670,go,hritankar,go,go,0.9624,1,go,0.9624,1,OK
+go_7d9cdf41,go,hritankar,go,go,0.9708,1,go,0.9708,1,OK
+go_ed6dfc44,go,hritankar,go,go,0.9271,1,go,0.9271,1,OK
+go_94ae4d76,go,hritankar,go,go,0.9353,1,go,0.9353,1,OK
+go_5b25a49e,go,hritankar,go,go,0.9459,1,go,0.9459,1,OK
+go_0aeb6721,go,hritankar,go,go,0.7285,1,go,0.7285,1,OK
+go_72ec2db2,go,hritankar,go,go,0.9562,1,go,0.9562,1,OK
+go_d0955073,go,hritankar,go,go,0.9604,1,go,0.9604,1,OK
+go_030515fc,go,hritankar,go,go,0.8917,1,go,0.8917,1,OK
+sit_3a10629e,sit,hritankar,sit,sit,0.9899,1,sit,0.9899,1,OK
+sit_46820886,sit,hritankar,sit,sit,0.9890,1,sit,0.9890,1,OK
+sit_82e8eb81,sit,hritankar,sit,sit,0.9900,1,sit,0.9900,1,OK
+sit_65c629df,sit,hritankar,sit,sit,0.9885,1,sit,0.9885,1,OK
+sit_05096957,sit,hritankar,sit,sit,0.9914,1,sit,0.9914,1,OK
+sit_0d699b8c,sit,hritankar,sit,sit,0.9913,1,sit,0.9913,1,OK
+sit_6205dc88,sit,hritankar,sit,sit,0.9898,1,sit,0.9898,1,OK
+sit_d0e64fd3,sit,hritankar,sit,sit,0.9895,1,sit,0.9895,1,OK
+sit_334381c3,sit,hritankar,sit,sit,0.9899,1,sit,0.9899,1,OK
+sit_c1fdaee7,sit,hritankar,sit,sit,0.9913,1,sit,0.9913,1,OK
+sit_065d1b01,sit,hritankar,sit,sit,0.9911,1,sit,0.9911,1,OK
+sit_0d454c17,sit,hritankar,sit,sit,0.9884,1,sit,0.9884,1,OK
+sit_1e2e7dc1,sit,hritankar,sit,sit,0.9908,1,sit,0.9908,1,OK
+sit_19b12750,sit,hritankar,sit,sit,0.9909,1,sit,0.9909,1,OK
+sit_e02322fe,sit,hritankar,sit,sit,0.9895,1,sit,0.9895,1,OK
+sit_fa279d28,sit,hritankar,sit,sit,0.9906,1,sit,0.9906,1,OK
+stand_073ed7c8,stand,hritankar,stand,stand,0.9836,1,stand,0.9836,1,OK
+stand_d6ef0f41,stand,hritankar,stand,stand,0.9850,1,stand,0.9850,1,OK
+stand_bc4f3027,stand,hritankar,stand,stand,0.9851,1,stand,0.9851,1,OK
+stand_62afaf5b,stand,hritankar,stand,stand,0.9886,1,stand,0.9886,1,OK
+stand_72ebcf98,stand,hritankar,stand,stand,0.9894,1,stand,0.9894,1,OK
+stand_529eb681,stand,hritankar,stand,stand,0.9903,1,stand,0.9903,1,OK
+stand_27a6583a,stand,hritankar,stand,stand,0.9762,1,stand,0.9762,1,OK
+stand_43aa6425,stand,hritankar,stand,stand,0.9898,1,stand,0.9898,1,OK
+stand_6b31ce87,stand,hritankar,stand,stand,0.9897,1,stand,0.9897,1,OK
+stand_eddb0f9e,stand,hritankar,stand,stand,0.9913,1,stand,0.9913,1,OK
+stand_45b06a28,stand,hritankar,stand,stand,0.9900,1,stand,0.9900,1,OK
+stand_f6e06ae1,stand,hritankar,stand,stand,0.9860,1,stand,0.9860,1,OK
+stand_ee4a3090,stand,hritankar,stand,stand,0.9500,1,stand,0.9500,1,OK
+stand_ef44e7a3,stand,hritankar,stand,stand,0.9918,1,stand,0.9918,1,OK
+stand_98903796,stand,hritankar,stand,stand,0.9917,1,stand,0.9917,1,OK
+wait_f04c4999,wait,hritankar,wait,wait,0.9920,1,wait,0.9920,1,OK
+wait_7bb696d8,wait,hritankar,wait,wait,0.9902,1,wait,0.9902,1,OK
+wait_8828576b,wait,hritankar,wait,wait,0.9923,1,wait,0.9923,1,OK
+wait_513ea034,wait,hritankar,wait,wait,0.9915,1,wait,0.9915,1,OK
+wait_a10d1a5d,wait,hritankar,wait,wait,0.9914,1,wait,0.9914,1,OK
+wait_0c940c90,wait,hritankar,wait,wait,0.9916,1,wait,0.9916,1,OK
+wait_b1d8b4d8,wait,hritankar,wait,wait,0.9926,1,wait,0.9926,1,OK
+wait_ad8c85f4,wait,hritankar,wait,wait,0.9924,1,wait,0.9924,1,OK
+wait_7aa43d36,wait,hritankar,wait,wait,0.9901,1,wait,0.9901,1,OK
+wait_cfcd8fbd,wait,hritankar,wait,wait,0.9907,1,wait,0.9907,1,OK
+wait_4ace32d6,wait,hritankar,wait,wait,0.9900,1,wait,0.9900,1,OK
+wait_8a9ec42f,wait,hritankar,wait,wait,0.9924,1,wait,0.9924,1,OK
+wait_f4a7fa97,wait,hritankar,wait,wait,0.9922,1,wait,0.9922,1,OK
+wait_35e51c68,wait,hritankar,wait,wait,0.9915,1,wait,0.9915,1,OK
+wait_de332277,wait,hritankar,wait,wait,0.9918,1,wait,0.9918,1,OK
+stop_1c5eec18,stop,hritankar,stop,stop,0.9870,1,stop,0.9870,1,OK
+stop_0e785eca,stop,hritankar,stop,stop,0.9191,1,stop,0.9191,1,OK
+stop_0cea18d7,stop,hritankar,stop,stop,0.9852,1,stop,0.9852,1,OK
+stop_a0800100,stop,hritankar,stop,stop,0.8881,1,stop,0.8881,1,OK
+stop_18f5779c,stop,hritankar,stop,stop,0.9878,1,stop,0.9878,1,OK
+stop_9cd716f6,stop,hritankar,stop,stop,0.9828,1,stop,0.9828,1,OK
+stop_480c579b,stop,hritankar,stop,stop,0.9796,1,stop,0.9796,1,OK
+stop_2b86e8e6,stop,hritankar,stop,stop,0.9762,1,stop,0.9762,1,OK
+stop_952c23f5,stop,hritankar,stop,stop,0.9872,1,stop,0.9872,1,OK
+stop_1a876251,stop,hritankar,stop,stop,0.9830,1,stop,0.9830,1,OK
+stop_f638f691,stop,hritankar,stop,stop,0.9845,1,stop,0.9845,1,OK
+stop_df7b5ea1,stop,hritankar,stop,stop,0.9883,1,stop,0.9883,1,OK
+stop_af556009,stop,hritankar,stop,stop,0.9893,1,stop,0.9893,1,OK
+stop_b52992d3,stop,hritankar,stop,stop,0.9864,1,stop,0.9864,1,OK
+stop_2ba283a4,stop,hritankar,stop,stop,0.9883,1,stop,0.9883,1,OK
+stop_701fb9f7,stop,hritankar,stop,stop,0.9776,1,stop,0.9776,1,OK
+good_9385cc06,good,hritankar,good,good,0.9814,1,good,0.9814,1,OK
+good_f6d0cd86,good,hritankar,good,good,0.9862,1,good,0.9862,1,OK
+good_dc9d2204,good,hritankar,good,good,0.9876,1,good,0.9876,1,OK
+good_373ada8b,good,hritankar,good,good,0.9874,1,good,0.9874,1,OK
+good_a758ce23,good,hritankar,good,good,0.9846,1,good,0.9846,1,OK
+good_966acec7,good,hritankar,good,good,0.9851,1,good,0.9851,1,OK
+good_a93935eb,good,hritankar,good,good,0.9679,1,good,0.9679,1,OK
+good_a7bf1c73,good,hritankar,good,good,0.9570,1,good,0.9570,1,OK
+good_e5a484b7,good,hritankar,good,good,0.9692,1,good,0.9692,1,OK
+good_6020d37e,good,hritankar,good,good,0.9668,1,good,0.9668,1,OK
+good_2d22354b,good,hritankar,good,good,0.9436,1,good,0.9436,1,OK
+good_a21a29a5,good,hritankar,good,good,0.9662,1,good,0.9662,1,OK
+good_1369bb05,good,hritankar,good,good,0.9809,1,good,0.9809,1,OK
+good_f846811f,good,hritankar,good,good,0.9808,1,good,0.9808,1,OK
+good_686e0902,good,hritankar,good,good,0.9753,1,good,0.9753,1,OK
+bad_3a865910,bad,hritankar,bad,bad,0.9811,1,bad,0.9811,1,OK
+bad_f4e5d894,bad,hritankar,bad,bad,0.9395,1,bad,0.9395,1,OK
+bad_4b0f8020,bad,hritankar,bad,bad,0.9909,1,bad,0.9909,1,OK
+bad_5838051a,bad,hritankar,bad,bad,0.9876,1,bad,0.9876,1,OK
+bad_040e574f,bad,hritankar,bad,bad,0.9885,1,bad,0.9885,1,OK
+bad_fd10d4f7,bad,hritankar,bad,bad,0.9815,1,bad,0.9815,1,OK
+bad_561b17f2,bad,hritankar,bad,bad,0.9731,1,bad,0.9731,1,OK
+bad_86ef261b,bad,hritankar,bad,bad,0.9446,1,bad,0.9446,1,OK
+bad_fdd0a30e,bad,hritankar,bad,bad,0.9817,1,bad,0.9817,1,OK
+bad_08b427bd,bad,hritankar,bad,bad,0.9855,1,bad,0.9855,1,OK
+bad_bf532264,bad,hritankar,bad,bad,0.9798,1,bad,0.9798,1,OK
+bad_a4a553f8,bad,hritankar,bad,bad,0.9898,1,bad,0.9898,1,OK
+bad_ed684b9f,bad,hritankar,bad,bad,0.9805,1,bad,0.9805,1,OK
+bad_f8b78f58,bad,hritankar,bad,bad,0.9911,1,bad,0.9911,1,OK
+bad_90dea37d,bad,hritankar,bad,bad,0.9881,1,bad,0.9881,1,OK
+welcome_d557fda1,welcome,hritankar,welcome,welcome,0.9861,1,welcome,0.9861,1,OK
+welcome_e888d448,welcome,hritankar,welcome,welcome,0.9659,1,welcome,0.9659,1,OK
+welcome_14e71aae,welcome,hritankar,welcome,welcome,0.9802,1,welcome,0.9802,1,OK
+welcome_c240b2b5,welcome,hritankar,welcome,welcome,0.9903,1,welcome,0.9903,1,OK
+welcome_c9e9973a,welcome,hritankar,welcome,welcome,0.9911,1,welcome,0.9911,1,OK
+welcome_15a4420b,welcome,hritankar,welcome,welcome,0.9881,1,welcome,0.9881,1,OK
+welcome_08fbab2b,welcome,hritankar,welcome,welcome,0.9904,1,welcome,0.9904,1,OK
+welcome_198a8b04,welcome,hritankar,welcome,welcome,0.9890,1,welcome,0.9890,1,OK
+welcome_3b7f17ed,welcome,hritankar,welcome,welcome,0.9743,1,welcome,0.9743,1,OK
+welcome_56359e07,welcome,hritankar,welcome,welcome,0.9876,1,welcome,0.9876,1,OK
+welcome_e0760572,welcome,hritankar,welcome,welcome,0.9785,1,welcome,0.9785,1,OK
+welcome_757e61e6,welcome,hritankar,welcome,welcome,0.9720,1,welcome,0.9720,1,OK
+welcome_47483cbe,welcome,hritankar,welcome,welcome,0.9792,1,welcome,0.9792,1,OK
+welcome_30d4ebda,welcome,hritankar,welcome,welcome,0.9839,1,welcome,0.9839,1,OK
+welcome_5ad2a3cf,welcome,hritankar,welcome,welcome,0.9564,1,welcome,0.9564,1,OK
+goodbye_c15bb209,goodbye,hritankar,goodbye,goodbye,0.9556,1,goodbye,0.9556,1,OK
+goodbye_53a9149c,goodbye,hritankar,goodbye,goodbye,0.9533,1,goodbye,0.9533,1,OK
+goodbye_81fbcf43,goodbye,hritankar,goodbye,goodbye,0.9241,1,goodbye,0.9241,1,OK
+goodbye_5754ca77,goodbye,hritankar,goodbye,goodbye,0.9445,1,goodbye,0.9445,1,OK
+goodbye_7e0261fb,goodbye,hritankar,goodbye,goodbye,0.9598,1,goodbye,0.9598,1,OK
+goodbye_bb42282f,goodbye,hritankar,goodbye,goodbye,0.9609,1,goodbye,0.9609,1,OK
+goodbye_97594ea5,goodbye,hritankar,goodbye,goodbye,0.9622,1,goodbye,0.9622,1,OK
+goodbye_e74ae738,goodbye,hritankar,goodbye,goodbye,0.9587,1,goodbye,0.9587,1,OK
+goodbye_bf36015a,goodbye,hritankar,goodbye,goodbye,0.9475,1,goodbye,0.9475,1,OK
+goodbye_44552d15,goodbye,hritankar,goodbye,goodbye,0.9643,1,goodbye,0.9643,1,OK
+goodbye_d9df50e3,goodbye,hritankar,goodbye,goodbye,0.9430,1,goodbye,0.9430,1,OK
+goodbye_53b4ffb0,goodbye,hritankar,goodbye,goodbye,0.9650,1,goodbye,0.9650,1,OK
+goodbye_e3077075,goodbye,hritankar,goodbye,goodbye,0.9489,1,goodbye,0.9489,1,OK
+goodbye_dbef02c5,goodbye,hritankar,goodbye,goodbye,0.9620,1,goodbye,0.9620,1,OK
+goodbye_1a691e11,goodbye,hritankar,goodbye,goodbye,0.9475,1,goodbye,0.9475,1,OK
+hello_0ca9f452,hello,ayush,hello,hello,0.9664,1,hello,0.9664,1,OK
+hello_65e89785,hello,ayush,hello,hello,0.9780,1,hello,0.9780,1,OK
+hello_c5f7e49d,hello,ayush,hello,hello,0.9761,1,hello,0.9761,1,OK
+hello_e732459d,hello,ayush,hello,hello,0.9836,1,hello,0.9836,1,OK
+hello_abcea336,hello,ayush,hello,hello,0.9794,1,hello,0.9794,1,OK
+hello_a5004005,hello,ayush,hello,hello,0.9793,1,hello,0.9793,1,OK
+hello_7f83b9bd,hello,ayush,hello,hello,0.9767,1,hello,0.9767,1,OK
+hello_fea601bc,hello,ayush,hello,hello,0.9242,1,hello,0.9242,1,OK
+hello_5283b8ce,hello,ayush,hello,hello,0.9882,1,hello,0.9882,1,OK
+hello_b0b97e16,hello,ayush,hello,hello,0.9819,1,hello,0.9819,1,OK
+hello_63048844,hello,ayush,hello,hello,0.9866,1,hello,0.9866,1,OK
+hello_98aada66,hello,ayush,hello,hello,0.9871,1,hello,0.9871,1,OK
+hello_d1dc11fb,hello,ayush,hello,hello,0.9866,1,hello,0.9866,1,OK
+hello_d62fa521,hello,ayush,hello,hello,0.9856,1,hello,0.9856,1,OK
+hello_007c286a,hello,ayush,hello,hello,0.9870,1,hello,0.9870,1,OK
+thank you_d9840143,thank you,ayush,thank you,thank you,0.8963,1,thank you,0.8963,1,OK
+thank you_543bfe08,thank you,ayush,thank you,thank you,0.9774,1,thank you,0.9774,1,OK
+thank you_365c37fd,thank you,ayush,thank you,thank you,0.9610,1,thank you,0.9610,1,OK
+thank you_914589ce,thank you,ayush,thank you,thank you,0.9779,1,thank you,0.9779,1,OK
+thank you_79ac00a4,thank you,ayush,thank you,thank you,0.9720,1,thank you,0.9720,1,OK
+thank you_08a444f4,thank you,ayush,thank you,thank you,0.9413,1,thank you,0.9413,1,OK
+thank you_7d58757f,thank you,ayush,thank you,thank you,0.9518,1,thank you,0.9518,1,OK
+thank you_c3c92f8e,thank you,ayush,thank you,thank you,0.8435,1,thank you,0.8435,1,OK
+thank you_0f65ca26,thank you,ayush,thank you,thank you,0.9175,1,thank you,0.9175,1,OK
+thank you_f8fc08d8,thank you,ayush,thank you,thank you,0.8772,1,thank you,0.8772,1,OK
+thank you_15a09c8d,thank you,ayush,thank you,thank you,0.8946,1,thank you,0.8946,1,OK
+thank you_e3d7622c,thank you,ayush,thank you,thank you,0.8710,1,thank you,0.8710,1,OK
+thank you_1558ca02,thank you,ayush,thank you,thank you,0.8629,1,thank you,0.8629,1,OK
+thank you_5e67d030,thank you,ayush,thank you,thank you,0.9652,1,thank you,0.9652,1,OK
+thank you_6aebb6f4,thank you,ayush,thank you,thank you,0.8861,1,thank you,0.8861,1,OK
+please_8ccb32bc,please,ayush,please,please,0.9571,1,please,0.9571,1,OK
+please_60ea4982,please,ayush,please,please,0.9590,1,please,0.9590,1,OK
+please_babc08d5,please,ayush,please,please,0.9572,1,please,0.9572,1,OK
+please_860b43d8,please,ayush,please,please,0.9408,1,please,0.9408,1,OK
+please_0a740279,please,ayush,please,please,0.9644,1,please,0.9644,1,OK
+please_c5286aaf,please,ayush,please,please,0.9652,1,please,0.9652,1,OK
+please_c1751573,please,ayush,please,medicine,0.4286,0,medicine,0.4286,0,WRONG
+please_e05e9259,please,ayush,please,please,0.9376,1,please,0.9376,1,OK
+please_923a8538,please,ayush,please,please,0.8948,1,please,0.8948,1,OK
+please_08216d20,please,ayush,please,please,0.8435,1,please,0.8435,1,OK
+please_209f6459,please,ayush,please,please,0.9422,1,please,0.9422,1,OK
+please_2d85f851,please,ayush,please,please,0.9473,1,please,0.9473,1,OK
+please_eb90e19d,please,ayush,please,please,0.9587,1,please,0.9588,1,OK
+please_fc97aa79,please,ayush,please,please,0.8207,1,please,0.8207,1,OK
+please_38bfa5f7,please,ayush,please,please,0.9471,1,please,0.9471,1,OK
+sorry_5f6160f0,sorry,ayush,sorry,sorry,0.9384,1,sorry,0.9384,1,OK
+sorry_ce389b9a,sorry,ayush,sorry,sorry,0.9447,1,sorry,0.9447,1,OK
+sorry_374c960b,sorry,ayush,sorry,sorry,0.9111,1,sorry,0.9111,1,OK
+sorry_a979177c,sorry,ayush,sorry,sorry,0.9370,1,sorry,0.9370,1,OK
+sorry_5c32715c,sorry,ayush,sorry,sorry,0.8968,1,sorry,0.8968,1,OK
+sorry_c0efcde8,sorry,ayush,sorry,sorry,0.9568,1,sorry,0.9568,1,OK
+sorry_ecc12350,sorry,ayush,sorry,sorry,0.9514,1,sorry,0.9514,1,OK
+sorry_2f6c5672,sorry,ayush,sorry,sorry,0.9284,1,sorry,0.9284,1,OK
+sorry_699c7574,sorry,ayush,sorry,sorry,0.8997,1,sorry,0.8997,1,OK
+sorry_f3ecd81d,sorry,ayush,sorry,sorry,0.8499,1,sorry,0.8499,1,OK
+sorry_16ac25ef,sorry,ayush,sorry,sorry,0.8620,1,sorry,0.8620,1,OK
+sorry_86757a80,sorry,ayush,sorry,sorry,0.9620,1,sorry,0.9620,1,OK
+sorry_92956bf6,sorry,ayush,sorry,sorry,0.9571,1,sorry,0.9571,1,OK
+sorry_97bff6be,sorry,ayush,sorry,sorry,0.9573,1,sorry,0.9573,1,OK
+yes_1ea5b7cb,yes,ayush,yes,yes,0.9555,1,yes,0.9555,1,OK
+yes_20df06ce,yes,ayush,yes,yes,0.9695,1,yes,0.9695,1,OK
+yes_fea9410c,yes,ayush,yes,yes,0.9733,1,yes,0.9733,1,OK
+yes_21929d97,yes,ayush,yes,yes,0.9646,1,yes,0.9646,1,OK
+yes_166571a9,yes,ayush,yes,yes,0.9534,1,yes,0.9534,1,OK
+yes_dcfec575,yes,ayush,yes,yes,0.9607,1,yes,0.9607,1,OK
+yes_fd201253,yes,ayush,yes,yes,0.9596,1,yes,0.9596,1,OK
+yes_112d2be1,yes,ayush,yes,yes,0.9654,1,yes,0.9654,1,OK
+yes_04d047bc,yes,ayush,yes,yes,0.9649,1,yes,0.9649,1,OK
+yes_fe970fe8,yes,ayush,yes,yes,0.9680,1,yes,0.9680,1,OK
+yes_eb477c65,yes,ayush,yes,yes,0.9635,1,yes,0.9635,1,OK
+yes_432dcd88,yes,ayush,yes,yes,0.9485,1,yes,0.9485,1,OK
+yes_185427e0,yes,ayush,yes,yes,0.9594,1,yes,0.9594,1,OK
+yes_9cf8fc00,yes,ayush,yes,yes,0.9073,1,yes,0.9073,1,OK
+yes_f8dabc30,yes,ayush,yes,yes,0.9502,1,yes,0.9502,1,OK
+no_ef2a9ffd,no,ayush,no,no,0.9782,1,no,0.9782,1,OK
+no_b8d275af,no,ayush,no,no,0.9721,1,no,0.9721,1,OK
+no_44f40501,no,ayush,no,no,0.9627,1,no,0.9627,1,OK
+no_93af8af9,no,ayush,no,no,0.9766,1,no,0.9766,1,OK
+no_d169165b,no,ayush,no,no,0.9799,1,no,0.9799,1,OK
+no_b3d0d633,no,ayush,no,no,0.9695,1,no,0.9695,1,OK
+no_5c374c91,no,ayush,no,no,0.9804,1,no,0.9804,1,OK
+no_e6fd8675,no,ayush,no,no,0.9506,1,no,0.9506,1,OK
+no_f60ebf8a,no,ayush,no,no,0.7740,1,no,0.7740,1,OK
+no_0cbe2065,no,ayush,no,no,0.8968,1,no,0.8968,1,OK
+no_044c6b0d,no,ayush,no,no,0.8805,1,no,0.8805,1,OK
+no_b1a89d7f,no,ayush,no,no,0.9730,1,no,0.9730,1,OK
+no_155a3a6f,no,ayush,no,no,0.9697,1,no,0.9697,1,OK
+no_28339c81,no,ayush,no,no,0.8318,1,no,0.8318,1,OK
+no_3165a8e7,no,ayush,no,no,0.8436,1,no,0.8436,1,OK
+help_436e9e09,help,ayush,help,help,0.9897,1,help,0.9897,1,OK
+help_27332d2a,help,ayush,help,help,0.9876,1,help,0.9876,1,OK
+help_a34d8c65,help,ayush,help,help,0.9859,1,help,0.9859,1,OK
+help_2d95f32e,help,ayush,help,help,0.9889,1,help,0.9889,1,OK
+help_623000e1,help,ayush,help,help,0.9914,1,help,0.9914,1,OK
+help_e62185b7,help,ayush,help,help,0.9901,1,help,0.9901,1,OK
+help_e73daf11,help,ayush,help,help,0.9913,1,help,0.9913,1,OK
+help_ec3bd9f2,help,ayush,help,help,0.9914,1,help,0.9914,1,OK
+help_713a5e4c,help,ayush,help,help,0.9919,1,help,0.9919,1,OK
+help_fb3b243d,help,ayush,help,help,0.9925,1,help,0.9925,1,OK
+help_d1f79e73,help,ayush,help,help,0.9913,1,help,0.9913,1,OK
+help_1d88065e,help,ayush,help,help,0.9635,1,help,0.9635,1,OK
+help_17e57f3d,help,ayush,help,help,0.9910,1,help,0.9910,1,OK
+water_581cb930,water,ayush,water,water,0.8982,1,water,0.8982,1,OK
+water_b6eb0355,water,ayush,water,water,0.8651,1,water,0.8651,1,OK
+water_f2f155fb,water,ayush,water,water,0.7689,1,water,0.7689,1,OK
+water_90afdbd1,water,ayush,water,water,0.7649,1,water,0.7649,1,OK
+water_d87a5b8c,water,ayush,water,water,0.6963,1,water,0.6963,1,OK
+water_dc1b0882,water,ayush,water,water,0.5681,1,water,0.5681,1,OK
+water_686e2d5e,water,ayush,water,water,0.7888,1,water,0.7888,1,OK
+water_79b6dc4f,water,ayush,water,water,0.8113,1,water,0.8113,1,OK
+water_99ade91f,water,ayush,water,water,0.8409,1,water,0.8409,1,OK
+water_42ad4f62,water,ayush,water,water,0.8533,1,water,0.8533,1,OK
+food_de2e0a55,food,ayush,food,food,0.9348,1,food,0.9348,1,OK
+food_6d61cc4b,food,ayush,food,medicine,0.7459,1,medicine,0.7459,1,WRONG
+food_6c72deff,food,ayush,food,food,0.9320,1,food,0.9320,1,OK
+food_71f2b3b7,food,ayush,food,food,0.9059,1,food,0.9059,1,OK
+food_feae68b7,food,ayush,food,food,0.8840,1,food,0.8840,1,OK
+food_f70ab923,food,ayush,food,food,0.9069,1,food,0.9069,1,OK
+food_8d520ee9,food,ayush,food,food,0.9242,1,food,0.9242,1,OK
+food_d53edbb7,food,ayush,food,food,0.9190,1,food,0.9190,1,OK
+food_c5324ebd,food,ayush,food,food,0.8993,1,food,0.8993,1,OK
+food_9acfd935,food,ayush,food,food,0.8865,1,food,0.8865,1,OK
+food_172010c7,food,ayush,food,food,0.9150,1,food,0.9150,1,OK
+medicine_22aba45e,medicine,ayush,medicine,medicine,0.9539,1,medicine,0.9539,1,OK
+medicine_214cb0d8,medicine,ayush,medicine,medicine,0.9460,1,medicine,0.9460,1,OK
+medicine_ce165e78,medicine,ayush,medicine,medicine,0.9659,1,medicine,0.9659,1,OK
+medicine_a9b9a9fb,medicine,ayush,medicine,medicine,0.9684,1,medicine,0.9684,1,OK
+medicine_49a3bab3,medicine,ayush,medicine,medicine,0.9396,1,medicine,0.9396,1,OK
+medicine_8aad3972,medicine,ayush,medicine,medicine,0.6911,1,medicine,0.6911,1,OK
+medicine_3ea207ea,medicine,ayush,medicine,medicine,0.8203,1,medicine,0.8203,1,OK
+medicine_f4fcebab,medicine,ayush,medicine,medicine,0.9294,1,medicine,0.9294,1,OK
+medicine_c973cf30,medicine,ayush,medicine,medicine,0.6395,1,medicine,0.6395,1,OK
+medicine_719e7b3a,medicine,ayush,medicine,medicine,0.9437,1,medicine,0.9437,1,OK
+medicine_96672111,medicine,ayush,medicine,medicine,0.8919,1,medicine,0.8919,1,OK
+medicine_6ca83350,medicine,ayush,medicine,medicine,0.9202,1,medicine,0.9202,1,OK
+medicine_d1e3fdce,medicine,ayush,medicine,medicine,0.6641,1,medicine,0.6641,1,OK
+medicine_49b0d50f,medicine,ayush,medicine,medicine,0.9025,1,medicine,0.9025,1,OK
+hospital_037e5068,hospital,ayush,hospital,hospital,0.9420,1,hospital,0.9420,1,OK
+hospital_29692b41,hospital,ayush,hospital,hospital,0.9324,1,hospital,0.9324,1,OK
+hospital_b8ba4208,hospital,ayush,hospital,hospital,0.9514,1,hospital,0.9514,1,OK
+hospital_aa5228b0,hospital,ayush,hospital,hospital,0.9738,1,hospital,0.9738,1,OK
+hospital_31fddb25,hospital,ayush,hospital,hospital,0.9451,1,hospital,0.9451,1,OK
+hospital_5b423a2f,hospital,ayush,hospital,hospital,0.9679,1,hospital,0.9679,1,OK
+hospital_3d1b66c4,hospital,ayush,hospital,hospital,0.9802,1,hospital,0.9802,1,OK
+hospital_1d477036,hospital,ayush,hospital,hospital,0.9707,1,hospital,0.9707,1,OK
+hospital_699b0836,hospital,ayush,hospital,hospital,0.9517,1,hospital,0.9517,1,OK
+hospital_17889dfe,hospital,ayush,hospital,hospital,0.9563,1,hospital,0.9563,1,OK
+hospital_cff6fcce,hospital,ayush,hospital,hospital,0.9783,1,hospital,0.9783,1,OK
+hospital_354b0439,hospital,ayush,hospital,hospital,0.9573,1,hospital,0.9573,1,OK
+hospital_32339118,hospital,ayush,hospital,hospital,0.9634,1,hospital,0.9634,1,OK
+emergency_b9cd0b25,emergency,ayush,emergency,emergency,0.9893,1,emergency,0.9893,1,OK
+emergency_73c02acd,emergency,ayush,emergency,emergency,0.9842,1,emergency,0.9842,1,OK
+emergency_fbfc5eed,emergency,ayush,emergency,emergency,0.9855,1,emergency,0.9855,1,OK
+emergency_f758d195,emergency,ayush,emergency,emergency,0.9897,1,emergency,0.9897,1,OK
+emergency_abeabf8c,emergency,ayush,emergency,emergency,0.9803,1,emergency,0.9803,1,OK
+emergency_6984c973,emergency,ayush,emergency,emergency,0.9161,1,emergency,0.9161,1,OK
+emergency_f130a878,emergency,ayush,emergency,emergency,0.9606,1,emergency,0.9606,1,OK
+emergency_b219c001,emergency,ayush,emergency,emergency,0.9749,1,emergency,0.9749,1,OK
+emergency_eb11f878,emergency,ayush,emergency,emergency,0.9830,1,emergency,0.9830,1,OK
+emergency_6b908d65,emergency,ayush,emergency,emergency,0.9900,1,emergency,0.9900,1,OK
+emergency_b4524275,emergency,ayush,emergency,emergency,0.8773,1,emergency,0.8773,1,OK
+emergency_f5993764,emergency,ayush,emergency,emergency,0.9260,1,emergency,0.9260,1,OK
+emergency_211eaee4,emergency,ayush,emergency,emergency,0.9857,1,emergency,0.9857,1,OK
+emergency_03fd51cd,emergency,ayush,emergency,emergency,0.9873,1,emergency,0.9873,1,OK
+emergency_1382bb9f,emergency,ayush,emergency,emergency,0.9900,1,emergency,0.9900,1,OK
+name_ef207c7e,name,ayush,name,name,0.9747,1,name,0.9747,1,OK
+name_60459f5f,name,ayush,name,name,0.9735,1,name,0.9735,1,OK
+name_529d1ce6,name,ayush,name,name,0.9718,1,name,0.9718,1,OK
+name_af24f975,name,ayush,name,name,0.9852,1,name,0.9852,1,OK
+name_d403aac5,name,ayush,name,name,0.9868,1,name,0.9868,1,OK
+name_7a256af4,name,ayush,name,name,0.9855,1,name,0.9855,1,OK
+name_e446fb75,name,ayush,name,name,0.9889,1,name,0.9889,1,OK
+name_396e2333,name,ayush,name,name,0.9877,1,name,0.9877,1,OK
+name_a8c52458,name,ayush,name,name,0.9879,1,name,0.9879,1,OK
+name_ca786704,name,ayush,name,name,0.9323,1,name,0.9323,1,OK
+name_11af56f1,name,ayush,name,name,0.9882,1,name,0.9882,1,OK
+name_b71902fc,name,ayush,name,name,0.9870,1,name,0.9870,1,OK
+name_75f6d9ad,name,ayush,name,name,0.9866,1,name,0.9866,1,OK
+name_c7dd51a3,name,ayush,name,name,0.9876,1,name,0.9876,1,OK
+name_462fd189,name,ayush,name,name,0.9770,1,name,0.9770,1,OK
+where_1e67fd2e,where,ayush,where,where,0.8411,1,where,0.8411,1,OK
+where_afd83ad6,where,ayush,where,where,0.9912,1,where,0.9912,1,OK
+where_9f6cff6a,where,ayush,where,where,0.9747,1,where,0.9747,1,OK
+where_21cd452d,where,ayush,where,where,0.9899,1,where,0.9899,1,OK
+where_6300489f,where,ayush,where,where,0.9949,1,where,0.9949,1,OK
+where_6d75863f,where,ayush,where,where,0.9963,1,where,0.9963,1,OK
+where_88c329a6,where,ayush,where,where,0.9922,1,where,0.9922,1,OK
+where_bc0cb6eb,where,ayush,where,where,0.9887,1,where,0.9887,1,OK
+where_85e55fc3,where,ayush,where,where,0.9949,1,where,0.9949,1,OK
+where_06c831bd,where,ayush,where,where,0.9948,1,where,0.9948,1,OK
+where_cbdd2823,where,ayush,where,where,0.9953,1,where,0.9953,1,OK
+where_55cf46ba,where,ayush,where,where,0.9946,1,where,0.9946,1,OK
+where_58a21a88,where,ayush,where,where,0.9955,1,where,0.9955,1,OK
+where_2942189d,where,ayush,where,where,0.9940,1,where,0.9940,1,OK
+where_d25fe303,where,ayush,where,where,0.9928,1,where,0.9928,1,OK
+when_fddde6f2,when,ayush,when,when,0.9345,1,when,0.9345,1,OK
+when_56e7d21b,when,ayush,when,when,0.9677,1,when,0.9677,1,OK
+when_55fa22d8,when,ayush,when,when,0.9646,1,when,0.9646,1,OK
+when_74d5c4d2,when,ayush,when,when,0.9543,1,when,0.9543,1,OK
+when_bd10ee87,when,ayush,when,when,0.9672,1,when,0.9672,1,OK
+when_8638b7bc,when,ayush,when,when,0.9556,1,when,0.9556,1,OK
+when_fa9c6bed,when,ayush,when,when,0.9665,1,when,0.9665,1,OK
+when_2eb50f9d,when,ayush,when,when,0.9601,1,when,0.9601,1,OK
+when_64ac3c3b,when,ayush,when,when,0.9554,1,when,0.9554,1,OK
+when_589eaaac,when,ayush,when,when,0.9423,1,when,0.9423,1,OK
+when_22c4983f,when,ayush,when,when,0.9669,1,when,0.9669,1,OK
+when_e3930759,when,ayush,when,when,0.9630,1,when,0.9630,1,OK
+when_596ec5f9,when,ayush,when,when,0.9646,1,when,0.9646,1,OK
+when_0e1e05b1,when,ayush,when,when,0.9611,1,when,0.9611,1,OK
+when_2a1bfc91,when,ayush,when,when,0.9716,1,when,0.9716,1,OK
+how much_a40abba8,how much,ayush,how much,how much,0.9907,1,how much,0.9907,1,OK
+how much_9cc8a2fa,how much,ayush,how much,how much,0.9863,1,how much,0.9863,1,OK
+how much_248efeda,how much,ayush,how much,how much,0.9883,1,how much,0.9883,1,OK
+how much_0cc2957b,how much,ayush,how much,how much,0.9489,1,how much,0.9489,1,OK
+how much_c1f2372b,how much,ayush,how much,how much,0.9848,1,how much,0.9848,1,OK
+how much_6d07ea3c,how much,ayush,how much,how much,0.9815,1,how much,0.9815,1,OK
+how much_95241109,how much,ayush,how much,how much,0.9874,1,how much,0.9874,1,OK
+how much_7df4e0f0,how much,ayush,how much,how much,0.9739,1,how much,0.9739,1,OK
+how much_49cf37c5,how much,ayush,how much,how much,0.9814,1,how much,0.9814,1,OK
+how much_cc996fbf,how much,ayush,how much,how much,0.9762,1,how much,0.9762,1,OK
+how much_b7b89be8,how much,ayush,how much,how much,0.8920,1,how much,0.8920,1,OK
+how much_ce5d496d,how much,ayush,how much,how much,0.9811,1,how much,0.9811,1,OK
+how much_fce701a4,how much,ayush,how much,how much,0.9853,1,how much,0.9853,1,OK
+how much_57a0cf41,how much,ayush,how much,how much,0.9810,1,how much,0.9810,1,OK
+how much_c6af15db,how much,ayush,how much,how much,0.9777,1,how much,0.9777,1,OK
+come_af867cb7,come,ayush,come,come,0.9923,1,come,0.9923,1,OK
+come_224ca3ce,come,ayush,come,come,0.9923,1,come,0.9923,1,OK
+come_0cde9d31,come,ayush,come,come,0.9881,1,come,0.9881,1,OK
+come_59ca012a,come,ayush,come,come,0.9947,1,come,0.9947,1,OK
+come_ec878579,come,ayush,come,come,0.9938,1,come,0.9938,1,OK
+come_aaf56dbf,come,ayush,come,come,0.9920,1,come,0.9920,1,OK
+come_513dd979,come,ayush,come,come,0.9901,1,come,0.9901,1,OK
+come_8f53554f,come,ayush,come,come,0.9910,1,come,0.9910,1,OK
+come_186e45cb,come,ayush,come,come,0.9913,1,come,0.9913,1,OK
+come_624dafaa,come,ayush,come,come,0.9748,1,come,0.9748,1,OK
+come_890bf7a2,come,ayush,come,come,0.9950,1,come,0.9950,1,OK
+come_6165b621,come,ayush,come,come,0.9922,1,come,0.9922,1,OK
+come_bf43a710,come,ayush,come,come,0.9909,1,come,0.9909,1,OK
+come_e7c068eb,come,ayush,come,come,0.9900,1,come,0.9900,1,OK
+come_b6551df7,come,ayush,come,come,0.9901,1,come,0.9901,1,OK
+go_39e58b07,go,ayush,go,go,0.9556,1,go,0.9556,1,OK
+go_43507407,go,ayush,go,go,0.9450,1,go,0.9450,1,OK
+go_8e76c4e9,go,ayush,go,go,0.9572,1,go,0.9572,1,OK
+go_6e9a5d4d,go,ayush,go,go,0.9315,1,go,0.9315,1,OK
+go_309dde55,go,ayush,go,go,0.9411,1,go,0.9411,1,OK
+go_81c55375,go,ayush,go,go,0.8834,1,go,0.8834,1,OK
+go_952b7753,go,ayush,go,go,0.7770,1,go,0.7770,1,OK
+go_093b1dd2,go,ayush,go,go,0.9597,1,go,0.9597,1,OK
+go_45cdd6a3,go,ayush,go,go,0.9726,1,go,0.9726,1,OK
+go_09e6ff86,go,ayush,go,go,0.9726,1,go,0.9726,1,OK
+go_a34b1320,go,ayush,go,go,0.9446,1,go,0.9446,1,OK
+go_0d80d8db,go,ayush,go,go,0.9408,1,go,0.9408,1,OK
+go_4aa0bb03,go,ayush,go,go,0.9563,1,go,0.9563,1,OK
+go_56376fc7,go,ayush,go,go,0.9729,1,go,0.9729,1,OK
+go_e7a1c23e,go,ayush,go,go,0.9609,1,go,0.9609,1,OK
+sit_31e1f027,sit,ayush,sit,sit,0.9898,1,sit,0.9898,1,OK
+sit_426ca988,sit,ayush,sit,sit,0.9903,1,sit,0.9903,1,OK
+sit_6fb4e51f,sit,ayush,sit,sit,0.9860,1,sit,0.9860,1,OK
+sit_5d1d0f06,sit,ayush,sit,sit,0.9857,1,sit,0.9857,1,OK
+sit_e9436258,sit,ayush,sit,sit,0.9870,1,sit,0.9870,1,OK
+sit_b2c6a851,sit,ayush,sit,sit,0.9844,1,sit,0.9844,1,OK
+sit_418e696f,sit,ayush,sit,sit,0.9825,1,sit,0.9825,1,OK
+sit_03eb3637,sit,ayush,sit,sit,0.9737,1,sit,0.9737,1,OK
+sit_6f92c8e5,sit,ayush,sit,sit,0.9746,1,sit,0.9746,1,OK
+sit_1c988b2f,sit,ayush,sit,sit,0.9710,1,sit,0.9710,1,OK
+sit_76df124c,sit,ayush,sit,sit,0.9735,1,sit,0.9735,1,OK
+sit_947f2270,sit,ayush,sit,sit,0.9831,1,sit,0.9831,1,OK
+sit_722ae7cd,sit,ayush,sit,sit,0.9613,1,sit,0.9613,1,OK
+sit_1ae2cefc,sit,ayush,sit,sit,0.9696,1,sit,0.9696,1,OK
+stand_fb779147,stand,ayush,stand,stand,0.9146,1,stand,0.9146,1,OK
+stand_f59449c3,stand,ayush,stand,stand,0.9812,1,stand,0.9812,1,OK
+stand_2a9dae46,stand,ayush,stand,stand,0.9842,1,stand,0.9842,1,OK
+stand_d86f37b7,stand,ayush,stand,stand,0.9756,1,stand,0.9756,1,OK
+stand_901dcb9f,stand,ayush,stand,stand,0.9814,1,stand,0.9814,1,OK
+stand_fe8f2472,stand,ayush,stand,stand,0.9777,1,stand,0.9777,1,OK
+stand_c5eb91e8,stand,ayush,stand,stand,0.9669,1,stand,0.9669,1,OK
+stand_accab3d1,stand,ayush,stand,stand,0.9905,1,stand,0.9905,1,OK
+stand_919e65c4,stand,ayush,stand,stand,0.9839,1,stand,0.9839,1,OK
+stand_ec8b8b06,stand,ayush,stand,stand,0.9746,1,stand,0.9746,1,OK
+stand_025a40e5,stand,ayush,stand,stand,0.9713,1,stand,0.9713,1,OK
+stand_760e36d1,stand,ayush,stand,stand,0.9840,1,stand,0.9840,1,OK
+stand_2909c30c,stand,ayush,stand,stand,0.9850,1,stand,0.9850,1,OK
+stand_27261482,stand,ayush,stand,stand,0.9854,1,stand,0.9854,1,OK
+stand_362ce7ae,stand,ayush,stand,stand,0.9875,1,stand,0.9875,1,OK
+wait_a8041e01,wait,ayush,wait,wait,0.9868,1,wait,0.9868,1,OK
+wait_2e5596f4,wait,ayush,wait,wait,0.9726,1,wait,0.9726,1,OK
+wait_16a54c12,wait,ayush,wait,wait,0.9915,1,wait,0.9915,1,OK
+wait_326b1b25,wait,ayush,wait,wait,0.9890,1,wait,0.9890,1,OK
+wait_888a92a2,wait,ayush,wait,wait,0.9862,1,wait,0.9862,1,OK
+wait_344a9305,wait,ayush,wait,wait,0.9868,1,wait,0.9868,1,OK
+wait_24272a2c,wait,ayush,wait,wait,0.9829,1,wait,0.9829,1,OK
+wait_d9b119e3,wait,ayush,wait,wait,0.9866,1,wait,0.9866,1,OK
+wait_1b4e8012,wait,ayush,wait,wait,0.9689,1,wait,0.9689,1,OK
+wait_a1beaf6b,wait,ayush,wait,wait,0.9833,1,wait,0.9833,1,OK
+wait_8e89c98f,wait,ayush,wait,wait,0.9879,1,wait,0.9879,1,OK
+wait_8f5f6f43,wait,ayush,wait,wait,0.9860,1,wait,0.9860,1,OK
+wait_074af427,wait,ayush,wait,wait,0.9857,1,wait,0.9857,1,OK
+wait_e29998f2,wait,ayush,wait,wait,0.9878,1,wait,0.9878,1,OK
+wait_929afbf3,wait,ayush,wait,wait,0.9872,1,wait,0.9872,1,OK
+stop_7bfe185c,stop,ayush,stop,stop,0.9859,1,stop,0.9859,1,OK
+stop_3290a0fc,stop,ayush,stop,stop,0.9345,1,stop,0.9345,1,OK
+stop_a3f416a4,stop,ayush,stop,stop,0.9492,1,stop,0.9492,1,OK
+stop_d6401c03,stop,ayush,stop,stop,0.9876,1,stop,0.9876,1,OK
+stop_85ec329c,stop,ayush,stop,stop,0.9638,1,stop,0.9638,1,OK
+stop_ec8a7d74,stop,ayush,stop,stop,0.9791,1,stop,0.9791,1,OK
+stop_c3c69978,stop,ayush,stop,stop,0.9544,1,stop,0.9544,1,OK
+stop_0da28e3b,stop,ayush,stop,stop,0.9253,1,stop,0.9253,1,OK
+stop_0f86660c,stop,ayush,stop,stop,0.7245,1,stop,0.7245,1,OK
+stop_f908d3b7,stop,ayush,stop,stop,0.9864,1,stop,0.9864,1,OK
+stop_01dd9e6b,stop,ayush,stop,stop,0.9719,1,stop,0.9719,1,OK
+stop_e97f3a6f,stop,ayush,stop,stop,0.5233,1,stop,0.5233,1,OK
+stop_43906570,stop,ayush,stop,stop,0.9870,1,stop,0.9870,1,OK
+stop_9a7a7487,stop,ayush,stop,stop,0.9783,1,stop,0.9783,1,OK
+good_d7ce4dc3,good,ayush,good,good,0.9809,1,good,0.9809,1,OK
+good_7e9e1faf,good,ayush,good,good,0.9863,1,good,0.9863,1,OK
+good_f902fd72,good,ayush,good,good,0.9822,1,good,0.9822,1,OK
+good_12cc399b,good,ayush,good,good,0.9768,1,good,0.9768,1,OK
+good_7b3b5852,good,ayush,good,good,0.9853,1,good,0.9853,1,OK
+good_b458f7bc,good,ayush,good,good,0.9788,1,good,0.9788,1,OK
+good_d732789f,good,ayush,good,good,0.9885,1,good,0.9885,1,OK
+good_1841358a,good,ayush,good,good,0.7358,1,good,0.7358,1,OK
+good_fd56175c,good,ayush,good,good,0.9808,1,good,0.9808,1,OK
+good_265e617b,good,ayush,good,good,0.9886,1,good,0.9886,1,OK
+good_cc55000b,good,ayush,good,good,0.9876,1,good,0.9876,1,OK
+good_bfc692bd,good,ayush,good,good,0.7003,1,good,0.7003,1,OK
+good_e4b1df5c,good,ayush,good,good,0.8100,1,good,0.8100,1,OK
+good_95631b74,good,ayush,good,sorry,0.4796,0,sorry,0.4796,0,WRONG
+good_5f2b91fa,good,ayush,good,good,0.9059,1,good,0.9059,1,OK
+bad_9dcd991a,bad,ayush,bad,bad,0.9757,1,bad,0.9757,1,OK
+bad_367c3922,bad,ayush,bad,bad,0.9501,1,bad,0.9501,1,OK
+bad_e815e115,bad,ayush,bad,bad,0.9317,1,bad,0.9317,1,OK
+bad_b08a7425,bad,ayush,bad,bad,0.9828,1,bad,0.9828,1,OK
+bad_6843a55b,bad,ayush,bad,bad,0.9896,1,bad,0.9896,1,OK
+bad_76143f6f,bad,ayush,bad,bad,0.9921,1,bad,0.9921,1,OK
+bad_57084290,bad,ayush,bad,bad,0.9903,1,bad,0.9903,1,OK
+bad_4bf83373,bad,ayush,bad,bad,0.9871,1,bad,0.9871,1,OK
+bad_905ed64b,bad,ayush,bad,bad,0.9900,1,bad,0.9900,1,OK
+bad_7627669a,bad,ayush,bad,bad,0.9880,1,bad,0.9880,1,OK
+bad_16de2679,bad,ayush,bad,bad,0.9811,1,bad,0.9811,1,OK
+bad_9844a6eb,bad,ayush,bad,bad,0.9875,1,bad,0.9875,1,OK
+bad_b17bba64,bad,ayush,bad,bad,0.9634,1,bad,0.9634,1,OK
+bad_787c7dff,bad,ayush,bad,bad,0.9844,1,bad,0.9844,1,OK
+bad_1d3b7b7d,bad,ayush,bad,bad,0.9130,1,bad,0.9130,1,OK
+welcome_000d6805,welcome,ayush,welcome,welcome,0.9867,1,welcome,0.9867,1,OK
+welcome_b7f830c9,welcome,ayush,welcome,welcome,0.9913,1,welcome,0.9913,1,OK
+welcome_80b1df35,welcome,ayush,welcome,welcome,0.9862,1,welcome,0.9862,1,OK
+welcome_6522c117,welcome,ayush,welcome,welcome,0.9796,1,welcome,0.9796,1,OK
+welcome_da29cd9a,welcome,ayush,welcome,welcome,0.9745,1,welcome,0.9745,1,OK
+welcome_8d721ed8,welcome,ayush,welcome,welcome,0.9847,1,welcome,0.9847,1,OK
+welcome_1bcb7c73,welcome,ayush,welcome,welcome,0.9851,1,welcome,0.9851,1,OK
+welcome_c4e23dce,welcome,ayush,welcome,welcome,0.9313,1,welcome,0.9313,1,OK
+welcome_49185b08,welcome,ayush,welcome,welcome,0.9889,1,welcome,0.9889,1,OK
+welcome_2354b1f9,welcome,ayush,welcome,welcome,0.9764,1,welcome,0.9764,1,OK
+welcome_cad0b89f,welcome,ayush,welcome,welcome,0.9853,1,welcome,0.9853,1,OK
+welcome_56242234,welcome,ayush,welcome,welcome,0.9743,1,welcome,0.9743,1,OK
+welcome_6ee9c550,welcome,ayush,welcome,welcome,0.9873,1,welcome,0.9873,1,OK
+welcome_d1407409,welcome,ayush,welcome,welcome,0.9803,1,welcome,0.9803,1,OK
+welcome_20e3d635,welcome,ayush,welcome,welcome,0.9600,1,welcome,0.9600,1,OK
+goodbye_fac0a9d6,goodbye,ayush,goodbye,goodbye,0.9164,1,goodbye,0.9164,1,OK
+goodbye_a0ecb736,goodbye,ayush,goodbye,goodbye,0.9616,1,goodbye,0.9616,1,OK
+goodbye_f1be683c,goodbye,ayush,goodbye,goodbye,0.9640,1,goodbye,0.9640,1,OK
+goodbye_5e81d621,goodbye,ayush,goodbye,goodbye,0.9648,1,goodbye,0.9648,1,OK
+goodbye_38c16123,goodbye,ayush,goodbye,goodbye,0.9525,1,goodbye,0.9525,1,OK
+goodbye_06365f60,goodbye,ayush,goodbye,goodbye,0.9606,1,goodbye,0.9606,1,OK
+goodbye_e1b1bf46,goodbye,ayush,goodbye,goodbye,0.9625,1,goodbye,0.9625,1,OK
+goodbye_94f30aed,goodbye,ayush,goodbye,goodbye,0.9551,1,goodbye,0.9551,1,OK
+goodbye_9ff22d78,goodbye,ayush,goodbye,goodbye,0.9545,1,goodbye,0.9545,1,OK
+goodbye_81102d20,goodbye,ayush,goodbye,goodbye,0.9501,1,goodbye,0.9501,1,OK
+goodbye_ad20ef13,goodbye,ayush,goodbye,goodbye,0.9546,1,goodbye,0.9546,1,OK
+goodbye_23304fe3,goodbye,ayush,goodbye,goodbye,0.8459,1,goodbye,0.8459,1,OK
+goodbye_bd5d25e8,goodbye,ayush,goodbye,goodbye,0.9567,1,goodbye,0.9567,1,OK
+goodbye_dc0df9d5,goodbye,ayush,goodbye,goodbye,0.8002,1,goodbye,0.8002,1,OK
+goodbye_3b4a627f,goodbye,ayush,goodbye,goodbye,0.9496,1,goodbye,0.9496,1,OK
+hello_1b47f242,hello,pratham,hello,hello,0.9768,1,hello,0.9768,1,OK
+hello_a41c10f9,hello,pratham,hello,hello,0.9472,1,hello,0.9472,1,OK
+hello_3b6c765a,hello,pratham,hello,hello,0.9675,1,hello,0.9675,1,OK
+hello_66c9f779,hello,pratham,hello,hello,0.9673,1,hello,0.9673,1,OK
+hello_41485902,hello,pratham,hello,hello,0.9630,1,hello,0.9630,1,OK
+hello_1f103966,hello,pratham,hello,hello,0.9712,1,hello,0.9712,1,OK
+hello_d68ebad3,hello,pratham,hello,hello,0.9457,1,hello,0.9457,1,OK
+hello_d1b0264d,hello,pratham,hello,hello,0.9646,1,hello,0.9646,1,OK
+hello_52a77e28,hello,pratham,hello,hello,0.9334,1,hello,0.9334,1,OK
+hello_e3613885,hello,pratham,hello,hello,0.9756,1,hello,0.9756,1,OK
+hello_8e0a6404,hello,pratham,hello,hello,0.9661,1,hello,0.9661,1,OK
+hello_6f16fc91,hello,pratham,hello,hello,0.9703,1,hello,0.9703,1,OK
+hello_4aa48568,hello,pratham,hello,hello,0.9711,1,hello,0.9711,1,OK
+hello_50913726,hello,pratham,hello,hello,0.9717,1,hello,0.9717,1,OK
+hello_f452dd0a,hello,pratham,hello,hello,0.9537,1,hello,0.9537,1,OK
+thank you_08ccab25,thank you,pratham,thank you,thank you,0.9741,1,thank you,0.9741,1,OK
+thank you_b15ed268,thank you,pratham,thank you,thank you,0.9512,1,thank you,0.9512,1,OK
+thank you_7d7e10d8,thank you,pratham,thank you,thank you,0.9587,1,thank you,0.9587,1,OK
+thank you_af35447e,thank you,pratham,thank you,thank you,0.9699,1,thank you,0.9699,1,OK
+thank you_cf15b398,thank you,pratham,thank you,thank you,0.9721,1,thank you,0.9721,1,OK
+thank you_8698d791,thank you,pratham,thank you,thank you,0.9516,1,thank you,0.9516,1,OK
+thank you_3427b688,thank you,pratham,thank you,thank you,0.9642,1,thank you,0.9642,1,OK
+thank you_8a5c9d94,thank you,pratham,thank you,thank you,0.9661,1,thank you,0.9661,1,OK
+thank you_a9421b86,thank you,pratham,thank you,thank you,0.9398,1,thank you,0.9398,1,OK
+thank you_9a3fd04b,thank you,pratham,thank you,thank you,0.9516,1,thank you,0.9516,1,OK
+thank you_8a2bd17c,thank you,pratham,thank you,thank you,0.9782,1,thank you,0.9782,1,OK
+thank you_f6752d91,thank you,pratham,thank you,thank you,0.9578,1,thank you,0.9578,1,OK
+thank you_13ed901a,thank you,pratham,thank you,thank you,0.9635,1,thank you,0.9635,1,OK
+thank you_29d83073,thank you,pratham,thank you,thank you,0.9731,1,thank you,0.9731,1,OK
+thank you_d02a19e7,thank you,pratham,thank you,thank you,0.9765,1,thank you,0.9765,1,OK
+please_7d90027b,please,pratham,please,please,0.9490,1,please,0.9490,1,OK
+please_85694708,please,pratham,please,please,0.9484,1,please,0.9484,1,OK
+please_43685dbe,please,pratham,please,please,0.9729,1,please,0.9729,1,OK
+please_6766c9d9,please,pratham,please,please,0.9670,1,please,0.9670,1,OK
+please_06e20a04,please,pratham,please,please,0.9359,1,please,0.9359,1,OK
+please_509af648,please,pratham,please,please,0.9727,1,please,0.9727,1,OK
+please_6804c8cd,please,pratham,please,please,0.9706,1,please,0.9706,1,OK
+please_e8b84382,please,pratham,please,please,0.9748,1,please,0.9748,1,OK
+please_76e6ff76,please,pratham,please,please,0.9668,1,please,0.9668,1,OK
+please_930ca36f,please,pratham,please,please,0.9718,1,please,0.9718,1,OK
+please_faa83c9a,please,pratham,please,please,0.9712,1,please,0.9712,1,OK
+please_4746331c,please,pratham,please,please,0.9730,1,please,0.9730,1,OK
+please_c6f722c7,please,pratham,please,please,0.9669,1,please,0.9669,1,OK
+please_7116c806,please,pratham,please,please,0.9740,1,please,0.9740,1,OK
+please_4f1b4856,please,pratham,please,please,0.9757,1,please,0.9757,1,OK
+sorry_4aa42b0c,sorry,pratham,sorry,sorry,0.9446,1,sorry,0.9446,1,OK
+sorry_befb72fb,sorry,pratham,sorry,sorry,0.9448,1,sorry,0.9448,1,OK
+sorry_b4e3412c,sorry,pratham,sorry,sorry,0.9620,1,sorry,0.9620,1,OK
+sorry_2125f2cb,sorry,pratham,sorry,sorry,0.8772,1,sorry,0.8772,1,OK
+sorry_d9415c2e,sorry,pratham,sorry,sorry,0.9503,1,sorry,0.9503,1,OK
+sorry_99ed9e9e,sorry,pratham,sorry,sorry,0.9626,1,sorry,0.9626,1,OK
+sorry_ce146c13,sorry,pratham,sorry,sorry,0.9576,1,sorry,0.9576,1,OK
+sorry_b2a5c61f,sorry,pratham,sorry,sorry,0.9661,1,sorry,0.9661,1,OK
+sorry_edb50260,sorry,pratham,sorry,sorry,0.9347,1,sorry,0.9347,1,OK
+sorry_22b6adaf,sorry,pratham,sorry,sorry,0.9635,1,sorry,0.9635,1,OK
+sorry_e055fe41,sorry,pratham,sorry,sorry,0.9595,1,sorry,0.9595,1,OK
+sorry_d425e6e0,sorry,pratham,sorry,sorry,0.9622,1,sorry,0.9622,1,OK
+sorry_e3cac8a9,sorry,pratham,sorry,sorry,0.9602,1,sorry,0.9602,1,OK
+sorry_3959b428,sorry,pratham,sorry,sorry,0.9555,1,sorry,0.9555,1,OK
+sorry_391e1757,sorry,pratham,sorry,sorry,0.9544,1,sorry,0.9544,1,OK
+yes_6b7280af,yes,pratham,yes,yes,0.9682,1,yes,0.9682,1,OK
+yes_2df80c3a,yes,pratham,yes,yes,0.9584,1,yes,0.9584,1,OK
+yes_b698515c,yes,pratham,yes,yes,0.9610,1,yes,0.9610,1,OK
+yes_ca610e90,yes,pratham,yes,yes,0.9541,1,yes,0.9541,1,OK
+yes_e95beb29,yes,pratham,yes,yes,0.9701,1,yes,0.9701,1,OK
+yes_2436d921,yes,pratham,yes,yes,0.9650,1,yes,0.9650,1,OK
+yes_408a20a3,yes,pratham,yes,yes,0.9667,1,yes,0.9667,1,OK
+yes_79fde5a7,yes,pratham,yes,yes,0.9550,1,yes,0.9550,1,OK
+yes_0d2f39d5,yes,pratham,yes,yes,0.9602,1,yes,0.9602,1,OK
+yes_8f20881d,yes,pratham,yes,yes,0.9673,1,yes,0.9673,1,OK
+yes_0aaa9d33,yes,pratham,yes,yes,0.9686,1,yes,0.9686,1,OK
+yes_0d74931f,yes,pratham,yes,yes,0.9530,1,yes,0.9530,1,OK
+yes_3c408801,yes,pratham,yes,yes,0.9622,1,yes,0.9622,1,OK
+yes_d0aecc3a,yes,pratham,yes,yes,0.9692,1,yes,0.9692,1,OK
+yes_7bf58418,yes,pratham,yes,yes,0.9633,1,yes,0.9633,1,OK
+no_937f846b,no,pratham,no,no,0.9621,1,no,0.9621,1,OK
+no_518d3e4e,no,pratham,no,no,0.9634,1,no,0.9634,1,OK
+no_54ca54c4,no,pratham,no,no,0.9599,1,no,0.9599,1,OK
+no_76ec7e59,no,pratham,no,no,0.9642,1,no,0.9642,1,OK
+no_6b17d943,no,pratham,no,no,0.9624,1,no,0.9624,1,OK
+no_cb710a78,no,pratham,no,no,0.9680,1,no,0.9680,1,OK
+no_7316a909,no,pratham,no,no,0.9605,1,no,0.9605,1,OK
+no_1c60c11a,no,pratham,no,no,0.9648,1,no,0.9648,1,OK
+no_c8cfb3ab,no,pratham,no,no,0.9589,1,no,0.9589,1,OK
+no_3706788e,no,pratham,no,no,0.9654,1,no,0.9654,1,OK
+no_2f53ed7b,no,pratham,no,no,0.9692,1,no,0.9692,1,OK
+no_8a8271db,no,pratham,no,no,0.9778,1,no,0.9778,1,OK
+no_9c87f24a,no,pratham,no,no,0.9746,1,no,0.9746,1,OK
+no_d27fa87f,no,pratham,no,no,0.9751,1,no,0.9751,1,OK
+no_d012a41f,no,pratham,no,no,0.9167,1,no,0.9167,1,OK
+help_1ea3089c,help,pratham,help,help,0.9903,1,help,0.9903,1,OK
+help_c39f3981,help,pratham,help,help,0.9890,1,help,0.9890,1,OK
+help_dda885b2,help,pratham,help,help,0.9635,1,help,0.9635,1,OK
+help_9253fe56,help,pratham,help,help,0.6653,1,help,0.6653,1,OK
+help_59f4014a,help,pratham,help,help,0.9370,1,help,0.9370,1,OK
+help_d7236e03,help,pratham,help,help,0.9798,1,help,0.9798,1,OK
+help_a829dc55,help,pratham,help,help,0.8856,1,help,0.8856,1,OK
+help_098c143e,help,pratham,help,help,0.9885,1,help,0.9885,1,OK
+help_dd524ae5,help,pratham,help,help,0.9848,1,help,0.9848,1,OK
+help_09f18bcf,help,pratham,help,help,0.9695,1,help,0.9695,1,OK
+help_9b262333,help,pratham,help,help,0.9872,1,help,0.9872,1,OK
+help_6c1d0b83,help,pratham,help,help,0.9907,1,help,0.9907,1,OK
+help_f76d6329,help,pratham,help,help,0.9874,1,help,0.9874,1,OK
+help_3d1683f1,help,pratham,help,help,0.9818,1,help,0.9818,1,OK
+help_d755d041,help,pratham,help,help,0.9899,1,help,0.9899,1,OK
+water_a3afc6db,water,pratham,water,water,0.8487,1,water,0.8487,1,OK
+water_4f4d4cb5,water,pratham,water,water,0.9365,1,water,0.9365,1,OK
+water_6cd4ce96,water,pratham,water,water,0.9343,1,water,0.9343,1,OK
+water_5efb6855,water,pratham,water,water,0.9200,1,water,0.9200,1,OK
+water_dfe009cb,water,pratham,water,water,0.9178,1,water,0.9178,1,OK
+water_beba8142,water,pratham,water,water,0.9307,1,water,0.9307,1,OK
+water_3a7befd0,water,pratham,water,water,0.9341,1,water,0.9341,1,OK
+water_4266c841,water,pratham,water,water,0.9699,1,water,0.9699,1,OK
+water_40be3c5d,water,pratham,water,water,0.9825,1,water,0.9825,1,OK
+water_f8bdaf9f,water,pratham,water,water,0.9780,1,water,0.9780,1,OK
+water_85e69586,water,pratham,water,water,0.9603,1,water,0.9603,1,OK
+water_14fda739,water,pratham,water,water,0.9625,1,water,0.9625,1,OK
+water_5a5c5954,water,pratham,water,water,0.9780,1,water,0.9780,1,OK
+water_4ce9cc2b,water,pratham,water,water,0.9453,1,water,0.9453,1,OK
+water_0cc43d8c,water,pratham,water,water,0.9788,1,water,0.9788,1,OK
+food_3c272075,food,pratham,food,food,0.9651,1,food,0.9651,1,OK
+food_97fc20e6,food,pratham,food,food,0.9747,1,food,0.9747,1,OK
+food_22ecc43d,food,pratham,food,food,0.9742,1,food,0.9742,1,OK
+food_6b184a4a,food,pratham,food,food,0.9610,1,food,0.9610,1,OK
+food_aa1979a3,food,pratham,food,food,0.9485,1,food,0.9485,1,OK
+food_e01cb168,food,pratham,food,food,0.9363,1,food,0.9363,1,OK
+food_7498b69c,food,pratham,food,food,0.9750,1,food,0.9750,1,OK
+food_efbbc83c,food,pratham,food,food,0.9667,1,food,0.9667,1,OK
+food_966fdd9f,food,pratham,food,food,0.9654,1,food,0.9654,1,OK
+food_9998946d,food,pratham,food,food,0.9701,1,food,0.9701,1,OK
+food_ce21d43c,food,pratham,food,food,0.9214,1,food,0.9214,1,OK
+food_967854b4,food,pratham,food,food,0.8742,1,food,0.8742,1,OK
+food_f80aa1b7,food,pratham,food,food,0.9682,1,food,0.9682,1,OK
+food_5defd472,food,pratham,food,food,0.9577,1,food,0.9577,1,OK
+food_bb539bad,food,pratham,food,food,0.9664,1,food,0.9664,1,OK
+medicine_b4af1120,medicine,pratham,medicine,medicine,0.9138,1,medicine,0.9138,1,OK
+medicine_1c54c614,medicine,pratham,medicine,sorry,0.7438,1,sorry,0.7438,1,WRONG
+medicine_9015bac7,medicine,pratham,medicine,medicine,0.8774,1,medicine,0.8774,1,OK
+medicine_a2c1f8c2,medicine,pratham,medicine,medicine,0.8590,1,medicine,0.8590,1,OK
+medicine_9015b91d,medicine,pratham,medicine,medicine,0.9514,1,medicine,0.9514,1,OK
+medicine_80cb197b,medicine,pratham,medicine,medicine,0.8379,1,medicine,0.8379,1,OK
+medicine_1e465f22,medicine,pratham,medicine,medicine,0.5888,1,medicine,0.5888,1,OK
+medicine_b62c5ce3,medicine,pratham,medicine,medicine,0.9676,1,medicine,0.9676,1,OK
+medicine_8483667d,medicine,pratham,medicine,medicine,0.9629,1,medicine,0.9629,1,OK
+medicine_28408c37,medicine,pratham,medicine,medicine,0.9551,1,medicine,0.9551,1,OK
+medicine_c995af8c,medicine,pratham,medicine,medicine,0.9521,1,medicine,0.9521,1,OK
+medicine_207338f4,medicine,pratham,medicine,medicine,0.9499,1,medicine,0.9499,1,OK
+medicine_94a71aa4,medicine,pratham,medicine,medicine,0.9444,1,medicine,0.9444,1,OK
+medicine_5f953a60,medicine,pratham,medicine,medicine,0.7853,1,medicine,0.7853,1,OK
+medicine_9204fbad,medicine,pratham,medicine,medicine,0.9715,1,medicine,0.9715,1,OK
+hospital_d9d0f2b6,hospital,pratham,hospital,hospital,0.9786,1,hospital,0.9786,1,OK
+hospital_e188491c,hospital,pratham,hospital,hospital,0.9782,1,hospital,0.9782,1,OK
+hospital_ae7c189e,hospital,pratham,hospital,hospital,0.9731,1,hospital,0.9731,1,OK
+hospital_a2bc4e99,hospital,pratham,hospital,hospital,0.9812,1,hospital,0.9812,1,OK
+hospital_3d0ea78f,hospital,pratham,hospital,hospital,0.9829,1,hospital,0.9829,1,OK
+hospital_b20983c6,hospital,pratham,hospital,hospital,0.9786,1,hospital,0.9786,1,OK
+hospital_9f7f3e7a,hospital,pratham,hospital,hospital,0.9843,1,hospital,0.9843,1,OK
+hospital_c58ed7da,hospital,pratham,hospital,hospital,0.9806,1,hospital,0.9806,1,OK
+hospital_4d1c4a78,hospital,pratham,hospital,hospital,0.9779,1,hospital,0.9779,1,OK
+hospital_ecc3c2aa,hospital,pratham,hospital,hospital,0.9702,1,hospital,0.9702,1,OK
+hospital_e7e5872d,hospital,pratham,hospital,hospital,0.9756,1,hospital,0.9756,1,OK
+hospital_042c8e98,hospital,pratham,hospital,hospital,0.9807,1,hospital,0.9807,1,OK
+hospital_d0dfa294,hospital,pratham,hospital,hospital,0.9848,1,hospital,0.9849,1,OK
+hospital_7d3e5ce4,hospital,pratham,hospital,hospital,0.9803,1,hospital,0.9803,1,OK
+hospital_26c73ecc,hospital,pratham,hospital,hospital,0.9761,1,hospital,0.9761,1,OK
+emergency_67664d8d,emergency,pratham,emergency,emergency,0.9848,1,emergency,0.9848,1,OK
+emergency_8a403429,emergency,pratham,emergency,emergency,0.9814,1,emergency,0.9814,1,OK
+emergency_96878640,emergency,pratham,emergency,emergency,0.9769,1,emergency,0.9769,1,OK
+emergency_3caa45dc,emergency,pratham,emergency,emergency,0.9792,1,emergency,0.9792,1,OK
+emergency_07e952ba,emergency,pratham,emergency,emergency,0.9858,1,emergency,0.9858,1,OK
+emergency_0800d362,emergency,pratham,emergency,emergency,0.9898,1,emergency,0.9898,1,OK
+emergency_c3366b63,emergency,pratham,emergency,emergency,0.9878,1,emergency,0.9878,1,OK
+emergency_ff29263c,emergency,pratham,emergency,emergency,0.9821,1,emergency,0.9821,1,OK
+emergency_952e7c5f,emergency,pratham,emergency,emergency,0.9873,1,emergency,0.9873,1,OK
+emergency_d9cacbcb,emergency,pratham,emergency,emergency,0.9723,1,emergency,0.9723,1,OK
+emergency_79031290,emergency,pratham,emergency,emergency,0.9820,1,emergency,0.9820,1,OK
+emergency_1e3cb395,emergency,pratham,emergency,emergency,0.9907,1,emergency,0.9907,1,OK
+emergency_0b4c2314,emergency,pratham,emergency,emergency,0.9868,1,emergency,0.9868,1,OK
+emergency_bae6bf00,emergency,pratham,emergency,emergency,0.9914,1,emergency,0.9914,1,OK
+emergency_9744741d,emergency,pratham,emergency,emergency,0.9903,1,emergency,0.9903,1,OK
+name_ed12ab0c,name,pratham,name,name,0.9742,1,name,0.9742,1,OK
+name_d120b999,name,pratham,name,name,0.9871,1,name,0.9871,1,OK
+name_c7b0c15a,name,pratham,name,name,0.9889,1,name,0.9889,1,OK
+name_7397801e,name,pratham,name,name,0.9830,1,name,0.9830,1,OK
+name_28f87057,name,pratham,name,name,0.9867,1,name,0.9867,1,OK
+name_4abda087,name,pratham,name,name,0.9846,1,name,0.9846,1,OK
+name_f2d7f412,name,pratham,name,name,0.9849,1,name,0.9849,1,OK
+name_b0be3c7c,name,pratham,name,name,0.9856,1,name,0.9856,1,OK
+name_13a00e7a,name,pratham,name,name,0.9849,1,name,0.9849,1,OK
+name_98935386,name,pratham,name,name,0.9866,1,name,0.9866,1,OK
+name_b7dadb92,name,pratham,name,name,0.9879,1,name,0.9879,1,OK
+name_cea959e5,name,pratham,name,name,0.9835,1,name,0.9835,1,OK
+name_9b08ac63,name,pratham,name,name,0.9899,1,name,0.9899,1,OK
+name_65110647,name,pratham,name,name,0.9888,1,name,0.9888,1,OK
+name_482fda00,name,pratham,name,name,0.9880,1,name,0.9880,1,OK
+where_b05bc70b,where,pratham,where,where,0.9906,1,where,0.9906,1,OK
+where_55f78f6a,where,pratham,where,where,0.9923,1,where,0.9923,1,OK
+where_e5883577,where,pratham,where,where,0.9921,1,where,0.9921,1,OK
+where_075596d5,where,pratham,where,where,0.9950,1,where,0.9950,1,OK
+where_a2f07da3,where,pratham,where,where,0.9950,1,where,0.9950,1,OK
+where_ef1d2361,where,pratham,where,where,0.9951,1,where,0.9951,1,OK
+where_55201596,where,pratham,where,where,0.9941,1,where,0.9941,1,OK
+where_2dc0675a,where,pratham,where,where,0.9875,1,where,0.9875,1,OK
+where_c4115ed2,where,pratham,where,where,0.9835,1,where,0.9835,1,OK
+where_c10f733a,where,pratham,where,where,0.9358,1,where,0.9358,1,OK
+where_b99d30fd,where,pratham,where,where,0.9923,1,where,0.9923,1,OK
+where_5db42c11,where,pratham,where,where,0.9853,1,where,0.9853,1,OK
+where_fccb4e6b,where,pratham,where,where,0.9932,1,where,0.9932,1,OK
+where_c37310ea,where,pratham,where,where,0.9912,1,where,0.9912,1,OK
+where_7c597cc0,where,pratham,where,where,0.9883,1,where,0.9883,1,OK
+when_37fb02df,when,pratham,when,when,0.9703,1,when,0.9703,1,OK
+when_62ef5f10,when,pratham,when,when,0.9734,1,when,0.9734,1,OK
+when_52261f1c,when,pratham,when,when,0.9762,1,when,0.9762,1,OK
+when_37c15723,when,pratham,when,when,0.9638,1,when,0.9638,1,OK
+when_d40d6f9e,when,pratham,when,when,0.9758,1,when,0.9758,1,OK
+when_f2e99e47,when,pratham,when,when,0.9778,1,when,0.9778,1,OK
+when_f9f02206,when,pratham,when,when,0.9751,1,when,0.9751,1,OK
+when_baf4457d,when,pratham,when,when,0.9620,1,when,0.9620,1,OK
+when_c1b31386,when,pratham,when,when,0.9760,1,when,0.9760,1,OK
+when_d6bc1ecc,when,pratham,when,when,0.9731,1,when,0.9731,1,OK
+when_8b7aea71,when,pratham,when,when,0.9772,1,when,0.9772,1,OK
+when_e4f09483,when,pratham,when,when,0.9635,1,when,0.9635,1,OK
+when_88003d61,when,pratham,when,when,0.9775,1,when,0.9775,1,OK
+when_68844e2e,when,pratham,when,when,0.9712,1,when,0.9712,1,OK
+when_eabaa239,when,pratham,when,when,0.9676,1,when,0.9676,1,OK
+how much_16978302,how much,pratham,how much,how much,0.9897,1,how much,0.9897,1,OK
+how much_a1f89e63,how much,pratham,how much,how much,0.9871,1,how much,0.9871,1,OK
+how much_52ed1e9c,how much,pratham,how much,how much,0.9921,1,how much,0.9921,1,OK
+how much_ca03b11e,how much,pratham,how much,how much,0.9905,1,how much,0.9905,1,OK
+how much_70dd4505,how much,pratham,how much,how much,0.9922,1,how much,0.9922,1,OK
+how much_8b50e240,how much,pratham,how much,how much,0.9928,1,how much,0.9928,1,OK
+how much_ac97f05b,how much,pratham,how much,how much,0.9930,1,how much,0.9930,1,OK
+how much_c802fadb,how much,pratham,how much,how much,0.9900,1,how much,0.9900,1,OK
+how much_da198701,how much,pratham,how much,how much,0.9925,1,how much,0.9925,1,OK
+how much_5d5c67f3,how much,pratham,how much,how much,0.9884,1,how much,0.9884,1,OK
+how much_9a1332e1,how much,pratham,how much,how much,0.9832,1,how much,0.9832,1,OK
+how much_5bc6415e,how much,pratham,how much,how much,0.9934,1,how much,0.9934,1,OK
+how much_efad9bfa,how much,pratham,how much,how much,0.9784,1,how much,0.9784,1,OK
+how much_2fad0250,how much,pratham,how much,how much,0.9785,1,how much,0.9785,1,OK
+how much_0386ef1d,how much,pratham,how much,how much,0.9677,1,how much,0.9677,1,OK
+come_4feba9fc,come,pratham,come,come,0.9942,1,come,0.9942,1,OK
+come_6c0fe4a6,come,pratham,come,come,0.9853,1,come,0.9853,1,OK
+come_bf3df95a,come,pratham,come,come,0.9941,1,come,0.9941,1,OK
+come_227f92df,come,pratham,come,come,0.9906,1,come,0.9906,1,OK
+come_090e4356,come,pratham,come,come,0.9782,1,come,0.9782,1,OK
+come_2851f10e,come,pratham,come,come,0.9844,1,come,0.9844,1,OK
+come_436980b6,come,pratham,come,come,0.9719,1,come,0.9719,1,OK
+come_64a71d61,come,pratham,come,come,0.9941,1,come,0.9941,1,OK
+come_649c9c14,come,pratham,come,come,0.9937,1,come,0.9937,1,OK
+come_c82d06de,come,pratham,come,come,0.9932,1,come,0.9932,1,OK
+come_bec13615,come,pratham,come,come,0.9941,1,come,0.9941,1,OK
+come_6fcd19a6,come,pratham,come,come,0.9896,1,come,0.9896,1,OK
+come_6294ae9e,come,pratham,come,come,0.9256,1,come,0.9256,1,OK
+come_a1f200ef,come,pratham,come,come,0.7678,1,come,0.7678,1,OK
+come_d491c198,come,pratham,come,come,0.9166,1,come,0.9166,1,OK
+go_953c273f,go,pratham,go,go,0.9096,1,go,0.9096,1,OK
+go_858d5c1d,go,pratham,go,go,0.9253,1,go,0.9253,1,OK
+go_6810ea82,go,pratham,go,go,0.8560,1,go,0.8560,1,OK
+go_80d82630,go,pratham,go,go,0.9105,1,go,0.9105,1,OK
+go_316df565,go,pratham,go,go,0.9230,1,go,0.9230,1,OK
+go_d97d2ca0,go,pratham,go,go,0.9492,1,go,0.9492,1,OK
+go_bd13c5b2,go,pratham,go,go,0.9180,1,go,0.9180,1,OK
+go_c08a6346,go,pratham,go,go,0.9166,1,go,0.9166,1,OK
+go_1ea87f5c,go,pratham,go,go,0.9438,1,go,0.9438,1,OK
+go_5d29f988,go,pratham,go,go,0.7605,1,go,0.7605,1,OK
+go_ce4f7092,go,pratham,go,go,0.9323,1,go,0.9323,1,OK
+go_ae0b454b,go,pratham,go,go,0.9475,1,go,0.9475,1,OK
+go_9f11d6f9,go,pratham,go,go,0.9472,1,go,0.9472,1,OK
+go_15ed5ff1,go,pratham,go,go,0.9321,1,go,0.9321,1,OK
+go_c86216f8,go,pratham,go,go,0.9500,1,go,0.9500,1,OK
+sit_eca2665b,sit,pratham,sit,sit,0.9886,1,sit,0.9886,1,OK
+sit_3f5ac03b,sit,pratham,sit,sit,0.9885,1,sit,0.9885,1,OK
+sit_1d8a0477,sit,pratham,sit,sit,0.9854,1,sit,0.9854,1,OK
+sit_169e7ac9,sit,pratham,sit,sit,0.9840,1,sit,0.9840,1,OK
+sit_5f56f6ae,sit,pratham,sit,sit,0.9879,1,sit,0.9879,1,OK
+sit_20c07e33,sit,pratham,sit,sit,0.9845,1,sit,0.9845,1,OK
+sit_8b38b714,sit,pratham,sit,sit,0.9837,1,sit,0.9837,1,OK
+sit_79d15b64,sit,pratham,sit,sit,0.9853,1,sit,0.9853,1,OK
+sit_cbf054c6,sit,pratham,sit,sit,0.9852,1,sit,0.9852,1,OK
+sit_3057f00f,sit,pratham,sit,sit,0.9848,1,sit,0.9848,1,OK
+sit_94353fe1,sit,pratham,sit,sit,0.9862,1,sit,0.9862,1,OK
+sit_5172b7a3,sit,pratham,sit,sit,0.9849,1,sit,0.9849,1,OK
+sit_199bb979,sit,pratham,sit,sit,0.9852,1,sit,0.9852,1,OK
+sit_8f5a5e1f,sit,pratham,sit,sit,0.9726,1,sit,0.9726,1,OK
+sit_7865ca57,sit,pratham,sit,sit,0.9876,1,sit,0.9876,1,OK
+stand_70188281,stand,pratham,stand,stand,0.9932,1,stand,0.9932,1,OK
+stand_55193dea,stand,pratham,stand,stand,0.9893,1,stand,0.9893,1,OK
+stand_e05ceb7e,stand,pratham,stand,stand,0.9933,1,stand,0.9933,1,OK
+stand_0a050b30,stand,pratham,stand,stand,0.9900,1,stand,0.9900,1,OK
+stand_7e6308d2,stand,pratham,stand,stand,0.9901,1,stand,0.9901,1,OK
+stand_85170740,stand,pratham,stand,stand,0.9907,1,stand,0.9907,1,OK
+stand_23d37a00,stand,pratham,stand,stand,0.9914,1,stand,0.9914,1,OK
+stand_d771c5b6,stand,pratham,stand,stand,0.9923,1,stand,0.9923,1,OK
+stand_2a6f2c45,stand,pratham,stand,stand,0.9925,1,stand,0.9925,1,OK
+stand_c757fdc9,stand,pratham,stand,stand,0.9918,1,stand,0.9918,1,OK
+stand_dadc4d3d,stand,pratham,stand,stand,0.9906,1,stand,0.9906,1,OK
+stand_73d29148,stand,pratham,stand,stand,0.9886,1,stand,0.9886,1,OK
+stand_d9813cae,stand,pratham,stand,stand,0.9918,1,stand,0.9918,1,OK
+stand_35d15c30,stand,pratham,stand,stand,0.9853,1,stand,0.9853,1,OK
+stand_ba8dbdeb,stand,pratham,stand,stand,0.9916,1,stand,0.9916,1,OK
+wait_f38f72fe,wait,pratham,wait,wait,0.9919,1,wait,0.9919,1,OK
+wait_32924bfd,wait,pratham,wait,wait,0.9928,1,wait,0.9928,1,OK
+wait_1e0167cd,wait,pratham,wait,wait,0.9908,1,wait,0.9908,1,OK
+wait_62eb7638,wait,pratham,wait,wait,0.9904,1,wait,0.9904,1,OK
+wait_bf76a28d,wait,pratham,wait,wait,0.9883,1,wait,0.9883,1,OK
+wait_9d52c4d5,wait,pratham,wait,wait,0.9851,1,wait,0.9851,1,OK
+wait_0fbd5f64,wait,pratham,wait,wait,0.9799,1,wait,0.9799,1,OK
+wait_c7f09567,wait,pratham,wait,wait,0.9885,1,wait,0.9885,1,OK
+wait_adb92a2a,wait,pratham,wait,wait,0.9921,1,wait,0.9921,1,OK
+wait_a4d44d3d,wait,pratham,wait,wait,0.9896,1,wait,0.9896,1,OK
+wait_5a6e8acc,wait,pratham,wait,wait,0.9895,1,wait,0.9895,1,OK
+wait_db324c55,wait,pratham,wait,wait,0.9918,1,wait,0.9918,1,OK
+wait_f7881f50,wait,pratham,wait,wait,0.9869,1,wait,0.9869,1,OK
+wait_46779bc7,wait,pratham,wait,wait,0.9922,1,wait,0.9922,1,OK
+wait_4dab6371,wait,pratham,wait,wait,0.9898,1,wait,0.9898,1,OK
+stop_bcbc859e,stop,pratham,stop,stop,0.9324,1,stop,0.9324,1,OK
+stop_c72c16eb,stop,pratham,stop,stop,0.9796,1,stop,0.9796,1,OK
+stop_5fe04dfe,stop,pratham,stop,stop,0.9864,1,stop,0.9864,1,OK
+stop_a2f7f957,stop,pratham,stop,stop,0.9853,1,stop,0.9853,1,OK
+stop_a534a4da,stop,pratham,stop,stop,0.9879,1,stop,0.9879,1,OK
+stop_ff60fc0f,stop,pratham,stop,stop,0.9876,1,stop,0.9876,1,OK
+stop_8f33abc0,stop,pratham,stop,stop,0.9852,1,stop,0.9852,1,OK
+stop_d92dcd4e,stop,pratham,stop,stop,0.9860,1,stop,0.9860,1,OK
+stop_e1cfb567,stop,pratham,stop,stop,0.9843,1,stop,0.9843,1,OK
+stop_7b62d244,stop,pratham,stop,stop,0.9833,1,stop,0.9833,1,OK
+stop_ab86e3cc,stop,pratham,stop,stop,0.9680,1,stop,0.9680,1,OK
+stop_ab78c86f,stop,pratham,stop,stop,0.9571,1,stop,0.9571,1,OK
+stop_9859e5a5,stop,pratham,stop,stop,0.9750,1,stop,0.9750,1,OK
+stop_b3b8efed,stop,pratham,stop,stop,0.9745,1,stop,0.9745,1,OK
+stop_081cf249,stop,pratham,stop,stop,0.9753,1,stop,0.9753,1,OK
+good_fd3df20d,good,pratham,good,good,0.8916,1,good,0.8916,1,OK
+good_53ab1b57,good,pratham,good,good,0.9797,1,good,0.9797,1,OK
+good_a46766a6,good,pratham,good,good,0.9806,1,good,0.9806,1,OK
+good_3d9cabe0,good,pratham,good,good,0.9859,1,good,0.9859,1,OK
+good_854f6e9a,good,pratham,good,good,0.9838,1,good,0.9838,1,OK
+good_0094513f,good,pratham,good,good,0.9745,1,good,0.9745,1,OK
+good_75dfa402,good,pratham,good,good,0.9708,1,good,0.9708,1,OK
+good_522359c6,good,pratham,good,good,0.9828,1,good,0.9828,1,OK
+good_db552132,good,pratham,good,good,0.9801,1,good,0.9801,1,OK
+good_e2e4eda3,good,pratham,good,good,0.9757,1,good,0.9757,1,OK
+good_08e7160e,good,pratham,good,good,0.9848,1,good,0.9848,1,OK
+good_a6c0698e,good,pratham,good,good,0.9760,1,good,0.9760,1,OK
+good_b9564623,good,pratham,good,good,0.9881,1,good,0.9881,1,OK
+good_3fe00e79,good,pratham,good,good,0.9851,1,good,0.9851,1,OK
+good_14999c0d,good,pratham,good,good,0.9842,1,good,0.9842,1,OK
+bad_62163710,bad,pratham,bad,bad,0.9773,1,bad,0.9773,1,OK
+bad_bcf23369,bad,pratham,bad,bad,0.9674,1,bad,0.9674,1,OK
+bad_244a7010,bad,pratham,bad,bad,0.9750,1,bad,0.9750,1,OK
+bad_13507643,bad,pratham,bad,bad,0.9880,1,bad,0.9880,1,OK
+bad_7b1072b3,bad,pratham,bad,bad,0.9904,1,bad,0.9904,1,OK
+bad_8cc18437,bad,pratham,bad,bad,0.9901,1,bad,0.9901,1,OK
+bad_5c312a3e,bad,pratham,bad,bad,0.9871,1,bad,0.9871,1,OK
+bad_66415575,bad,pratham,bad,bad,0.9920,1,bad,0.9920,1,OK
+bad_e1cbe5a1,bad,pratham,bad,bad,0.9904,1,bad,0.9904,1,OK
+bad_c8ea3111,bad,pratham,bad,bad,0.9891,1,bad,0.9891,1,OK
+bad_0ec0fe8d,bad,pratham,bad,bad,0.9529,1,bad,0.9529,1,OK
+bad_0d129389,bad,pratham,bad,bad,0.9836,1,bad,0.9836,1,OK
+bad_406ce5d2,bad,pratham,bad,bad,0.8515,1,bad,0.8515,1,OK
+bad_f9833c6c,bad,pratham,bad,bad,0.9364,1,bad,0.9364,1,OK
+bad_48193953,bad,pratham,bad,bad,0.9693,1,bad,0.9693,1,OK
+welcome_fd159c62,welcome,pratham,welcome,welcome,0.9917,1,welcome,0.9917,1,OK
+welcome_53c0f451,welcome,pratham,welcome,welcome,0.9876,1,welcome,0.9876,1,OK
+welcome_14ba0f95,welcome,pratham,welcome,welcome,0.9767,1,welcome,0.9767,1,OK
+welcome_354f83e2,welcome,pratham,welcome,welcome,0.9875,1,welcome,0.9875,1,OK
+welcome_3dbb57d5,welcome,pratham,welcome,welcome,0.9884,1,welcome,0.9884,1,OK
+welcome_122a021d,welcome,pratham,welcome,welcome,0.9840,1,welcome,0.9840,1,OK
+welcome_cd876926,welcome,pratham,welcome,welcome,0.9815,1,welcome,0.9815,1,OK
+welcome_90cb5431,welcome,pratham,welcome,welcome,0.9855,1,welcome,0.9855,1,OK
+welcome_f8b0e19c,welcome,pratham,welcome,welcome,0.9844,1,welcome,0.9844,1,OK
+welcome_76a61d8a,welcome,pratham,welcome,welcome,0.9862,1,welcome,0.9862,1,OK
+welcome_a5ef2eba,welcome,pratham,welcome,welcome,0.9805,1,welcome,0.9805,1,OK
+welcome_5d01b607,welcome,pratham,welcome,welcome,0.9892,1,welcome,0.9892,1,OK
+welcome_71197c58,welcome,pratham,welcome,welcome,0.9863,1,welcome,0.9863,1,OK
+welcome_83f3d28f,welcome,pratham,welcome,welcome,0.9774,1,welcome,0.9774,1,OK
+welcome_ad464371,welcome,pratham,welcome,welcome,0.9891,1,welcome,0.9891,1,OK
+goodbye_55257f1f,goodbye,pratham,goodbye,goodbye,0.9342,1,goodbye,0.9342,1,OK
+goodbye_e1663147,goodbye,pratham,goodbye,goodbye,0.9520,1,goodbye,0.9520,1,OK
+goodbye_d94e170f,goodbye,pratham,goodbye,goodbye,0.9263,1,goodbye,0.9263,1,OK
+goodbye_0b2711da,goodbye,pratham,goodbye,goodbye,0.9555,1,goodbye,0.9555,1,OK
+goodbye_04425cbf,goodbye,pratham,goodbye,goodbye,0.9555,1,goodbye,0.9555,1,OK
+goodbye_7d67f972,goodbye,pratham,goodbye,goodbye,0.9558,1,goodbye,0.9558,1,OK
+goodbye_1c62a105,goodbye,pratham,goodbye,goodbye,0.9615,1,goodbye,0.9615,1,OK
+goodbye_ec4a197c,goodbye,pratham,goodbye,goodbye,0.9057,1,goodbye,0.9057,1,OK
+goodbye_5ad77bd7,goodbye,pratham,goodbye,goodbye,0.9289,1,goodbye,0.9289,1,OK
+goodbye_a77a1378,goodbye,pratham,goodbye,goodbye,0.9474,1,goodbye,0.9474,1,OK
+goodbye_d70e4ad1,goodbye,pratham,goodbye,goodbye,0.9346,1,goodbye,0.9346,1,OK
+goodbye_fb1d3b38,goodbye,pratham,goodbye,goodbye,0.9389,1,goodbye,0.9389,1,OK
+goodbye_86449881,goodbye,pratham,goodbye,goodbye,0.9483,1,goodbye,0.9483,1,OK
+goodbye_f89aa351,goodbye,pratham,goodbye,goodbye,0.9417,1,goodbye,0.9417,1,OK
+goodbye_a0c6d5e1,goodbye,pratham,goodbye,goodbye,0.9485,1,goodbye,0.9485,1,OK
+fever_9eaed965,fever,hritankar,fever,fever,0.9857,1,fever,0.9857,1,OK
+fever_c633d0ad,fever,hritankar,fever,fever,0.9840,1,fever,0.9840,1,OK
+fever_cb37783b,fever,hritankar,fever,fever,0.9821,1,fever,0.9821,1,OK
+fever_1f90c20c,fever,hritankar,fever,fever,0.9440,1,fever,0.9440,1,OK
+fever_0967eb1f,fever,hritankar,fever,fever,0.9787,1,fever,0.9787,1,OK
+fever_20b0dd22,fever,hritankar,fever,fever,0.9843,1,fever,0.9843,1,OK
+fever_54c7c01c,fever,hritankar,fever,fever,0.9839,1,fever,0.9839,1,OK
+fever_adf97280,fever,hritankar,fever,fever,0.9749,1,fever,0.9749,1,OK
+fever_675b6801,fever,hritankar,fever,fever,0.9845,1,fever,0.9845,1,OK
+fever_b7d7176c,fever,hritankar,fever,fever,0.9859,1,fever,0.9859,1,OK
+fever_31d149b8,fever,hritankar,fever,fever,0.9880,1,fever,0.9880,1,OK
+fever_bcae9b6d,fever,hritankar,fever,fever,0.9877,1,fever,0.9877,1,OK
+fever_8989b090,fever,hritankar,fever,fever,0.9876,1,fever,0.9876,1,OK
+fever_566cfcdf,fever,hritankar,fever,fever,0.9863,1,fever,0.9863,1,OK
+fever_10493aee,fever,hritankar,fever,fever,0.9859,1,fever,0.9859,1,OK
+pain_79f75b39,pain,hritankar,pain,pain,0.8656,1,pain,0.8656,1,OK
+pain_e8e884ed,pain,hritankar,pain,pain,0.9811,1,pain,0.9811,1,OK
+pain_ff5e2688,pain,hritankar,pain,pain,0.9745,1,pain,0.9745,1,OK
+pain_85417d1b,pain,hritankar,pain,pain,0.9871,1,pain,0.9871,1,OK
+pain_46935b05,pain,hritankar,pain,pain,0.9725,1,pain,0.9725,1,OK
+pain_b0f64842,pain,hritankar,pain,pain,0.9799,1,pain,0.9799,1,OK
+pain_03b9c30b,pain,hritankar,pain,goodbye,0.6021,1,goodbye,0.6021,1,WRONG
+pain_0384b1d8,pain,hritankar,pain,pain,0.9327,1,pain,0.9327,1,OK
+pain_84991416,pain,hritankar,pain,pain,0.9840,1,pain,0.9840,1,OK
+pain_ec2fcb6c,pain,hritankar,pain,pain,0.9826,1,pain,0.9826,1,OK
+pain_d6ea8a20,pain,hritankar,pain,pain,0.9866,1,pain,0.9866,1,OK
+pain_f11f7b94,pain,hritankar,pain,pain,0.9889,1,pain,0.9889,1,OK
+pain_4f0c3534,pain,hritankar,pain,pain,0.9862,1,pain,0.9862,1,OK
+pain_9c9dd750,pain,hritankar,pain,pain,0.9100,1,pain,0.9100,1,OK
+pain_0d285f51,pain,hritankar,pain,pain,0.9881,1,pain,0.9881,1,OK
+i dont understand_631c2a15,i dont understand,hritankar,i dont understand,i dont understand,0.8330,1,i dont understand,0.8330,1,OK
+i dont understand_8caf5f69,i dont understand,hritankar,i dont understand,i dont understand,0.7495,1,i dont understand,0.7495,1,OK
+i dont understand_4f93f66d,i dont understand,hritankar,i dont understand,i dont understand,0.8106,1,i dont understand,0.8106,1,OK
+i dont understand_f83321d9,i dont understand,hritankar,i dont understand,i dont understand,0.8776,1,i dont understand,0.8776,1,OK
+i dont understand_d51e73eb,i dont understand,hritankar,i dont understand,i dont understand,0.8308,1,i dont understand,0.8308,1,OK
+i dont understand_bdeed893,i dont understand,hritankar,i dont understand,i dont understand,0.8191,1,i dont understand,0.8191,1,OK
+i dont understand_f761599c,i dont understand,hritankar,i dont understand,i dont understand,0.4440,0,i dont understand,0.4440,0,DROP_BELOW_THRESHOLD
+i dont understand_1cf65740,i dont understand,hritankar,i dont understand,i dont understand,0.5484,1,i dont understand,0.5484,1,OK
+i dont understand_4da4d6c0,i dont understand,hritankar,i dont understand,i dont understand,0.9149,1,i dont understand,0.9149,1,OK
+i dont understand_9a0a5664,i dont understand,hritankar,i dont understand,i dont understand,0.8762,1,i dont understand,0.8762,1,OK
+i dont understand_8ac6ad17,i dont understand,hritankar,i dont understand,i dont understand,0.8933,1,i dont understand,0.8933,1,OK
+i dont understand_807f4bfc,i dont understand,hritankar,i dont understand,i dont understand,0.8476,1,i dont understand,0.8476,1,OK
+i dont understand_24c9743a,i dont understand,hritankar,i dont understand,i dont understand,0.8744,1,i dont understand,0.8744,1,OK
+i dont understand_83a61d8b,i dont understand,hritankar,i dont understand,i dont understand,0.8564,1,i dont understand,0.8564,1,OK
+i dont understand_97f0e71d,i dont understand,hritankar,i dont understand,i dont understand,0.8984,1,i dont understand,0.8984,1,OK
+fever_e008fede,fever,pratham,fever,fever,0.9776,1,fever,0.9776,1,OK
+fever_4755e3bd,fever,pratham,fever,fever,0.9853,1,fever,0.9853,1,OK
+fever_9a7de2cd,fever,pratham,fever,fever,0.9832,1,fever,0.9832,1,OK
+fever_308518a2,fever,pratham,fever,fever,0.9859,1,fever,0.9859,1,OK
+fever_02960eed,fever,pratham,fever,fever,0.9842,1,fever,0.9842,1,OK
+fever_13f18a89,fever,pratham,fever,fever,0.9837,1,fever,0.9837,1,OK
+fever_3de60d4c,fever,pratham,fever,fever,0.9857,1,fever,0.9857,1,OK
+fever_1309816a,fever,pratham,fever,fever,0.9865,1,fever,0.9865,1,OK
+fever_cf790c0f,fever,pratham,fever,fever,0.9873,1,fever,0.9873,1,OK
+fever_bb61fe70,fever,pratham,fever,fever,0.9845,1,fever,0.9845,1,OK
+fever_b59295dd,fever,pratham,fever,fever,0.9855,1,fever,0.9855,1,OK
+fever_f3f4a957,fever,pratham,fever,fever,0.9853,1,fever,0.9853,1,OK
+fever_aa1abe12,fever,pratham,fever,fever,0.9859,1,fever,0.9859,1,OK
+fever_7428ceb8,fever,pratham,fever,fever,0.9851,1,fever,0.9851,1,OK
+fever_0760171d,fever,pratham,fever,fever,0.9862,1,fever,0.9862,1,OK
+pain_c7de1c55,pain,pratham,pain,pain,0.9870,1,pain,0.9870,1,OK
+pain_0546366d,pain,pratham,pain,pain,0.9860,1,pain,0.9860,1,OK
+pain_3487daa5,pain,pratham,pain,pain,0.9867,1,pain,0.9867,1,OK
+pain_fb1a8513,pain,pratham,pain,pain,0.9881,1,pain,0.9881,1,OK
+pain_8bf3a5a3,pain,pratham,pain,pain,0.9887,1,pain,0.9887,1,OK
+pain_30bb176f,pain,pratham,pain,pain,0.9853,1,pain,0.9853,1,OK
+pain_65756c59,pain,pratham,pain,pain,0.9874,1,pain,0.9874,1,OK
+pain_ffc72d99,pain,pratham,pain,pain,0.9869,1,pain,0.9869,1,OK
+pain_12145c0c,pain,pratham,pain,pain,0.9878,1,pain,0.9878,1,OK
+pain_96d8a0b1,pain,pratham,pain,pain,0.9873,1,pain,0.9873,1,OK
+pain_c5933de9,pain,pratham,pain,pain,0.9861,1,pain,0.9861,1,OK
+pain_fd547ebb,pain,pratham,pain,pain,0.9848,1,pain,0.9848,1,OK
+pain_0a528c41,pain,pratham,pain,pain,0.9871,1,pain,0.9871,1,OK
+pain_2f767959,pain,pratham,pain,pain,0.9854,1,pain,0.9854,1,OK
+pain_654c308b,pain,pratham,pain,pain,0.9825,1,pain,0.9825,1,OK
+i dont understand_b3b70217,i dont understand,pratham,i dont understand,i dont understand,0.6359,1,i dont understand,0.6359,1,OK
+i dont understand_7043c5a9,i dont understand,pratham,i dont understand,i dont understand,0.9329,1,i dont understand,0.9329,1,OK
+i dont understand_90733027,i dont understand,pratham,i dont understand,i dont understand,0.6329,1,i dont understand,0.6329,1,OK
+i dont understand_67182590,i dont understand,pratham,i dont understand,i dont understand,0.8137,1,i dont understand,0.8137,1,OK
+i dont understand_ee31f02c,i dont understand,pratham,i dont understand,i dont understand,0.9237,1,i dont understand,0.9237,1,OK
+i dont understand_66ca2780,i dont understand,pratham,i dont understand,i dont understand,0.8979,1,i dont understand,0.8979,1,OK
+i dont understand_39e5553e,i dont understand,pratham,i dont understand,i dont understand,0.9220,1,i dont understand,0.9220,1,OK
+i dont understand_52d5cd49,i dont understand,pratham,i dont understand,i dont understand,0.9303,1,i dont understand,0.9303,1,OK
+i dont understand_c634e0db,i dont understand,pratham,i dont understand,i dont understand,0.9217,1,i dont understand,0.9217,1,OK
+i dont understand_a006585e,i dont understand,pratham,i dont understand,i dont understand,0.8526,1,i dont understand,0.8526,1,OK
+i dont understand_f4305aa4,i dont understand,pratham,i dont understand,i dont understand,0.8936,1,i dont understand,0.8936,1,OK
+i dont understand_ff7668d4,i dont understand,pratham,i dont understand,i dont understand,0.9195,1,i dont understand,0.9195,1,OK
+i dont understand_01628186,i dont understand,pratham,i dont understand,i dont understand,0.7874,1,i dont understand,0.7874,1,OK
+i dont understand_2aa9e087,i dont understand,pratham,i dont understand,i dont understand,0.9248,1,i dont understand,0.9248,1,OK
+i dont understand_1aa97481,i dont understand,pratham,i dont understand,i dont understand,0.9148,1,i dont understand,0.9148,1,OK
+i dont understand_efae333d,i dont understand,pratham,i dont understand,i dont understand,0.6304,1,i dont understand,0.6304,1,OK
+fever_83ecce6e,fever,ayush,fever,fever,0.9833,1,fever,0.9833,1,OK
+fever_ad3d8c65,fever,ayush,fever,fever,0.9865,1,fever,0.9865,1,OK
+fever_91ccdd24,fever,ayush,fever,fever,0.9865,1,fever,0.9865,1,OK
+fever_3f03a3d0,fever,ayush,fever,fever,0.9855,1,fever,0.9855,1,OK
+fever_aefc9b97,fever,ayush,fever,fever,0.9865,1,fever,0.9865,1,OK
+fever_40a387c7,fever,ayush,fever,fever,0.9850,1,fever,0.9850,1,OK
+fever_74ea6548,fever,ayush,fever,fever,0.9838,1,fever,0.9838,1,OK
+fever_d36f54bb,fever,ayush,fever,fever,0.9856,1,fever,0.9856,1,OK
+fever_4b78aa87,fever,ayush,fever,fever,0.9867,1,fever,0.9867,1,OK
+fever_c5e2438d,fever,ayush,fever,fever,0.9851,1,fever,0.9851,1,OK
+fever_25e2b52c,fever,ayush,fever,fever,0.9857,1,fever,0.9857,1,OK
+fever_d8c46101,fever,ayush,fever,fever,0.9862,1,fever,0.9862,1,OK
+fever_17222927,fever,ayush,fever,fever,0.9854,1,fever,0.9854,1,OK
+fever_b0dd3950,fever,ayush,fever,fever,0.9812,1,fever,0.9812,1,OK
+fever_5dea5f8a,fever,ayush,fever,fever,0.9857,1,fever,0.9857,1,OK
+pain_29c7bead,pain,ayush,pain,pain,0.9732,1,pain,0.9732,1,OK
+pain_a9338634,pain,ayush,pain,pain,0.9680,1,pain,0.9680,1,OK
+pain_18f11b6a,pain,ayush,pain,pain,0.9723,1,pain,0.9723,1,OK
+pain_2286bbed,pain,ayush,pain,pain,0.9662,1,pain,0.9662,1,OK
+pain_7adbbe17,pain,ayush,pain,pain,0.9699,1,pain,0.9699,1,OK
+pain_570cf6a1,pain,ayush,pain,pain,0.9657,1,pain,0.9657,1,OK
+pain_dbde31ed,pain,ayush,pain,pain,0.9733,1,pain,0.9733,1,OK
+pain_ed8eff32,pain,ayush,pain,pain,0.9683,1,pain,0.9683,1,OK
+pain_e55de3a7,pain,ayush,pain,pain,0.9621,1,pain,0.9621,1,OK
+pain_c354598a,pain,ayush,pain,pain,0.9592,1,pain,0.9592,1,OK
+pain_29e08cd2,pain,ayush,pain,pain,0.9518,1,pain,0.9518,1,OK
+pain_c9a31dfc,pain,ayush,pain,pain,0.8262,1,pain,0.8262,1,OK
+pain_9834314a,pain,ayush,pain,pain,0.9437,1,pain,0.9437,1,OK
+pain_d6649793,pain,ayush,pain,pain,0.9410,1,pain,0.9410,1,OK
+pain_dcabc662,pain,ayush,pain,pain,0.9163,1,pain,0.9163,1,OK
+i dont understand_f8ce87af,i dont understand,ayush,i dont understand,no,0.6036,1,no,0.6036,1,WRONG
+i dont understand_9c49cc8a,i dont understand,ayush,i dont understand,i dont understand,0.8528,1,i dont understand,0.8528,1,OK
+i dont understand_d8a4461d,i dont understand,ayush,i dont understand,i dont understand,0.9319,1,i dont understand,0.9319,1,OK
+i dont understand_843fdc9c,i dont understand,ayush,i dont understand,i dont understand,0.9202,1,i dont understand,0.9202,1,OK
+i dont understand_c89ec542,i dont understand,ayush,i dont understand,i dont understand,0.9115,1,i dont understand,0.9115,1,OK
+i dont understand_703b62b2,i dont understand,ayush,i dont understand,i dont understand,0.8301,1,i dont understand,0.8301,1,OK
+i dont understand_dd7fee13,i dont understand,ayush,i dont understand,i dont understand,0.9294,1,i dont understand,0.9294,1,OK
+i dont understand_773e6d2a,i dont understand,ayush,i dont understand,i dont understand,0.9410,1,i dont understand,0.9410,1,OK
+i dont understand_4f739850,i dont understand,ayush,i dont understand,i dont understand,0.9258,1,i dont understand,0.9258,1,OK
+i dont understand_ee57a507,i dont understand,ayush,i dont understand,i dont understand,0.8970,1,i dont understand,0.8970,1,OK
+i dont understand_8c3443d2,i dont understand,ayush,i dont understand,i dont understand,0.8969,1,i dont understand,0.8969,1,OK
+i dont understand_4e9f09da,i dont understand,ayush,i dont understand,i dont understand,0.9371,1,i dont understand,0.9371,1,OK
+i dont understand_db092e21,i dont understand,ayush,i dont understand,i dont understand,0.9381,1,i dont understand,0.9381,1,OK
+i dont understand_4fc7952f,i dont understand,ayush,i dont understand,i dont understand,0.9385,1,i dont understand,0.9385,1,OK

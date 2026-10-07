@@ -1,0 +1,30 @@
+hello
+thank you
+please
+sorry
+yes
+no
+help
+name
+where
+when
+how much
+come
+go
+sit
+stand
+wait
+stop
+good
+bad
+welcome
+goodbye
+phone
+address
+time
+today
+tomorrow
+write
+give
+show
+number
