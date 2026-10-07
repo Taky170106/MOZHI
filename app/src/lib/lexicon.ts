@@ -1,6 +1,6 @@
 import type { HandPose, HandShape, Keyframe, Loc, Palm } from './pose'
 import { COMMON } from './common'
-export type Domain = 'core' | 'question' | 'time' | 'health' | 'counter' | 'travel' | 'action' | 'police'
+export type Domain = 'core' | 'question' | 'time' | 'health' | 'counter' | 'travel' | 'action'
 export type Sign = {
   id: string
   en: string
@@ -29,7 +29,6 @@ export const DOMAINS: { id: Domain; label: string; note: string }[] = [
   { id: 'core',     label: 'Core',      note: 'Greetings, pronouns, politeness, comprehension' },
   { id: 'question', label: 'Question',  note: 'Wh-signs — always sentence-final in ISL' },
   { id: 'time',     label: 'Time',      note: 'Temporal reference, set before the clause' },
-  { id: 'police',   label: 'Police',    note: 'Police station front-desk vocabulary' },
   { id: 'health',   label: 'Health',    note: 'District hospital reception vocabulary' },
   { id: 'counter',  label: 'Counter',   note: 'Forms, payment, and desk transactions' },
   { id: 'travel',   label: 'Travel',    note: 'Railway enquiry and PRS counters' },
@@ -705,74 +704,6 @@ export const SIGNS: Sign[] = [
       { t: 1, R: h('neutral', 'bent', 'down', -60, -.01, -.02), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: .35, nod: .2 },
     ],
   },
-
-  /* Police front-desk pack. The recogniser in this build is simulated, so
-     these carry plausible pose tracks for the avatar rather than trained
-     motion — enough to demo a two-way exchange at a station counter. */
-  {
-    id: 'POLICE', en: 'police', hi: 'காவல்துறை', domain: 'police', hands: 1,
-    handshape: 'Index + middle (V) at the shoulder', location: 'Shoulder — the rank badge',
-    movement: 'Two fingers tap the badge line on the shoulder',
-    nmm: 'Chin lifted, steady gaze', acc: 0.94, durMs: 820,
-    frames: [
-      { t: 0, R: h('shoulder', 'v', 'in', -20, .0, .0), L: REST },
-      { t: .4, R: h('shoulder', 'v', 'in', -20, .01, .02), L: REST },
-      { t: .7, R: h('shoulder', 'v', 'in', -20, .0, .0), L: REST },
-      { t: 1, R: h('shoulder', 'v', 'in', -20, .01, .02), L: REST, nod: .15 },
-    ],
-  },
-  {
-    id: 'STATION', en: 'station', hi: 'நிலையம்', domain: 'police', hands: 2,
-    handshape: 'Both flat B, facing', location: 'Neutral space',
-    movement: 'Palms face in, then rotate to enclose a building',
-    acc: 0.92, near: ['ROOM'], durMs: 900,
-    frames: [
-      { t: 0, R: h('chestHigh', 'flat', 'in', -6, .04, -.02), L: h('chestHigh', 'flat', 'in', 6, -.04, -.02) },
-      { t: 1, R: h('neutral', 'flat', 'side', -70, .05, .0), L: h('neutral', 'flat', 'side', 70, -.05, .0) },
-    ],
-  },
-  {
-    id: 'OFFICER', en: 'officer', hi: 'அதிகாரி', domain: 'police', hands: 1,
-    handshape: 'Flat B stripe on the shoulder', location: 'Shoulder — the rank stripe',
-    movement: 'Flat hand draws a stripe down the shoulder',
-    nmm: 'Slight nod of deference', acc: 0.91, near: ['POLICE'], durMs: 860,
-    frames: [
-      { t: 0, R: h('shoulder', 'flat', 'in', -30, -.02, -.04), L: REST, brow: .1 },
-      { t: 1, R: h('shoulder', 'flat', 'in', -30, -.02, .03), L: REST, brow: .15, nod: .15 },
-    ],
-  },
-  {
-    id: 'COMPLAINT', en: 'complaint', hi: 'புகார்', domain: 'police', hands: 2,
-    handshape: 'Flat B sliding off a flat B palm', location: 'Neutral space',
-    movement: 'Dominant palm slides a written sheet forward off the base palm',
-    nmm: 'Brows drawn — a grievance', acc: 0.9, near: ['REPORT', 'FORM'], durMs: 940,
-    frames: [
-      { t: 0, R: h('neutral', 'flat', 'down', -76, -.05, -.02), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: -.2 },
-      { t: .55, R: h('neutral', 'flat', 'down', -76, .05, -.03), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: -.25 },
-      { t: 1, R: h('chestHigh', 'flat', 'out', -20, .06, -.02), L: h('neutral', 'flat', 'up', -80, .0, .01), brow: -.2 },
-    ],
-  },
-  {
-    id: 'THEFT', en: 'theft', hi: 'திருட்டு', domain: 'police', hands: 1,
-    handshape: 'Open 5 closing to a fist', location: 'Neutral space → drawn back',
-    movement: 'The hand snatches inward and closes — something taken',
-    nmm: 'Brows furrowed, quick head turn', acc: 0.9, durMs: 780,
-    frames: [
-      { t: 0, R: h('far', 'five', 'up', -8, .08, .01), L: REST, brow: -.25 },
-      { t: 1, R: h('chest', 'fist', 'in', -8, .02, .01), L: REST, brow: -.35, head: .2, mouth: -.2 },
-    ],
-  },
-  {
-    id: 'LOST', en: 'lost', hi: 'தொலைந்தது', domain: 'police', hands: 1,
-    handshape: 'Index point dropping open', location: 'Neutral space, downward',
-    movement: 'Index points down and the hand falls open — gone',
-    nmm: 'Brows raised then drawn, slight headshake', acc: 0.9, durMs: 860,
-    frames: [
-      { t: 0, R: h('chestHigh', 'point', 'down', -14, .02, .03), L: REST, brow: .1 },
-      { t: .5, R: h('neutral', 'point', 'down', -14, .02, -.01), L: REST, brow: -.2 },
-      { t: 1, R: h('neutral', 'five', 'down', -10, .03, -.03), L: REST, brow: -.35, head: .2, mouth: -.3 },
-    ],
-  },
 ]
 
 export const ALL_SIGNS: Sign[] = [...SIGNS, ...COMMON]
@@ -784,6 +715,5 @@ export const TOTAL_CLIPS = SIGNS.length * CLIPS_PER_SIGN
 export const PLANNED_PACKS = [
   { id: 'railway', label: 'Railway PRS', count: 74, note: 'Reservation, platform, refund, quota' },
   { id: 'banking', label: 'Banking & CSC', count: 88, note: 'Account, KYC, passbook, deposit' },
-  { id: 'police',  label: 'Police desk',  count: 61, note: 'Complaint, FIR, witness, station' },
   { id: 'civic',   label: 'Civic services', count: 52, note: 'Certificate, ration, pension, Aadhaar' },
 ]

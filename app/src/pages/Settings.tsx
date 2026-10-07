@@ -79,7 +79,7 @@ export default function Settings() {
   )
 
   const hindiSample = useMemo(
-    () => glossToHindi(['PLEASE', 'OFFICER', 'WAIT'])?.text ?? '',
+    () => glossToHindi(['PLEASE', 'WAIT', 'DOCTOR', 'SEE', 'YOU'])?.text ?? '',
     [],
   )
 
@@ -137,7 +137,7 @@ export default function Settings() {
               options={[{ v: 1, label: 'Standard' }, { v: 1.25, label: 'Large' }, { v: 1.5, label: 'Largest' }]}
             />
             <p className="set-sample" style={{ fontSize: `calc(1.05rem * ${settings.captionScale})` }}>
-              Please wait for an officer.
+              Please wait, the doctor will see you shortly.
             </p>
           </Row>
 
@@ -159,7 +159,7 @@ export default function Settings() {
                 from a real gloss sequence — so what is shown here is what
                 will actually appear, not a hand-written specimen. */}
             <p className="set-sample">
-              {settings.captionLang !== 'hi' && 'Please wait for an officer.'}
+              {settings.captionLang !== 'hi' && 'Please wait, the doctor will see you shortly.'}
               {settings.captionLang === 'both' && <br />}
               {settings.captionLang !== 'en' && (
                 <span className="deva">{hindiSample}</span>

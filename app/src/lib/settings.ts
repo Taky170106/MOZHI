@@ -33,10 +33,24 @@ export type Settings = {
   retention: Retention
 }
 
+/* Which caption a chosen spoken language implies.
+
+   The second caption slot renders Tamil — the id stays 'hi' only so stored
+   settings do not have to migrate — so there is no Hindi caption to switch
+   to. Hindi is therefore spoken-but-English-captioned rather than silently
+   leaving the caption in whatever state it was in: selecting a language sets
+   both settings, always, so the caption line and the recogniser can never
+   end up disagreeing about which language this counter is running in. */
+export const CAPTION_FOR: Record<SpeechLang, CaptionLang> = {
+  'en-IN': 'en',
+  'ta-IN': 'both',
+  'hi-IN': 'en',
+}
+
 export const DEFAULTS: Settings = {
-  site: 'City Police Station',
-  counter: 'Front Desk 2',
-  staff: 'K. Murugan',
+  site: 'District Hospital',
+  counter: 'Counter 2',
+  staff: 'R. Sharma',
   theme: 'dark',
   videoBoost: 1,
   captionScale: 1,
@@ -56,8 +70,8 @@ export const DEFAULTS: Settings = {
   retention: 'shift',
 }
 
-/* Bumped to v2 when the terminal was reconfigured for a Tamil police-station
-   counter: a v1 blob persisted under the old hospital/English defaults would
+/* Bumped to v2 when the terminal gained Tamil captions and a Tamil recogniser
+   floor: a v1 blob persisted under the old English-only defaults would
    otherwise shadow the new defaults on a machine that had already run it. */
 const KEY = 'sanket.settings.v2'
 export function useSettings() {

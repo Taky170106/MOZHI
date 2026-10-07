@@ -8,8 +8,8 @@ import type { CaptionLang } from './settings'
 
    Despite the filename (kept so the rest of the app's imports do not have to
    change), the second language rendered here is **Tamil**. This terminal is
-   configured for a Tamil-speaking counter — a police station front desk — so
-   every caption's second line is Tamil, composed from the sign sequence.
+   configured for a Tamil-speaking counter, so every caption's second line is
+   Tamil, composed from the sign sequence.
 
    Two directions, and they are not the same problem.
 
@@ -27,25 +27,18 @@ import type { CaptionLang } from './settings'
    What this file deliberately does NOT do is translate arbitrary staff prose.
    A sentence with no sign sequence behind it gets no Tamil line —
    `glossToHindi` returns null and the caption stays English rather than
-   inventing a translation at a police counter.
+   inventing a translation.
    ============================================================ */
 
 /* The sentences the counter actually produces, keyed by gloss sequence so
    both lanes hit them: an inbound read resolves to the same ids the staff
    composer resolves to. Mirrors TEMPLATES in glossing.ts one for one. */
 const HI_TEMPLATES: [string[], string][] = [
-  /* Police front desk — the phrases this station's counter uses. */
-  [['COMPLAINT', 'NEED'], 'நான் ஒரு புகார் பதிவு செய்ய வேண்டும்.'],
-  [['MY', 'PHONE', 'THEFT'], 'என் தொலைபேசி திருடப்பட்டது.'],
   [['HELP', 'NEED'], 'எனக்கு உதவி தேவை.'],
-  [['OFFICER', 'SEE', 'NEED'], 'நான் ஒரு அதிகாரியை பார்க்க வேண்டும்.'],
   [['TOKEN', 'NUMBER', 'WHAT'], 'டோக்கன் எண் என்ன?'],
-  [['MY', 'CARD', 'LOST'], 'என் அடையாள அட்டை தொலைந்தது.'],
   [['FORM', 'SIGNATURE', 'WHERE'], 'படிவத்தில் எங்கே கையொப்பம் இட வேண்டும்?'],
   [['NOT-UNDERSTAND'], 'புரியவில்லை.'],
   /* Staff replies, keyed by the order the composer produces. */
-  [['PLEASE', 'OFFICER', 'WAIT'], 'தயவுசெய்து ஒரு அதிகாரிக்காக காத்திருங்கள்.'],
-  [['PLEASE', 'COMPLAINT', 'SIGNATURE'], 'தயவுசெய்து இங்கே புகாரில் கையொப்பம் இடுங்கள்.'],
   [['PLEASE', 'WINDOW', 'GO'], 'தயவுசெய்து சாளரத்திற்கு செல்லுங்கள்.'],
   [['YOU', 'HELP', 'NEED'], 'உங்களுக்கு உதவி வேண்டுமா?'],
   [['TOMORROW', 'MORNING', 'COME'], 'நாளை காலை வாருங்கள்.'],
@@ -62,8 +55,7 @@ const COMPOUND = new Set(['ROOM>NUMBER', 'TEST>REPORT', 'TOKEN>NUMBER', 'CARD>NU
 /* A noun as it sits inside a Tamil clause. Kept separate from the lexicon's
    `hi` field, which is the citation form shown on a vocabulary card. */
 const HI_NOUN: Record<string, string> = {
-  POLICE: 'காவல்துறை', STATION: 'நிலையம்', OFFICER: 'அதிகாரி', COMPLAINT: 'புகார்',
-  THEFT: 'திருட்டு', LOST: 'தொலைந்தது', PHONE: 'தொலைபேசி', CARD: 'அட்டை',
+  PHONE: 'தொலைபேசி', CARD: 'அட்டை',
   FORM: 'படிவம்', SIGNATURE: 'கையொப்பம்', TOKEN: 'டோக்கன்', WINDOW: 'சாளரம்',
   NUMBER: 'எண்', NAME: 'பெயர்', ADDRESS: 'முகவரி', MONEY: 'பணம்',
   DOCTOR: 'மருத்துவர்', HOSPITAL: 'மருத்துவமனை', MEDICINE: 'மருந்து', REPORT: 'அறிக்கை',
@@ -85,7 +77,6 @@ const HI_WH: Record<string, string> = {
 const VERBS = [
   'NEED', 'SEE', 'COME', 'GO', 'WAIT', 'PAY', 'HELP', 'UNDERSTAND',
   'NOT-UNDERSTAND', 'FINISH', 'OPEN', 'CLOSED', 'DELAY', 'SIGNATURE',
-  'THEFT', 'LOST',
 ]
 
 /**
@@ -172,8 +163,6 @@ export function glossToHindi(
   else if (verbs.includes('GO')) clause = `${np || 'சாளரத்தி'}ற்கு செல்லுங்கள்`
   else if (verbs.includes('PAY')) clause = `${np || 'கட்டணம்'} செலுத்த வேண்டும்`
   else if (verbs.includes('HELP')) clause = `உதவி தேவை${np && np !== 'உதவி' ? ' — ' + np : ''}`
-  else if (verbs.includes('THEFT')) clause = `${np || 'அது'} திருடப்பட்டது`
-  else if (verbs.includes('LOST')) clause = `${np || 'அது'} தொலைந்தது`
   else if (verbs.includes('NOT-UNDERSTAND')) clause = 'புரியவில்லை'
   else if (verbs.includes('UNDERSTAND')) clause = 'புரிந்தது'
   else if (verbs.includes('FINISH')) clause = `${np || 'அது'} முடிந்தது`
@@ -234,12 +223,6 @@ hiAdd('see', 'பார்', 'பார்க்க', 'சந்திக்க'
 hiAdd('come', 'வா', 'வாருங்கள்')
 hiAdd('go', 'செல்', 'செல்லுங்கள்', 'போ')
 hiAdd('wait', 'காத்திருங்கள்', 'பொறுங்கள்')
-hiAdd('police', 'காவல்துறை', 'போலீஸ்', 'காவலர்')
-hiAdd('station', 'நிலையம்', 'தானா')
-hiAdd('officer', 'அதிகாரி', 'இன்ஸ்பெக்டர்')
-hiAdd('complaint', 'புகார்', 'புகார்கள்')
-hiAdd('theft', 'திருட்டு', 'திருடப்பட்டது', 'திருடன்')
-hiAdd('lost', 'தொலைந்தது', 'காணவில்லை')
 hiAdd('phone', 'தொலைபேசி', 'போன்', 'மொபைல்')
 hiAdd('card', 'அட்டை', 'அடையாள')
 hiAdd('form', 'படிவம்')

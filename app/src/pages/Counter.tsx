@@ -10,11 +10,11 @@ import { useLiveRecognizer } from '@/lib/live'
 import { useSignPlayer } from '@/lib/hooks'
 import { groupGlosses, readGlosses, suggestFor } from '@/lib/glossing'
 import { caption, textToGloss } from '@/lib/hindi'
-import { useSpeech } from '@/lib/speech'
+import { useSpeech, SPEECH_LANGS, matchLanguageCommand } from '@/lib/speech'
 import { ALL_SIGNS, SIGN_BY_ID } from '@/lib/lexicon'
 import { SEED_TURNS, type Turn } from '@/lib/turns'
 import { fetchTurns, createTurn, type NewTurn } from '@/lib/api'
-import { useSettings } from '@/lib/settings'
+import { useSettings, CAPTION_FOR } from '@/lib/settings'
 import { AVATAR_ENABLED, MODEL_ENABLED } from '@/lib/flags'
 import '@/styles/counter.css'
 
@@ -254,11 +254,23 @@ export default function Counter() {
 
   /* Dictation lands in the composer, never in the transcript: the clerk
      still presses Enter. A misheard sentence must not reach the avatar
-     unread, and a cloud recogniser will mishear an Indian counter. */
+     unread, and a cloud recogniser will mishear an Indian counter.
+
+     The one exception is a request to change language. "Switch to Tamil" is
+     not a sentence waiting to be signed — obeying it is the whole point of
+     saying it — so it is taken out of the stream and applied to both language
+     settings instead of being written into the reply. Everything else passes
+     straight through. */
   const onHeard = useCallback((said: string) => {
+    const wanted = matchLanguageCommand(said)
+    if (wanted) {
+      set('speechLang', wanted)
+      set('captionLang', CAPTION_FOR[wanted])
+      return
+    }
     setReply(prev => (prev.trim() ? `${prev.trim()} ${said}` : said))
     composerRef.current?.focus()
-  }, [])
+  }, [set])
   const voice = useSpeech({
     lang: settings.speechLang,
     enabled: settings.voiceInput,
@@ -771,6 +783,32 @@ export default function Counter() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
             />
 
+            {/* Language, selectable by touch in the same place it is
+                selectable by voice. Both paths write the same two settings —
+                the caption and the recogniser — so they cannot drift apart:
+                pressing தமிழ் here changes what the visitor reads and what the
+                microphone listens for, exactly as saying "switch to Tamil"
+                does. The active one is marked by aria-pressed, which is what
+                the pill's white fill keys off. */}
+            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="slot-label">Language</span>
+              {SPEECH_LANGS.map(l => (
+                <button
+                  key={l.v}
+                  type="button"
+                  className="pick"
+                  aria-pressed={settings.speechLang === l.v}
+                  onClick={() => {
+                    set('speechLang', l.v)
+                    set('captionLang', CAPTION_FOR[l.v])
+                  }}
+                  title={`Speak and caption in ${l.label}`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+
             {/* Speech is opt-in per counter and says so while it is on. The
                 browser's recogniser is the one part of this product that
                 leaves the machine — audio goes to the browser vendor's
@@ -792,7 +830,7 @@ export default function Counter() {
                   {voice.error
                     ? voice.error
                     : voice.state === 'listening'
-                      ? `Audio goes to the browser’s speech service · ${settings.speechLang === 'hi-IN' ? 'हिन्दी' : 'English'}`
+                      ? `Audio goes to the browser’s speech service · ${SPEECH_LANGS.find(l => l.v === settings.speechLang)?.label ?? settings.speechLang}`
                       : 'Cloud speech · typing stays on the machine'}
                 </span>
                 {voice.interim && <span className="mic-interim">{voice.interim}</span>}
