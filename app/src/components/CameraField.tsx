@@ -7,6 +7,7 @@ import {
   type NormalizedLandmark,
 } from '@mediapipe/tasks-vision'
 import { createSanketVision, type SanketVision, type SignFrame } from '@/lib/sanket-vision'
+import { isHand } from '@/lib/hand'
 
 /* ============================================================
    CameraField — the real inbound pipeline, stages 01 and 02.
@@ -258,8 +259,13 @@ export default function CameraField({
         for (const p of pose) dot(p, b, 2.2 * dpr, INK_LIT)
       }
 
+      /* Drawn only if it would also be COUNTED — see hand.ts. What the
+         panel shows and what the segmenter below it accepts have to be the
+         same set of hands, or the operator watches a skeleton the machine
+         is refusing to read and has no way to know which of them is
+         lying. */
       for (const hand of [result.leftHandLandmarks?.[0], result.rightHandLandmarks?.[0]]) {
-        if (!hand) continue
+        if (!isHand(hand)) continue
         link(hand, HolisticLandmarker.HAND_CONNECTIONS, b, 1.6 * dpr, 'rgba(41, 169, 245, 0.9)')
         for (const p of hand) dot(p, b, 1.7 * dpr, '#9BD8FF')
       }

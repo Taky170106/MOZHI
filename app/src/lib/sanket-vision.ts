@@ -7,6 +7,7 @@ import {
   type PoseLandmarkerResult,
 } from '@mediapipe/tasks-vision'
 import { FEATURE_DIM, HAND, POSE_INDICES } from './sanket'
+import { isHand } from './hand'
 
 /* ============================================================
    sanket-vision.ts — the landmarks the checkpoint was trained on.
@@ -113,12 +114,20 @@ export async function createSanketVision(): Promise<SanketVision> {
 
     /* Handedness decides the slot, exactly as the extractor did: MediaPipe's
        "Left" goes to the canonical RIGHT hand. Straightening this out would
-       mirror every sign the model has ever seen. */
+       mirror every sign the model has ever seen.
+
+       A detection that fails the shape test in hand.ts is not written at
+       all — not as zeros, not as a half-vector. Zeros are how the model is
+       told "no hand here", and a latched blob deserves exactly that
+       answer: handsFound stays false, the frame never enters the window,
+       and the segmenter beside it sees no hand either. */
     let leftPoints: NormalizedLandmark[] | undefined
     let rightPoints: NormalizedLandmark[] | undefined
-    const handsFound = !!hr?.landmarks?.length
+    let accepted = 0
     if (hr?.landmarks) {
       hr.landmarks.forEach((points, i) => {
+        if (!isHand(points)) return
+        accepted += 1
         const label = hr!.handednesses?.[i]?.[0]?.categoryName
         if (label === 'Left') {
           writeHand(OFF_RIGHT, points)
@@ -129,6 +138,7 @@ export async function createSanketVision(): Promise<SanketVision> {
         }
       })
     }
+    const handsFound = accepted > 0
 
     const body = pr?.landmarks?.[0]
     const personPresent = !!body

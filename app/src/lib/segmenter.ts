@@ -1,4 +1,5 @@
 import type { HolisticLandmarkerResult, NormalizedLandmark } from '@mediapipe/tasks-vision'
+import { isHand } from './hand'
 
 /* ============================================================
    segmenter.ts — stage 03, for real.
@@ -95,13 +96,22 @@ export class Segmenter {
   /** Called once per processed camera frame. `t` is performance.now(). */
   push(res: HolisticLandmarkerResult | null, t: number): SegTick {
     const pose = res?.poseLandmarks?.[0]
-    const right = wristOf(res?.rightHandLandmarks?.[0], pose, 16)
-    const left = wristOf(res?.leftHandLandmarks?.[0], pose, 15)
 
     /* Hands specifically, not the body. A visitor standing at the counter
        always has a pose; they are only signing when the hand landmarks
-       resolve, which MediaPipe only does when a hand is actually up. */
-    const handsVisible = !!(res?.rightHandLandmarks?.[0] || res?.leftHandLandmarks?.[0])
+       resolve, which MediaPipe only does when a hand is actually up.
+
+       And "resolve" is not enough on its own — see hand.ts. In a dim room
+       the landmarker locks onto a collar or a shoulder edge and hands back
+       twenty-one points with a confidence score, and this used to count
+       that as hands up. The pose was then still there, the wrists still
+       produced motion, and the hold it opened was a reading of the wall
+       behind the signer. */
+    const rh = isHand(res?.rightHandLandmarks?.[0]) ? res?.rightHandLandmarks?.[0] : undefined
+    const lh = isHand(res?.leftHandLandmarks?.[0]) ? res?.leftHandLandmarks?.[0] : undefined
+    const right = wristOf(rh, pose, 16)
+    const left = wristOf(lh, pose, 15)
+    const handsVisible = !!(rh || lh)
 
     const dt = this.prevT ? Math.max(1, t - this.prevT) / 1000 : 0
     let speed = 0

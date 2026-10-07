@@ -162,6 +162,12 @@ export function useLiveRecognizer(opts: {
   thresholdRef.current = opts.threshold
   const onResolved = useRef(opts.onResolved)
   onResolved.current = opts.onResolved
+  /* The panel's standing explanation — which recogniser, how many signs —
+     restored when the camera comes back to something it can read. */
+  const bootDetail = useRef('')
+  /* Hand presence is written on the EDGE only: an idle counter must cost
+     one render, not thirty a second. */
+  const handsSeen = useRef(true)
   /* Read inside the frame handler, which is created once and must not go
      stale as the sentence changes. */
   const sentence = useMemo(() => readBack(commits), [commits])
@@ -176,6 +182,10 @@ export function useLiveRecognizer(opts: {
        camera on in front of an audience. The Counter is the screen where a
        camera is the whole point, so it starts as soon as the screen opens. */
     let cancelled = false
+    /* Shows the panel's standing explanation AND remembers it, so the
+       "no hands" line written from the frame handler can put the real one
+       back the moment a hand comes back. */
+    const say = (m: string) => { bootDetail.current = m; setDetail(m) }
 
     /* The warm-up above is why this guard is here and not only at the call
        site: with the classifier switched off, gating the hook's `enabled`
@@ -183,7 +193,7 @@ export function useLiveRecognizer(opts: {
     if (!MODEL_ENABLED) {
       setStatus('absent')
       setBackend('none')
-      setDetail('Recogniser disabled — tracking only')
+      say('Recogniser disabled — tracking only')
       return
     }
 
@@ -199,7 +209,7 @@ export function useLiveRecognizer(opts: {
       if (own) {
         setBackend('sanket')
         setStatus('ready')
-        setDetail(`Mozhi BiGRU · ${own.classes} signs · ISL`)
+        say(`Mozhi BiGRU · ${own.classes} signs · ISL`)
         return
       }
 
@@ -214,12 +224,12 @@ export function useLiveRecognizer(opts: {
           modelRef.current = m
           setBackend('tm')
           setStatus('ready')
-          setDetail(`${m.labels.length} classes · ISL`)
+          say(`${m.labels.length} classes · ISL`)
           return
         } catch (err) {
           if (!cancelled) {
             setStatus('error')
-            setDetail(String((err as Error)?.message ?? err))
+            say(String((err as Error)?.message ?? err))
           }
           return
         }
@@ -231,14 +241,14 @@ export function useLiveRecognizer(opts: {
         if (cancelled) return
         setBackend('islr')
         setStatus('ready')
-        setDetail('PopSign ASL · 250 classes · bench')
+        say('PopSign ASL · 250 classes · bench')
         return
       }
 
       if (!cancelled) {
         setBackend('none')
         setStatus('absent')
-        setDetail('No recogniser: the ISL model did not load, public/models/tm/ is empty, and server/islr.py is not running')
+        say('No recogniser: the ISL model did not load, public/models/tm/ is empty, and server/islr.py is not running')
       }
     })()
 
@@ -368,10 +378,18 @@ export function useLiveRecognizer(opts: {
         if (!sign) return
         engine.current.push(sign, t, e => {
           if (e.type === 'candidate') {
+            const pct = `${(e.conf * 100).toFixed(0)}%`
+            /* The reason matters to the person being read: "under the
+               floor" and "I cannot tell those two apart" are different
+               answers, and only one of them means sign it again harder. */
             setDetail(
-              e.stable
-                ? `"${e.word}" ${(e.conf * 100).toFixed(0)}% · ${e.stable}/2`
-                : `"${e.word}" ${(e.conf * 100).toFixed(0)}% — below threshold`,
+              e.reason === 'confidence'
+                ? `"${e.word}" ${pct} — under the floor`
+                : e.reason === 'settling'
+                  ? `"${e.word}" ${pct} — settling`
+                  : e.reason === 'agreement'
+                    ? `"${e.word}" ${pct} — torn between words`
+                    : `"${e.word}" ${pct} · ${e.stable}/${e.seen}`,
             )
             return
           }
@@ -384,6 +402,16 @@ export function useLiveRecognizer(opts: {
           commit(gloss, e.conf, false)
         })
         setHoldProgress(engine.current.fill)
+
+        /* An idle counter that leaves the last reading on screen looks
+           like it is still detecting — which is precisely what somebody
+           sees when they lower their hands and words keep coming. Say the
+           other thing, once per change rather than once per frame. */
+        const hands = engine.current.handsHere
+        if (hands !== handsSeen.current) {
+          handsSeen.current = hands
+          setDetail(hands ? bootDetail.current : 'No hands in frame — waiting')
+        }
         return
       }
 
