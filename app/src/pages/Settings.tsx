@@ -5,6 +5,7 @@ import SigningAvatar from '@/components/SigningAvatar'
 import { useSignPlayer } from '@/lib/hooks'
 import { useSettings, type CaptionLang, type Retention } from '@/lib/settings'
 import { SPEECH_LANGS, type SpeechLang } from '@/lib/speech'
+import { TTS_SUPPORTED } from '@/lib/tts'
 import { glossToHindi } from '@/lib/hindi'
 import { SEED_TURNS } from '@/lib/turns'
 import { SIGNS, TOTAL_CLIPS } from '@/lib/lexicon'
@@ -239,7 +240,29 @@ export default function Settings() {
             />
           </Row>
 
-          {settings.voiceInput && (
+          {/* On by default, and unlike voice input it costs nothing this
+              product has promised not to spend: the browser synthesises the
+              line itself. What it cannot promise is a voice for every
+              script — so the reader falls back to English when this
+              machine has no Tamil voice rather than reading Tamil
+              characters with an English one. */}
+          <Row
+            label="Voice output"
+            htmlFor="vout"
+          >
+            <Seg
+              id="vout"
+              value={settings.voiceOutput}
+              onChange={v => set('voiceOutput', v)}
+              options={[{ v: false, label: 'Off' }, { v: true, label: 'On' }]}
+            />
+          </Row>
+
+          {/* Reachable from the spoken language, by voice or by touch —
+              not only from behind the microphone switch, which is off on a
+              counter that never dictates. Choosing it here still sets both
+              settings, exactly as saying "switch to Tamil" does. */}
+          {(settings.voiceInput || settings.voiceOutput) && (
             <Row
               label="Spoken language"
               htmlFor="slang"
@@ -252,6 +275,17 @@ export default function Settings() {
               />
             </Row>
           )}
+
+          <div className="set-note">
+            <p>
+              <b>Voice output reads the transcript aloud</b> as each line lands, and the
+              Transcript card's <b>Read</b> button reads the whole log on demand — that
+              button works whether or not this is on. The synthesiser is the browser's,
+              so nothing is sent anywhere by this app; which voice the browser picks for
+              a language is its own choice.
+              {!TTS_SUPPORTED && ' This browser has no speech synthesiser, so the controls stay hidden.'}
+            </p>
+          </div>
         </Group>
 
         {}

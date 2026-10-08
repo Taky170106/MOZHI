@@ -152,6 +152,38 @@
 .card-transcript .card-title,
 .card-staff      .card-title { color: #fff; }
 
+/* The transcript header holds the title and the read-back button. The
+   button is pinned to the right edge so the title stays centred — the
+   title is only `text-align: center` inside itself, and a flex sibling
+   pushed against it would drag the whole heading off axis. The transition
+   is restated without `transform` because the centring uses one, and a
+   transition on it would slide the button in on first paint. */
+.card-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-head .tr-read {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition:
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-head .tr-read:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.card-head .tr-read:disabled:hover {
+  color: rgb(255 255 255 / 0.6);
+  border-color: rgb(255 255 255 / 0.18);
+}
+
 .card-body {
   display: flex;
   flex-direction: column;

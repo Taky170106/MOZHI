@@ -11,6 +11,7 @@ import { useSignPlayer } from '@/lib/hooks'
 import { groupGlosses, readGlosses, suggestFor } from '@/lib/glossing'
 import { caption, textToGloss } from '@/lib/hindi'
 import { useSpeech, SPEECH_LANGS, matchLanguageCommand } from '@/lib/speech'
+import { useReadAloud } from '@/lib/tts'
 import { ALL_SIGNS, SIGN_BY_ID } from '@/lib/lexicon'
 import { SEED_TURNS, type Turn } from '@/lib/turns'
 import { fetchTurns, createTurn, type NewTurn } from '@/lib/api'
@@ -198,10 +199,43 @@ export default function Counter() {
     })
   }, [])
 
+  /* ── The log, read back as well as shown ──────────────────────────
+
+     Two settings decide what a transcript line becomes, and they are not
+     the same setting: the WRITTEN caption follows `captionLang`, the
+     SPOKEN line follows `speechLang`. The language pills write both at
+     once so they normally agree, but Settings lets them be set apart, and
+     the voice must not be the one left disagreeing.
+
+     Only Tamil actually swaps the text — it is the one second language
+     this build can compose. `hi-IN` has no renderer of its own and reads
+     the English line, with an English voice, because the reader picks the
+     voice from the script in front of it rather than from the setting.
+
+     `fallback` is the untranslated text, handed over for the case where
+     this machine has no Tamil voice at all: an English answer beats Tamil
+     characters pronounced as English letters. */
+  const tts = useReadAloud()
+  const spokenLine = useCallback(
+    (text: string, glosses: string[]) =>
+      settings.speechLang === 'ta-IN' ? caption(text, glosses, 'hi').primary : text,
+    [settings.speechLang],
+  )
+  const sayAloud = tts.say
+  const sayTurn = useCallback(
+    (text: string, glosses: string[]) => {
+      if (!settings.voiceOutput) return
+      sayAloud([{ text: spokenLine(text, glosses), fallback: text }])
+    },
+    [settings.voiceOutput, sayAloud, spokenLine],
+  )
+
   const commitRead = useCallback(
-    (r: { text: string; glosses: string[]; conf: number; repeated: boolean }) =>
-      pushTurn({ dir: 'in', text: r.text, glosses: r.glosses, conf: r.conf, repeated: r.repeated }),
-    [pushTurn],
+    (r: { text: string; glosses: string[]; conf: number; repeated: boolean }) => {
+      pushTurn({ dir: 'in', text: r.text, glosses: r.glosses, conf: r.conf, repeated: r.repeated })
+      sayTurn(r.text, r.glosses)
+    },
+    [pushTurn, sayTurn],
   )
 
   /* Two inbound lanes, and only one of them is running at a time.
@@ -249,8 +283,9 @@ export default function Counter() {
        is produced, so it no longer counts — only a word with neither a sign
        nor letters does. */
     pushTurn({ dir: 'out', text, glosses, textOnly: oov.length > 0 })
+    sayTurn(text, glosses)
     setReply('')
-  }, [reply, pushTurn])
+  }, [reply, pushTurn, sayTurn])
 
   /* Dictation lands in the composer, never in the transcript: the clerk
      still presses Enter. A misheard sentence must not reach the avatar
@@ -670,7 +705,42 @@ export default function Counter() {
         {/* ══ TRANSCRIPT ════════════════════════════════════════ */}
         <section className="card card-transcript rise rise-2">
           <div className="card-skin" />
-          <h2 className="card-title">Transcript</h2>
+          <div className="card-head">
+            <h2 className="card-title">Transcript</h2>
+            {/* Read the whole log, or cut in. This is deliberately NOT
+                gated on the Settings toggle: that one only decides whether
+                lines are spoken as they land, while a clerk looking back
+                at a conversation needs the button either way. Each line is
+                handed its own English fallback, so a machine with no Tamil
+                voice still reads the log in something it can pronounce. */}
+            {tts.supported && (
+              <button
+                type="button"
+                className="cam-toggle tr-read"
+                aria-pressed={tts.speaking}
+                disabled={!tts.speaking && turns.length === 0}
+                onClick={() =>
+                  tts.speaking
+                    ? tts.stop()
+                    : tts.say(
+                        turns.map(t => ({
+                          text: spokenLine(t.text, t.glosses),
+                          fallback: t.text,
+                        })),
+                      )
+                }
+                title={
+                  tts.speaking
+                    ? 'Stop reading'
+                    : settings.voiceOutput
+                      ? 'Read the log aloud'
+                      : 'Read the log aloud — new lines are not read automatically (Voice output is off in Settings)'
+                }
+              >
+                {tts.speaking ? '■ Stop' : '🔊 Read'}
+              </button>
+            )}
+          </div>
           <div className="bubbles" ref={logRef}>
             {turns.map(t => {
               const cap = caption(t.text, t.glosses, lang)

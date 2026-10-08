@@ -30,6 +30,13 @@ export type Settings = {
   voiceInput: boolean
   speechLang: SpeechLang
 
+  /* The other direction — the log read back instead of only shown. On by
+     default because it costs nothing this product has promised not to
+     spend: `speechSynthesis` runs inside the browser, and the Transcript
+     card's Read button works whether or not this is on, so the toggle
+     only decides whether lines are spoken as they land. */
+  voiceOutput: boolean
+
   retention: Retention
 }
 
@@ -67,6 +74,7 @@ export const DEFAULTS: Settings = {
   faceChannel: true,
   voiceInput: false,
   speechLang: 'ta-IN',
+  voiceOutput: true,
   retention: 'shift',
 }
 
