@@ -56,6 +56,12 @@ export type VisionProbe = {
   spans: number[]
   /** MediaPipe's handedness label for each raw detection. */
   labels: string[]
+  /** Detections thrown away because a second one carried the same handedness
+      label as the first: `numHands: 2` reporting one hand twice. Left in,
+      both would have been written to the same half of the vector, so one
+      half would hold the hand and the other zeros while `accepted` claimed
+      two hands were up. */
+  dupes: number
   pose: boolean
   /** The timestamp the detectors were given, so a reader can tell a live
       reading from a stale one. */
@@ -80,12 +86,32 @@ export type SanketVision = {
   close: () => void
 }
 
+/** Which inference engine runs the landmarkers.
+
+    CPU, not GPU — and that is not a preference, it is the reference.
+    `landmark_utils.py` calls itself "the single source of truth for
+    landmark extraction", exists to guarantee that "training-time and
+    inference-time preprocessing are provably identical", and forces
+    `Delegate.CPU` on both landmarkers while stating why: *"CPU-first is
+    our hard requirement anyway."*
+
+    The browser had `delegate: 'GPU'` on all six landmarkers, which is a
+    different engine on a different numerical path — and a palm detector
+    sitting near its threshold is precisely where a few ulps decide
+    whether there is a hand in the frame at all. Every measurement taken
+    of this pipeline was taken on CPU: no tracker latch across 60 frames
+    at every threshold from 0.5 to 0.9, zero invented hands on empty
+    scenes, 198 of 199 real frames kept with one flicker. Running the
+    browser on GPU meant running an engine nobody had measured, against a
+    checkpoint trained on the other one. */
+export const VISION_DELEGATE = 'CPU' as const
+
 export async function createSanketVision(): Promise<SanketVision> {
   const fileset = await FilesetResolver.forVisionTasks(asset('wasm'))
 
   const [hands, pose] = await Promise.all([
     HandLandmarker.createFromOptions(fileset, {
-      baseOptions: { modelAssetPath: asset('models/hand_landmarker.task'), delegate: 'GPU' },
+      baseOptions: { modelAssetPath: asset('models/hand_landmarker.task'), delegate: VISION_DELEGATE },
       runningMode: 'VIDEO',
       numHands: 2,
       minHandDetectionConfidence: 0.5,
@@ -93,7 +119,7 @@ export async function createSanketVision(): Promise<SanketVision> {
       minTrackingConfidence: 0.5,
     }),
     PoseLandmarker.createFromOptions(fileset, {
-      baseOptions: { modelAssetPath: asset('models/pose_landmarker.task'), delegate: 'GPU' },
+      baseOptions: { modelAssetPath: asset('models/pose_landmarker.task'), delegate: VISION_DELEGATE },
       runningMode: 'VIDEO',
       numPoses: 1,
       minPoseDetectionConfidence: 0.5,
@@ -105,7 +131,7 @@ export async function createSanketVision(): Promise<SanketVision> {
   const vec = new Float32Array(FEATURE_DIM)
   const last: SanketVision['last'] = {}
   const probe: VisionProbe = {
-    raw: 0, accepted: 0, spans: [], labels: [], pose: false, stamp: 0,
+    raw: 0, accepted: 0, spans: [], labels: [], dupes: 0, pose: false, stamp: 0,
   }
 
   /* VIDEO mode wants a timestamp that only ever goes up, and the same one
@@ -151,6 +177,7 @@ export async function createSanketVision(): Promise<SanketVision> {
     let leftPoints: NormalizedLandmark[] | undefined
     let rightPoints: NormalizedLandmark[] | undefined
     let accepted = 0
+    let dupes = 0
     probe.spans.length = 0
     probe.labels.length = 0
     if (hr?.landmarks) {
@@ -160,9 +187,18 @@ export async function createSanketVision(): Promise<SanketVision> {
         probe.spans.push(handSpan(points))
         probe.labels.push(hr!.handednesses?.[i]?.[0]?.categoryName ?? '?')
         if (!isHand(points)) return
-        accepted += 1
         const label = hr!.handednesses?.[i]?.[0]?.categoryName
-        if (label === 'Left') {
+        const isLeft = label === 'Left'
+        /* The same label twice means one hand reported as two. Writing the
+           second would overwrite the first in the same half of the vector
+           while counting two hands, so the model would read one hand and
+           an empty slot and be told both were up. One hand is what it is. */
+        if (isLeft ? leftPoints !== undefined : rightPoints !== undefined) {
+          dupes += 1
+          return
+        }
+        accepted += 1
+        if (isLeft) {
           writeHand(OFF_RIGHT, points)
           leftPoints = points
         } else {
@@ -174,6 +210,7 @@ export async function createSanketVision(): Promise<SanketVision> {
     const handsFound = accepted > 0
     probe.raw = probe.spans.length
     probe.accepted = accepted
+    probe.dupes = dupes
 
     const body = pr?.landmarks?.[0]
     const personPresent = !!body

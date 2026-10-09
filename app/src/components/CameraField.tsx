@@ -6,7 +6,7 @@ import {
   type HolisticLandmarkerResult,
   type NormalizedLandmark,
 } from '@mediapipe/tasks-vision'
-import { createSanketVision, type SanketVision, type SignFrame } from '@/lib/sanket-vision'
+import { createSanketVision, VISION_DELEGATE, type SanketVision, type SignFrame } from '@/lib/sanket-vision'
 import { isHand, handSpan } from '@/lib/hand'
 
 /* ============================================================
@@ -296,12 +296,13 @@ export default function CameraField({
       spans: number[],
       labels: string[],
       pass: number,
+      dupes: number,
       pose: boolean,
       src: string,
     ): string => {
       const verdict = spans.length === 0 ? 'NO HAND' : pass > 0 ? 'HAND' : 'REJECTED'
       return [
-        `MediaPipe raw=${spans.length} pass=${pass}   ${verdict}`,
+        `MediaPipe ${VISION_DELEGATE} raw=${spans.length} pass=${pass}${dupes ? ` dup=${dupes}` : ''}   ${verdict}`,
         spans.length
           ? `span ${spans.map(f).join(' ')}   label ${labels.join(' ')}   gate >=0.05`
           : 'detector returned nothing   gate >=0.05',
@@ -326,6 +327,7 @@ export default function CameraField({
         let spans: number[] = []
         let labels: string[] = []
         let pass = 0
+        let dupes = 0
         let pose = false
         let srcKind = 'raw'
         try {
@@ -339,6 +341,7 @@ export default function CameraField({
             spans = sanket.probe.spans
             labels = sanket.probe.labels
             pass = sanket.probe.accepted
+            dupes = sanket.probe.dupes
             pose = sanket.probe.pose
           } else {
             result = landmarker!.detectForVideo(src, t)
@@ -369,7 +372,7 @@ export default function CameraField({
         }
 
         const el = probeElRef.current
-        if (el) el.textContent = probeLine(spans, labels, pass, pose, srcKind)
+        if (el) el.textContent = probeLine(spans, labels, pass, dupes, pose, srcKind)
       }
       draw()
     }
@@ -383,7 +386,10 @@ export default function CameraField({
         if (vision === 'sanket') return createSanketVision()
         const fileset = await FilesetResolver.forVisionTasks(asset('wasm'))
         return HolisticLandmarker.createFromOptions(fileset, {
-          baseOptions: { modelAssetPath: asset('models/holistic_landmarker.task'), delegate: 'GPU' },
+          /* CPU, matching landmark_utils.py and matching the Hand+Pose path
+             in sanket-vision.ts — see VISION_DELEGATE. One engine, one set
+             of numbers, whichever recogniser is running. */
+          baseOptions: { modelAssetPath: asset('models/holistic_landmarker.task'), delegate: VISION_DELEGATE },
           runningMode: 'VIDEO',
           /* Only in framed mode: the mask is what framing.ts uses to cut the
              room away, and computing one nobody reads is wasted GPU. */
