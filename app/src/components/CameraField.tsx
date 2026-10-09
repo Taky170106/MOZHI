@@ -7,7 +7,7 @@ import {
   type NormalizedLandmark,
 } from '@mediapipe/tasks-vision'
 import { createSanketVision, type SanketVision, type SignFrame } from '@/lib/sanket-vision'
-import { isHand } from '@/lib/hand'
+import { isHand, handSpan } from '@/lib/hand'
 
 /* ============================================================
    CameraField — the real inbound pipeline, stages 01 and 02.
@@ -48,6 +48,13 @@ type Props = {
      frames the landmarker reads, not just to the preview. */
   boost?: 0 | 1 | 2
   onStatus?: (status: CameraStatus, detail?: string) => void
+  /* Diagnostics. When on, a readout is drawn over the stage showing what
+     MediaPipe claimed this frame (raw) next to what hand.ts let through
+     (pass). The two numbers together are the only way to localise a false
+     positive: raw=0 while a word appears means the detector is innocent
+     and the problem is downstream; raw=1 with a span far below 0.05 means
+     the detector is inventing and the gate is the only thing holding. */
+  probe?: boolean
   /* Every frame that was actually run through Holistic, handed on with the
      video element it came from. The landmarks are what the segmenter reads;
      the video is what the classifier crops. Nothing is retained here — the
@@ -83,7 +90,7 @@ const BOOST: Record<number, { lift: number; gain: number; alpha: number; gray: n
 }
 
 export default function CameraField({
-  active, vision = 'sanket', face = true, boost = 1, onStatus, onFrame, className,
+  active, vision = 'sanket', face = true, boost = 1, onStatus, onFrame, probe, className,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -100,6 +107,7 @@ export default function CameraField({
   statusRef.current = onStatus
   const frameRef = useRef(onFrame)
   frameRef.current = onFrame
+  const probeElRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!active) return
@@ -279,6 +287,28 @@ export default function CameraField({
       }
     }
 
+    /* The readout, three lines: what the detector claimed, what the gate
+       let through, and the frame it came from. `raw` is MediaPipe's answer,
+       `pass` is hand.ts's. A word appearing while raw=0 indicts the
+       segmenter or the engine and clears the tracker. */
+    const f = (n: number) => (Number.isFinite(n) ? n.toFixed(2) : '--')
+    const probeLine = (
+      spans: number[],
+      labels: string[],
+      pass: number,
+      pose: boolean,
+      src: string,
+    ): string => {
+      const verdict = spans.length === 0 ? 'NO HAND' : pass > 0 ? 'HAND' : 'REJECTED'
+      return [
+        `MediaPipe raw=${spans.length} pass=${pass}   ${verdict}`,
+        spans.length
+          ? `span ${spans.map(f).join(' ')}   label ${labels.join(' ')}   gate >=0.05`
+          : 'detector returned nothing   gate >=0.05',
+        `pose=${pose ? 1 : 0}   src=${src}   ${vid.videoWidth}x${vid.videoHeight}   t=${vid.currentTime.toFixed(2)}s`,
+      ].join('\n')
+    }
+
     const tick = () => {
       if (disposed) return
       raf = requestAnimationFrame(tick)
@@ -290,15 +320,40 @@ export default function CameraField({
         lastVideoTime = vid.currentTime
         const t = performance.now()
         let sign: SignFrame | undefined
+        /* Captured regardless of whether the readout is showing: the whole
+           point is to have the detector's claim on hand the moment somebody
+           asks why a word appeared. */
+        let spans: number[] = []
+        let labels: string[] = []
+        let pass = 0
+        let pose = false
+        let srcKind = 'raw'
         try {
           /* Lifted, not raw — see prepared(). Same dimensions, so the
              landmarks land exactly where the raw frame would have put them. */
           const src = prepared()
+          srcKind = src === vid ? 'raw' : 'lift'
           if (sanket) {
             sign = sanket.detect(src, t)
             result = sanket.last as HolisticLandmarkerResult
+            spans = sanket.probe.spans
+            labels = sanket.probe.labels
+            pass = sanket.probe.accepted
+            pose = sanket.probe.pose
           } else {
             result = landmarker!.detectForVideo(src, t)
+            const slots = [
+              result.leftHandLandmarks?.[0],
+              result.rightHandLandmarks?.[0],
+            ]
+            for (let i = 0; i < slots.length; i++) {
+              const p = slots[i]
+              if (!p) continue
+              spans.push(handSpan(p))
+              labels.push(i === 0 ? 'L' : 'R')
+              if (isHand(p)) pass += 1
+            }
+            pose = !!result.poseLandmarks?.[0]
           }
         } catch {
           /* A dropped frame is not worth tearing the panel down for. */
@@ -312,6 +367,9 @@ export default function CameraField({
           /* A fault downstream must not stop the tracking. */
           console.error('[CameraField] frame consumer threw', err)
         }
+
+        const el = probeElRef.current
+        if (el) el.textContent = probeLine(spans, labels, pass, pose, srcKind)
       }
       draw()
     }
@@ -398,6 +456,9 @@ export default function CameraField({
     <div className={className}>
       <video ref={videoRef} playsInline muted className="hidden" />
       <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
+      {/* Mounted only while asked for: the loop writes straight into it, so
+          there is no React state moving at frame rate. */}
+      {probe && <div ref={probeElRef} className="mp-probe" aria-hidden="true" />}
     </div>
   )
 }

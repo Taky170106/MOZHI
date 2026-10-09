@@ -184,6 +184,30 @@
   border-color: rgb(255 255 255 / 0.18);
 }
 
+/* The MediaPipe probe (Counter → "MediaPipe probe", key P). The frame loop
+   writes into this node directly rather than through React state, so showing
+   a per-frame diagnostic does not re-render two WebGL stages at 30fps. */
+.mp-probe {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  padding: 6px 9px;
+  border-radius: 10px;
+  border: 1px solid rgb(155 216 255 / 0.28);
+  background: rgb(0 0 0 / 0.72);
+  backdrop-filter: blur(4px);
+  color: #9bd8ff;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  white-space: pre;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.9);
+}
+
 .card-body {
   display: flex;
   flex-direction: column;

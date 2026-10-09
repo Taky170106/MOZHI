@@ -152,6 +152,9 @@ export default function Counter() {
   }, [])
   const [slow, setSlow] = useState(false)
   const [visitorDisplay, setVisitorDisplay] = useState(false)
+  /* What MediaPipe claimed this frame, beside what hand.ts let through.
+     Off by default — it is a diagnostic, not a product surface. */
+  const [probe, setProbe] = useState(false)
   const [signed, setSigned] = useState<string[]>(['ROOM', 'NUMBER', 'GO'])
   const composerRef = useRef<HTMLTextAreaElement>(null)
   const logRef = useRef<HTMLDivElement>(null)
@@ -367,6 +370,7 @@ export default function Counter() {
       if (e.key === 'Escape') { setVisitorDisplay(false); return }
       if (typing) return
       if (e.key === 'v' || e.key === 'V') { setVisitorDisplay(v => !v); return }
+      if (e.key === 'p' || e.key === 'P') { setProbe(v => !v); return }
       if ((e.key === 'm' || e.key === 'M') && micRef.current) { micRef.current(); return }
       /* Enter, with the composer unfocused, belongs to the visitor's lane:
          it sends the words that have accumulated there. Nothing the camera
@@ -450,6 +454,7 @@ export default function Counter() {
                 boost={settings.videoBoost}
                 onStatus={onCamStatus}
                 onFrame={MODEL_ENABLED ? live.onFrame : undefined}
+                probe={probe}
                 className="absolute inset-0"
               />
             ) : (
@@ -1009,6 +1014,19 @@ export default function Counter() {
           Face channel {faceChannel ? 'on' : 'off'}
         </button>
         <button className="util" onClick={() => setVisitorDisplay(true)}>⛶ Visitor display</button>
+        {/* The MediaPipe probe. Two numbers on one line — what the tracker
+            returned (raw) and what hand.ts let through (pass) — is what turns
+            "it is detecting hands again" into a localisable claim: raw=0
+            while a word appears clears the tracker and points at the
+            segmenter or the engine instead. */}
+        <button
+          className={`util${probe ? '' : 'util-off'}`}
+          aria-pressed={probe}
+          onClick={() => setProbe(v => !v)}
+          title="Show what MediaPipe returned this frame next to what the hand gate accepted — P"
+        >
+          MediaPipe probe {probe ? 'on' : 'off'}
+        </button>
         <span className="m text-[0.56rem] text-white/25">On-device · {ALL_SIGNS.length} signs · fingerspelling · CPU</span>
 
         {/* Everything else on this screen runs in the page. If speech is on,
@@ -1039,7 +1057,7 @@ export default function Counter() {
           {logLive === null ? 'Log · opening' : logLive ? 'Log · on device' : 'Log · memory only'}
         </span>
         <span className="ml-auto hidden items-center gap-4 lg:flex">
-          {[['V', 'display'], ['↵', 'send read'], ['/', 'reply'], ...(micOn ? [['M', 'speak']] : []), ['Esc', 'exit']].map(([k, what]) => (
+          {[['V', 'display'], ['P', 'probe'], ['↵', 'send read'], ['/', 'reply'], ...(micOn ? [['M', 'speak']] : []), ['Esc', 'exit']].map(([k, what]) => (
             <span key={k} className="flex items-center gap-1.5">
               <kbd className="key">{k}</kbd>
               <span className="m text-[0.54rem] text-white/30">{what}</span>

@@ -31,12 +31,11 @@ import type { NormalizedLandmark } from '@mediapipe/tasks-vision'
     failure this whole file exists to avoid. */
 export const MIN_HAND_SPAN = 0.05
 
-/** True when `points` is a plausible hand rather than a latched blob.
-
-    `undefined` is false: a hand the landmarker did not produce is not
-    a hand, and every caller here is asking exactly that question. */
-export function isHand(points: NormalizedLandmark[] | undefined): boolean {
-  if (!points || points.length < 21) return false
+/** The span of a landmark set, as a fraction of the frame — the one number
+    `isHand` decides on, and the one a diagnostic has to show in order to
+    say WHY a detection was refused. NaN when there is nothing to measure. */
+export function handSpan(points: NormalizedLandmark[] | undefined): number {
+  if (!points || points.length < 21) return NaN
 
   let x0 = Infinity
   let y0 = Infinity
@@ -44,13 +43,22 @@ export function isHand(points: NormalizedLandmark[] | undefined): boolean {
   let y1 = -Infinity
 
   for (const p of points) {
-    if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) return false
+    if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) return NaN
     if (p.x < x0) x0 = p.x
     if (p.y < y0) y0 = p.y
     if (p.x > x1) x1 = p.x
     if (p.y > y1) y1 = p.y
   }
 
-  if (!Number.isFinite(x1 - x0) || !Number.isFinite(y1 - y0)) return false
-  return Math.max(x1 - x0, y1 - y0) >= MIN_HAND_SPAN
+  const span = Math.max(x1 - x0, y1 - y0)
+  return Number.isFinite(span) ? span : NaN
+}
+
+/** True when `points` is a plausible hand rather than a latched blob.
+
+    `undefined` is false: a hand the landmarker did not produce is not
+    a hand, and every caller here is asking exactly that question. */
+export function isHand(points: NormalizedLandmark[] | undefined): boolean {
+  const span = handSpan(points)
+  return Number.isFinite(span) && span >= MIN_HAND_SPAN
 }

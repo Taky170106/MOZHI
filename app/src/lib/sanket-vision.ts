@@ -7,7 +7,7 @@ import {
   type PoseLandmarkerResult,
 } from '@mediapipe/tasks-vision'
 import { FEATURE_DIM, HAND, POSE_INDICES } from './sanket'
-import { isHand } from './hand'
+import { isHand, handSpan } from './hand'
 
 /* ============================================================
    sanket-vision.ts — the landmarks the checkpoint was trained on.
@@ -41,6 +41,27 @@ export type SignFrame = {
   personPresent: boolean
 }
 
+/** What MediaPipe returned this frame, BEFORE hand.ts had any say.
+
+    A false positive is only localisable from two numbers side by side:
+    what the detector claimed, and what the gate let through. If `raw` is
+    0 while the screen reads a word, MediaPipe is not the culprit and no
+    amount of threshold tuning will help. If `raw` is 1 with a span far
+    below MIN_HAND_SPAN, the detector is inventing and the gate is the
+    only thing standing between it and the model. */
+export type VisionProbe = {
+  raw: number
+  accepted: number
+  /** Span of each raw detection, as a fraction of the frame. */
+  spans: number[]
+  /** MediaPipe's handedness label for each raw detection. */
+  labels: string[]
+  pose: boolean
+  /** The timestamp the detectors were given, so a reader can tell a live
+      reading from a stale one. */
+  stamp: number
+}
+
 export type SanketVision = {
   /* A canvas as well as a video: CameraField hands us a lift-corrected copy
      of the frame when the room is dim. Same dimensions as the video, so the
@@ -53,6 +74,9 @@ export type SanketVision = {
     leftHandLandmarks?: NormalizedLandmark[][]
     rightHandLandmarks?: NormalizedLandmark[][]
   }
+  /** The same frame as `last`, but before the shape gate — see VisionProbe.
+      Mutated in place by `detect`; a diagnostic reads it, nothing else does. */
+  probe: VisionProbe
   close: () => void
 }
 
@@ -80,6 +104,9 @@ export async function createSanketVision(): Promise<SanketVision> {
 
   const vec = new Float32Array(FEATURE_DIM)
   const last: SanketVision['last'] = {}
+  const probe: VisionProbe = {
+    raw: 0, accepted: 0, spans: [], labels: [], pose: false, stamp: 0,
+  }
 
   /* VIDEO mode wants a timestamp that only ever goes up, and the same one
      for both detectors so the two readings describe one moment. */
@@ -124,8 +151,14 @@ export async function createSanketVision(): Promise<SanketVision> {
     let leftPoints: NormalizedLandmark[] | undefined
     let rightPoints: NormalizedLandmark[] | undefined
     let accepted = 0
+    probe.spans.length = 0
+    probe.labels.length = 0
     if (hr?.landmarks) {
       hr.landmarks.forEach((points, i) => {
+        /* Recorded whether or not it is accepted: the probe exists to show
+           the detector's claim and the gate's verdict on the same line. */
+        probe.spans.push(handSpan(points))
+        probe.labels.push(hr!.handednesses?.[i]?.[0]?.categoryName ?? '?')
         if (!isHand(points)) return
         accepted += 1
         const label = hr!.handednesses?.[i]?.[0]?.categoryName
@@ -139,6 +172,8 @@ export async function createSanketVision(): Promise<SanketVision> {
       })
     }
     const handsFound = accepted > 0
+    probe.raw = probe.spans.length
+    probe.accepted = accepted
 
     const body = pr?.landmarks?.[0]
     const personPresent = !!body
@@ -159,12 +194,16 @@ export async function createSanketVision(): Promise<SanketVision> {
     last.leftHandLandmarks = leftPoints ? [leftPoints] : undefined
     last.rightHandLandmarks = rightPoints ? [rightPoints] : undefined
 
+    probe.pose = personPresent
+    probe.stamp = stamp
+
     return { vec, handsFound, personPresent }
   }
 
   return {
     detect,
     last,
+    probe,
     close: () => {
       hands.close()
       pose.close()
