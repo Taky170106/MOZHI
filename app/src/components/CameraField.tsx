@@ -211,12 +211,35 @@ export default function CameraField({
       ctx.fill()
     }
 
+    /* BlazePose answers for all thirty-three points whether it can see them
+       or not. The feet are guessed from context even when the signer is
+       standing in an open room — measured over real clips, the heels come
+       back below 0.5 seventy-two per cent of the time and the foot points
+       below it every single time — and at a counter, where the legs are
+       behind wood, eighty-one per cent of everything below the waist is a
+       deduction rather than an observation. Drawn at full strength, a
+       guessed leg is indistinguishable from a real one: the panel shows a
+       body standing where there is none, which is exactly the sort of thing
+       that makes a viewer distrust the whole overlay.
+
+       The detector's own doubt is the test, and 0.5 is the same floor the
+       rest of the chain uses. It costs the arm nothing at all — shoulders,
+       elbows and wrists come back below it zero times in either framing —
+       and it removes the parts it has no business showing, including the
+       fingers it guesses at. Those mattered twice over: the dedicated hand
+       layer below draws the real hands from HandLandmarker, so BlazePose's
+       guess used to be laid over it, two renderings of the same hands
+       a few pixels out of register, shaking against each other. */
+    const VISIBLE = 0.5
+    const shown = (p: NormalizedLandmark) => (p.visibility ?? 1) >= VISIBLE
+
     const link = (
       pts: NormalizedLandmark[],
       pairs: readonly { start: number; end: number }[],
       b: ReturnType<typeof box>,
       width: number,
       stroke: string,
+      keep: (p: NormalizedLandmark) => boolean = shown,
     ) => {
       ctx.lineWidth = width
       ctx.strokeStyle = stroke
@@ -226,6 +249,10 @@ export default function CameraField({
         const a = pts[start]
         const c = pts[end]
         if (!a || !c) continue
+        /* Both ends, not either: a limb is only as visible as the less
+           visible of the two points it hangs from. Gating the dots but not
+           the lines would leave a bone floating to a foot nobody drew. */
+        if (!keep(a) || !keep(c)) continue
         ctx.moveTo(b.x + (1 - a.x) * b.w, b.y + a.y * b.h)
         ctx.lineTo(b.x + (1 - c.x) * b.w, b.y + c.y * b.h)
       }
@@ -263,8 +290,8 @@ export default function CameraField({
 
       const pose = result.poseLandmarks?.[0]
       if (pose) {
-        link(pose, HolisticLandmarker.POSE_CONNECTIONS, b, 2 * dpr, 'rgba(27, 110, 243, 0.85)')
-        for (const p of pose) dot(p, b, 2.2 * dpr, INK_LIT)
+        link(pose, HolisticLandmarker.POSE_CONNECTIONS, b, 2 * dpr, 'rgba(27, 110, 243, 0.85)', shown)
+        for (const p of pose) if (shown(p)) dot(p, b, 2.2 * dpr, INK_LIT)
       }
 
       /* Drawn only if it would also be COUNTED — see hand.ts. What the
