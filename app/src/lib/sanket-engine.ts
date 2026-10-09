@@ -200,17 +200,28 @@ export class SanketEngine {
 
     /* 3b — and it has to STAY there. The first frames after a hand
        appears carry no evidence yet, and they are exactly the frames a
-       phantom detection produces before it lets go again. */
-    if (++this.handsRun < HAND_ONSET_FRAMES) {
+       phantom detection produces before it lets go again.
+
+       They are now COUNTED but not JUDGED. Withholding them from the
+       window entirely pushed the first classification out by
+       HAND_ONSET_FRAMES on top of a cost already fixed at
+       SEQUENCE_LENGTH frames — pure latency, since nothing can be read
+       until the window is full anyway. Admitting them surrenders no gate:
+       the stability history stays closed, no inference runs over them,
+       and every check below still receives exactly the frames it did
+       before. Only the wait until the window can fill gets shorter. */
+    const onset = ++this.handsRun < HAND_ONSET_FRAMES
+    if (onset) {
       this.recent = []
       this.scene = 'listening'
-      return
+    } else {
+      this.scene = 'signing'
     }
 
-    this.scene = 'signing'
     this.buf.push(vec.slice())
     if (this.buf.length > SEQUENCE_LENGTH) this.buf.shift()
     this.frames += 1
+    if (onset) return
 
     /* 4 — a full window, and only every third frame of it. */
     if (this.buf.length < SEQUENCE_LENGTH) return
