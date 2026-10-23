@@ -1,0 +1,24 @@
+# Render blueprint — https://render.com/docs/blueprint-spec
+#
+# Mozhi deploys as a static site. The recogniser runs in the browser: the
+# BiGRU is ONNX under onnxruntime-web (app/src/lib/sanket-onnx.ts), MediaPipe
+# runs locally, and app/scripts/copy-ort.mjs ships only the single-threaded
+# SIMD WASM build — so no COOP/COEP cross-origin headers are required.
+# server/ is the local dev backend and is deliberately not deployed.
+
+services:
+  - type: web
+    runtime: static
+    name: mozhi
+    branch: hospital-voice
+
+    # The repo is a monorepo with no package.json at the root, so Render's
+    # dependency detection has nothing to find. Install explicitly instead.
+    envVars:
+      - name: SKIP_INSTALL_DEPS
+        value: "true"
+      - name: NODE_VERSION
+        value: "22"
+
+    buildCommand: cd app && npm ci && npm run build
+    staticPublishPath: ./app/dist
